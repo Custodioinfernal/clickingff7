@@ -496,7 +496,7 @@ function SaveCtrl($scope, $rootScope, $location, Game, Utils) {
    * Export the current game
    */
   $rootScope.exportCurrentGame = function(ev) {
-    var save = Game.export();
+    var save = Game._export();
     $scope.area = JSON.stringify(save);
     Utils.animate(ev, 'OK!');
   };
@@ -507,7 +507,7 @@ function SaveCtrl($scope, $rootScope, $location, Game, Utils) {
   $rootScope.importSave = function(ev) {
     if (!Game.last_export || confirm('Are you sure ? You\'ll lose your current save !')) {
       var save = JSON.parse($scope.area);
-      Game.import(save);
+      Game._import(save);
       location.reload();
     }
   };

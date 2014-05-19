@@ -10,43 +10,6 @@
     <title>Clicking FF7</title>
 
     <link rel="stylesheet" type="text/css" href="css/style.css">
-    <link rel="stylesheet" type="text/css" href="js/lib/introjs.min.css">
-    
-    <script src="js/underscore.min.js"></script>
-    
-    <script src="models/game.js"></script>
-    <script src="models/zones.js"></script>
-    <script src="models/zone.js"></script>
-    <script src="models/enemies.js"></script>
-    <script src="models/enemy.js"></script>
-    <script src="models/characters.js"></script>
-    <script src="models/character.js"></script>
-    <script src="models/weapon.js"></script>
-    <script src="models/materia.js"></script>
-    <script src="models/item.js"></script>
-    <script src="models/shop.js"></script>
- 
-    <script src="js/jquery.min.js"></script>
-    <script src="js/lib/intro.min.js"></script>
-    <script src="js/angular.js"></script>
-    <script src="js/angular-route.min.js"></script>
-    <script src="js/angular-cookies.min.js"></script>
-    <script src="js/utils.js"></script>
-    <script src="js/app.js"></script>
-
-    <script type="text/javascript">
-
-    var _gaq = _gaq || [];
-    _gaq.push(['_setAccount', 'UA-44996905-1']);
-    _gaq.push(['_trackPageview']);
-
-    (function() {
-    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-    })();
-
-    </script>
   </head>
 
   <body>
@@ -81,6 +44,42 @@
         <a href="https://github.com/Menencia/clickingff7" target="_blank">Github</a>
       </div>
     </footer>
+
+    <script src="bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="bower_components/underscore/underscore.js"></script>
+    <script src="bower_components/angular/angular.min.js"></script>
+    <script src="bower_components/angular-route/angular-route.min.js"></script>
+    <script src="bower_components/angular-cookies/angular-cookies.min.js"></script>
+    <script src="bower_components/traceur-runtime/traceur-runtime.min.js"></script>
+
+    <script src="dist/game.js"></script>
+    <script src="dist/zones.js"></script>
+    <script src="dist/zone.js"></script>
+    <script src="dist/enemies.js"></script>
+    <script src="dist/enemy.js"></script>
+    <script src="dist/characters.js"></script>
+    <script src="dist/character.js"></script>
+    <script src="dist/weapon.js"></script>
+    <script src="dist/materia.js"></script>
+    <script src="dist/item.js"></script>
+    <script src="dist/shop.js"></script>
+
+    <script src="dist/utils.js"></script>
+    <script src="dist/app.js"></script>
+
+    <script type="text/javascript">
+
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-44996905-1']);
+        _gaq.push(['_trackPageview']);
+
+        (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+
+    </script>
 
 <script>
 // Include the UserVoice JavaScript SDK (only needed once on a page)
