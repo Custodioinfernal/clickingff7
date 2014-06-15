@@ -5,48 +5,31 @@
 
 class Characters {
 
-    constructor(Game) {
+    constructor(game) {
 
-        this._id = _.uniqueId();
+        // game object
+        this.game = game;
 
-        this.Game = Game;
+        // maximum characters in the team
+        this.MAX_TEAM = 3;
 
-        this.characters = [];
+        // active characters
+        this.team = [];
 
+        // stand-by characters
+        this.stack = [];
+
+        // timers array
         this.timer = {};
 
-        this.autoRestore();
+        // background skills
+        //this.autoRestore();
     }
 
-    /**
-     * Get the in-team characters
-     * @return {Array}
+    /*
+     * @param hp
      */
-        getTeam() {
-        var zoneLvlMax = this.Game.zones.levelMax;
-        return _.filter(this.characters, function (o) {
-            var available = true;
-            if (_.has(o, 'notAvailable')) {
-                available = ($.inArray(zoneLvlMax, o.notAvailable) == -1);
-            }
-            return o.zone <= zoneLvlMax && available;
-        });
-    }
-
-    /**
-     * Get the team who can equip a materia
-     */
-        getMateriaTeam() {
-        return _.filter(this.characters, function (o) {
-            return (!o.materia());
-        });
-    }
-
-    /**
-     * Set HP characters
-     * @param {int} hp
-     */
-        addHp(hp) {
+    addHp(hp) {
         this.hp += hp;
         if (this.hp > this.hpMax) {
             this.hp = this.hpMax;
@@ -65,29 +48,35 @@ class Characters {
         this.effects[effect] += level;
     }
 
-    /**
-     * Build elements linked to characters
-     * @param {String|Object} data
+    /*
+     * @param character
      */
-        add(data) {
-        if (typeof data == 'string') {
-            data = _.clone(this.Game.data.characters[data]);
+    addTeam(character) {
+        if (this.team.length < this.MAX_TEAM) {
+            this.team.push(character);
+        } else {
+            this.addStack(character);
         }
-
-        this.characters.push(new Character(this, data));
     }
 
-    /**
-     * Refresh all the party
+    /*
+     * @param character
      */
-        refresh() {
+    addStack(character) {
+        this.stack.push(character);
+    }
+
+    /*
+     *
+     */
+    refresh() {
         this.hpMax = 0;
         this.limitMax = 0;
         this.hits = 0;
         this.effects = {};
         this.levelMax = 0;
 
-        var characters = this.getTeam();
+        var characters = this.team;
         for (var i in characters) {
             // Level
             if (characters[i].level > this.levelMax) {
@@ -97,30 +86,6 @@ class Characters {
             // HP, hits
             this.hpMax += characters[i].getHpMax();
             this.hits += characters[i].getHits();
-
-            // Effects
-            var materia = characters[i].materia();
-            if (materia && materia.effect) {
-                this.addEffect(materia.effect, materia.level);
-            }
-        }
-
-        // WEAKNESS
-        this.weaknessDamages = 0;
-        var weakness = this.Game.enemies.weakness;
-        for (var i in weakness) {
-            if (_.has(this.effects, i)) {
-                this.weaknessDamages += this.effects[i];
-            }
-        }
-
-        // RESISTS
-        this.resistsDamages = 0;
-        var resists = this.Game.enemies.resists;
-        for (var i in resists) {
-            if (_.has(this.effects, i)) {
-                this.resistsDamages += this.effects[i];
-            }
         }
 
         this.limitMax = this.hpMax * 2;
@@ -149,8 +114,8 @@ class Characters {
      * Characters do train
      */
         train() {
-        if (this.Game.mode == "normal") {
-            this.Game.mode = "train";
+        if (this.game.mode == "normal") {
+            this.game.mode = "train";
             this.autoTrain();
         }
     }
@@ -160,9 +125,9 @@ class Characters {
      */
         autoTrain() {
         var self = this;
-        this.timer['train'] = this.Game.$timeout(function () {
+        this.timer['train'] = this.game.$timeout(function () {
 
-            var xp = Math.pow(self.Game.zones.level, 2);
+            var xp = Math.pow(self.game.zones.level, 2);
             var characters = self.getTeam();
             for (var i in characters) {
                 characters[i].setXp(xp);
@@ -176,8 +141,8 @@ class Characters {
      * Characters stop training
      */
         stopTrain() {
-        this.Game.mode = "normal";
-        this.Game.$timeout.cancel(this.timer['train']);
+        this.game.mode = "normal";
+        this.game.$timeout.cancel(this.timer['train']);
     }
 
     /**
@@ -185,15 +150,15 @@ class Characters {
      */
         autoFighting() {
         var self = this;
-        this.timer['fighting'] = this.Game.$timeout(function () {
+        this.timer['fighting'] = this.game.$timeout(function () {
 
             var hits = self.getHits();
-            var alive = self.Game.enemies.get_attacked(hits);
+            var alive = self.game.enemies.get_attacked(hits);
 
             if (alive) {
                 self.autoFighting();
             } else {
-                self.Game.end_fight(true);
+                self.game.end_fight(true);
             }
         }, 1000);
     }
@@ -202,7 +167,7 @@ class Characters {
      * Stop fighting
      */
         stopFighting() {
-        var success = this.Game.$timeout.cancel(this.timer['fighting']);
+        var success = this.game.$timeout.cancel(this.timer['fighting']);
     }
 
     /**
@@ -210,9 +175,9 @@ class Characters {
      */
         autoRestore() {
         var self = this;
-        this.timer['restore'] = this.Game.$timeout(function () {
+        this.timer['restore'] = this.game.$timeout(function () {
 
-            if (self.Game.mode == "normal") {
+            if (self.game.mode == "normal") {
                 self.restore();
             }
 
@@ -264,10 +229,10 @@ class Characters {
      * Characters do explore
      */
         explore() {
-        this.Game.enemies.random();
-        this.Game.enemies.refresh();
+        this.game.enemies.random();
+        this.game.enemies.refresh();
         this.refresh();
-        this.Game.start_fight();
+        this.game.start_fight();
     }
 
     /**
@@ -296,7 +261,7 @@ class Characters {
      * Escape from fight
      */
         escape() {
-        this.Game.end_fight(false);
+        this.game.end_fight(false);
     }
 
     /**
@@ -304,7 +269,7 @@ class Characters {
      * @return {boolean}
      */
         canAttack() {
-        return (this.Game.mode == "fight");
+        return (this.game.mode == "fight");
     }
 
     /**
@@ -312,7 +277,7 @@ class Characters {
      * @return {boolean}
      */
         canLimit() {
-        return (this.Game.mode == "fight" && this.limit == this.limitMax);
+        return (this.game.mode == "fight" && this.limit == this.limitMax);
     }
 
     /**
@@ -328,7 +293,7 @@ class Characters {
      * @return {boolean}
      */
         canEscape() {
-        return (this.Game.mode == "fight");
+        return (this.game.mode == "fight");
     }
 
     /**
@@ -337,9 +302,9 @@ class Characters {
      */
         save() {
         var res = {
-            "hp": this.hp,
+            "hp"   : this.hp,
             "limit": this.limit,
-            "data": []
+            "data" : []
         };
 
         for (var i in this.characters) {

@@ -139,7 +139,7 @@
         </div>
       </div>
     </div>
-  </sections>
+  </section>
 
 </div><!--
 
@@ -148,11 +148,11 @@
 --><div class="part w400">
 
   <section class="characters">
-    <div ng-repeat="(i, character) in game.characters.getTeam() | clean" class="right div400 character">
+    <div ng-repeat="(i, character) in game.characters.team | clean" class="right div400 character">
       <div class="xp_progress" style="width:{{character.xpProgress(400)}}px;"></div>
       <div class="main">  
         <div class="part avatar w50">
-          <img ng-src="img/characters/{{character.image}}" alt="avatar" class="icon" />
+          <img ng-src="{{character.image}}" alt="avatar" class="icon" />
         </div><!--
         --><div class="part w350">
           <div>{{character.name}} <strong>(LVL{{character.level}})</strong></div>
@@ -184,7 +184,7 @@
         </div>
       </div>
     </div>
-  </sections>
+  </section>
 
 </div>
 

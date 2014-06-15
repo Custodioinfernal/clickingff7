@@ -50,9 +50,9 @@ class Game {
      */
         load() {
         this._loadJSON([
-            ['lines', 'zones', 'enemies', 'weapons', 'materias', 'items'],
-            ['characters']
-        ]);
+                           ['lines', 'zones', 'enemies', 'weapons', 'materias', 'items'],
+                           ['characters']
+                       ]);
     }
 
     /**
@@ -108,8 +108,7 @@ class Game {
     }
 
     _load_weapons(finish) {
-        var self = this,
-            weapon;
+        var self = this, weapon;
         this.$http.get('data/weapons.json?v=' + new Date().getTime()).success(function (data) {
             self.data.weapons = data;
 
@@ -118,8 +117,7 @@ class Game {
     }
 
     _load_materias(finish) {
-        var self = this,
-            materia;
+        var self = this, materia;
         this.$http.get('data/materias.json?v=' + new Date().getTime()).success(function (data) {
             self.data.materias = data;
 
@@ -128,8 +126,7 @@ class Game {
     }
 
     _load_items(finish) {
-        var self = this,
-            item;
+        var self = this, item;
         this.$http.get('data/items.json?v=' + new Date().getTime()).success(function (data) {
             self.data.items = data;
 
@@ -239,20 +236,24 @@ class Game {
         this.last_export = JSON.stringify(save);
     }
 
-    /**
+    /*
      * Basic inventory
      */
-        newItems() {
+    newItems() {
         switch (this.zones.levelMax) {
             case 1: // Cloud & Barret
-                this.addWeapon('buster-sword', true);
-                this.addWeapon('gatling-gun', true);
-                this.addMateria('bolt', 'cloud');
-                this.addMateria('restore', 'barret');
-                this.addItem('potion');
-                this.addItem('potion');
-                this.characters.add('cloud');
-                this.characters.add('barret');
+
+                this.addCharacter(new Cloud(this), true);
+                this.addWeapon(new BusterSword(this), true); // maxMaterias: +1
+                //this.addMateria(new Bolt(), true);
+
+                //this.addCharacter(new Barret(), true);
+                //this.addWeapon(new GatlingGun(), true); // maxMaterias: +1
+                //this.addMateria(new Restore(), true);
+
+                //this.addItem(new Potion());
+                //this.addItem(new Potion());
+
                 break;
             case 2: // Tifa
                 this.addWeapon('leather-glove', true);
@@ -271,52 +272,48 @@ class Game {
 
     }
 
-    /**
-     * Add a weapon to the game or character
-     * @param {String|Object} data
-     * @param {Boolean} equiped
+    /*
+     * @param character
+     * @param inTeam
      */
-        addWeapon(data, equiped) {
-        if (typeof data == 'string') {
-            data = _.clone(this.data.weapons[data]);
+    addCharacter(character, inTeam = false) {
+        if (inTeam) {
+            this.characters.addTeam(character);
+        } else {
+            this.characters.addStack(character);
         }
-
-        // Give the weapon to a character
-        if (equiped) {
-            data.equipped = equiped;
-        }
-
-        this.weapons.push(new Weapon(this, data));
     }
 
-    /**
-     * Add a materia to the game or character
-     * @param {String|Object} data
-     * @param {String} characterRef
+    /*
+     * @param weapon
+     * @param equipped
      */
-        addMateria(data, characterRef) {
-        if (typeof data == 'string') {
-            data = _.clone(this.data.materias[data]);
-        }
+    addWeapon(weapon, equipped = false) {
+        // equip the weapon
+        weapon.equipped = equipped;
 
-        // Give the weapon to a character
-        if (characterRef) {
-            data.character = characterRef;
-        }
-
-        this.materias.push(new Materia(this, data));
+        // add weapon to inventory
+        this.weapons.push(weapon);
     }
 
-    /**
-     * Add a item to the game
-     * @param {String|Object} data
+    /*
+     * @param materia
+     * @param equipped
      */
-        addItem(data) {
-        if (typeof data == 'string') {
-            var data = _.clone(this.data.items[data]);
-        }
+    addMateria(materia, equipped = false) {
+        // equip the materia
+        materia.equipped = equipped;
 
-        this.items.push(new Item(this, data));
+        // add materia to inventory
+        this.materias.push(materia);
+    }
+
+    /*
+     * @param item
+     */
+    addItem(item) {
+        // add item to inventory
+        this.items.push(item);
     }
 
     /**

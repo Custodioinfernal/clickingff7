@@ -1,71 +1,62 @@
 /**
- * Weapon class
- * @param {Game} Game
- * @param {string} ref
+ *
  */
 
 class Weapon {
 
-    constructor(Game, data) {
-
-        this._id = _.uniqueId();
-
-        this.Game = Game;
-
-        if (data) {
-            this.extend(data);
-        }
+    constructor(game) {
+        this.game = game;
     }
 
-    /**
+    /*
      * Extends the data properties with saved data
      * @param  {object} data
      */
-        extend(data) {
+    extend(data) {
         for (var i in data) {
             this[i] = data[i];
         }
     }
 
-    /**
+    /*
      * Returns the price of the weapon
      * @return {int}
      */
-        getPrice() {
+    getPrice() {
         return this.gils;
     }
 
-    /**
+    /*
      * Returns true if the weapon is owned in the inventory
      * @return {boolean}
      */
-        inStock() {
-        var weapons = _.where(this.Game.weapons, {
+    inStock() {
+        var weapons = _.where(this.game.weapons, {
             ref: this.ref
         });
         return weapons.length;
     }
 
-    /**
+    /*
      * Equip a weapon
      */
-        equip() {
-        var weapon = _.findWhere(this.Game.weapons, {
+    equip() {
+        var weapon = _.findWhere(this.game.weapons, {
             character: this.character,
-            equipped: true
+            equipped : true
         });
 
         weapon.equipped = false;
 
         this.equipped = true;
 
-        this.Game.characters.refresh();
+        this.game.characters.refresh();
     }
 
-    /**
+    /*
      * Save weapon
      */
-        save() {
+    save() {
         return _.pick(this, 'ref', 'equipped');
     }
 
