@@ -104,7 +104,7 @@ class Characters {
         getHits() {
         var hits = 0;
         hits += this.hits;
-        hits += ((this.weaknessDamages - this.resistsDamages) * 10 / 100) * hits;
+        //hits += ((this.weaknessDamages - this.resistsDamages) * 10 / 100) * hits;
         return hits;
     }
 
@@ -128,7 +128,7 @@ class Characters {
         this.timer['train'] = this.game.$timeout(function () {
 
             var xp = Math.pow(self.game.zones.level, 2);
-            var characters = self.getTeam();
+            var characters = self.team;
             for (var i in characters) {
                 characters[i].setXp(xp);
             }
@@ -240,7 +240,7 @@ class Characters {
      * @return {[type]} [description]
      */
         restore() {
-        var characters = this.getTeam();
+        var characters = this.team;
 
         var Lvl = 1;
         for (var i in characters) {

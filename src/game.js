@@ -247,8 +247,8 @@ class Game {
                 this.addWeapon(new BusterSword(this), true); // maxMaterias: +1
                 //this.addMateria(new Bolt(), true);
 
-                //this.addCharacter(new Barret(), true);
-                //this.addWeapon(new GatlingGun(), true); // maxMaterias: +1
+                this.addCharacter(new Barret(this), true);
+                this.addWeapon(new GatlingGun(this), true); // maxMaterias: +1
                 //this.addMateria(new Restore(), true);
 
                 //this.addItem(new Potion());
@@ -339,7 +339,7 @@ class Game {
         this.enemies.stopFighting();
 
         var enemies = this.enemies.getTeam();
-        var characters = this.characters.getTeam();
+        var characters = this.characters.team;
 
         for (var i in enemies) {
             var enemy = enemies[i];
