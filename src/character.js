@@ -52,7 +52,7 @@ class Character {
      * @returns {Object}
      */
     getXpMax() {
-        return eval(this.xp_formula.replace('x', this.level + 1));
+        return this.xpFormula(this.level + 1);
     }
 
     /*

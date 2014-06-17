@@ -45,8 +45,6 @@
   <div class="part w400 aright">
 
     <div class="part w300">
-      <div ng-click="stopTrain($event)" class="button big" ng-if="game.mode=='train'" ng-class="{disabled: game.mode != 'train'}">STOP</div>
-      <div ng-click="train($event)" class="button big" ng-if="game.mode!='train'" ng-class="{disabled: game.mode != 'normal'}">TRAIN</div>&nbsp;
       <div ng-click="explore($event)" class="button big" ng-class="{disabled: game.mode != 'normal'}">EXPLORE</div>&nbsp;
       <div ng-click="escape($event)" class="button big" ng-class="{disabled: !game.characters.canEscape()}">ESCAPE</div>
     </div>
@@ -66,7 +64,6 @@
         <span ng-if="!game.characters.canLimit()">ATTACK</span>
         <span ng-if="game.characters.canLimit()">LIMIT</span>
       </div>&nbsp;
-      <div ng-click="restore($event)" class="button big" ng-class="{disabled: !game.characters.canRestore()}">RESTORE</div>
     </div>
 
     <div>

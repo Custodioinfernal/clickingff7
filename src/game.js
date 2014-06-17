@@ -359,9 +359,6 @@ class Game {
                     var xp = enemy.xpReward();
                     var ap = enemy.apReward();
                     character.setXp(xp);
-                    if (character.materia()) {
-                        character.materia().setAp(ap);
-                    }
                 }
             }
         }

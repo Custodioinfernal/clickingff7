@@ -21,9 +21,6 @@ class Characters {
 
         // timers array
         this.timer = {};
-
-        // background skills
-        //this.autoRestore();
     }
 
     /*
@@ -171,21 +168,6 @@ class Characters {
     }
 
     /**
-     * Auto-restore HP while not in fight
-     */
-        autoRestore() {
-        var self = this;
-        this.timer['restore'] = this.game.$timeout(function () {
-
-            if (self.game.mode == "normal") {
-                self.restore();
-            }
-
-            self.autoRestore();
-        }, 1000);
-    }
-
-    /**
      * Returns in pixels characters hp bar width
      * @param  {int} pixels_max
      * @return {int}
@@ -233,28 +215,6 @@ class Characters {
         this.game.enemies.refresh();
         this.refresh();
         this.game.start_fight();
-    }
-
-    /**
-     * Do a manual cure - based on materia
-     * @return {[type]} [description]
-     */
-        restore() {
-        var characters = this.team;
-
-        var Lvl = 1;
-        for (var i in characters) {
-            var character = characters[i];
-            if (character.materia() && character.materia().ref == 'restore') {
-                Lvl += character.materia().level;
-            }
-        }
-
-        var resHp = Math.ceil(this.hpMax * (Lvl * 1 / 100));
-
-        this.addHp(resHp);
-
-        return resHp;
     }
 
     /**
