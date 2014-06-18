@@ -1,20 +1,14 @@
 /**
- * Materia class
- * @param {Game} Game
- * @param {Object} data
+ *
  */
 
 class Materia {
 
-    constructor(Game, data) {
+    constructor(game) {
 
         this._id = _.uniqueId();
 
-        this.Game = Game;
-
-        if (data) {
-            this.extend(data);
-        }
+        this.game = game;
 
         if (!_.has(this, 'level')) {
             this.level = 1;
@@ -24,20 +18,19 @@ class Materia {
         }
     }
 
-    /**
-     * Extends the data properties with saved data
-     * @param  {object} data
+    /*
+     * @param data
      */
-        extend(data) {
+    extend(data) {
         for (var i in data) {
             this[i] = data[i];
         }
     }
 
-    /**
-     * Returns description of the materia
+    /*
+     * @returns {string}
      */
-        getDesc() {
+    getDesc() {
         var Txt = '';
 
         switch (this.ref) {
@@ -64,11 +57,10 @@ class Materia {
         return Txt;
     }
 
-    /**
-     * Return the level of the materia
-     * @return {int|String}
+    /*
+     * @returns {*}
      */
-        getLevel() {
+    getLevel() {
         if (this.level < this.levelMax) {
             return this.level;
         } else {
@@ -76,47 +68,42 @@ class Materia {
         }
     }
 
-    /**
-     * Get the total ap to level up
-     * @return {int}
+    /*
+     * @returns {Object}
      */
-        getApMax() {
+    getApMax() {
         return eval(this.ap_formula.replace('x', this.level));
     }
 
-    /**
-     * Returns the price of the weapon
-     * @return {int}
+    /*
+     * @returns {game.gils|*|number|save.gils}
      */
-        getPrice() {
+    getPrice() {
         return this.gils;
     }
 
-    /**
-     * Returns true if the weapon is owned in the inventory
-     * @return {boolean}
+    /*
+     * @returns {Number}
      */
-        inStock() {
-        var materias = _.where(this.Game.materias, {
+    inStock() {
+        var materias = _.where(this.game.materias, {
             ref: this.ref
         });
         return materias.length;
     }
 
-    /**
-     * Returns in pixels AP bar width
-     * @param  {int} pixels_max
-     * @return {int}
+    /*
+     * @param pixels_max
+     * @returns {number}
      */
-        apProgress(pixels_max) {
+    apProgress(pixels_max) {
         return (this.ap == 0 ? 0 : this.ap / this.getApMax() * pixels_max);
     }
 
-    /**
-     * Add ap to the materia
-     * @param {int} ap
+    /*
+     * @param ap
      */
-        setAp(ap) {
+    setAp(ap) {
         this.ap += ap;
         while (this.ap >= this.getApMax() && this.level < this.levelMax) {
             this.ap -= this.getApMax();
@@ -124,25 +111,24 @@ class Materia {
         }
     }
 
-    /**
-     * Equip a materia
-     * @param  {String} characterRef
+    /*
+     * @param characterRef
      */
-        equip(characterRef) {
+    equip(characterRef) {
         this.character = characterRef;
-        this.Game.characters.refresh();
+        this.game.characters.refresh();
     }
 
-    /**
-     * Unequip a materia
+    /*
+     *
      */
-        unequip() {
+    unequip() {
         this.character = "";
-        this.Game.characters.refresh();
+        this.game.characters.refresh();
     }
 
     /**
-     * Save materia data
+     * @returns {Object}
      */
         save() {
         return _.pick(this, 'ref', 'character', 'ap', 'level');

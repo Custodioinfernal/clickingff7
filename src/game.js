@@ -245,11 +245,12 @@ class Game {
 
                 this.addCharacter(new Cloud(this), true);
                 this.addWeapon(new BusterSword(this), true); // maxMaterias: +1
-                //this.addMateria(new Bolt(), true);
 
                 this.addCharacter(new Barret(this), true);
                 this.addWeapon(new GatlingGun(this), true); // maxMaterias: +1
-                //this.addMateria(new Restore(), true);
+
+                this.addMateria(new Restore(this), true);
+                //this.addMateria(new Bolt(), true);
 
                 //this.addItem(new Potion());
                 //this.addItem(new Potion());
