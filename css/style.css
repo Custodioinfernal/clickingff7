@@ -1,319 +1,240 @@
+@import url(http://fonts.googleapis.com/css?family=Quicksand:300,400,700);
+
 body {
-  margin: 0;
-  padding: 0;
-  color: #444;
-  -webkit-touch-callout: none;
-  -webkit-user-select: none;
-  -khtml-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-  background-color: #eee;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-}
-
-.wrapper {
-  margin: auto;
-  width: 1000px;
-  text-align: center;
-}
-
-.space {
-  height: 20px;
-}
-
-.tmp {
-  position: absolute;
-}
-
-header {
-  background-color: #444;
-  color: #eee;
-  height: 30px;
-  text-transform: uppercase;
-  font-size: 1em;
-  line-height: 2em;
-  letter-spacing: 10px;
-}
-
-nav {
-  margin-bottom: 10px;
-  text-align: center;
-  border-top: 1px solid #999;
-  border-bottom: 1px solid #999;
-  background-color: #fff;
-}
-
-  nav ul {
     margin: 0;
     padding: 0;
+    color: #444;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-color: #eee;
+    font-family: 'Quicksand', sans-serif;
+}
+
+.page {
     width: 1000px;
     margin: auto;
-  }
+    position: relative;
+    padding: 20px;
+    border: 1px solid #444;
+    background-color: #fff;
+    z-index: 1;
+    min-height: 400px;
+}
 
-  nav ul li {
-    display: inline-block;
-    padding: 10px 20px;
-    border-left: 1px dotted #999;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-  }
+/* [style commun] */
 
-  nav ul li:hover {
+nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+nav li {
+    padding: 5px;
+}
+
+nav li.disabled {
+    color: #999;
+}
+
+nav li:not(.disabled):hover {
     background-color: #eee;
     cursor: pointer;
-  }
-
-  nav ul li.last {
-    border-right: 1px dotted #999;
-  }
-
-  nav ul li.current {
-    font-weight: bold;
-    background-color: #eee;
-  }
-
-footer {
-  margin-top: 30px;
-  padding-top: 20px;
-  background-color: #fff;
-  height: 50px;
-  color: #666;
-  text-align: right;
-  font-size: 12px;
-  text-transform: uppercase;
 }
-  
-  footer a, footer a:visited {
-    color: #900;
-    text-decoration: none;
-  }
 
-  footer a:hover {
-    text-decoration: underline;
-  }
+/* style du menu principal */
 
-/** PARTS **/
-
-.part {display: inline-block; vertical-align: top; box-sizing: border-box;}
-.w50 {width: 50px;}
-.w100 {width: 100px;}
-.w300 {width: 300px;}
-.w350 {width: 350px;}
-.w400 {width: 400px;}
-.w600 {width: 600px;}
-.aleft {text-align: left;}
-.aright {text-align: right;}
-.bold {font-weight: bold;}
-
-.title {
-  background-color: #555;
-  color: #eee;
-  text-transform: uppercase;
+.game-menu {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    border: 1px solid #444;
+    z-index: 2;
+    padding: 20px;
+    background-color: #fff;
 }
+
+/* style de la zone de lieu */
+
+.game-location {
+    position: absolute;
+    bottom: -10px;
+    right: -10px;
+    border: 1px solid #444;
+    z-index: 2;
+    padding: 20px;
+    background-color: #fff;
+}
+
+.game-infos {
+    position: absolute;
+    bottom: 60px;
+    right: -10px;
+    border: 1px solid #444;
+    z-index: 2;
+    padding: 20px;
+    background-color: #fff;
+}
+
+/* style pour la vue */
+
+.game-view {
+    padding: 0 0 0 180px;
+}
+
+/* style de la page /game */
+
+.actions {
+    position: absolute;
+    width: 150px;
+    top: -10px;
+    left: -10px;
+    border: 1px solid #444;
+    z-index: 2;
+    padding: 20px;
+    background-color: #fff;
+}
+
+.c1, .c3 {
+    display: inline-block;
+    width: 340px;
+    vertical-align: top;
+}
+
+.c1 {
+    padding-right: 10px;
+    border-right: 1px solid #bbb;
+    margin-right: 10px;
+}
+
+/* style pour le personnage */
 
 .bars {
-  background-color: #fff;
-  padding: 5px 0;
+    height: 100px;
 }
 
-.div400 {
-  padding: 10px 0;
-  position: relative;
-  text-align: left;
+.bar_pwr {
+    float: right;
+    width: 40px;
+    font-size: 30px;
 }
 
-  .avatar, .main {
-    background-color: #fff;
-  }
-
-  .infos {
-    margin: 0 10px;
-    background-color: #DFD9DF;
-    padding: 0 5px;
-    font-size: 12px;
-    color: #666;
-  }
-
-  .powerUp {
-    border-top: 1px dashed #806E94;
-    padding: 3px 10px 3px 0;
-  }
-
-img.icon {margin-bottom: -1px;}
-img.materia {width: 14px; margin-bottom: -3px;}
-img.gils {width: 14px; margin-bottom: -3px;}
-img.effect {width: 16px; margin-bottom: -3px;}
-
-/*SHOP */
-
-.shopList {margin: 0 10px; background-color: #fff;}
-.shopList .line {padding: 5px 0; border-top: 1px solid #eee;}
-.shopList .line:hover {background-color: #eee;}
-.shopList .name {display: inline-block; width: 500px; text-align: left; color: #666;}
-.shopList .name .desc {color: #666; font-size: 11px;}
-.shopList .inStock {display: inline-block; width: 100px; text-align: left;}
-.shopList .price {display: inline-block; width: 100px; text-align: left;}
-.shopList .actions {display: inline-block; width: 100px; text-align: right; vertical-align: top;}
-
-.quickShopList {background-color: #fff; height: 100px; overflow: auto;}
-.quickShopList .line {padding: 5px 0; border-top: 1px solid #eee;}
-.quickShopList .line:hover {background-color: #eee;}
-.quickShopList .name {display: inline-block; width: 270px; text-align: left; color: #666;}
-.quickShopList .name .desc {color: #666; font-size: 11px;}
-.quickShopList .actions {display: inline-block; width: 100px; text-align: right; vertical-align: top;}
-
-.disabled {
-  border-top: 1px solid #ccc;
-  color: #999;
+.card {
+    margin-bottom: 10px;
+    clear: left;
 }
-.disabled .avatar {
-  opacity: 0.1;
+
+.card .avatar {
+    float: left;
+    margin-right: 5px;
+}
+
+.card .main {
+
+}
+
+/* style pour l'ennemi */
+
+.no-enemies {
+    text-align: center;
+    font-size: 16px;
+    color: #999;
+}
+
+/* style pour les barres */
+
+.bar-label {
+    position: absolute;
+    right: 0;
+    color: #000;
 }
 
 .progress {
-  position: relative; 
-  margin-top: 2px;
-  text-align: center;
-  font-size: 11px;
-  color: #fff;
-  height: 18px;
-  margin-top: 5px;
-  border-top: 1px solid #999;
+    position: relative;
+    margin-top: 2px;
+    text-align: center;
+    font-size: 11px;
+    color: #fff;
+    height: 18px;
+    margin-top: 5px;
+    border-top: 1px solid #999;
 }
 
+.enemy_hp {
+    width: 300px;
+}
 .enemy_hp_progress {
-  background-color: #D49B9B;
-  position: absolute;
-  height: 18px;
-  top: 0;
-  right: 0;
+    background-color: #D49B9B;
+    position: absolute;
+    height: 18px;
+    top: 0;
+    right: 0;
 }
 
+.enemy_mp {
+    width: 300px;
+}
+.enemy_mp_progress {
+    background-color: #656565;
+    position: absolute;
+    height: 18px;
+    top: 0;
+    right: 0;
+}
+
+.characters_hp {
+    width: 300px;
+}
 .characters_hp_progress {
-  background-color: #BEECBE;
-  position: absolute;
-  height: 18px;
-  top: 0;
-  left: 0;
+    background-color: #BEECBE;
+    position: absolute;
+    height: 18px;
+    top: 0;
+    left: 0;
 }
 
+.characters_mp {
+    width: 300px;
+}
+.characters_mp_progress {
+    background-color: #6499ec;
+    position: absolute;
+    height: 18px;
+    top: 0;
+    left: 0;
+}
+
+.characters_limit {
+    width: 300px;
+}
 .characters_limit_progress {
-  background-color: #F0BE98;
-  position: absolute;
-  height: 9px;
-  top: 0;
-  left: 0;
+    background-color: #F0BE98;
+    position: absolute;
+    height: 9px;
+    top: 0;
+    left: 0;
 }
 
-.xp_progress, .ap_progress {
-  background-color: #806E94;
-  position: absolute;
-  height: 9px;
-  top: 0;
-  left: 0;
+.xp_progress {
+    background-color: #806E94;
+    position: absolute;
+    height: 9px;
+    top: 0;
+    left: 0;
 }
 
-.label {
-  text-transform: uppercase;
-  font-size: 10px;
-  vertical-align: top;
-  margin-left: 10px;
-}
-
-.label2 {
-  color: #666;
-  font-size: 11px;
-}
-
-.boss {
-  color: #900;
-  text-transform: uppercase;
-  font-size: 10px;
-}
-
-.line {
-  font-style: italic;
-  color: #666;
-}
-
-.button {
-  display: inline-block;
-  font-size: 10px;
-  padding: 3px;
-  text-transform: uppercase;
-  color: #fff;
-  cursor: pointer;
-  background-color: #6C7DB3;
-}
-
-.button.big {
-  padding: 15px;
-  font-size: 14px;
-}
-
-.button.limit {
-  background-color: #900;
-  color: #fff;
-}
-
-.button.disabled {
-  color: #bbb;
-  cursor: auto;
-  border-color: #fff;
-  background-color: #fff;
-  text-decoration: line-through;
-}
-
-.button:hover {
-  box-shadow: 0px 0px 5px #6C7DB3;
-}
-
-.button.disabled:hover {
-  box-shadow: none;
-}
-
-.button.grey {background-color: #999;}
-.button.green {background-color: #090;}
-.button.red {background-color: #900;}
-
-.area {
-  width: 350px;
-  height: 200px;
-  margin-top: 10px;
-  white-space: pre;
-}
-
-/* INVENTORY */
-
-.listEquipMateria {
-  display: none;
-  position: absolute;
-  width: 200px;
-  border: 1px solid #999;
-  background-color: #FFF;
-  z-index: 1;
-  text-align: left;
-  padding-left: 15px;
-  padding-top: 15px;
-}
-
-.listEquipMateria div:hover {
-  background-color: #eee;
-  cursor: pointer;
-}
-
-.listEquipMateria .close {
-  position: absolute;
-  top: 0;
-  right: 0;
-}
-
-/* ANIMATIONS */
-
-.xp_progress, .enemy_hp_progress, .characters_hp_progress, .characters_limit_progress {
-  -webkit-transition:0.5s linear all;
-  -moz-transition:0.5s linear all;
-  -o-transition:0.5s linear all;
-  transition:0.5s linear all;
+.xp_progress,
+.enemy_hp_progress,
+.enemy_mp_progress,
+.characters_hp_progress,
+.characters_mp_progress,
+.characters_limit_progress {
+    -webkit-transition:0.5s linear all;
+    -moz-transition:0.5s linear all;
+    -o-transition:0.5s linear all;
+    transition:0.5s linear all;
 }

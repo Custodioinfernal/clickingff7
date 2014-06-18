@@ -41,7 +41,7 @@ class Game {
 
         this.data = {};
 
-        this.version = "0.8.4";
+        this.version = "0.9.0";
     }
 
     /**
