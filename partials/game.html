@@ -48,7 +48,7 @@
         </div>
 
         <!-- characters list -->
-        <div ng-repeat="(i, character) in game.characters.team" class="card">
+        <div ng-repeat="(i, character) in game.characters.getTeam()" class="card">
             <div class="xp_progress" style="width:{{character.xpProgress(300)}}px;"></div>
             <div class="main">
                 <div class="part avatar">

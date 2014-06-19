@@ -36,6 +36,12 @@ class Game {
         this.gils = 200;
         this.version = "0.9.0";
 
+        // save
+        this.saves = [];
+        var s = localStorage['save1'];
+        var save = (s) ? JSON.parse(atob(s)): null;
+        this.saves.push(save);
+
         // do the magic ;)
         this.run();
     }
@@ -44,23 +50,15 @@ class Game {
      *
      */
         run() {
-        var $cookieStore = this.$cookieStore;
-        var $timeout = this.$timeout;
-
-        var save = this.$cookieStore.get('game');
+        //var save = this.$cookieStore.get('game');
+        var save = this.saves[0];
         if (save) {
-            // Detect old save
-            if (_.has(save, 'version') && save.version >= '0.8.3') {
-                this.extend(save);
-            } else {
-                this.reset();
-                this.refresh();
-            }
+            this.load(save);
         } else {
+            this.reset();
             this.refresh();
+            this.loaded = true;
         }
-
-        this.loaded = true;
 
         this.characters.refresh();
 
@@ -166,32 +164,43 @@ class Game {
         var save = this.saves[0];
 
         // characters
-        for (var i of save.characters) {
-            this.characters.push(i);
+        for (var c of save.characters.list) {
+            var character = new window[c.model](this.game, c);
+            this.characters.push(character);
         }
+
+        this.characters.hp = save.characters.hp;
+        this.characters.limit = save.characters.limit;
 
         // zones
-        for (var i of save.zones) {
-            this.zones.push(i);
+        for (var z of save.zones.list) {
+            var zone = new window[c.model](this.game, z);
+            this.zones.push(zone);
         }
 
+        this.zones.level = save.zones.level;
+        this.zones.levelMax = save.zones.levelMax;
+
         // weapons
-        for (var i of save.weapons) {
-            this.weapons.push(i);
+        for (var w of save.weapons) {
+            var weapon = new window[c.model](this.game, w);
+            this.weapons.push(weapon);
         }
 
         // materias
-        for (var i of save.materias) {
-            this.materias.add(i);
+        for (var m of save.materias) {
+            var materia = new window[c.model](this.game, m);
+            this.materias.push(materia);
         }
 
         // items
         for (var i of save.items) {
-            this.items.add(i);
+            var item = new window[c.model](this.game, i);
+            this.items.push(item);
         }
 
         this.time = save.time;
-        this.gil = save.gil;
+        this.gils = save.gils;
 
         this.loaded = true;
     }
@@ -205,13 +214,11 @@ class Game {
         }
 
         var s = this.export();
-        console.log(s);
-        return;
-        this.saves[0] = new Save(this, s);
+        this.saves[0] = s;
 
         var ss = btoa(JSON.stringify(s));
         localStorage['save1'] = ss;
-        this.$cookieStore.put('save1', ss);
+        //this.$cookieStore.put('save1', ss);
     }
 
     /**
@@ -221,7 +228,7 @@ class Game {
         this.saves[0] = null;
 
         localStorage.removeItem('save1');
-        this.$cookieStore.remove('game');
+        //this.$cookieStore.remove('game');
     }
 
 }

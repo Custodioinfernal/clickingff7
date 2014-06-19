@@ -4,23 +4,21 @@
 
 class Character {
 
-    constructor(game) {
+    constructor(game, data) {
         this.game = game;
+
+        // extends
+        if (data) {
+            for (var i in data) {
+                this[i] = data[i];
+            }
+        }
 
         if (!('level' in this)) {
             this.level = 1;
         }
         if (!('xp' in this)) {
             this.xp = 0;
-        }
-    }
-
-    /*
-     * @param data
-     */
-    extend(data) {
-        for (var i in data) {
-            this[i] = data[i];
         }
     }
 
@@ -88,7 +86,7 @@ class Character {
      * @returns {Object}
      */
     export() {
-        var json = _.pick(this, 'level', 'xp');
+        var json = _.pick(this, 'inTeam', 'level', 'xp');
         json.model = this.constructor.name;
         return json;
     }

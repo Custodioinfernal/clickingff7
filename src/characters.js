@@ -13,11 +13,8 @@ class Characters {
         // maximum characters in the team
         this.MAX_TEAM = 3;
 
-        // active characters
-        this.team = [];
-
-        // backup characters
-        this.backup = [];
+        // list of characters
+        this.list = [];
 
         // timers array
         this.timer = {};
@@ -35,14 +32,20 @@ class Characters {
 
     /**
      * Add a character
-     * @param c
+     * @param character
+     * @param inTeam
      */
-        add(c) {
-        if (this.team.length < this.MAX_TEAM) {
-            this.team.push(c);
-        } else {
-            this.backup.push(c);
-        }
+        add(character, inTeam) {
+        character.inTeam = (this.list.length < this.MAX_TEAM) ? inTeam : false;
+        this.list.push(character);
+    }
+
+    /**
+     * Returns the in-team characters
+     * @returns {Array}
+     */
+    getTeam() {
+        return _.where(this.list, {inTeam: true});
     }
 
     /*
@@ -54,7 +57,7 @@ class Characters {
         this.hits = 0;
         this.levelMax = 0;
 
-        var characters = this.team;
+        var characters = this.getTeam();
         for (var i in characters) {
             // Level
             if (characters[i].level > this.levelMax) {
@@ -195,16 +198,11 @@ class Characters {
         var res = {
             "hp"    : this.hp,
             "limit" : this.limit,
-            "team"  : [],
-            "backup": []
+            "list"  : []
         };
 
-        for (var i in this.team) {
-            res.team[i] = this.team[i].export();
-        }
-
-        for (var i in this.backup) {
-            res.backup[i] = this.backup[i].export();
+        for (var i in this.list) {
+            res.list[i] = this.list[i].export();
         }
 
         return res;
