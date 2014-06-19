@@ -108,14 +108,14 @@ class Game {
     /**
      * @returns {{characters: Array, gils: *, time: (*|time)}}
      */
-        _export() {
+        export() {
         return {
             characters: this.characters.export(),
             zones     : this.zones.export(),
             weapons   : this.weapons.export(),
             materias  : this.materias.export(),
             items     : this.items.export(),
-            gil       : this.gil,
+            gils      : this.gils,
             time      : this.time,
             version   : this.version
         };
@@ -165,12 +165,14 @@ class Game {
     /**
      * @param confirm
      */
-        save(confirm) {
+        save(confirm = true) {
         if (!confirm) {
             return;
         }
 
         var s = this.export();
+        console.log(s);
+        return;
         this.saves[0] = new Save(this, s);
 
         var ss = btoa(JSON.stringify(s));

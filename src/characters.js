@@ -193,13 +193,18 @@ class Characters {
      */
         export() {
         var res = {
-            "hp"   : this.hp,
-            "limit": this.limit,
-            "data" : []
+            "hp"    : this.hp,
+            "limit" : this.limit,
+            "team"  : [],
+            "backup": []
         };
 
-        for (var i in this.characters) {
-            res.data[i] = this.characters[i].save();
+        for (var i in this.team) {
+            res.team[i] = this.team[i].export();
+        }
+
+        for (var i in this.backup) {
+            res.backup[i] = this.backup[i].export();
         }
 
         return res;

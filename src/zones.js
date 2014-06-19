@@ -65,10 +65,10 @@ class Zones {
         export() {
         var json = _.pick(this, 'level', 'levelMax');
 
-        json.data = [];
-        for (var i in this.zones) {
-            if (this.zones[i].level <= this.levelMax) {
-                json.data.push(this.zones[i].export());
+        json.list = [];
+        for (var i in this.list) {
+            if (this.list[i].level <= this.levelMax) {
+                json.list.push(this.list[i].export());
             }
         }
 

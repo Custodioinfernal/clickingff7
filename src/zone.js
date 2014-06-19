@@ -40,8 +40,8 @@ class Zone {
     /**
      * Save zone data
      */
-        save() {
-        var json = _.pick(this, 'ref', 'completed');
+        export() {
+        var json = _.pick(this, 'name', 'completed');
 
         return json;
     }

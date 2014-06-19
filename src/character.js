@@ -87,8 +87,8 @@ class Character {
     /*
      * @returns {Object}
      */
-    save() {
-        var json = _.pick(this, 'ref', 'level', 'xp');
+    export() {
+        var json = _.pick(this, 'name', 'level', 'xp');
 
         return json;
     }

@@ -17,4 +17,17 @@ class Weapons {
         weapon.equipped = equipped;
         this.list.push(weapon);
     }
+
+    /**
+     * Export all weapons
+     * @returns {Array}
+     */
+        export() {
+        var json = [], i, t;
+        for(i in this.list) {
+            t = _.pick(this.list[i], 'name');
+            json.push(t);
+        }
+        return json;
+    }
 }
