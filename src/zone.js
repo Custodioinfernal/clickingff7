@@ -1,20 +1,12 @@
-/**
- * Zone class
- * @param {Zones} Zones
- * @param {Object} data
- */
-
 class Zone {
 
-    constructor(Zones, data) {
+    /**
+     * Init
+     * @param game
+     */
+    constructor(game) {
+        this.game = game;
 
-        this._id = _.uniqueId();
-
-        this.Zones = Zones;
-
-        if (data) {
-            this.extend(data);
-        }
         if (!_.has(this, 'completed')) {
             this.completed = false;
         }
@@ -24,7 +16,7 @@ class Zone {
      * Extends the data properties with saved data
      * @param  {Object} data
      */
-        extend(data) {
+        load(data) {
         for (var i in data) {
             this[i] = data[i];
         }

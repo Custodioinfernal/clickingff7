@@ -28,7 +28,7 @@ class Character {
      * @returns {*}
      */
     weapon() {
-        return _.findWhere(this.game.weapons, {
+        return _.findWhere(this.game.weapons.list, {
             "type": this.weaponType,
             "equipped" : true
         });

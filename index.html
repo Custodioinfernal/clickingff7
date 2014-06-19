@@ -38,9 +38,9 @@
     </div>
 
     <div class="game-location">
-        {{game.zones.zone().name}}
+        {{game.zones.current().name}}
         <strong>
-            (#{{game.zones.zone().level}})
+            (#{{game.zones.current().level}})
         </strong>
     </div>
 
@@ -64,24 +64,30 @@
 <script src="bower_components/angular-cookies/angular-cookies.min.js"></script>
 <script src="bower_components/traceur-runtime/traceur-runtime.min.js"></script>
 
-<script src="dist/game.js"></script>
-<script src="dist/zones.js"></script>
-<script src="dist/zone.js"></script>
-<script src="dist/enemies.js"></script>
-<script src="dist/enemy.js"></script>
+<script src="dist/battle.js"></script>
 <script src="dist/character.js"></script>
 <script src="dist/characters.js"></script>
 <script src="dist/characters/barret.js"></script>
 <script src="dist/characters/cloud.js"></script>
-<script src="dist/materia.js"></script>
-<script src="dist/materias/restore.js"></script>
+<script src="dist/enemy.js"></script>
+<script src="dist/enemies.js"></script>
+<script src="dist/enemies/zone1/first-ray.js"></script>
+<script src="dist/game.js"></script>
 <script src="dist/item.js"></script>
+<script src="dist/items.js"></script>
+<script src="dist/materia.js"></script>
+<script src="dist/materias.js"></script>
+<script src="dist/materias/restore.js"></script>
 <script src="dist/shop.js"></script>
 <script src="dist/weapon.js"></script>
+<script src="dist/weapons.js"></script>
 <script src="dist/weapons/broadsword.js"></script>
 <script src="dist/weapons/broadswords/bustersword.js"></script>
 <script src="dist/weapons/gunarm.js"></script>
 <script src="dist/weapons/gun-arms/gatling-gun.js"></script>
+<script src="dist/zone.js"></script>
+<script src="dist/zones.js"></script>
+<script src="dist/zones/zone1.js"></script>
 
 <script src="dist/utils.js"></script>
 <script src="dist/app.js"></script>

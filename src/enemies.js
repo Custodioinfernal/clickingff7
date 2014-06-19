@@ -5,43 +5,14 @@
 
 class Enemies {
 
-    constructor(Game) {
-
-        this._id = _.uniqueId();
-
-        this.Game = Game;
-
-        this.enemies = [];
-
+    /**
+     * Init
+     * @param game
+     */
+        constructor(game) {
+        this.game = game;
+        this.list = [];
         this.timer = {};
-    }
-
-    /**
-     * Returns all enemies fighting
-     * @return {[type]} [description]
-     */
-        getTeam() {
-        return this.enemies;
-    }
-
-    /**
-     * Add a weakness
-     */
-        addWeakness(effect) {
-        if (!_.has(this.weakness, effect)) {
-            this.weakness[effect] = 0;
-        }
-        this.weakness[effect] += 10;
-    }
-
-    /**
-     * Add a resistance
-     */
-        addResists(effect) {
-        if (!_.has(this.resists, effect)) {
-            this.resists[effect] = 0;
-        }
-        this.resists[effect] += 10;
     }
 
     /**
@@ -49,28 +20,9 @@ class Enemies {
      * @return {[type]} [description]
      */
         random() {
-        var zoneLvl = this.Game.zones.level;
-        var chances = [];
-        var last = 0;
-        var data = this.Game.data.enemies[zoneLvl];
-        var Level = Math.max(this.Game.characters.levelMax, data[1].level);
-        var Level = Math.min(Level, data[5].level);
-        var enemies = _.filter(data, function (o) {
-            return (Math.max(Level - 1, 1) <= o.level + 2 && o.level <= Level);
-        });
-        for (var i in enemies) {
-            var enemy = enemies[i];
-            var chance = Math.ceil(Math.pow(enemies.length - Math.abs(enemy.level - Level), 2) + last);
-            chances.push(chance);
-            last = chance;
-        }
-        var sX = _.random(1, _.last(chances));
-        i = 0;
-        while (sX > chances[i]) {
-            i++;
-        }
-        var data = enemies[i];
-        this.enemies.push(new Enemy(this, data));
+        var enemies = this.game.zones.current().enemies;
+        var enemy = _.sample(enemies, 1);
+        this.list.push(enemy[0]);
     }
 
     /**
@@ -79,28 +31,12 @@ class Enemies {
         refresh() {
         this.hpMax = 0;
         this.hits = 0;
-        this.weakness = {};
-        this.resists = {};
 
-        var enemies = this.getTeam();
+        var enemies = this.list;
         for (var i in enemies) {
             // HP
             this.hpMax += enemies[i].getHpMax();
             this.hits += enemies[i].getHits();
-
-            var weakness = enemies[i].weakness;
-            if (weakness) {
-                for (var j in weakness) {
-                    this.addWeakness(weakness[j]);
-                }
-            }
-
-            var resists = enemies[i].resists;
-            if (resists) {
-                for (var j in resists) {
-                    this.addResists(resists[j]);
-                }
-            }
         }
 
         this.hp = this.hpMax;
@@ -111,15 +47,15 @@ class Enemies {
      */
         autoFighting() {
         var self = this;
-        this.timer['fighting'] = this.Game.$timeout(function () {
+        this.timer['fighting'] = this.game.$timeout(function () {
 
             var hits = self.hits;
-            var alive = self.Game.characters.get_attacked(hits);
+            var alive = self.game.characters.get_attacked(hits);
 
             if (alive) {
                 self.autoFighting();
             } else {
-                self.Game.end_fight(false);
+                self.game.battle.end(false);
             }
         }, 1000);
     }
@@ -128,7 +64,7 @@ class Enemies {
      * Stop fighting
      */
         stopFighting() {
-        var success = this.Game.$timeout.cancel(this.timer['fighting']);
+        var success = this.game.$timeout.cancel(this.timer['fighting']);
     }
 
     /**
@@ -158,7 +94,7 @@ class Enemies {
      * Remove all the enemy
      */
         remove() {
-        this.enemies = [];
+        this.list = [];
         this.refresh();
     }
 

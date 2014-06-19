@@ -1,30 +1,11 @@
-/**
- * Enemy class
- * @param {Enemies} Enemies
- * @param {object} data
- */
-
 class Enemy {
 
-    constructor(Enemies, data) {
-
-        this._id = _.uniqueId();
-
-        this.Enemies = Enemies;
-
-        if (data) {
-            this.extend(data);
-        }
-    }
-
     /**
-     * Extends the properties with new ones
-     * @param  {object} data
+     * Init
+     * @param game
      */
-        extend(data) {
-        for (var i in data) {
-            this[i] = data[i];
-        }
+        constructor(game) {
+        this.game = game;
     }
 
     /**
@@ -33,7 +14,7 @@ class Enemy {
      */
         getHpMax() {
         var level = this.level;
-        var zoneLvl = this.Enemies.Game.zones.level;
+        var zoneLvl = this.game.zones.level;
         var hits = [12.8, 38.4, 62.4, 84.8, 154, 223.2, 324.8];
         var characters_hits = hits[zoneLvl - 1];
         var res;
@@ -55,7 +36,7 @@ class Enemy {
      */
         getHits() {
         var level = this.level;
-        var zoneLvl = this.Enemies.Game.zones.level;
+        var zoneLvl = this.game.zones.level;
         var hp = [120, 344, 468, 688, 1200, 1728, 2016];
         var characters_hp = hp[zoneLvl - 1];
         var res;
@@ -91,7 +72,7 @@ class Enemy {
      * @return {int}
      */
         apReward() {
-        var zoneLvl = this.Enemies.Game.zones.level;
+        var zoneLvl = this.game.zones.level;
         var res = Math.ceil(this.level + zoneLvl);
         if (this.miboss) {
             res *= 1.5;
@@ -107,7 +88,7 @@ class Enemy {
      * @return {int}
      */
         gilsReward() {
-        var zoneLvl = this.Enemies.Game.zones.level;
+        var zoneLvl = this.game.zones.level;
         var res = Math.ceil(this.level * 10 + zoneLvl);
         if (this.miboss) {
             res *= 1.5;
@@ -121,7 +102,7 @@ class Enemy {
     /**
      * Save enemy data
      */
-        save() {
+        export() {
         return _.omit(this, 'image', 'name');
     }
 

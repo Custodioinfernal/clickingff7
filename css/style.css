@@ -172,7 +172,7 @@ nav li:not(.disabled):hover {
     position: absolute;
     height: 18px;
     top: 0;
-    right: 0;
+    left: 0;
 }
 
 .enemy_mp {

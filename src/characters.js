@@ -16,8 +16,8 @@ class Characters {
         // active characters
         this.team = [];
 
-        // stand-by characters
-        this.stack = [];
+        // backup characters
+        this.backup = [];
 
         // timers array
         this.timer = {};
@@ -34,43 +34,24 @@ class Characters {
     }
 
     /**
-     * Add an effect
-     * @param {String} effect
-     * @param {int} level
+     * Add a character
+     * @param c
      */
-        addEffect(effect, level) {
-        if (!_.has(this.effects, effect)) {
-            this.effects[effect] = 0;
-        }
-        this.effects[effect] += level;
-    }
-
-    /*
-     * @param character
-     */
-    addTeam(character) {
+        add(c) {
         if (this.team.length < this.MAX_TEAM) {
-            this.team.push(character);
+            this.team.push(c);
         } else {
-            this.addStack(character);
+            this.backup.push(c);
         }
     }
 
     /*
-     * @param character
-     */
-    addStack(character) {
-        this.stack.push(character);
-    }
-
-    /*
-     *
+     * Refresh characters stats
      */
     refresh() {
         this.hpMax = 0;
         this.limitMax = 0;
         this.hits = 0;
-        this.effects = {};
         this.levelMax = 0;
 
         var characters = this.team;
@@ -99,47 +80,7 @@ class Characters {
      * Get total characters hits
      */
         getHits() {
-        var hits = 0;
-        hits += this.hits;
-        //hits += ((this.weaknessDamages - this.resistsDamages) * 10 / 100) * hits;
-        return hits;
-    }
-
-;
-
-    /**
-     * Characters do train
-     */
-        train() {
-        if (this.game.mode == "normal") {
-            this.game.mode = "train";
-            this.autoTrain();
-        }
-    }
-
-    /**
-     * Auto-train (XP by level zone)
-     */
-        autoTrain() {
-        var self = this;
-        this.timer['train'] = this.game.$timeout(function () {
-
-            var xp = Math.pow(self.game.zones.level, 2);
-            var characters = self.team;
-            for (var i in characters) {
-                characters[i].setXp(xp);
-            }
-
-            self.autoTrain();
-        }, 1000);
-    }
-
-    /**
-     * Characters stop training
-     */
-        stopTrain() {
-        this.game.mode = "normal";
-        this.game.$timeout.cancel(this.timer['train']);
+        return this.hits;
     }
 
     /**
@@ -155,7 +96,7 @@ class Characters {
             if (alive) {
                 self.autoFighting();
             } else {
-                self.game.end_fight(true);
+                self.game.battle.end(true);
             }
         }, 1000);
     }
@@ -208,20 +149,10 @@ class Characters {
     }
 
     /**
-     * Characters do explore
-     */
-        explore() {
-        this.game.enemies.random();
-        this.game.enemies.refresh();
-        this.refresh();
-        this.game.start_fight();
-    }
-
-    /**
      * Escape from fight
      */
         escape() {
-        this.game.end_fight(false);
+        this.game.battle.end(false);
     }
 
     /**
@@ -260,7 +191,7 @@ class Characters {
      * Returns data for export
      * @return {Object}
      */
-        save() {
+        export() {
         var res = {
             "hp"   : this.hp,
             "limit": this.limit,
