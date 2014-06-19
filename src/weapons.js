@@ -25,8 +25,7 @@ class Weapons {
         export() {
         var json = [], i, t;
         for(i in this.list) {
-            t = _.pick(this.list[i], 'name');
-            json.push(t);
+            json.push(this.list[i].export());
         }
         return json;
     }

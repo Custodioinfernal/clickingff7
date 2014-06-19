@@ -56,8 +56,10 @@ class Weapon {
     /*
      * Save weapon
      */
-    save() {
-        return _.pick(this, 'ref', 'equipped');
+    export() {
+        var json = _.pick(this, 'equipped');
+        json.model = this.constructor.name;
+        return json;
     }
 
 }

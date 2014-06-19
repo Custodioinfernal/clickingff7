@@ -88,8 +88,8 @@ class Character {
      * @returns {Object}
      */
     export() {
-        var json = _.pick(this, 'name', 'level', 'xp');
-
+        var json = _.pick(this, 'level', 'xp');
+        json.model = this.constructor.name;
         return json;
     }
 }

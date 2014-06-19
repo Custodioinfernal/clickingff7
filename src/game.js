@@ -32,6 +32,7 @@ class Game {
         this.data = {};
 
         // savable vars
+        this.time = 0;
         this.gils = 200;
         this.version = "0.9.0";
 
@@ -62,6 +63,8 @@ class Game {
         this.loaded = true;
 
         this.characters.refresh();
+
+        this.autoTimer();
 
         this.$rootScope.game = this;
     }
@@ -103,6 +106,37 @@ class Game {
                 break;
         }
 
+    }
+
+    /**
+     * Auto-chrono
+     */
+    autoTimer() {
+        this.$timeout( () => {
+            this.time++;
+            this.autoTimer();
+        }, 1000);
+    }
+
+    /**
+     * Return the time spent on the game since the beginning
+     */
+        getTime() {
+        var elapsed = this.time;
+        var hours = Math.floor(elapsed / 3600);
+        elapsed -= hours * 3600;
+
+        var minutes = Math.floor(elapsed / 60);
+        if (minutes < 10) {
+            minutes = '0' + minutes;
+        }
+
+        var seconds = elapsed - minutes * 60;
+        if (seconds < 10) {
+            seconds = '0' + seconds;
+        }
+
+        return hours + ':' + minutes + ':' + seconds;
     }
 
     /**

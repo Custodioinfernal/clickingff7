@@ -130,8 +130,10 @@ class Materia {
     /**
      * @returns {Object}
      */
-        save() {
-        return _.pick(this, 'ref', 'character', 'ap', 'level');
+        export() {
+        var json = _.pick(this, 'ap', 'level');
+        json.model = this.constructor.name;
+        return json;
     }
 
 }

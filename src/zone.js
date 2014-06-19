@@ -41,8 +41,8 @@ class Zone {
      * Save zone data
      */
         export() {
-        var json = _.pick(this, 'name', 'completed');
-
+        var json = _.pick(this, 'completed');
+        json.model = this.constructor.name;
         return json;
     }
 

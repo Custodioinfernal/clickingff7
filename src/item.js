@@ -98,7 +98,9 @@ class Item {
      * Save materia data
      */
         save() {
-        return _.pick(this, 'ref');
+        var json = {};
+        json.model = this.constructor.name;
+        return json;
     }
 
 }
