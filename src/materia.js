@@ -131,7 +131,7 @@ class Materia {
      * @returns {Object}
      */
         export() {
-        var json = _.pick(this, 'ap', 'level');
+        var json = _.pick(this, 'ap', 'level', 'equipped');
         json.model = this.constructor.name;
         return json;
     }

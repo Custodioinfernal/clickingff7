@@ -165,8 +165,8 @@ class Game {
 
         // characters
         for (var c of save.characters.list) {
-            var character = new window[c.model](this.game, c);
-            this.characters.push(character);
+            var character = new window[c.model](this, c);
+            this.characters.add(character, c.inTeam);
         }
 
         this.characters.hp = save.characters.hp;
@@ -174,8 +174,8 @@ class Game {
 
         // zones
         for (var z of save.zones.list) {
-            var zone = new window[c.model](this.game, z);
-            this.zones.push(zone);
+            var zone = new window[z.model](this, z);
+            this.zones.add(zone);
         }
 
         this.zones.level = save.zones.level;
@@ -183,19 +183,19 @@ class Game {
 
         // weapons
         for (var w of save.weapons) {
-            var weapon = new window[c.model](this.game, w);
-            this.weapons.push(weapon);
+            var weapon = new window[w.model](this, w);
+            this.weapons.add(weapon, w.equipped);
         }
 
         // materias
         for (var m of save.materias) {
-            var materia = new window[c.model](this.game, m);
-            this.materias.push(materia);
+            var materia = new window[m.model](this, m);
+            this.materias.add(materia, m.equipped);
         }
 
         // items
         for (var i of save.items) {
-            var item = new window[c.model](this.game, i);
+            var item = new window[i.model](this.game, i);
             this.items.push(item);
         }
 
