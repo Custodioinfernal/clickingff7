@@ -8,7 +8,7 @@ class FirstRay extends Enemy {
         this.image = '/img/enemies/zone1/1st-ray.png';
 
         // BELOW – rate over 5
-        this.hpMax = 1;
+        this.hpMax = 2;
         this.hits = 1;
         this.xp = 1;
         this.ap = 1;

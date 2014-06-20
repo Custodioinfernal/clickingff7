@@ -241,6 +241,9 @@ function GameCtrl($rootScope, $location, $cookieStore, $http, $timeout, Game, Ut
      */
     $rootScope.attack = function (ev) {
         if (Game.characters.canAttack()) {
+            // stop autoAttacking
+            Game.characters.stopFighting();
+
             var hits = Game.characters.getHits();
             var d = Math.pow(10, 2);
             hits = Math.round(hits * d) / d;
@@ -249,8 +252,8 @@ function GameCtrl($rootScope, $location, $cookieStore, $http, $timeout, Game, Ut
                 hits *= 2;
                 Game.characters.limit = 0;
             }
-            Game.enemies.get_attacked(hits);
-            Utils.animate(ev, '+' + hits);
+            Game.enemies.getAttacked(hits, false);
+            Game.characters.autoFighting();
         }
     };
 
@@ -274,7 +277,7 @@ function GameCtrl($rootScope, $location, $cookieStore, $http, $timeout, Game, Ut
         }
     };
 
-};
+}
 
 /**
  * /Map

@@ -18,6 +18,16 @@ class Materia {
         return this;
     }
 
+    /**
+     * Executes materia action
+     * @param fn
+     */
+    action(fn) {
+        this.game.characters.stopFighting();
+        fn();
+        this.game.characters.autoFighting();
+    }
+
     /*
      * @returns {string}
      */

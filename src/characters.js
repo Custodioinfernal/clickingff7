@@ -16,14 +16,17 @@ class Characters {
         // list of characters
         this.list = [];
 
+        // Array of recent hits
+        this.arrHits = [];
+
         // timers array
         this.timer = {};
     }
 
-    /*
+    /**
      * @param hp
      */
-    addHp(hp) {
+        addHp(hp) {
         this.hp += hp;
         if (this.hp > this.hpMax) {
             this.hp = this.hpMax;
@@ -44,7 +47,7 @@ class Characters {
      * Returns the in-team characters
      * @returns {Array}
      */
-    getTeam() {
+        getTeam() {
         return _.where(this.list, {inTeam: true});
     }
 
@@ -55,6 +58,7 @@ class Characters {
         this.hpMax = 0;
         this.limitMax = 0;
         this.hits = 0;
+        this.arrHits = [];
         this.levelMax = 0;
         this.levelSum = 0;
 
@@ -68,7 +72,7 @@ class Characters {
             // HP, hits
             this.hpMax += characters[i].getHpMax();
             this.hits += characters[i].getHits();
-            this.levelSum++;
+            this.levelSum += characters[i].level;
         }
 
         this.limitMax = this.hpMax * 2;
@@ -82,10 +86,42 @@ class Characters {
     }
 
     /**
-     * Get total characters hits
+     * Get *random* total characters hits
      */
         getHits() {
-        return this.hits;
+        var a = Math.floor(this.hits * 10 * (1 - 10 / 100));
+        var b = Math.ceil(this.hits * 10 * (1 + 10 / 100));
+        var x = _.random(a, b) / 10;
+        if (x < 10) {
+            return x;
+        } else {
+            return Math.round(x);
+        }
+    }
+
+    /**
+     * Get total characters auto hits
+     * @param hits
+     */
+        displayAutoHits(hits) {
+        var self = this;
+        this.arrHits.unshift(hits);
+        if (this.arrHits.length > 5) {
+            this.arrHits.pop();
+        }
+        this.game.$rootScope.$apply();
+    }
+
+    /**
+     * Get total characters hits
+     * @param hits
+     */
+        displayHits(hits) {
+        var self = this;
+        this.arrHits.unshift(hits);
+        if (this.arrHits.length > 5) {
+            this.arrHits.pop();
+        }
     }
 
     /**
@@ -96,7 +132,7 @@ class Characters {
         this.timer['fighting'] = this.game.$timeout(function () {
 
             var hits = self.getHits();
-            var alive = self.game.enemies.get_attacked(hits);
+            var alive = self.game.enemies.getAutoAttacked(hits);
 
             if (alive) {
                 self.autoFighting();
@@ -135,8 +171,9 @@ class Characters {
      * Enemies are under attack
      * @param  {int} hits
      */
-        get_attacked(hits) {
+        getAutoAttacked(hits) {
         this.hp -= hits;
+        this.game.enemies.displayAutoHits(hits);
 
         this.limit += hits;
         if (this.limit > this.limitMax) {
@@ -198,9 +235,9 @@ class Characters {
      */
         export() {
         var res = {
-            "hp"    : this.hp,
-            "limit" : this.limit,
-            "list"  : []
+            "hp"   : this.hp,
+            "limit": this.limit,
+            "list" : []
         };
 
         for (var i in this.list) {

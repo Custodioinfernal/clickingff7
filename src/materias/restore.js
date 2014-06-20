@@ -20,7 +20,12 @@ class Restore extends Materia {
     }
 
     action() {
-        this.game.characters.addHp(2);
-    };
+        var that = this;
+        super.action(function () {
+            that.game.characters.addHp(that.level * 2);
+        });
+    }
+
+;
 
 }

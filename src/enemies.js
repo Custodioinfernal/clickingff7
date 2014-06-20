@@ -12,6 +12,7 @@ class Enemies {
         constructor(game) {
         this.game = game;
         this.list = [];
+        this.arrHits = [];
         this.timer = {};
     }
 
@@ -40,6 +41,7 @@ class Enemies {
         refresh() {
         this.hpMax = 0;
         this.hits = 0;
+        this.arrHits = [];
 
         var enemies = this.list;
         for (var i in enemies) {
@@ -52,14 +54,36 @@ class Enemies {
     }
 
     /**
+     * Get *random* total characters hits
+     */
+        getHits() {
+        var a = Math.floor(this.hits * 10 * (1 - 10 / 100));
+        var b = Math.ceil(this.hits * 10 * (1 + 10 / 100));
+        return _.random(a, b) / 10;
+    }
+
+    /**
+     * Get total characters auto hits
+     * @param hits
+     */
+        displayAutoHits(hits) {
+        var self = this;
+        this.arrHits.unshift(hits);
+        if (this.arrHits.length > 5) {
+            this.arrHits.pop();
+        }
+        this.game.$rootScope.$apply();
+    }
+
+    /**
      * Enemies auto-attack process
      */
         autoFighting() {
         var self = this;
         this.timer['fighting'] = this.game.$timeout(function () {
 
-            var hits = self.hits;
-            var alive = self.game.characters.get_attacked(hits);
+            var hits = self.getHits();
+            var alive = self.game.characters.getAutoAttacked(hits);
 
             if (alive) {
                 self.autoFighting();
@@ -77,17 +101,35 @@ class Enemies {
     }
 
     /**
-     * Enemies are under attack
-     * @param  {int} hits
+     * Enemies are under auto attack
+     * @param hits
+     * @returns {boolean}
      */
-        get_attacked(hits) {
+        getAutoAttacked(hits) {
         this.hp -= hits;
+        this.game.characters.displayAutoHits(hits);
+
         if (this.hp <= 0) {
             this.hp = 0;
 
             return false;
         }
         return true;
+    }
+
+    /**
+     * Enemies are under manual attack
+     * @param hits
+     * @returns {boolean}
+     */
+        getAttacked(hits) {
+        this.hp -= hits;
+        this.game.characters.displayHits(hits);
+
+        if (this.hp <= 0) {
+            this.hp = 0;
+            this.game.battle.end(true);
+        }
     }
 
     /**

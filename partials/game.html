@@ -1,12 +1,12 @@
 <nav class="actions">
     <ul>
-        <li ng-click="explore($event)" class="button big" ng-class="{disabled: game.mode != 'normal'}">EXPLORE</li>
+        <li ng-click="explore($event)" ng-class="{disabled: game.mode != 'normal'}">EXPLORE</li>
 
-        <li ng-click="escape($event)" class="button big" ng-class="{disabled: !game.characters.canEscape()}">
+        <li ng-click="escape($event)" ng-class="{disabled: !game.characters.canEscape()}">
             ESCAPE
         </li>
 
-        <li ng-click="attack($event)" class="button big"
+        <li ng-click="attack($event)"
             ng-class="{disabled: !game.characters.canAttack(), limit: game.characters.canLimit()}">
             <span ng-if="!game.characters.canLimit()">ATTACK</span>
             <span ng-if="game.characters.canLimit()">LIMIT</span>
@@ -23,7 +23,9 @@
     <div class="c1">
         <!-- characters bars -->
         <div class="bars">
-            <div class="bar_pwr">{{game.characters.getHits()|round:2}}</div>
+            <div class="characters_hits">
+                <div class="hit hit_{{$index+1}}" ng-repeat="hit in game.characters.arrHits track by $index">{{hit}}</div>
+            </div>
 
             <div>
                 <div class="part progress characters_hp">
@@ -41,7 +43,8 @@
 
             <div>
                 <div class="part progress characters_limit">
-                    <div class="characters_limit_progress" style="width:{{game.characters.limitProgress(300)}}px;"></div>
+                    <div class="characters_limit_progress"
+                         style="width:{{game.characters.limitProgress(300)}}px;"></div>
                     <span class="bar-label">LIMIT</span>
                 </div>
             </div>
@@ -74,7 +77,9 @@
     <div class="c3">
         <!-- enemies bars -->
         <div class="bars">
-            <div ng-if="game.enemies.list.length > 0" class="bar_pwr">{{game.enemies.hits|round:2}}</div>
+            <div class="enemies_hits">
+                <div class="hit hit_{{$index+1}}" ng-repeat="hit in game.enemies.arrHits track by $index">{{hit}}</div>
+            </div>
 
             <div ng-if="game.enemies.list.length > 0">
                 <div class="part progress enemy_hp">
@@ -86,7 +91,7 @@
             <div ng-if="game.enemies.list.length > 0">
                 <div class="part progress enemy_mp">
                     <div class="enemy_mp_progress" style="width:{{game.enemies.mpProgress(300)}}px;"></div>
-                    <span class="bar-label">{{game.enemies.mp|ceil}} / {{game.enemies.mpMax}} HP</span>
+                    <span class="bar-label">{{game.enemies.mp|ceil}} / {{game.enemies.mpMax}} MP</span>
                 </div>
             </div>
         </div>

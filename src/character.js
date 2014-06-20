@@ -70,7 +70,7 @@ class Character {
             this.xp -= this.getXpMax();
             this.level += 1;
 
-            this.Characters.refresh();
+            this.game.characters.refresh();
         }
     }
 

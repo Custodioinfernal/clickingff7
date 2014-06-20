@@ -118,11 +118,20 @@ nav li:not(.disabled):hover {
     height: 100px;
 }
 
-.bar_pwr {
+.characters_hits, .enemies_hits {
     float: right;
-    width: 40px;
-    font-size: 30px;
 }
+
+.hit {
+    width: 40px;
+    text-align: center;
+}
+
+.hit_1 {font-size: 30px;}
+.hit_2 {font-size: 26px;}
+.hit_3 {font-size: 22px;}
+.hit_4 {font-size: 18px;}
+.hit_5 {font-size: 14px;}
 
 .card {
     margin-bottom: 10px;
