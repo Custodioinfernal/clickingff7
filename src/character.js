@@ -6,19 +6,14 @@ class Character {
 
     constructor(game, data) {
         this.game = game;
+        this.level = 1;
+        this.xp = 0;
 
         // extends
         if (data) {
             for (var i in data) {
                 this[i] = data[i];
             }
-        }
-
-        if (!('level' in this)) {
-            this.level = 1;
-        }
-        if (!('xp' in this)) {
-            this.xp = 0;
         }
     }
 

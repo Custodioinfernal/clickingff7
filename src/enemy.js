@@ -9,6 +9,15 @@ class Enemy {
     }
 
     /**
+     * Get the enemy to the given level
+     * @param level
+     * @private
+     */
+    _toLevel(level) {
+        this.level = level;
+    }
+
+    /**
      * Returns enemy HP
      * @return {int}
      */

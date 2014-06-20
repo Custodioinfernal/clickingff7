@@ -6,25 +6,15 @@
 
 class Item {
 
-    constructor(Game, data) {
-
-        this._id = _.uniqueId();
-
-        this.Game = Game;
-
-        if (data) {
-            this.extend(data);
-        }
-        if (!('type' in this)) {
-            this.type = 'items';
-        }
+    constructor(game) {
+        this.game = game;
     }
 
     /**
-     * Extends the data properties with saved data
-     * @param  {object} data
+     * Extends
+     * @param data
      */
-        extend(data) {
+        load(data) {
         for (var i in data) {
             this[i] = data[i];
         }
@@ -97,7 +87,7 @@ class Item {
     /**
      * Save materia data
      */
-        save() {
+        export() {
         var json = {};
         json.model = this.constructor.name;
         return json;

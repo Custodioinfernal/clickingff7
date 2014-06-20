@@ -8,11 +8,11 @@ class Weapon {
         this.game = game;
     }
 
-    /*
-     * Extends the data properties with saved data
-     * @param  {object} data
+    /**
+     * Extends
+     * @param data
      */
-    extend(data) {
+        load(data) {
         for (var i in data) {
             this[i] = data[i];
         }

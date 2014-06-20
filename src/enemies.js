@@ -20,9 +20,18 @@ class Enemies {
      * @return {[type]} [description]
      */
         random() {
-        var enemies = this.game.zones.current().enemies;
-        var enemy = _.sample(enemies, 1);
-        this.list.push(enemy[0]);
+        var enemies;
+        var level = this.game.zones.level;
+        var levelMax = this.game.characters.levelMax;
+        var zone = this.game.zones.current();
+        if (levelMax >= level * 4 && !zone.completed) {
+            enemies = zone.boss;
+        } else {
+            enemies = zone.getEnemies();
+        }
+        for (var e of enemies) {
+            this.list.push(e);
+        }
     }
 
     /**

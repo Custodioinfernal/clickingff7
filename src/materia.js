@@ -1,27 +1,16 @@
-/**
- *
- */
-
 class Materia {
 
     constructor(game) {
-
-        this._id = _.uniqueId();
-
         this.game = game;
-
-        if (!_.has(this, 'level')) {
-            this.level = 1;
-        }
-        if (!_.has(this, 'ap')) {
-            this.ap = 0;
-        }
+        this.level = 1;
+        this.ap = 0;
     }
 
-    /*
+    /**
+     * Extends
      * @param data
      */
-    extend(data) {
+        load(data) {
         for (var i in data) {
             this[i] = data[i];
         }

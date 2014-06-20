@@ -56,6 +56,7 @@ class Characters {
         this.limitMax = 0;
         this.hits = 0;
         this.levelMax = 0;
+        this.levelSum = 0;
 
         var characters = this.getTeam();
         for (var i in characters) {
@@ -67,6 +68,7 @@ class Characters {
             // HP, hits
             this.hpMax += characters[i].getHpMax();
             this.hits += characters[i].getHits();
+            this.levelSum++;
         }
 
         this.limitMax = this.hpMax * 2;
