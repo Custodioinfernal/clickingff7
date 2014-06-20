@@ -220,6 +220,9 @@ nav li:not(.disabled):hover {
     left: 0;
 }
 
+.characters_xp {
+    width: 300px;
+}
 .xp_progress {
     background-color: #806E94;
     position: absolute;

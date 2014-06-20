@@ -49,7 +49,9 @@
 
         <!-- characters list -->
         <div ng-repeat="(i, character) in game.characters.getTeam()" class="card">
-            <div class="xp_progress" style="width:{{character.xpProgress(300)}}px;"></div>
+            <div class="part progress characters_xp">
+                <div class="xp_progress" style="width:{{character.xpProgress(300)}}px;"></div>
+            </div>
             <div class="main">
                 <div class="part avatar">
                     <img ng-src="{{character.image}}" alt="avatar" class="icon"/>

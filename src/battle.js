@@ -30,7 +30,7 @@ class Battle {
         this.game.enemies.stopFighting();
 
         var enemies = this.game.enemies.list;
-        var characters = this.game.characters.team;
+        var characters = this.game.characters.getTeam();
 
         for (var i in enemies) {
             var enemy = enemies[i];
