@@ -8,13 +8,18 @@ class Character {
         this.game = game;
         this.level = 1;
         this.xp = 0;
+    }
 
-        // extends
-        if (data) {
-            for (var i in data) {
-                this[i] = data[i];
-            }
+    /**
+     * Extends
+     * @param data
+     * @returns {Character}
+     */
+        load(data) {
+        for (var i in data) {
+            this[i] = data[i];
         }
+        return this;
     }
 
     /*

@@ -13,8 +13,20 @@ class Enemy {
      * @param level
      * @private
      */
-    _toLevel(level) {
+        _toLevel(level) {
         this.level = level;
+
+        var hpMax = this.game.zones.level * 100;
+        var hits = this.game.zones.level;
+        var xp = this.game.zones.level * 5;
+        var ap = this.game.zones.level * 2;
+        var gils = this.game.zones.level * 10;
+
+        this._hpMax = Math.ceil(this.hpMax / 5 * hpMax);
+        this._hits = Math.ceil(this.hits / 5 * hits);
+        this._xp = Math.ceil(this.xp / 5 * xp);
+        this._ap = Math.ceil(this.ap / 5 * ap);
+        this._gils = Math.ceil(this.gils / 5 * gils);
     }
 
     /**
@@ -22,21 +34,7 @@ class Enemy {
      * @return {int}
      */
         getHpMax() {
-        var level = this.level;
-        var zoneLvl = this.game.zones.level;
-        var hits = [12.8, 38.4, 62.4, 84.8, 154, 223.2, 324.8];
-        var characters_hits = hits[zoneLvl - 1];
-        var res;
-
-        if (this.boss) {
-            res = characters_hits * 20;
-        } else if (this.miboss) {
-            res = characters_hits * 17.5;
-        } else {
-            res = Math.ceil((level / (zoneLvl * 4)) * characters_hits * 15);
-        }
-
-        return res;
+        return this._hpMax;
     }
 
     /**
@@ -44,21 +42,7 @@ class Enemy {
      * @return {int}
      */
         getHits() {
-        var level = this.level;
-        var zoneLvl = this.game.zones.level;
-        var hp = [120, 344, 468, 688, 1200, 1728, 2016];
-        var characters_hp = hp[zoneLvl - 1];
-        var res;
-
-        if (this.boss) {
-            res = Math.ceil(characters_hp / 9);
-        } else if (this.miboss) {
-            res = Math.ceil(characters_hp / 10.5);
-        } else {
-            res = Math.ceil((level / (zoneLvl * 4)) * characters_hp / 12);
-        }
-
-        return res;
+        return this._hits;
     }
 
     /**
@@ -66,14 +50,7 @@ class Enemy {
      * @return {int}
      */
         xpReward() {
-        var res = this.level * 10;
-        if (this.miboss) {
-            res *= 1.5;
-        }
-        if (this.boss) {
-            res *= 2;
-        }
-        return res;
+        return this._xp;
     }
 
     /**
@@ -81,15 +58,7 @@ class Enemy {
      * @return {int}
      */
         apReward() {
-        var zoneLvl = this.game.zones.level;
-        var res = Math.ceil(this.level + zoneLvl);
-        if (this.miboss) {
-            res *= 1.5;
-        }
-        if (this.boss) {
-            res *= 2;
-        }
-        return res;
+        return this._ap;
     }
 
     /**
@@ -97,15 +66,7 @@ class Enemy {
      * @return {int}
      */
         gilsReward() {
-        var zoneLvl = this.game.zones.level;
-        var res = Math.ceil(this.level * 10 + zoneLvl);
-        if (this.miboss) {
-            res *= 1.5;
-        }
-        if (this.boss) {
-            res *= 2;
-        }
-        return res;
+        return this._gils;
     }
 
     /**

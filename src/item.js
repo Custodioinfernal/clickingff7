@@ -13,11 +13,13 @@ class Item {
     /**
      * Extends
      * @param data
+     * @returns {Item}
      */
         load(data) {
         for (var i in data) {
             this[i] = data[i];
         }
+        return this;
     }
 
     /**

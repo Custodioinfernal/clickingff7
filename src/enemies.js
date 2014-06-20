@@ -25,7 +25,7 @@ class Enemies {
         var levelMax = this.game.characters.levelMax;
         var zone = this.game.zones.current();
         if (levelMax >= level * 4 && !zone.completed) {
-            enemies = zone.boss;
+            enemies = zone.getBoss();
         } else {
             enemies = zone.getEnemies();
         }

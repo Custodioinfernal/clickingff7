@@ -12,14 +12,14 @@ class Zone1 extends Zone {
         this.name = 'Sector 1 Reactor';
 
         this.enemies = [
-            new FirstRay(game),
-            new MP(game),
-            new Grunt(game),
-            new Sweeper(game)
+            "FirstRay",
+            "MP",
+            "Grunt",
+            "Sweeper"
         ];
 
         this.boss = [
-            new GuardScorpion(game)
+            "GuardScorpion"
         ];
     }
 

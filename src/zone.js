@@ -12,15 +12,18 @@ class Zone {
     /**
      * Extends
      * @param data
+     * @returns {Zone}
      */
         load(data) {
         for (var i in data) {
             this[i] = data[i];
         }
+        return this;
     }
 
     /**
      * Generate enemies
+     * @returns {Array}
      */
         getEnemies() {
         var enemies = [];
@@ -28,9 +31,24 @@ class Zone {
         var nbEnemies = _.random(1, Math.min(levelSum, 3));
         var levels = this._cut(levelSum, nbEnemies);
         for (var i = 1; i <= nbEnemies; i++) {
-            var enemy = _.sample(this.enemies, 1)[0];
+            var model = _.sample(this.enemies, 1)[0];
+            var enemy = new window[model](this.game);
             enemy._toLevel(levels[i - 1]);
             enemies.push(enemy);
+        }
+        return enemies;
+    }
+
+    /**
+     * Generate boss
+     * @returns {Array}
+     */
+        getBoss() {
+        var enemies = [];
+        for (var model of this.boss) {
+            var e = new window[model](this.game);
+            e._toLevel(this.game.zones.level * 4);
+            enemies.push(e);
         }
         return enemies;
     }

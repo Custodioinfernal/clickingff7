@@ -11,11 +11,13 @@ class Weapon {
     /**
      * Extends
      * @param data
+     * @returns {Weapon}
      */
         load(data) {
         for (var i in data) {
             this[i] = data[i];
         }
+        return this;
     }
 
     /*

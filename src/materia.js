@@ -9,11 +9,13 @@ class Materia {
     /**
      * Extends
      * @param data
+     * @returns {Materia}
      */
         load(data) {
         for (var i in data) {
             this[i] = data[i];
         }
+        return this;
     }
 
     /*
