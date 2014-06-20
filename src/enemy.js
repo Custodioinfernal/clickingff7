@@ -22,11 +22,11 @@ class Enemy {
         var ap = this.game.zones.level * 2;
         var gils = this.game.zones.level * 10;
 
-        this._hpMax = Math.ceil(this.hpMax / 5 * hpMax);
-        this._hits = Math.ceil(this.hits / 5 * hits);
-        this._xp = Math.ceil(this.xp / 5 * xp);
-        this._ap = Math.ceil(this.ap / 5 * ap);
-        this._gils = Math.ceil(this.gils / 5 * gils);
+        this._hpMax = Math.ceil(this.hpMax * hpMax);
+        this._hits = Math.ceil(this.hits * hits);
+        this._xp = Math.ceil(this.xp * xp);
+        this._ap = Math.ceil(this.ap * ap);
+        this._gils = Math.ceil(this.gils * gils);
     }
 
     /**

@@ -12,6 +12,7 @@ class Zones {
         constructor(game) {
         this.game = game;
         this.list = [];
+        this.max = 2; // todo auto find max available zones
     }
 
     /**
@@ -40,12 +41,11 @@ class Zones {
      * Complete the current level zone
      */
         completed() {
-        this.zone().completed = true;
+        this.current().completed = true;
         if (this.level < this.max) {
             this.level++;
             this.levelMax++;
-            this.game.newItems();
-            this.game.characters.refresh();
+            this.game.refresh(this.levelMax);
         }
     }
 

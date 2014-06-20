@@ -89,9 +89,11 @@ class Game {
                 //this.items.add(new Potion(this), true);
 
                 break;
-            case 2: // Tifa
-                this.addWeapon('leather-glove', true);
-                this.characters.add('tifa');
+            case 2:
+                this.zones.add(new Zone2(this), true);
+
+                //this.addWeapon('leather-glove', true);
+                //this.characters.add('tifa');
                 break;
             case 3: // Aerith
                 this.addWeapon('guard-stick', true);
