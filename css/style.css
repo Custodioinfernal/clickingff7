@@ -46,6 +46,10 @@ nav li:not(.disabled):hover {
     cursor: pointer;
 }
 
+nav .current {
+    font-weight: bold;
+}
+
 .pull-right {
     float: right;
 }
