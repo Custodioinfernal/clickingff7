@@ -121,7 +121,11 @@ section {
 .c1 {
     padding-right: 10px;
     border-right: 1px solid #bbb;
-    margin-right: 10px;
+}
+
+.c3 {
+    padding-left: 10px;
+    border-left: 1px solid #bbb;
 }
 
 /* style pour le personnage */
@@ -172,7 +176,6 @@ section {
 .materia {
     padding: 10px;
     margin-bottom: 10px;
-    border-top: 1px solid #999;
 }
 
 /* style pour les barres */

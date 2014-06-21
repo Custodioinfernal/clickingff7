@@ -29,6 +29,16 @@ class Materias {
     }
 
     /**
+     * Get unequipped materias
+     * @returns {Array}
+     */
+    getUnequipped() {
+        return _.where(this.list, {
+            equipped: false
+        });
+    }
+
+    /**
      * Export all materias
      * @returns {Array}
      */

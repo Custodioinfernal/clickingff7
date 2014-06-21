@@ -1,11 +1,29 @@
-<section>
+<div class="c1">
 
     <div>Materias equipped: {{game.materias.getEquipped().length}}/{{game.weapons.maxMaterias()}}</div>
 
-    <div ng-repeat="materia in game.materias.list" class="materia">
+    <div ng-repeat="materia in game.materias.getEquipped()" class="materia">
         <div ng-if="!materia.equipped" ng-click="materia.equip()" class="pull-right">EQUIP</div>
         <div ng-if="materia.equipped" ng-click="materia.unequip()" class="pull-right">UNEQUIP</div>
-         {{materia.name}}
+        <div class="progress materia_ap">
+            <div class="materia_ap_progress" style="width:{{materia.apProgress(300)}}px;"></div>
+            <span class="bar-label">{{materia.ap}} / {{materia.getApMax()}} AP</span>
+        </div>
+         {{materia.name}} <strong>(LVL{{materia.level}})</strong>
     </div>
 
-</section>
+</div>
+
+<div class="c3">
+    <div>Other materias: {{game.materias.list.length - game.materias.getEquipped().length}}</div>
+
+    <div ng-repeat="materia in game.materias.getUnequipped()" class="materia">
+        <div ng-if="!materia.equipped" ng-click="materia.equip()" class="pull-right">EQUIP</div>
+        <div ng-if="materia.equipped" ng-click="materia.unequip()" class="pull-right">UNEQUIP</div>
+        <div class="progress materia_ap">
+            <div class="materia_ap_progress" style="width:{{materia.apProgress(300)}}px;"></div>
+            <span class="bar-label">{{materia.ap}} / {{materia.getApMax()}} AP</span>
+        </div>
+        {{materia.name}} <strong>(LVL{{materia.level}})</strong>
+    </div>
+</div>
