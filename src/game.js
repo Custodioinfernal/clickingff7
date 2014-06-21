@@ -39,9 +39,10 @@ class Game {
         // save
         this.saves = [];
         var s = localStorage['save1'];
-        var save = (s) ? JSON.parse(atob(s)): null;
-        this.saves.push(save);
-
+        var save;
+        if (s && (save = JSON.parse(atob(s)))) {
+            this.saves.push(save);
+        }
         // do the magic ;)
         this.run();
     }
@@ -111,8 +112,8 @@ class Game {
     /**
      * Auto-chrono
      */
-    autoTimer() {
-        this.$timeout( () => {
+        autoTimer() {
+        this.$timeout(() => {
             this.time++;
             this.autoTimer();
         }, 1000);
@@ -140,7 +141,8 @@ class Game {
     }
 
     /**
-     * @returns {{characters: Array, gils: *, time: (*|time)}}
+     * Export the game
+     * @returns {{characters: *, zones: *, weapons: *, materias: *, items: *, gils: (number|Game.gils|*), time: number, version: string}}
      */
         export() {
         return {
@@ -156,14 +158,14 @@ class Game {
     }
 
     /**
+     * Load a save
+     * @param save
      * @param confirm
      */
-        load(confirm) {
+        load(save, confirm = true) {
         if (!confirm) {
             return;
         }
-
-        var save = this.saves[0];
 
         // characters
         for (var c of save.characters.list) {
@@ -220,6 +222,7 @@ class Game {
 
         var ss = btoa(JSON.stringify(s));
         localStorage['save1'] = ss;
+        this.lastExport = ss;
         //this.$cookieStore.put('save1', ss);
     }
 
@@ -227,7 +230,7 @@ class Game {
      * Remove the COOKIE & reset the game
      */
         reset() {
-        this.saves[0] = null;
+        this.saves = [];
 
         localStorage.removeItem('save1');
         //this.$cookieStore.remove('game');

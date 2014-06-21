@@ -430,7 +430,6 @@ function SaveCtrl($scope, $rootScope, $location, Game, Utils) {
      */
     $rootScope.saveGame = function (ev) {
         Game.save();
-        Utils.animate(ev, 'OK!');
     };
 
     /**
@@ -447,27 +446,26 @@ function SaveCtrl($scope, $rootScope, $location, Game, Utils) {
      * Export the current save
      */
     $rootScope.exportLastSave = function (ev) {
-        $scope.area = Game.last_export;
-        Utils.animate(ev, 'OK!');
+        var s;
+        if (s = Game.saves[0]) {
+            $scope.area = btoa(JSON.stringify(s));
+        }
     };
 
     /**
      * Export the current game
      */
     $rootScope.exportCurrentGame = function (ev) {
-        var save = Game._export();
-        $scope.area = JSON.stringify(save);
-        Utils.animate(ev, 'OK!');
+        $scope.area = btoa(JSON.stringify(Game.export()));
     };
 
     /**
      * Import a save
      */
     $rootScope.importSave = function (ev) {
-        if (!Game.last_export || confirm('Are you sure ? You\'ll lose your current save !')) {
-            var save = JSON.parse($scope.area);
-            Game._import(save);
-            location.reload();
+        if ($scope.area && confirm('Are you sure ? You\'ll lose your current save !')) {
+            var save = JSON.parse(atob($scope.area));
+            Game.load(save);
         }
     };
 
