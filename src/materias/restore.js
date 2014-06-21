@@ -32,12 +32,14 @@ class Restore extends Materia {
 
     /**
      * Do materia action
-     * Add to HP : +2% to +22%
+     * Add to HP : +30% to +60%
      */
         action() {
         var that = this;
+        var begin = 30;
+        var end = 60;
         var characters_hp = that.game.characters.hpMax;
-        var hp = Math.ceil(2 + (2 * that.level / 10) * characters_hp / 100);
+        var hp = Math.ceil(begin + ((end - begin) * that.level / 100) * characters_hp / 100);
 
         super.action(function () {
             that.game.characters.addHp(hp);
