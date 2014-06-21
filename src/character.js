@@ -42,6 +42,13 @@ class Character {
     /*
      * @returns {number}
      */
+    getMpMax() {
+        return this.mpBase * this.level;
+    }
+
+    /*
+     * @returns {number}
+     */
     getHits() {
         return this.level * this.weapon().hits * 0.1;
     }

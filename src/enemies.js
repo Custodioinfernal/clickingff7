@@ -57,9 +57,9 @@ class Enemies {
      * Get *random* total characters hits
      */
         getHits() {
-        var a = Math.floor(this.hits * 10 * (1 - 10 / 100));
-        var b = Math.ceil(this.hits * 10 * (1 + 10 / 100));
-        return _.random(a, b) / 10;
+        var a = this.hits * (1 - 10 / 100);
+        var b = this.hits * (1 + 10 / 100);
+        return Math.round(_.random(a, b));
     }
 
     /**

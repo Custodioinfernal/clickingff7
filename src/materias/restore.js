@@ -3,9 +3,11 @@ class Restore extends Materia {
     constructor(game) {
         super(game);
 
-        this.name = 'Restore';
+        this.name = 'Restore'.toUpperCase();
 
         this.color = 'green';
+
+        this.mpCost = this.level;
 
         this.price = 750;
 

@@ -22,10 +22,22 @@ class Materia {
      * Executes materia action
      * @param fn
      */
-    action(fn) {
-        this.game.characters.stopFighting();
-        fn();
-        this.game.characters.autoFighting();
+        action(fn) {
+        // cost
+        if (this.game.characters.mp >= this.mpCost) {
+            this.game.characters.mp -= this.mpCost;
+        } else {
+            throw 'NOT MP ENOUGH';
+        }
+
+        // do action
+        if (this.game.battle.isBattle) {
+            this.game.characters.stopFighting();
+            fn();
+            this.game.characters.autoFighting();
+        } else {
+            fn();
+        }
     }
 
     /*

@@ -2,14 +2,15 @@ class Battle {
 
     constructor(game) {
         this.game = game;
+        this.isBattle = false;
     }
 
     /**
      * Characters start auto-attacking
      */
         start() {
-        if (this.game.mode == "normal") {
-            this.game.mode = "fight";
+        if (!this.isBattle) {
+            this.isBattle = true;
 
             this.game.characters.autoFighting();
 
@@ -24,7 +25,7 @@ class Battle {
      * @param  {boolean} victory
      */
         end(victory) {
-        this.game.mode = "normal";
+        this.isBattle = false;
 
         this.game.characters.stopFighting();
         this.game.enemies.stopFighting();

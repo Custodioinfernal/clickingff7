@@ -1,8 +1,8 @@
 <nav class="actions">
     <ul>
-        <li ng-click="explore($event)" ng-class="{disabled: game.mode != 'normal'}">EXPLORE</li>
+        <li ng-click="explore($event)" ng-class="{disabled: game.battle.isBattle}">EXPLORE</li>
 
-        <li ng-click="escape($event)" ng-class="{disabled: !game.characters.canEscape()}">
+        <li ng-click="escape($event)" ng-class="{disabled: !game.battle.isBattle}">
             ESCAPE
         </li>
 

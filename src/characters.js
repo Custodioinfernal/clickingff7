@@ -34,6 +34,16 @@ class Characters {
     }
 
     /**
+     * @param mp
+     */
+        addMp(mp) {
+        this.mp += mp;
+        if (this.mp > this.mpMax) {
+            this.mp = this.mpMax;
+        }
+    }
+
+    /**
      * Add a character
      * @param character
      * @param inTeam
@@ -56,6 +66,7 @@ class Characters {
      */
     refresh() {
         this.hpMax = 0;
+        this.mpMax = 0;
         this.limitMax = 0;
         this.hits = 0;
         this.arrHits = [];
@@ -71,6 +82,7 @@ class Characters {
 
             // HP, hits
             this.hpMax += characters[i].getHpMax();
+            this.mpMax += characters[i].getMpMax();
             this.hits += characters[i].getHits();
             this.levelSum += characters[i].level;
         }
@@ -79,6 +91,9 @@ class Characters {
 
         if (!_.has(this, 'hp')) {
             this.hp = this.hpMax;
+        }
+        if (!_.has(this, 'mp')) {
+            this.mp = this.mpMax;
         }
         if (!_.has(this, 'limit')) {
             this.limit = 0;
@@ -89,14 +104,9 @@ class Characters {
      * Get *random* total characters hits
      */
         getHits() {
-        var a = Math.floor(this.hits * 10 * (1 - 10 / 100));
-        var b = Math.ceil(this.hits * 10 * (1 + 10 / 100));
-        var x = _.random(a, b) / 10;
-        if (x < 10) {
-            return x;
-        } else {
-            return Math.round(x);
-        }
+        var a = this.hits * (1 - 10 / 100);
+        var b = this.hits * (1 + 10 / 100);
+        return Math.round(_.random(a, b));
     }
 
     /**
@@ -159,6 +169,15 @@ class Characters {
     }
 
     /**
+     * Returns in pixels characters mp bar width
+     * @param  {int} pixels_max
+     * @return {int}
+     */
+        mpProgress(pixels_max) {
+        return this.mp / this.mpMax * pixels_max;
+    }
+
+    /**
      * Returns in pixels characters hp bar width
      * @param  {int} pixels_max
      * @return {int}
@@ -202,7 +221,7 @@ class Characters {
      * @return {boolean}
      */
         canAttack() {
-        return (this.game.mode == "fight");
+        return (this.game.battle.isBattle);
     }
 
     /**
@@ -210,15 +229,7 @@ class Characters {
      * @return {boolean}
      */
         canLimit() {
-        return (this.game.mode == "fight" && this.limit == this.limitMax);
-    }
-
-    /**
-     * Returns if it is possible to cure characters hp
-     * @return {boolean}
-     */
-        canRestore() {
-        return (this.hp < this.hpMax);
+        return (this.game.battle.isBattle && this.limit == this.limitMax);
     }
 
     /**
@@ -226,7 +237,7 @@ class Characters {
      * @return {boolean}
      */
         canEscape() {
-        return (this.game.mode == "fight");
+        return (this.game.battle.isBattle);
     }
 
     /**
@@ -236,6 +247,7 @@ class Characters {
         export() {
         var res = {
             "hp"   : this.hp,
+            "mp"   : this.mp,
             "limit": this.limit,
             "list" : []
         };

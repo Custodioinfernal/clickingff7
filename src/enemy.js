@@ -16,7 +16,7 @@ class Enemy {
         _toLevel(level) {
         this.level = level;
 
-        var hpMax = this.game.zones.level * 100;
+        var hpMax = this.game.zones.level * 20;
         var hits = this.game.zones.level;
         var xp = this.game.zones.level * 5;
         var ap = this.game.zones.level * 2;
