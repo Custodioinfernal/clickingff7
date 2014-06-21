@@ -54,6 +54,10 @@ nav .current {
     float: right;
 }
 
+section {
+    width: 700px;
+}
+
 /* style du menu principal */
 
 .game-menu {
@@ -161,6 +165,14 @@ nav .current {
     text-align: center;
     font-size: 16px;
     color: #999;
+}
+
+/* SECTION materia */
+
+.materia {
+    padding: 10px;
+    margin-bottom: 10px;
+    border-top: 1px solid #999;
 }
 
 /* style pour les barres */

@@ -1,0 +1,11 @@
+<section>
+
+    <div>Materias equipped: {{game.materias.getEquipped().length}}/{{game.weapons.maxMaterias()}}</div>
+
+    <div ng-repeat="materia in game.materias.list" class="materia">
+        <div ng-if="!materia.equipped" ng-click="materia.equip()" class="pull-right">EQUIP</div>
+        <div ng-if="materia.equipped" ng-click="materia.unequip()" class="pull-right">UNEQUIP</div>
+         {{materia.name}}
+    </div>
+
+</section>

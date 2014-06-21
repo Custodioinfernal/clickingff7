@@ -19,6 +19,23 @@ class Weapons {
     }
 
     /**
+     * Returns maximum materias that can be equipped
+     * @returns {number}
+     */
+    maxMaterias() {
+        var maxMaterias = 0;
+
+        var weapons = _.where(this.list, {
+            equipped: true
+        });
+        for (var e of weapons) {
+            maxMaterias += e.maxMaterias;
+        }
+
+        return maxMaterias;
+    }
+
+    /**
      * Export all weapons
      * @returns {Array}
      */

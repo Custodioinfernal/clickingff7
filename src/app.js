@@ -76,6 +76,10 @@ app.config(['$routeProvider',
                 templateUrl: 'partials/map.html',
                 controller : MapCtrl
             }).
+            when('/materias', {
+                templateUrl: 'partials/materias.html',
+                controller : MateriasCtrl
+            }).
             when('/shop', {
                 templateUrl: 'partials/shop.html',
                 controller : ShopCtrl
@@ -117,6 +121,15 @@ function NavCtrl($scope, $location, Game) {
     $scope.map = function () {
         if (!Game.battle.isBattle) {
             $location.path("/map");
+        }
+    };
+
+    /**
+     * Go to the materia
+     */
+    $scope.materias = function () {
+        if (!Game.battle.isBattle) {
+            $location.path("/materias");
         }
     };
 
@@ -270,6 +283,12 @@ function MapCtrl($rootScope, $location, Game, Utils) {
     };
 
 }
+
+/**
+ * /Map
+ */
+
+function MateriasCtrl() {}
 
 /**
  * /Inventory

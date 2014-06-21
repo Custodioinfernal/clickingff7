@@ -41,47 +41,6 @@ class Materia {
     }
 
     /*
-     * @returns {string}
-     */
-    getDesc() {
-        var Txt = '';
-
-        switch (this.ref) {
-            case 'restore':
-                Txt = 'HP +' + (this.level * 2) + '% while restoring';
-                break;
-            case 'bolt':
-                Txt = 'Bolt damages +' + (this.level * 10) + '%';
-                break;
-            case 'ice':
-                Txt = 'Ice damages +' + (this.level * 10) + '%';
-                break;
-            case 'fire':
-                Txt = 'Fire damages +' + (this.level * 10) + '%';
-                break;
-            case 'poison':
-                Txt = 'Poison damages +' + (this.level * 10) + '%';
-                break;
-            case 'earth':
-                Txt = 'Earth damages +' + (this.level * 10) + '%';
-                break;
-        }
-
-        return Txt;
-    }
-
-    /*
-     * @returns {*}
-     */
-    getLevel() {
-        if (this.level < this.levelMax) {
-            return this.level;
-        } else {
-            return "MAX";
-        }
-    }
-
-    /*
      * @returns {Object}
      */
     getApMax() {
@@ -93,16 +52,6 @@ class Materia {
      */
     getPrice() {
         return this.gils;
-    }
-
-    /*
-     * @returns {Number}
-     */
-    inStock() {
-        var materias = _.where(this.game.materias, {
-            ref: this.ref
-        });
-        return materias.length;
     }
 
     /*
@@ -124,23 +73,32 @@ class Materia {
         }
     }
 
-    /*
-     * @param characterRef
+    /**
+     * Returns true if the materia can be equipped
+     * @returns {boolean}
      */
-    equip(characterRef) {
-        this.character = characterRef;
-        this.game.characters.refresh();
+        canEquip() {
+        return (this.game.materias.getEquipped().length < this.game.weapons.maxMaterias());
     }
 
-    /*
-     *
+    /**
+     * Equip the materia
      */
-    unequip() {
-        this.character = "";
+        equip() {
+        this.equipped = true;
         this.game.characters.refresh();
     }
 
     /**
+     * Unequip the materia
+     */
+        unequip() {
+        this.equipped = false;
+        this.game.characters.refresh();
+    }
+
+    /**
+     * Exports
      * @returns {Object}
      */
         export() {
