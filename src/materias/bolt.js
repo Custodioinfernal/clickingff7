@@ -1,18 +1,18 @@
-class Restore extends Materia {
+class Bolt extends Materia {
 
     constructor(game) {
         super(game);
 
-        this.name = 'Restore'.toUpperCase();
+        this.name = 'Bolt'.toUpperCase();
 
         this.color = 'green';
 
         this.mpCost = this.level;
 
-        this.price = 750;
+        this.price = 600;
 
         this.apFormula = function (x) {
-            return Math.pow(x + 1, 2) + 100;
+            return Math.pow(x + 1, 2) + 150;
         };
 
         this.available = function (x) {
@@ -25,9 +25,8 @@ class Restore extends Materia {
      * Can use the materia?
      * @returns {boolean}
      */
-        canUse() {
-        return (this.game.characters.mp >= this.mpCost
-            && this.game.characters.hp < this.game.characters.hpMax);
+    canUse() {
+        return (this.game.battle.isBattle && this.game.characters.mp >= this.mpCost);
     }
 
     /**
@@ -36,11 +35,11 @@ class Restore extends Materia {
      */
         action() {
         var that = this;
-        var characters_hp = that.game.characters.hpMax;
-        var hp = Math.ceil(2 + (2 * that.level / 10) * characters_hp / 100);
+        var hits = this.game.characters.getHits() * (1 - 20 /100);
+        hits = Math.ceil(hits);
 
         super.action(function () {
-            that.game.characters.addHp(hp);
+            that.game.enemies.getAttacked(hits);
         });
     }
 

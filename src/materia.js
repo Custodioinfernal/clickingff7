@@ -24,10 +24,10 @@ class Materia {
      */
         action(fn) {
         // cost
-        if (this.game.characters.mp >= this.mpCost) {
+        if (this.canUse()) {
             this.game.characters.mp -= this.mpCost;
         } else {
-            throw 'NOT MP ENOUGH';
+            throw "CANNOT USE";
         }
 
         // do action

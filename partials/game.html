@@ -12,13 +12,11 @@
             <span ng-if="game.characters.canLimit()">LIMIT</span>
         </li>
 
-        <li ng-repeat="materia in game.materias.getEquipped()" ng-click="materia.action()">
-            <div class="pull-right">{{materia.level}}</div>
+        <li ng-repeat="materia in game.materias.getEquipped()"
+            ng-click="materia.action()"
+            ng-class="{disabled: !materia.canUse()}">
+            <div class="pull-right">{{materia.mpCost}}</div>
             {{materia.name}}
-            <div class="progress materia_ap">
-                <div class="materia_ap_progress" style="width:{{materia.apProgress(300)}}px;"></div>
-                <span class="bar-label">{{materia.ap}} / {{materia.getApMax()}} AP</span>
-            </div>
         </li>
     </ul>
 </nav>
