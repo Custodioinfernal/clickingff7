@@ -1,16 +1,30 @@
-<div class="shopList">
+<div class="actions">
+    <img ng-src="{{game.zones.current().image}}" width="150" alt="current_zone" />
+</div>
 
-  <div class="zones">
-    <div ng-repeat="zone in game.zones.list | clean" class="line">
-      <div class="name">
-        #{{zone.level}} {{zone.name}} <span class="boss" ng-if="zone.completed">COMPLETED</span><br />
-        <span class="desc">{{zone.description}}</span>
-      </div>
-      <div class="actions_">
-        <div class="button" ng-click="goZone($event, zone)" ng-if="!zone.here()">GO</div>
-        <div ng-if="zone.here()">You are here</div>
-      </div>
+<div class="c1">
+
+    <div>Current zone:</div>
+
+    <div class="name">{{game.zones.current().name}} <strong>(#{{game.zones.current().level}})</strong></div>
+
+    <div class="desc">{{game.zones.current().description}}</div>
+
+</div>
+
+<div class="c3">
+
+    <div>Go another zone:</div>
+
+    <div class="zones">
+        <div ng-repeat="zone in game.zones.getOthers() | clean" class="line">
+            <div class="name">
+                #{{zone.level}} {{zone.name}} <span class="boss" ng-if="zone.completed">COMPLETED</span><br/>
+            </div>
+            <div class="actions_">
+                <div class="button" ng-click="goZone($event, zone)" ng-if="!zone.here()">GO</div>
+                <div ng-if="zone.here()">You are here</div>
+            </div>
+        </div>
     </div>
-  </div>
-
 </div>

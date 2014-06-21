@@ -37,6 +37,14 @@ class Zones {
         });
     }
 
+
+    getOthers() {
+        var level = this.level;
+        return _.filter(this.list, function(o) {
+            return (o.level !== level);
+        })
+    }
+
     /**
      * Complete the current level zone
      */
