@@ -36,14 +36,14 @@ class Character {
      * @returns {number}
      */
     getHpMax() {
-        return this.hpBase * this.level;
+        return Math.ceil((this.hpBase / 5) * 100 * this.level);
     }
 
     /*
      * @returns {number}
      */
     getMpMax() {
-        return this.mpBase * this.level;
+        return Math.ceil((this.mpBase / 5) * 10 * this.level);;
     }
 
     /*

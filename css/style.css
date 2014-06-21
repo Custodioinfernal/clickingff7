@@ -46,6 +46,10 @@ nav li:not(.disabled):hover {
     cursor: pointer;
 }
 
+.pull-right {
+    float: right;
+}
+
 /* style du menu principal */
 
 .game-menu {
@@ -233,7 +237,18 @@ nav li:not(.disabled):hover {
     width: 300px;
 }
 .xp_progress {
-    background-color: #806E94;
+    background-color: #C6B7D6;
+    position: absolute;
+    height: 9px;
+    top: 0;
+    left: 0;
+}
+
+.materia_ap {
+    width: 140px;
+}
+.materia_ap_progress {
+    background-color: #C6B7D6;
     position: absolute;
     height: 9px;
     top: 0;
@@ -241,6 +256,7 @@ nav li:not(.disabled):hover {
 }
 
 .xp_progress,
+.ap_progress,
 .enemy_hp_progress,
 .enemy_mp_progress,
 .characters_hp_progress,

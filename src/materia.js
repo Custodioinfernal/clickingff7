@@ -85,7 +85,7 @@ class Materia {
      * @returns {Object}
      */
     getApMax() {
-        return eval(this.ap_formula.replace('x', this.level));
+        return this.apFormula(this.level + 1);
     }
 
     /*

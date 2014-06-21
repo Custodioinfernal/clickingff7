@@ -13,7 +13,12 @@
         </li>
 
         <li ng-repeat="materia in game.materias.getEquipped()" ng-click="materia.action()">
+            <div class="pull-right">{{materia.level}}</div>
             {{materia.name}}
+            <div class="progress materia_ap">
+                <div class="materia_ap_progress" style="width:{{materia.apProgress(300)}}px;"></div>
+                <span class="bar-label">{{materia.ap}} / {{materia.getApMax()}} AP</span>
+            </div>
         </li>
     </ul>
 </nav>
@@ -24,25 +29,26 @@
         <!-- characters bars -->
         <div class="bars">
             <div class="characters_hits">
-                <div class="hit hit_{{$index+1}}" ng-repeat="hit in game.characters.arrHits track by $index">{{hit}}</div>
+                <div class="hit hit_{{$index+1}}" ng-repeat="hit in game.characters.arrHits track by $index">{{hit}}
+                </div>
             </div>
 
             <div>
-                <div class="part progress characters_hp">
+                <div class="progress characters_hp">
                     <div class="characters_hp_progress" style="width:{{game.characters.hpProgress(300)}}px;"></div>
                     <span class="bar-label">{{game.characters.hp|ceil}} / {{game.characters.hpMax}} HP</span>
                 </div>
             </div>
 
             <div>
-                <div class="part progress characters_mp">
+                <div class="progress characters_mp">
                     <div class="characters_mp_progress" style="width:{{game.characters.mpProgress(300)}}px;"></div>
                     <span class="bar-label">{{game.characters.mp|ceil}} / {{game.characters.mpMax}} MP</span>
                 </div>
             </div>
 
             <div>
-                <div class="part progress characters_limit">
+                <div class="progress characters_limit">
                     <div class="characters_limit_progress"
                          style="width:{{game.characters.limitProgress(300)}}px;"></div>
                     <span class="bar-label">LIMIT</span>
@@ -52,16 +58,17 @@
 
         <!-- characters list -->
         <div ng-repeat="(i, character) in game.characters.getTeam()" class="card">
-            <div class="part progress characters_xp">
+            <div class="progress characters_xp">
                 <div class="xp_progress" style="width:{{character.xpProgress(300)}}px;"></div>
+                <span class="bar-label">{{character.xp|ceil}} / {{character.getXpMax()}} EXP</span>
             </div>
             <div class="main">
-                <div class="part avatar">
+                <div class="avatar">
                     <img ng-src="{{character.image}}" alt="avatar" class="icon"/>
                 </div>
                 <!--
                         -->
-                <div class="part">
+                <div>
                     <div>{{character.name}} <strong>(LVL{{character.level}})</strong></div>
                     <div ng-if="character.level > 0">
                         <span class="label">hp</span> {{character.getHpMax()}}
@@ -82,16 +89,9 @@
             </div>
 
             <div ng-if="game.enemies.list.length > 0">
-                <div class="part progress enemy_hp">
+                <div class="progress enemy_hp">
                     <div class="enemy_hp_progress" style="width:{{game.enemies.hpProgress(300)}}px;"></div>
                     <span class="bar-label">{{game.enemies.hp|ceil}} / {{game.enemies.hpMax}} HP</span>
-                </div>
-            </div>
-
-            <div ng-if="game.enemies.list.length > 0">
-                <div class="part progress enemy_mp">
-                    <div class="enemy_mp_progress" style="width:{{game.enemies.mpProgress(300)}}px;"></div>
-                    <span class="bar-label">{{game.enemies.mp|ceil}} / {{game.enemies.mpMax}} MP</span>
                 </div>
             </div>
         </div>
@@ -103,10 +103,10 @@
         <!-- enemies list -->
         <div ng-repeat="enemy in game.enemies.list" class="card">
             <div class="main">
-                <div class="part avatar">
+                <div class="avatar">
                     <img ng-src="{{enemy.image}}" alt="avatar" height="48"/>
                 </div>
-                <div class="part">
+                <div>
                     {{enemy.name}} <strong>(LVL{{enemy.level|ceil}})</strong>
                     <span ng-if="enemy.boss" class="boss">ZONE BOSS</span>
                     <span ng-if="enemy.miboss" class="boss">BOSS</span>

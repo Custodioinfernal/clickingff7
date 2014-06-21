@@ -32,9 +32,9 @@ class Battle {
 
         var enemies = this.game.enemies.list;
         var characters = this.game.characters.getTeam();
+        var materias = this.game.materias.getEquipped();
 
-        for (var i in enemies) {
-            var enemy = enemies[i];
+        for (var enemy of enemies) {
 
             // Rewards if victory
             if (victory) {
@@ -46,11 +46,13 @@ class Battle {
                 }
 
                 // XP for characters, AP for materias
-                for (var j in characters) {
-                    var character = characters[j];
+                for (var character of characters) {
                     var xp = enemy.xpReward();
-                    var ap = enemy.apReward();
                     character.setXp(xp);
+                }
+                for (var materia of materias) {
+                    var ap = enemy.apReward();
+                    materia.setAp(ap);
                 }
             }
         }

@@ -12,9 +12,9 @@ class Barret extends Character {
         // character weapon type
         this.weaponType = 'gun-arm';
 
-        // HP & MP
-        this.hpBase = 16;
-        this.mpBase = 11;
+        // STATS
+        this.hpBase = 5;
+        this.mpBase = 1;
 
         // Character XP formula
         this.xpFormula = function (x) {

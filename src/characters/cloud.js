@@ -12,9 +12,9 @@ class Cloud extends Character {
         // character weapon type
         this.weaponType = 'broadsword';
 
-        // HP & MP
-        this.hpBase = 14;
-        this.mpBase = 14;
+        // STATS
+        this.hpBase = 3;
+        this.mpBase = 3;
 
         // Character XP formula
         this.xpFormula = function (x) {

@@ -11,8 +11,8 @@ class Restore extends Materia {
 
         this.price = 750;
 
-        this.xpFormula = function (x) {
-            return Math.pow(x + 1, 4) * 25;
+        this.apFormula = function (x) {
+            return Math.pow(x + 1, 2) + 100;
         };
 
         this.available = function (x) {
@@ -21,10 +21,17 @@ class Restore extends Materia {
 
     }
 
-    action() {
+    /**
+     * Do materia action
+     * Add to HP : +2% to +22%
+     */
+        action() {
         var that = this;
+        var characters_hp = that.game.characters.hpMax;
+        var hp = Math.ceil(2 + (2 * that.level / 10) * characters_hp / 100);
+
         super.action(function () {
-            that.game.characters.addHp(that.level * 2);
+            that.game.characters.addHp(hp);
         });
     }
 
