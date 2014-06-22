@@ -18,6 +18,19 @@ class Game {
         // fight mode
         this.mode = "normal";
 
+        // binding
+        this.$rootScope.game = this;
+
+        // load all resources
+        this.loader = new Loader(this);
+    }
+
+    /**
+     *
+     */
+        run() {
+        this.loaded = true;
+
         // savable models
         this.characters = new Characters(this);
         this.zones = new Zones(this);
@@ -29,7 +42,6 @@ class Game {
         this.battle = new Battle(this);
         this.shop = new Shop(this);
         this.enemies = new Enemies(this);
-        this.data = {};
 
         // savable vars
         this.time = 0;
@@ -43,14 +55,7 @@ class Game {
         if (s && (save = JSON.parse(atob(s)))) {
             this.saves.push(save);
         }
-        // do the magic ;)
-        this.run();
-    }
 
-    /**
-     *
-     */
-        run() {
         //var save = this.$cookieStore.get('game');
         var save = this.saves[0];
         if (save) {
@@ -58,14 +63,11 @@ class Game {
         } else {
             this.reset();
             this.refresh();
-            this.loaded = true;
         }
 
         this.characters.refresh();
 
         this.autoTimer();
-
-        this.$rootScope.game = this;
     }
 
     /*

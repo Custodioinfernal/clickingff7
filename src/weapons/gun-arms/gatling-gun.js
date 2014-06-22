@@ -1,11 +1,13 @@
-class GatlingGun extends GunArm {
+class GatlingGun extends Weapon {
 
     constructor(game) {
         super(game);
 
         this.name = 'Gatling Gun';
 
-        this.hits = 14;
+        this.type = 'gun-arm';
+
+        this.hits = 1;
 
         this.price = 130;
 

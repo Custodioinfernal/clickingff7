@@ -221,6 +221,18 @@ section {
     border-top: 1px solid #999;
 }
 
+.game_load {
+    width: 300px;
+    margin: auto;
+}
+.game_load_progress {
+    background-color: #ccc;
+    position: absolute;
+    height: 9px;
+    top: 0;
+    left: 0;
+}
+
 .enemy_hp {
     width: 300px;
 }

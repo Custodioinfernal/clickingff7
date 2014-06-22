@@ -50,7 +50,7 @@ class Character {
      * @returns {number}
      */
     getHits() {
-        return this.level * this.weapon().hits * 0.1;
+        return this.level * this.weapon().hits;
     }
 
     /*

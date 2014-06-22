@@ -1,11 +1,13 @@
-class BusterSword extends BroadSword {
+class BusterSword extends Weapon {
 
     constructor(game) {
         super(game);
 
         this.name = 'Buster Sword';
 
-        this.hits = 18;
+        this.type = 'broadsword';
+
+        this.hits = 1;
 
         this.price = 170;
 

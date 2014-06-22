@@ -7,59 +7,11 @@
 var app = angular.module('clickingff7', ['ngRoute', 'ngCookies']);
 
 /**
- * Utils Service
- */
-app.service('Utils', Utils);
-
-/**
  * Game Service
  */
 app.factory('Game', ['$rootScope', '$cookieStore', '$http', '$timeout', function ($rootScope, $cookieStore, $http, $timeout) {
     return new Game($rootScope, $cookieStore, $http, $timeout);
 }]);
-
-/**
- * Used to get floor number
- */
-app.filter('floor', function () {
-    return function (input) {
-        return Math.floor(input);
-    }
-});
-
-/**
- * Used to get ceil number
- */
-app.filter('ceil', function () {
-    return function (input) {
-        return Math.ceil(input);
-    }
-});
-
-/**
- * Used to round a number
- */
-app.filter('round', function () {
-    return function (input, decimals) {
-        var d = Math.pow(10, decimals);
-        return Math.round(input * d) / d;
-    }
-});
-
-/**
- * Used to clean an associative array
- */
-app.filter('clean', function () {
-    return function (items) {
-        var result = {};
-        angular.forEach(items, function (value, key) {
-            if (!value.hasOwnProperty('id')) {
-                result[key] = value;
-            }
-        });
-        return result;
-    };
-});
 
 /**
  * Routes logic
@@ -106,7 +58,7 @@ function NavCtrl($scope, $location, Game) {
 
     $scope.isActive = function (route) {
         return route === $location.path();
-    }
+    };
 
     /**
      * Go to the game
@@ -166,7 +118,7 @@ function NavCtrl($scope, $location, Game) {
  * /Game
  */
 
-function GameCtrl($rootScope, $location, $cookieStore, $http, $timeout, Game, Utils) {
+function GameCtrl($rootScope, Game) {
 
     /**
      * Use a equipped item
@@ -175,7 +127,6 @@ function GameCtrl($rootScope, $location, $cookieStore, $http, $timeout, Game, Ut
      */
     $rootScope.useItem = function (ev, item) {
         item.use();
-        Utils.animate(ev, 'SUCCESS!');
     };
 
     /**
@@ -187,7 +138,6 @@ function GameCtrl($rootScope, $location, $cookieStore, $http, $timeout, Game, Ut
 
         if (thing instanceof Weapon) {
             if (thing.equipped) {
-                Utils.animate(ev, 'FAIL!');
                 return;
             }
             for (var i in Game.weapons) {
@@ -198,7 +148,6 @@ function GameCtrl($rootScope, $location, $cookieStore, $http, $timeout, Game, Ut
         }
         if (thing instanceof Materia) {
             if (thing.character) {
-                Utils.animate(ev, 'FAIL!');
                 return;
             }
             for (var i in Game.materias) {
@@ -254,7 +203,6 @@ function GameCtrl($rootScope, $location, $cookieStore, $http, $timeout, Game, Ut
     $rootScope.escape = function (ev) {
         if (Game.characters.canEscape()) {
             Game.characters.escape();
-            Utils.animate(ev, 'SUCCESS!');
         }
     };
 
@@ -264,7 +212,7 @@ function GameCtrl($rootScope, $location, $cookieStore, $http, $timeout, Game, Ut
  * /Map
  */
 
-function MapCtrl($rootScope, $location, Game, Utils) {
+function MapCtrl($rootScope, $location, Game) {
 
     /**
      * Checkin'
@@ -279,7 +227,6 @@ function MapCtrl($rootScope, $location, Game, Utils) {
      */
     $rootScope.goZone = function (ev, zone) {
         zone.go();
-        Utils.animate(ev, 'SUCCESS!');
     };
 
 }

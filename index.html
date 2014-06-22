@@ -17,10 +17,14 @@
 <header>
     <div class="wrapper">
         clicking ff7
+        <div class="progress game_load" ng-show="!game.loaded">
+            <div class="game_load_progress" style="width:{{game.loader.loadProgress(300)}}px;"></div>
+            <span class="bar-label">{{game.loader.filesLoaded}} / {{game.loader.nbFiles}} – {{game.loader.currentLabel}}</span>
+        </div>
     </div>
 </header>
 
-<div class="page">
+<div class="page" ng-show="game.loaded">
 
     <nav class="game-menu" ng-controller="NavCtrl">
         <ul>
@@ -47,7 +51,7 @@
 
 </div>
 
-<footer>
+<footer ng-show="game.loaded">
     <div class="wrapper">
         ©2013 menencia.com, version <strong><big>{{game.version}}</big></strong> still beta.
         <br/><a href="http://clickingff7.tumblr.com/" target="_blank">What's new?</a> -
@@ -56,6 +60,7 @@
     </div>
 </footer>
 
+<!-- LIBS -->
 <script src="bower_components/jquery/dist/jquery.min.js"></script>
 <script src="bower_components/underscore/underscore.js"></script>
 <script src="bower_components/angular/angular.min.js"></script>
@@ -63,39 +68,10 @@
 <script src="bower_components/angular-cookies/angular-cookies.min.js"></script>
 <script src="bower_components/traceur-runtime/traceur-runtime.min.js"></script>
 
-<script src="dist/battle.js"></script>
-<script src="dist/character.js"></script>
-<script src="dist/characters.js"></script>
-<script src="dist/characters/barret.js"></script>
-<script src="dist/characters/cloud.js"></script>
-<script src="dist/enemy.js"></script>
-<script src="dist/enemies.js"></script>
-<script src="dist/enemies/zone1/first-ray.js"></script>
-<script src="dist/enemies/zone1/mp.js"></script>
-<script src="dist/enemies/zone1/grunt.js"></script>
-<script src="dist/enemies/zone1/sweeper.js"></script>
-<script src="dist/enemies/zone1/guard-scorpion.js"></script>
-<script src="dist/game.js"></script>
-<script src="dist/item.js"></script>
-<script src="dist/items.js"></script>
-<script src="dist/materia.js"></script>
-<script src="dist/materias.js"></script>
-<script src="dist/materias/restore.js"></script>
-<script src="dist/materias/bolt.js"></script>
-<script src="dist/shop.js"></script>
-<script src="dist/weapon.js"></script>
-<script src="dist/weapons.js"></script>
-<script src="dist/weapons/broadsword.js"></script>
-<script src="dist/weapons/broadswords/bustersword.js"></script>
-<script src="dist/weapons/gunarm.js"></script>
-<script src="dist/weapons/gun-arms/gatling-gun.js"></script>
-<script src="dist/zone.js"></script>
-<script src="dist/zones.js"></script>
-<script src="dist/zones/zone1.js"></script>
-<script src="dist/zones/zone2.js"></script>
-
-<script src="dist/utils.js"></script>
+<!-- BOOTSTRAP -->
 <script src="dist/app.js"></script>
+<script src="dist/game.js"></script>
+<script src="dist/loader.js"></script>
 
 <script type="text/javascript">
 
