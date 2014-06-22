@@ -26,9 +26,8 @@
     <div class="c1">
         <!-- characters bars -->
         <div class="bars">
-            <div class="characters_hits">
-                <div class="hit hit_{{$index+1}}" ng-repeat="hit in game.characters.arrHits track by $index">{{hit}}
-                </div>
+            <div class="enemies_hits">
+                <div class="hit hit_{{$index+1}}" ng-repeat="hit in game.enemies.arrHits track by $index">{{hit}}</div>
             </div>
 
             <div>
@@ -82,8 +81,9 @@
     <div class="c3">
         <!-- enemies bars -->
         <div class="bars">
-            <div class="enemies_hits">
-                <div class="hit hit_{{$index+1}}" ng-repeat="hit in game.enemies.arrHits track by $index">{{hit}}</div>
+            <div class="characters_hits">
+                <div class="hit hit_{{$index+1}}" ng-repeat="hit in game.characters.arrHits track by $index">{{hit}}
+                </div>
             </div>
 
             <div ng-if="game.enemies.list.length > 0">
