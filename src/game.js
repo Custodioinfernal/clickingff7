@@ -46,7 +46,7 @@ class Game {
         // savable vars
         this.time = 0;
         this.gils = 200;
-        this.version = "0.9.0";
+        this.version = "1.0.0";
 
         // save
         this.saves = [];
