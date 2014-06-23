@@ -45,6 +45,28 @@ class Item {
     }
 
     /**
+     * Returns true if the materia can be equipped
+     * @returns {boolean}
+     */
+        canEquip() {
+        return (this.game.items.getEquipped().length < this.game.items.MAX_ITEMS);
+    }
+
+    /**
+     * Equip the item
+     */
+        equip() {
+        this.equipped = true;
+    }
+
+    /**
+     * Unequip the item
+     */
+        unequip() {
+        this.equipped = false;
+    }
+
+    /**
      * Save materia data
      */
         export() {

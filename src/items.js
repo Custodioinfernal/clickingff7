@@ -7,6 +7,7 @@ class Items {
         constructor(game) {
         this.game = game;
         this.list = [];
+        this.MAX_ITEMS = 5;
     }
 
     /**
@@ -25,6 +26,16 @@ class Items {
      */
         getEquipped() {
         return _.where(this.list, {equipped: true});
+    }
+
+    /**
+     * Get unequipped items
+     * @returns {Array}
+     */
+        getUnequipped() {
+        return _.where(this.list, {
+            equipped: false
+        });
     }
 
     /**
