@@ -1,0 +1,14 @@
+<div class="c1">
+    <div class="button" ng-click="saveGame($event)">SAVE</div>
+    <div class="button" ng-click="resetGame($event)">RESET</div>
+</div>
+
+<div class="c3">
+    <div class="button" ng-click="exportLastSave($event)" ng-show="game.time">EXPORT LAST SAVE</div>
+    <div class="button" ng-click="exportCurrentGame($event)">EXPORT CURRENT GAME</div>
+    <div class="button" ng-click="importSave($event)">IMPORT</div>
+
+    <br/>
+
+    <textarea ng-model="area" class="area"></textarea>
+</div>
