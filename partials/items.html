@@ -2,7 +2,7 @@
 
     <div>Items equipped: {{game.items.getEquipped().length}}/{{game.items.MAX_ITEMS}}</div>
 
-    <div ng-repeat="item in game.items.getEquipped()" class="materia">
+    <div ng-repeat="item in game.items.getEquipped()" class="item">
         <div ng-click="item.unequip()" class="pull-right">UNEQUIP</div>
         {{item.name}}
     </div>
@@ -12,7 +12,7 @@
 <div class="c3">
     <div>Other items: {{game.items.list.length - game.items.getEquipped().length}}</div>
 
-    <div ng-repeat="item in game.items.getUnequipped()" class="materia">
+    <div ng-repeat="item in game.items.getUnequipped()" class="item">
         <div ng-show="item.canEquip()" ng-click="item.equip()" class="pull-right">EQUIP</div>
         {{item.name}}
     </div>

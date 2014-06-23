@@ -32,6 +32,10 @@ app.config(['$routeProvider',
                 templateUrl: 'partials/items.html',
                 controller : ItemsCtrl
             }).
+            when('/weapons', {
+                templateUrl: 'partials/weapons.html',
+                controller : WeaponsCtrl
+            }).
             when('/materias', {
                 templateUrl: 'partials/materias.html',
                 controller : MateriasCtrl
@@ -78,6 +82,15 @@ function NavCtrl($scope, $location, Game) {
     $scope.items = function () {
         if (!Game.battle.isBattle) {
             $location.path("/items");
+        }
+    };
+
+    /**
+     * Go to the weapons
+     */
+    $scope.weapons = function () {
+        if (!Game.battle.isBattle) {
+            $location.path("/weapons");
         }
     };
 
@@ -159,6 +172,12 @@ function MapCtrl() {}
  */
 
 function ItemsCtrl() {}
+
+/**
+ * /Weapons
+ */
+
+function WeaponsCtrl() {}
 
 /**
  * /Materias

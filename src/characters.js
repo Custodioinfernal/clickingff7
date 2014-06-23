@@ -21,6 +21,9 @@ class Characters {
 
         // timers array
         this.timer = {};
+
+        // current selected character in menus
+        this.selected = null;
     }
 
     /**
@@ -98,6 +101,17 @@ class Characters {
         if (!_.has(this, 'limit')) {
             this.limit = 0;
         }
+    }
+
+    /**
+     * Select a character in menus
+     * @param character
+     */
+    select(character) {
+        if (!character) {
+            character = this.getTeam()[0];
+        }
+        this.selected = character;
     }
 
     /**

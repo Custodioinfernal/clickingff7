@@ -66,6 +66,7 @@ class Game {
         }
 
         this.characters.refresh();
+        this.characters.select();
 
         this.autoTimer();
     }
