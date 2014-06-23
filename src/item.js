@@ -48,7 +48,7 @@ class Item {
      * Save materia data
      */
         export() {
-        var json = {};
+        var json = _.pick(this, 'equipped');
         json.model = this.constructor.name;
         return json;
     }

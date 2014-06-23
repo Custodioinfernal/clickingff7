@@ -200,7 +200,7 @@ class Game {
         // items
         for (var i of save.items) {
             var item = new window[i.model](this).load(i);
-            this.items.push(item);
+            this.items.add(item, i.equipped);
         }
 
         this.time = save.time;
