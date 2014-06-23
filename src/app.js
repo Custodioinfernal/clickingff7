@@ -32,14 +32,6 @@ app.config(['$routeProvider',
                 templateUrl: 'partials/materias.html',
                 controller : MateriasCtrl
             }).
-            when('/shop', {
-                templateUrl: 'partials/shop.html',
-                controller : ShopCtrl
-            }).
-            when('/inventory', {
-                templateUrl: 'partials/inventory.html',
-                controller : InventoryCtrl
-            }).
             when('/save', {
                 templateUrl: 'partials/save.html',
                 controller : SaveCtrl
@@ -86,24 +78,6 @@ function NavCtrl($scope, $location, Game) {
     };
 
     /**
-     * Go to the inventory
-     */
-    $scope.inventory = function () {
-        if (!Game.battle.isBattle) {
-            $location.path("/inventory");
-        }
-    };
-
-    /**
-     * Go to the shop
-     */
-    $scope.shop = function () {
-        if (!Game.battle.isBattle) {
-            $location.path("/shop");
-        }
-    };
-
-    /**
      * Save the game
      */
     $scope.save = function (ev) {
@@ -119,53 +93,6 @@ function NavCtrl($scope, $location, Game) {
  */
 
 function GameCtrl($rootScope, Game) {
-
-    /**
-     * Use a equipped item
-     * @param ev
-     * @param item
-     */
-    $rootScope.useItem = function (ev, item) {
-        item.use();
-    };
-
-    /**
-     * Sell an item
-     */
-    $rootScope.sell = function (ev, thing) {
-        var conf = confirm("Are you sure you want to sell " + thing.name + " ?");
-        if (!conf) return;
-
-        if (thing instanceof Weapon) {
-            if (thing.equipped) {
-                return;
-            }
-            for (var i in Game.weapons) {
-                if (_.isEqual(Game.weapons[i], thing)) {
-                    Game.weapons.splice(i, 1);
-                }
-            }
-        }
-        if (thing instanceof Materia) {
-            if (thing.character) {
-                return;
-            }
-            for (var i in Game.materias) {
-                if (_.isEqual(Game.materias[i], thing)) {
-                    Game.materias.splice(i, 1);
-                }
-            }
-        }
-        if (thing instanceof Item) {
-            for (var i in Game.items) {
-                if (_.isEqual(Game.items[i], thing)) {
-                    Game.items.splice(i, 1);
-                }
-            }
-        }
-
-        Game.gils += thing.getPrice();
-    };
 
     /**
      * Explore for fight
@@ -212,24 +139,7 @@ function GameCtrl($rootScope, Game) {
  * /Map
  */
 
-function MapCtrl($rootScope, $location, Game) {
-
-    /**
-     * Checkin'
-     */
-    if (!Game.loaded) {
-        $location.path("/game");
-        return;
-    }
-
-    /**
-     * Go the a zone
-     */
-    $rootScope.goZone = function (ev, zone) {
-        zone.go();
-    };
-
-}
+function MapCtrl() {}
 
 /**
  * /Map
@@ -238,158 +148,10 @@ function MapCtrl($rootScope, $location, Game) {
 function MateriasCtrl() {}
 
 /**
- * /Inventory
- */
-
-function InventoryCtrl($rootScope, $location, Game, Utils) {
-
-    /**
-     * Checkin'
-     */
-    if (!Game.loaded) {
-        $location.path("/game");
-        return;
-    }
-
-    /**
-     * Sell an item
-     */
-    $rootScope.sell = function (ev, thing) {
-        var conf = confirm("Are you sure you want to sell " + thing.name + " ?");
-        if (!conf) return;
-
-        if (thing instanceof Weapon) {
-            if (thing.equipped) {
-                Utils.animate(ev, 'FAIL!');
-                return;
-            }
-            for (var i in Game.weapons) {
-                if (_.isEqual(Game.weapons[i], thing)) {
-                    Game.weapons.splice(i, 1);
-                }
-            }
-        }
-        if (thing instanceof Materia) {
-            if (thing.character) {
-                Utils.animate(ev, 'FAIL!');
-                return;
-            }
-            for (var i in Game.materias) {
-                if (_.isEqual(Game.materias[i], thing)) {
-                    Game.materias.splice(i, 1);
-                }
-            }
-        }
-        if (thing instanceof Item) {
-            for (var i in Game.items) {
-                if (_.isEqual(Game.items[i], thing)) {
-                    Game.items.splice(i, 1);
-                }
-            }
-        }
-
-        Game.gils += thing.getPrice();
-        Utils.animate(ev, 'SUCCESS!');
-    };
-
-    /**
-     * Use an item from the inventory
-     */
-    $rootScope.useItem = function (ev, item) {
-        item.use();
-        Utils.animate(ev, 'SUCCESS!');
-    };
-
-    /**
-     * Equip a weapon from the inventory
-     */
-    $rootScope.equipWeapon = function (ev, weapon) {
-        weapon.equip();
-        Utils.animate(ev, 'SUCCESS!');
-    };
-
-    /**
-     * Equip a materia from the inventory
-     */
-    $rootScope.equipMateria = function (ev, materia, characterRef) {
-        $(ev.target).parent().hide();
-        materia.equip(characterRef);
-        Utils.animate(ev, 'SUCCESS!');
-    };
-
-    /**
-     * Equip a materia from the inventory
-     */
-    $rootScope.showList = function (ev) {
-        $(ev.target).prev().show();
-    };
-
-    /**
-     * Equip a materia from the inventory
-     */
-    $rootScope.hideList = function (ev) {
-        $(ev.target).parent().hide();
-    };
-
-    /**
-     * Unequip a materia from the inventory
-     */
-    $rootScope.unequipMateria = function (ev, materia) {
-        materia.unequip();
-        Utils.animate(ev, 'SUCCESS!');
-    };
-
-}
-
-/**
- * /Shop
- */
-
-function ShopCtrl($rootScope, $location, Game, Utils) {
-
-    /**
-     * Checkin'
-     */
-    if (!Game.loaded) {
-        $location.path("/game");
-        return;
-    }
-
-    /**
-     * Buy an item from the store
-     */
-    $rootScope.buy = function (ev, item) {
-        if (Game.shop.canBuy(item)) {
-            if (item instanceof Weapon) {
-                Game.addWeapon(item.ref);
-            }
-            if (item instanceof Materia) {
-                Game.addMateria(item.ref);
-            }
-            if (item instanceof Item) {
-                Game.addItem(item.ref);
-            }
-
-            Game.gils = Math.max(Game.gils - item.getPrice(), 0);
-            Utils.animate(ev, 'Success!');
-        }
-    };
-
-}
-
-/**
  * /Save
  */
 
-function SaveCtrl($scope, $rootScope, $location, Game, Utils) {
-
-    /**
-     * Checkin'
-     */
-    if (!Game.loaded) {
-        $location.path("/game");
-        return;
-    }
+function SaveCtrl($scope, $rootScope, Game) {
 
     /**
      * Save the game
