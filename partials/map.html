@@ -17,7 +17,7 @@
     <div>Go another zone:</div>
 
     <div class="zones">
-        <div ng-repeat="zone in game.zones.getOthers() | clean" class="line">
+        <div ng-repeat="zone in game.zones.getOthers()" class="line">
             <div class="name">
                 #{{zone.level}} {{zone.name}} <span class="boss" ng-if="zone.completed">COMPLETED</span><br/>
             </div>
