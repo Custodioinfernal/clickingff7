@@ -53,7 +53,7 @@ class Zones {
         if (this.level < this.max) {
             this.level++;
             this.levelMax++;
-            this.game.refresh(this.levelMax);
+            this.game.buildLevel(this.levelMax);
         }
     }
 

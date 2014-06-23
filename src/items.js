@@ -10,11 +10,21 @@ class Items {
     }
 
     /**
-     * Add a item
-     * @param i
+     * Add an item
+     * @param item
+     * @param equipped
      */
-        add(i) {
-        this.list.push(i);
+        add(item, equipped) {
+        item.equipped = equipped;
+        this.list.push(item);
+    }
+
+    /**
+     * Returns equipped items
+     * @returns {Array}
+     */
+        getEquipped() {
+        return _.where(this.list, {equipped: true});
     }
 
     /**
@@ -23,7 +33,7 @@ class Items {
      */
         export() {
         var json = [], i, t;
-        for(i in this.list) {
+        for (i in this.list) {
             json.push(this.list[i].export());
         }
         return json;

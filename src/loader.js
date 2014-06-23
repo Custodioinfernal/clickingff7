@@ -35,6 +35,7 @@ class Loader {
                     "dist/enemies/zone1/grunt.js",
                     "dist/enemies/zone1/sweeper.js",
                     "dist/enemies/zone1/guard-scorpion.js",
+                    "dist/items/potion.js",
                     "dist/materias/restore.js",
                     "dist/materias/bolt.js",
                     "dist/weapons/broadswords/bustersword.js",
@@ -61,8 +62,10 @@ class Loader {
         var that = this;
         var groupRemain = this.files[group].list.length;
         this.currentLabel = this.files[group].label;
+
         for (var file of this.files[group].list) {
-            $.getScript(file, function () {
+
+            head.load(file, function() {
                 groupRemain--;
                 that.filesRemain--;
                 that.filesLoaded++;

@@ -10,6 +10,21 @@
     <title>Clicking FF7</title>
 
     <link rel="stylesheet" type="text/css" href="css/style.css">
+
+    <script src="/bower_components/headjs/dist/1.0.0/head.min.js"></script>
+    <script>
+        head.load(
+                "bower_components/jquery/dist/jquery.min.js",
+                "bower_components/lodash/dist/lodash.min.js",
+                "bower_components/angular/angular.min.js",
+                "bower_components/angular-route/angular-route.min.js",
+                "bower_components/angular-cookies/angular-cookies.min.js",
+                "bower_components/traceur-runtime/traceur-runtime.min.js",
+                "dist/app.js",
+                "dist/game.js",
+                "dist/loader.js"
+        );
+    </script>
 </head>
 
 <body>
@@ -36,7 +51,7 @@
     </nav>
 
     <div class="game-infos">
-        Time: {{game.getTime()}}<br />
+        Time: {{game.getTime()}}<br/>
         Gils: {{game.gils}}
     </div>
 
@@ -53,25 +68,19 @@
 
 <footer ng-show="game.loaded">
     <div class="wrapper">
-        ©2014 menencia.com, version <a href="https://github.com/Menencia/clickingff7/releases/tag/{{game.version}}" target="_blank"><big>{{game.version}}</big></a>
+        ©2014 menencia.com, version <a href="https://github.com/Menencia/clickingff7/releases/tag/{{game.version}}"
+                                       target="_blank"><big>{{game.version}}</big></a>
         <br/><a href="https://github.com/Menencia/clickingff7" target="_blank">Github</a> -
         <a href="https://github.com/Menencia/clickingff7/issues" target="_blank">Browse Issues</a> -
         <a href="https://github.com/Menencia/clickingff7/issues/new" target="_blank">New Issue</a>
     </div>
 </footer>
 
-<!-- LIBS -->
-<script src="bower_components/jquery/dist/jquery.min.js"></script>
-<script src="bower_components/underscore/underscore.js"></script>
-<script src="bower_components/angular/angular.min.js"></script>
-<script src="bower_components/angular-route/angular-route.min.js"></script>
-<script src="bower_components/angular-cookies/angular-cookies.min.js"></script>
-<script src="bower_components/traceur-runtime/traceur-runtime.min.js"></script>
-
-<!-- BOOTSTRAP -->
-<script src="dist/app.js"></script>
-<script src="dist/game.js"></script>
-<script src="dist/loader.js"></script>
+<script>
+    head.ready(function () {
+        angular.bootstrap();
+    });
+</script>
 
 <script type="text/javascript">
 

@@ -36,7 +36,7 @@ class Game {
         this.zones = new Zones(this);
         this.weapons = new Weapons(this);
         this.materias = new Materias(this);
-        this.items = new Items();
+        this.items = new Items(this);
 
         // temp models
         this.battle = new Battle(this);
@@ -62,7 +62,7 @@ class Game {
             this.load(save);
         } else {
             this.reset();
-            this.refresh();
+            this.buildLevel(1);
         }
 
         this.characters.refresh();
@@ -73,12 +73,12 @@ class Game {
     /*
      * Basic inventory
      */
-    refresh(level = 1) {
+    buildLevel(level) {
+        // build zone
+        this.zones.add(new window['Zone' + level](this), true);
+
         switch (level) {
             case 1:
-
-                this.zones.add(new Zone1(this), true);
-
                 this.characters.add(new Cloud(this), true);
                 this.weapons.add(new BusterSword(this), true);
 
@@ -88,24 +88,22 @@ class Game {
                 this.materias.add(new Restore(this), true);
                 this.materias.add(new Bolt(this), true);
 
-                //this.items.add(new Potion(this), true);
-                //this.items.add(new Potion(this), true);
+                this.items.add(new Potion(this), true);
+                this.items.add(new Potion(this), true);
 
                 break;
             case 2:
-                this.zones.add(new Zone2(this), true);
-
                 //this.addWeapon('leather-glove', true);
                 //this.characters.add('tifa');
                 break;
             case 3: // Aerith
-                this.addWeapon('guard-stick', true);
-                this.characters.add('aerith');
+                //this.addWeapon('guard-stick', true);
+                //this.characters.add('aerith');
                 break;
             case 5: // Red XIII
-                this.addWeapon('mythril-clip', true);
-                this.addMateria('fire', 'redxiii');
-                this.characters.add('redxiii');
+                //this.addWeapon('mythril-clip', true);
+                //this.addMateria('fire', 'redxiii');
+                //this.characters.add('redxiii');
                 break;
         }
 

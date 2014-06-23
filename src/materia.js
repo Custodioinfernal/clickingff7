@@ -48,13 +48,6 @@ class Materia {
     }
 
     /*
-     * @returns {game.gils|*|number|save.gils}
-     */
-    getPrice() {
-        return this.gils;
-    }
-
-    /*
      * @param pixels_max
      * @returns {number}
      */
