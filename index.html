@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="fr" ng-app="clickingff7">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="description" content=""/>
+    <meta name="keywords" content=""/>
+    <meta name="revisit-after" content="7 days"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=1"/>
+
+    <title>Clicking FF7</title>
+
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+
+<body>
+
+<header>
+    <div class="wrapper">
+        clicking ff7
+        <div class="progress game_load" ng-show="!game.loaded">
+            <div class="game_load_progress" style="width:{{game.loader.loadProgress(300)}}px;"></div>
+            <span class="bar-label">{{game.loader.filesLoaded}} / {{game.loader.nbFiles}} – {{game.loader.currentLabel}}</span>
+        </div>
+    </div>
+</header>
+
+<div class="page" ng-show="game.loaded">
+
+    <nav class="game-menu" ng-controller="NavCtrl">
+        <ul>
+            <li ng-click="game()" ng-class="{ current: isActive('/game')}">Game</li>
+            <li ng-click="map()" ng-class="{ current: isActive('/map')}">Map</li>
+            <li ng-click="materias()" ng-class="{ current: isActive('/materias')}">Materias</li>
+            <li ng-click="save()" class="last" ng-class="{ current: isActive('/save')}">Save</li>
+        </ul>
+    </nav>
+
+    <div class="game-infos">
+        Time: {{game.getTime()}}<br />
+        Gils: {{game.gils}}
+    </div>
+
+    <div class="game-location">
+        {{game.zones.current().name}}
+        <strong>
+            (#{{game.zones.current().level}})
+        </strong>
+    </div>
+
+    <div class="game-view" ng-view></div>
+
+</div>
+
+<footer ng-show="game.loaded">
+    <div class="wrapper">
+        ©2014 menencia.com, version <strong><big>{{game.version}}</big></strong>
+        <br/><a href="https://github.com/Menencia/clickingff7" target="_blank">Github</a> -
+        <a href="https://github.com/Menencia/clickingff7/issues" target="_blank">Browse Issues</a> -
+        <a href="https://github.com/Menencia/clickingff7/issues/new" target="_blank">New Issue</a>
+    </div>
+</footer>
+
+<!-- LIBS -->
+<script src="bower_components/jquery/dist/jquery.min.js"></script>
+<script src="bower_components/underscore/underscore.js"></script>
+<script src="bower_components/angular/angular.min.js"></script>
+<script src="bower_components/angular-route/angular-route.min.js"></script>
+<script src="bower_components/angular-cookies/angular-cookies.min.js"></script>
+<script src="bower_components/traceur-runtime/traceur-runtime.min.js"></script>
+
+<!-- BOOTSTRAP -->
+<script src="dist/app.js"></script>
+<script src="dist/game.js"></script>
+<script src="dist/loader.js"></script>
+
+<script type="text/javascript">
+
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-44996905-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function () {
+        var ga = document.createElement('script');
+        ga.type = 'text/javascript';
+        ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(ga, s);
+    })();
+
+</script>
+
+<script>
+    // Include the UserVoice JavaScript SDK (only needed once on a page)
+    UserVoice = window.UserVoice || [];
+    (function () {
+        var uv = document.createElement('script');
+        uv.type = 'text/javascript';
+        uv.async = true;
+        uv.src = '//widget.uservoice.com/sAiSkTkIFiYPTLCHBdEfaw.js';
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(uv, s)
+    })();
+
+    //
+    // UserVoice Javascript SDK developer documentation:
+    // https://www.uservoice.com/o/javascript-sdk
+    //
+
+    // Set colors
+    UserVoice.push(['set', {
+        accent_color            : '#808283',
+        trigger_color           : 'white',
+        trigger_background_color: 'rgba(46, 49, 51, 0.6)'
+    }]);
+
+    // Identify the user and pass traits
+    // To enable, replace sample data with actual user traits and uncomment the line
+    UserVoice.push(['identify', {
+        //email:      'john.doe@example.com', // User’s email address
+        //name:       'John Doe', // User’s real name
+        //created_at: 1364406966, // Unix timestamp for the date the user signed up
+        //id:         123, // Optional: Unique id of the user (if set, this should not change)
+        //type:       'Owner', // Optional: segment your users by type
+        //account: {
+        //  id:           123, // Optional: associate multiple users with a single account
+        //  name:         'Acme, Co.', // Account name
+        //  created_at:   1364406966, // Unix timestamp for the date the account was created
+        //  monthly_rate: 9.99, // Decimal; monthly rate of the account
+        //  ltv:          1495.00, // Decimal; lifetime value of the account
+        //  plan:         'Enhanced' // Plan name for the account
+        //}
+    }]);
+
+    // Add default trigger to the bottom-right corner of the window:
+    UserVoice.push(['addTrigger', { mode: 'satisfaction', trigger_position: 'bottom-right' }]);
+
+    // Or, use your own custom trigger:
+    //UserVoice.push(['addTrigger', '#id', { mode: 'satisfaction' }]);
+
+    // Autoprompt for Satisfaction and SmartVote (only displayed under certain conditions)
+    UserVoice.push(['autoprompt', {}]);
+</script>
+
+</body>
+
+</html>

@@ -1,0 +1,109 @@
+class Loader {
+
+    /**
+     * Init
+     * @param game
+     */
+        constructor(game) {
+        this.game = game;
+
+        // list all files
+        this.files = [
+            {label  : "Loading main files",
+                list: [
+                    "dist/battle.js",
+                    "dist/characters.js",
+                    "dist/character.js",
+                    "dist/enemies.js",
+                    "dist/enemy.js",
+                    "dist/item.js",
+                    "dist/items.js",
+                    "dist/materia.js",
+                    "dist/materias.js",
+                    "dist/shop.js",
+                    "dist/weapon.js",
+                    "dist/weapons.js",
+                    "dist/zone.js",
+                    "dist/zones.js"
+                ]},
+            {label  : "Loading resource files",
+                list: [
+                    "dist/characters/barret.js",
+                    "dist/characters/cloud.js",
+                    "dist/enemies/zone1/first-ray.js",
+                    "dist/enemies/zone1/mp.js",
+                    "dist/enemies/zone1/grunt.js",
+                    "dist/enemies/zone1/sweeper.js",
+                    "dist/enemies/zone1/guard-scorpion.js",
+                    "dist/materias/restore.js",
+                    "dist/materias/bolt.js",
+                    "dist/weapons/broadswords/bustersword.js",
+                    "dist/weapons/gun-arms/gatling-gun.js",
+                    "dist/zones/zone1.js",
+                    "dist/zones/zone2.js"
+                ]}
+        ];
+
+        this.filesLoaded = 0;
+        this.filesRemain = this.getNbFiles();
+        this.nbFiles = this.getNbFiles();
+        this.currentLabel = '';
+
+        // load
+        this.run();
+    }
+
+    /**
+     * Load a group of files
+     * @param group
+     */
+        run(group = 0) {
+        var that = this;
+        var groupRemain = this.files[group].list.length;
+        this.currentLabel = this.files[group].label;
+        for (var file of this.files[group].list) {
+            $.getScript(file, function () {
+                groupRemain--;
+                that.filesRemain--;
+                that.filesLoaded++;
+                that.game.$rootScope.$apply();
+                if (that.filesRemain === 0) {
+                    that.game.run();
+                } else if (groupRemain === 0) {
+                    that.run(++group);
+                }
+            });
+        }
+    }
+
+    /**
+     * Return number of groups
+     * @returns {Number}
+     */
+        getNbGroups() {
+        return this.files.length;
+    }
+
+    /**
+     * Return number of files to load
+     * @returns {number}
+     */
+        getNbFiles() {
+        var i = 0;
+        for (var group of this.files) {
+            for (var file of group.list) {
+                i++;
+            }
+        }
+        return i;
+    }
+
+    /*
+     * @param pixels_max
+     * @returns {number}
+     */
+    loadProgress(pixels_max) {
+        return (this.filesLoaded == 0 ? 0 : this.filesLoaded / this.nbFiles * pixels_max);
+    }
+
+}
