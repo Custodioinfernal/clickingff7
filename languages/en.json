@@ -1,0 +1,11 @@
+{
+    "Game"    : "Game",
+    "Map"     : "Map",
+    "Items"   : "Items",
+    "Weapons" : "Weapons",
+    "Materias": "Materias",
+    "Config"  : "Config",
+    "Save"    : "Save",
+
+    "Language": "Language"
+}

@@ -4,16 +4,20 @@
 
 class Game {
 
-    constructor($rootScope, $cookieStore, $http, $timeout) {
+    constructor($rootScope, $cookieStore, $http, $timeout, $translate) {
 
         // angular vars
         this.$rootScope = $rootScope;
         this.$cookieStore = $cookieStore;
         this.$http = $http;
         this.$timeout = $timeout;
+        this.$translate = $translate;
 
         // detect first load
         this.loaded = false;
+
+        // language
+        this.language = 'en';
 
         // fight mode
         this.mode = "normal";
@@ -65,6 +69,8 @@ class Game {
             this.reset();
             this.buildLevel(1);
         }
+
+        this.$translate.use(this.language);
 
         this.characters.refresh();
         this.characters.select();
@@ -154,6 +160,7 @@ class Game {
             materias  : this.materias.export(),
             items     : this.items.export(),
             gils      : this.gils,
+            language  : this.language,
             time      : this.time,
             version   : this.version
         };
@@ -204,6 +211,8 @@ class Game {
             var item = new window[i.model](this).load(i);
             this.items.add(item, i.equipped);
         }
+
+        this.language = save.language;
 
         this.time = save.time;
         this.gils = save.gils;

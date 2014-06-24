@@ -4,21 +4,26 @@
  * App module
  * @type {object}
  */
-var app = angular.module('clickingff7', ['ngRoute', 'ngCookies']);
+var app = angular.module('clickingff7', ['ngRoute', 'ngCookies', 'pascalprecht.translate']);
 
 /**
  * Game Service
  */
-app.factory('Game', ['$rootScope', '$cookieStore', '$http', '$timeout',
-    function ($rootScope, $cookieStore, $http, $timeout) {
-        return new Game($rootScope, $cookieStore, $http, $timeout);
+app.factory('Game', ['$rootScope', '$cookieStore', '$http', '$timeout', '$translate',
+    function ($rootScope, $cookieStore, $http, $timeout, $translate) {
+        return new Game($rootScope, $cookieStore, $http, $timeout, $translate);
     }]);
 
 /**
  * Routes logic
  */
-app.config(['$routeProvider',
-    function ($routeProvider) {
+app.config(['$routeProvider', '$translateProvider',
+    function ($routeProvider, $translateProvider) {
+
+        $translateProvider.useStaticFilesLoader({
+            prefix: 'languages/',
+            suffix: '.json'
+        });
 
         $routeProvider.
             when('/game', {
@@ -40,6 +45,10 @@ app.config(['$routeProvider',
             when('/materias', {
                 templateUrl: 'partials/materias.html',
                 controller : 'MateriasCtrl'
+            }).
+            when('/config', {
+                templateUrl: 'partials/config.html',
+                controller : 'ConfigCtrl'
             }).
             when('/save', {
                 templateUrl: 'partials/save.html',
@@ -105,6 +114,15 @@ app.controller('IndexCtrl', function($scope, $location, Game) {
     $scope.goMaterias = function () {
         if (!Game.battle.isBattle) {
             $location.path("/materias");
+        }
+    };
+
+    /**
+     * Go to the game configuration
+     */
+    $scope.goConfig = function (ev) {
+        if (!Game.battle.isBattle) {
+            $location.path("/config");
         }
     };
 
@@ -192,6 +210,20 @@ app.controller('WeaponsCtrl', function() {
  */
 
 app.controller('MateriasCtrl', function() {
+});
+
+/**
+ * /Config
+ */
+
+app.controller('ConfigCtrl', function($scope, $rootScope, $translate, Game) {
+
+    $scope.changeLanguage = function() {
+        var language = $('#language').val();
+        Game.language = language;
+        $translate.use(language);
+    };
+
 });
 
 /**

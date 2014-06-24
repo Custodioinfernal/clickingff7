@@ -20,6 +20,8 @@
     "jquery": "~2.1.1",
     "headjs": "~1.0.3",
     "lodash": "~2.4.1",
-    "traceur-runtime": "*"
+    "traceur-runtime": "*",
+    "angular-translate": "~2.2.0",
+    "angular-translate-loader-static-files": "~2.2.0"
   }
 }

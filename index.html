@@ -28,14 +28,15 @@
 
     <nav class="game-menu">
         <ul>
-            <li ng-click="goGame()" ng-class="{ current: isActive('/game')}">Game</li>
+            <li ng-click="goGame()" ng-class="{ current: isActive('/game')}">{{"Game"|translate}}</li>
             <li ng-click="goMap()" ng-class="{ current: isActive('/map')}">
-                Map <span class="new" ng-show="game.zones.nextZone">NEW</span>
+                {{"Map"|translate}} <span class="new" ng-show="game.zones.nextZone">NEW</span>
             </li>
-            <li ng-click="goItems()" ng-class="{ current: isActive('/items')}">Items</li>
-            <li ng-click="goWeapons()" ng-class="{ current: isActive('/weapons')}">Weapons</li>
-            <li ng-click="goMaterias()" ng-class="{ current: isActive('/materias')}">Materias</li>
-            <li ng-click="goSave()" class="last" ng-class="{ current: isActive('/save')}">Save</li>
+            <li ng-click="goItems()" ng-class="{ current: isActive('/items')}">{{"Items"|translate}}</li>
+            <li ng-click="goWeapons()" ng-class="{ current: isActive('/weapons')}">{{"Weapons"|translate}}</li>
+            <li ng-click="goMaterias()" ng-class="{ current: isActive('/materias')}">{{"Materias"|translate}}</li>
+            <li ng-click="goConfig()" ng-class="{ current: isActive('/config')}">{{"Config"|translate}}</li>
+            <li ng-click="goSave()" class="last" ng-class="{ current: isActive('/save')}">{{"Save"|translate}}</li>
         </ul>
     </nav>
 
@@ -74,6 +75,8 @@
             "bower_components/angular-route/angular-route.min.js",
             "bower_components/angular-cookies/angular-cookies.min.js",
             "bower_components/traceur-runtime/traceur-runtime.min.js",
+            "bower_components/angular-translate/angular-translate.min.js",
+            "bower_components/angular-translate-loader-static-files/angular-translate-loader-static-files.min.js",
             "dist/app.js",
             "dist/game.js",
             "dist/loader.js"
