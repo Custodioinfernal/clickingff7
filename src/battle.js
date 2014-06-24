@@ -42,8 +42,7 @@ class Battle {
 
                 if (enemy.boss && this.game.zones.level + 1 > this.game.zones.levelMax) {
                     // Complete zone
-                    this.game.zones.current().completed = true;
-                    this.game.zones.nextZone = true;
+                    this.game.zones.complete();
                 }
 
                 // XP for characters, AP for materias
