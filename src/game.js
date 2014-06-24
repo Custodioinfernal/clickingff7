@@ -60,6 +60,7 @@ class Game {
         var save = this.saves[0];
         if (save) {
             this.load(save);
+            this.zones.checkLastZone();
         } else {
             this.reset();
             this.buildLevel(1);

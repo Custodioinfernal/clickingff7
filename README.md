@@ -10,13 +10,13 @@ This game was inspired by Cookie Clicker & Clicking Bad.
 
 Please follow the steps after cloning :
 
-Install JS libs: bower update
+Install JS libs: `bower update`
 
-Install node libs: npm install
+Install node libs: `npm install`
 
-Install Gulp for compiling: npm install gulp -g
+Install Gulp for compiling: `npm install gulp -g`
 
-Compile ES6 JS files to ES5: gulp
+Compile ES6 JS files to ES5: `gulp`
 
 ## Useful links
 

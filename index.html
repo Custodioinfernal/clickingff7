@@ -10,21 +10,6 @@
     <title>Clicking FF7</title>
 
     <link rel="stylesheet" type="text/css" href="css/style.css">
-
-    <script src="/bower_components/headjs/dist/1.0.0/head.min.js"></script>
-    <script>
-        head.load(
-                "bower_components/jquery/dist/jquery.min.js",
-                "bower_components/lodash/dist/lodash.min.js",
-                "bower_components/angular/angular.min.js",
-                "bower_components/angular-route/angular-route.min.js",
-                "bower_components/angular-cookies/angular-cookies.min.js",
-                "bower_components/traceur-runtime/traceur-runtime.min.js",
-                "dist/app.js",
-                "dist/game.js",
-                "dist/loader.js"
-        );
-    </script>
 </head>
 
 <body>
@@ -78,7 +63,20 @@
     </div>
 </footer>
 
+
+<script src="/bower_components/headjs/dist/1.0.0/head.min.js"></script>
 <script>
+    head.load(
+            "bower_components/jquery/dist/jquery.min.js",
+            "bower_components/lodash/dist/lodash.min.js",
+            "bower_components/angular/angular.min.js",
+            "bower_components/angular-route/angular-route.min.js",
+            "bower_components/angular-cookies/angular-cookies.min.js",
+            "bower_components/traceur-runtime/traceur-runtime.min.js",
+            "dist/app.js",
+            "dist/game.js",
+            "dist/loader.js"
+    );
     head.ready(function () {
         angular.bootstrap();
     });

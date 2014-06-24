@@ -12,7 +12,9 @@ class Zones {
         constructor(game) {
         this.game = game;
         this.list = [];
-        this.max = 2; // todo auto find max available zones
+        this.level = 1;
+        this.levelMax = 1;
+        this.MAX_ZONES = 1;
     }
 
     /**
@@ -20,14 +22,23 @@ class Zones {
      * @param zone
      */
         add(zone, go) {
-        if ((this.level = zone.level) > this.levelMax || !this.levelMax) {
-            this.levelMax = this.level;
-        }
         this.list.push(zone);
     }
 
     /**
-     * Returne all the discovered zones
+     * Checks if all zones are complete and there is another
+     */
+        checkLastZone() {
+        var zone = _.findWhere(this.list, {
+            level: this.levelMax
+        });
+        if (zone.completed) {
+            this.completed();
+        }
+    }
+
+    /**
+     * Returns all the discovered zones
      * @return {[type]} [description]
      */
         getAll() {
@@ -37,10 +48,13 @@ class Zones {
         });
     }
 
-
-    getOthers() {
+    /**
+     * Return all undiscovered zones
+     * @returns {Array}
+     */
+        getOthers() {
         var level = this.level;
-        return _.filter(this.list, function(o) {
+        return _.filter(this.list, function (o) {
             return (o.level !== level);
         })
     }
@@ -50,7 +64,7 @@ class Zones {
      */
         completed() {
         this.current().completed = true;
-        if (this.level < this.max) {
+        if (this.level < this.MAX_ZONES) {
             this.level++;
             this.levelMax++;
             this.game.buildLevel(this.levelMax);
