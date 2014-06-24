@@ -14,14 +14,15 @@ class Zones {
         this.list = [];
         this.level = 1;
         this.levelMax = 1;
-        this.MAX_ZONES = 1;
+        this.nextZone = false;
+        this.MAX_ZONES = 2;
     }
 
     /**
      * Add a zone
      * @param zone
      */
-        add(zone, go) {
+        add(zone) {
         this.list.push(zone);
     }
 
@@ -33,7 +34,7 @@ class Zones {
             level: this.levelMax
         });
         if (zone.completed) {
-            this.completed();
+            this.nextZone = true;
         }
     }
 
@@ -67,6 +68,7 @@ class Zones {
         if (this.level < this.MAX_ZONES) {
             this.level++;
             this.levelMax++;
+            this.nextZone = false;
             this.game.buildLevel(this.levelMax);
         }
     }

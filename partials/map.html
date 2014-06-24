@@ -1,5 +1,5 @@
 <div class="actions">
-    <img ng-src="{{game.zones.current().image}}" width="150" alt="current_zone" />
+    <img ng-src="{{game.zones.current().image}}" width="150" alt="current_zone"/>
 </div>
 
 <div class="c1">
@@ -14,7 +14,9 @@
 
 <div class="c3">
 
-    <div>Go another zone:</div>
+    <div ng-show="game.zones.level == game.zones.levelMax && game.zones.nextZone" ng-click="game.zones.completed()">Go last zone</div>
+
+    <div>Previous zones:</div>
 
     <div class="zones">
         <div ng-repeat="zone in game.zones.getOthers()" class="line">

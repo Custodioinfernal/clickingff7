@@ -9,9 +9,10 @@ var app = angular.module('clickingff7', ['ngRoute', 'ngCookies']);
 /**
  * Game Service
  */
-app.factory('Game', ['$rootScope', '$cookieStore', '$http', '$timeout', function ($rootScope, $cookieStore, $http, $timeout) {
-    return new Game($rootScope, $cookieStore, $http, $timeout);
-}]);
+app.factory('Game', ['$rootScope', '$cookieStore', '$http', '$timeout',
+    function ($rootScope, $cookieStore, $http, $timeout) {
+        return new Game($rootScope, $cookieStore, $http, $timeout);
+    }]);
 
 /**
  * Routes logic
@@ -22,27 +23,27 @@ app.config(['$routeProvider',
         $routeProvider.
             when('/game', {
                 templateUrl: 'partials/game.html',
-                controller : GameCtrl
+                controller : 'GameCtrl'
             }).
             when('/map', {
                 templateUrl: 'partials/map.html',
-                controller : MapCtrl
+                controller : 'MapCtrl'
             }).
             when('/items', {
                 templateUrl: 'partials/items.html',
-                controller : ItemsCtrl
+                controller : 'ItemsCtrl'
             }).
             when('/weapons', {
                 templateUrl: 'partials/weapons.html',
-                controller : WeaponsCtrl
+                controller : 'WeaponsCtrl'
             }).
             when('/materias', {
                 templateUrl: 'partials/materias.html',
-                controller : MateriasCtrl
+                controller : 'MateriasCtrl'
             }).
             when('/save', {
                 templateUrl: 'partials/save.html',
-                controller : SaveCtrl
+                controller : 'SaveCtrl'
             }).
             otherwise({
                 redirectTo: '/game'
@@ -51,10 +52,14 @@ app.config(['$routeProvider',
 ]);
 
 /**
- * NAV
+ * INDEX
  */
 
-function NavCtrl($scope, $location, Game) {
+app.controller('IndexCtrl', function($scope, $location, Game) {
+
+    $scope.gameFn = function() {
+        return Game.mode;
+    }
 
     $scope.isActive = function (route) {
         return route === $location.path();
@@ -63,14 +68,14 @@ function NavCtrl($scope, $location, Game) {
     /**
      * Go to the game
      */
-    $scope.game = function () {
+    $scope.goGame = function () {
         $location.path("/game");
     };
 
     /**
      * Go to the map
      */
-    $scope.map = function () {
+    $scope.goMap = function () {
         if (!Game.battle.isBattle) {
             $location.path("/map");
         }
@@ -79,7 +84,7 @@ function NavCtrl($scope, $location, Game) {
     /**
      * Go to the items
      */
-    $scope.items = function () {
+    $scope.goItems = function () {
         if (!Game.battle.isBattle) {
             $location.path("/items");
         }
@@ -88,7 +93,7 @@ function NavCtrl($scope, $location, Game) {
     /**
      * Go to the weapons
      */
-    $scope.weapons = function () {
+    $scope.goWeapons = function () {
         if (!Game.battle.isBattle) {
             $location.path("/weapons");
         }
@@ -97,7 +102,7 @@ function NavCtrl($scope, $location, Game) {
     /**
      * Go to the materias
      */
-    $scope.materias = function () {
+    $scope.goMaterias = function () {
         if (!Game.battle.isBattle) {
             $location.path("/materias");
         }
@@ -106,19 +111,19 @@ function NavCtrl($scope, $location, Game) {
     /**
      * Save the game
      */
-    $scope.save = function (ev) {
+    $scope.goSave = function (ev) {
         if (!Game.battle.isBattle) {
             $location.path("/save");
         }
     };
 
-}
+});
 
 /**
  * /Game
  */
 
-function GameCtrl($rootScope, Game) {
+app.controller('GameCtrl', function($rootScope, Game) {
 
     /**
      * Explore for fight
@@ -159,37 +164,41 @@ function GameCtrl($rootScope, Game) {
         }
     };
 
-}
+});
 
 /**
  * /Map
  */
 
-function MapCtrl() {}
+app.controller('MapCtrl', function() {
+});
 
 /**
  * /Items
  */
 
-function ItemsCtrl() {}
+app.controller('ItemsCtrl', function() {
+});
 
 /**
  * /Weapons
  */
 
-function WeaponsCtrl() {}
+app.controller('WeaponsCtrl', function() {
+});
 
 /**
  * /Materias
  */
 
-function MateriasCtrl() {}
+app.controller('MateriasCtrl', function() {
+});
 
 /**
  * /Save
  */
 
-function SaveCtrl($scope, $rootScope, Game) {
+app.controller('SaveCtrl', function($scope, $rootScope, Game) {
 
     /**
      * Save the game
@@ -235,4 +244,4 @@ function SaveCtrl($scope, $rootScope, Game) {
         }
     };
 
-}
+});
