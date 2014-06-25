@@ -4,45 +4,55 @@
  * App module
  * @type {object}
  */
-var app = angular.module('clickingff7', ['ngRoute', 'ngCookies']);
+var app = angular.module('clickingff7', ['ngRoute', 'ngCookies', 'pascalprecht.translate']);
 
 /**
  * Game Service
  */
-app.factory('Game', ['$rootScope', '$cookieStore', '$http', '$timeout', function ($rootScope, $cookieStore, $http, $timeout) {
-    return new Game($rootScope, $cookieStore, $http, $timeout);
-}]);
+app.factory('Game', ['$rootScope', '$cookieStore', '$http', '$timeout', '$translate',
+    function ($rootScope, $cookieStore, $http, $timeout, $translate) {
+        return new Game($rootScope, $cookieStore, $http, $timeout, $translate);
+    }]);
 
 /**
  * Routes logic
  */
-app.config(['$routeProvider',
-    function ($routeProvider) {
+app.config(['$routeProvider', '$translateProvider',
+    function ($routeProvider, $translateProvider) {
+
+        $translateProvider.useStaticFilesLoader({
+            prefix: 'languages/',
+            suffix: '.json'
+        });
 
         $routeProvider.
             when('/game', {
                 templateUrl: 'partials/game.html',
-                controller : GameCtrl
+                controller : 'GameCtrl'
             }).
             when('/map', {
                 templateUrl: 'partials/map.html',
-                controller : MapCtrl
+                controller : 'MapCtrl'
+            }).
+            when('/items', {
+                templateUrl: 'partials/items.html',
+                controller : 'ItemsCtrl'
+            }).
+            when('/weapons', {
+                templateUrl: 'partials/weapons.html',
+                controller : 'WeaponsCtrl'
             }).
             when('/materias', {
                 templateUrl: 'partials/materias.html',
-                controller : MateriasCtrl
+                controller : 'MateriasCtrl'
             }).
-            when('/shop', {
-                templateUrl: 'partials/shop.html',
-                controller : ShopCtrl
-            }).
-            when('/inventory', {
-                templateUrl: 'partials/inventory.html',
-                controller : InventoryCtrl
+            when('/config', {
+                templateUrl: 'partials/config.html',
+                controller : 'ConfigCtrl'
             }).
             when('/save', {
                 templateUrl: 'partials/save.html',
-                controller : SaveCtrl
+                controller : 'SaveCtrl'
             }).
             otherwise({
                 redirectTo: '/game'
@@ -51,10 +61,14 @@ app.config(['$routeProvider',
 ]);
 
 /**
- * NAV
+ * INDEX
  */
 
-function NavCtrl($scope, $location, Game) {
+app.controller('IndexCtrl', function($scope, $location, Game) {
+
+    $scope.gameFn = function() {
+        return Game.mode;
+    };
 
     $scope.isActive = function (route) {
         return route === $location.path();
@@ -63,109 +77,71 @@ function NavCtrl($scope, $location, Game) {
     /**
      * Go to the game
      */
-    $scope.game = function () {
+    $scope.goGame = function () {
         $location.path("/game");
     };
 
     /**
      * Go to the map
      */
-    $scope.map = function () {
+    $scope.goMap = function () {
         if (!Game.battle.isBattle) {
             $location.path("/map");
         }
     };
 
     /**
-     * Go to the materia
+     * Go to the items
      */
-    $scope.materias = function () {
+    $scope.goItems = function () {
+        if (!Game.battle.isBattle) {
+            $location.path("/items");
+        }
+    };
+
+    /**
+     * Go to the weapons
+     */
+    $scope.goWeapons = function () {
+        if (!Game.battle.isBattle) {
+            $location.path("/weapons");
+        }
+    };
+
+    /**
+     * Go to the materias
+     */
+    $scope.goMaterias = function () {
         if (!Game.battle.isBattle) {
             $location.path("/materias");
         }
     };
 
     /**
-     * Go to the inventory
+     * Go to the game configuration
      */
-    $scope.inventory = function () {
+    $scope.goConfig = function (ev) {
         if (!Game.battle.isBattle) {
-            $location.path("/inventory");
-        }
-    };
-
-    /**
-     * Go to the shop
-     */
-    $scope.shop = function () {
-        if (!Game.battle.isBattle) {
-            $location.path("/shop");
+            $location.path("/config");
         }
     };
 
     /**
      * Save the game
      */
-    $scope.save = function (ev) {
+    $scope.goSave = function (ev) {
         if (!Game.battle.isBattle) {
             $location.path("/save");
         }
     };
 
-}
+});
 
 /**
  * /Game
  */
 
-function GameCtrl($rootScope, Game) {
-
-    /**
-     * Use a equipped item
-     * @param ev
-     * @param item
-     */
-    $rootScope.useItem = function (ev, item) {
-        item.use();
-    };
-
-    /**
-     * Sell an item
-     */
-    $rootScope.sell = function (ev, thing) {
-        var conf = confirm("Are you sure you want to sell " + thing.name + " ?");
-        if (!conf) return;
-
-        if (thing instanceof Weapon) {
-            if (thing.equipped) {
-                return;
-            }
-            for (var i in Game.weapons) {
-                if (_.isEqual(Game.weapons[i], thing)) {
-                    Game.weapons.splice(i, 1);
-                }
-            }
-        }
-        if (thing instanceof Materia) {
-            if (thing.character) {
-                return;
-            }
-            for (var i in Game.materias) {
-                if (_.isEqual(Game.materias[i], thing)) {
-                    Game.materias.splice(i, 1);
-                }
-            }
-        }
-        if (thing instanceof Item) {
-            for (var i in Game.items) {
-                if (_.isEqual(Game.items[i], thing)) {
-                    Game.items.splice(i, 1);
-                }
-            }
-        }
-
-        Game.gils += thing.getPrice();
-    };
+app.controller('GameCtrl', function($rootScope, Game) {
 
     /**
      * Explore for fight
@@ -206,190 +182,55 @@ function GameCtrl($rootScope, Game) {
         }
     };
 
-}
+});
 
 /**
  * /Map
  */
 
-function MapCtrl($rootScope, $location, Game) {
-
-    /**
-     * Checkin'
-     */
-    if (!Game.loaded) {
-        $location.path("/game");
-        return;
-    }
-
-    /**
-     * Go the a zone
-     */
-    $rootScope.goZone = function (ev, zone) {
-        zone.go();
-    };
-
-}
+app.controller('MapCtrl', function() {
+});
 
 /**
- * /Map
+ * /Items
  */
 
-function MateriasCtrl() {}
+app.controller('ItemsCtrl', function() {
+});
 
 /**
- * /Inventory
+ * /Weapons
  */
 
-function InventoryCtrl($rootScope, $location, Game, Utils) {
-
-    /**
-     * Checkin'
-     */
-    if (!Game.loaded) {
-        $location.path("/game");
-        return;
-    }
-
-    /**
-     * Sell an item
-     */
-    $rootScope.sell = function (ev, thing) {
-        var conf = confirm("Are you sure you want to sell " + thing.name + " ?");
-        if (!conf) return;
-
-        if (thing instanceof Weapon) {
-            if (thing.equipped) {
-                Utils.animate(ev, 'FAIL!');
-                return;
-            }
-            for (var i in Game.weapons) {
-                if (_.isEqual(Game.weapons[i], thing)) {
-                    Game.weapons.splice(i, 1);
-                }
-            }
-        }
-        if (thing instanceof Materia) {
-            if (thing.character) {
-                Utils.animate(ev, 'FAIL!');
-                return;
-            }
-            for (var i in Game.materias) {
-                if (_.isEqual(Game.materias[i], thing)) {
-                    Game.materias.splice(i, 1);
-                }
-            }
-        }
-        if (thing instanceof Item) {
-            for (var i in Game.items) {
-                if (_.isEqual(Game.items[i], thing)) {
-                    Game.items.splice(i, 1);
-                }
-            }
-        }
-
-        Game.gils += thing.getPrice();
-        Utils.animate(ev, 'SUCCESS!');
-    };
-
-    /**
-     * Use an item from the inventory
-     */
-    $rootScope.useItem = function (ev, item) {
-        item.use();
-        Utils.animate(ev, 'SUCCESS!');
-    };
-
-    /**
-     * Equip a weapon from the inventory
-     */
-    $rootScope.equipWeapon = function (ev, weapon) {
-        weapon.equip();
-        Utils.animate(ev, 'SUCCESS!');
-    };
-
-    /**
-     * Equip a materia from the inventory
-     */
-    $rootScope.equipMateria = function (ev, materia, characterRef) {
-        $(ev.target).parent().hide();
-        materia.equip(characterRef);
-        Utils.animate(ev, 'SUCCESS!');
-    };
-
-    /**
-     * Equip a materia from the inventory
-     */
-    $rootScope.showList = function (ev) {
-        $(ev.target).prev().show();
-    };
-
-    /**
-     * Equip a materia from the inventory
-     */
-    $rootScope.hideList = function (ev) {
-        $(ev.target).parent().hide();
-    };
-
-    /**
-     * Unequip a materia from the inventory
-     */
-    $rootScope.unequipMateria = function (ev, materia) {
-        materia.unequip();
-        Utils.animate(ev, 'SUCCESS!');
-    };
-
-}
+app.controller('WeaponsCtrl', function() {
+});
 
 /**
- * /Shop
+ * /Materias
  */
 
-function ShopCtrl($rootScope, $location, Game, Utils) {
+app.controller('MateriasCtrl', function() {
+});
 
-    /**
-     * Checkin'
-     */
-    if (!Game.loaded) {
-        $location.path("/game");
-        return;
-    }
+/**
+ * /Config
+ */
 
-    /**
-     * Buy an item from the store
-     */
-    $rootScope.buy = function (ev, item) {
-        if (Game.shop.canBuy(item)) {
-            if (item instanceof Weapon) {
-                Game.addWeapon(item.ref);
-            }
-            if (item instanceof Materia) {
-                Game.addMateria(item.ref);
-            }
-            if (item instanceof Item) {
-                Game.addItem(item.ref);
-            }
+app.controller('ConfigCtrl', function($scope, $rootScope, $translate, Game) {
 
-            Game.gils = Math.max(Game.gils - item.getPrice(), 0);
-            Utils.animate(ev, 'Success!');
-        }
+    $scope.changeLanguage = function() {
+        var language = $('#language').val();
+        Game.language = language;
+        $translate.use(language);
     };
 
-}
+});
 
 /**
  * /Save
  */
 
-function SaveCtrl($scope, $rootScope, $location, Game, Utils) {
-
-    /**
-     * Checkin'
-     */
-    if (!Game.loaded) {
-        $location.path("/game");
-        return;
-    }
+app.controller('SaveCtrl', function($scope, $rootScope, Game) {
 
     /**
      * Save the game
@@ -435,4 +276,4 @@ function SaveCtrl($scope, $rootScope, $location, Game, Utils) {
         }
     };
 
-}
+});

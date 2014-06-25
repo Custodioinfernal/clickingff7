@@ -30,15 +30,23 @@ class Loader {
                 list: [
                     "dist/characters/barret.js",
                     "dist/characters/cloud.js",
+                    "dist/characters/tifa.js",
                     "dist/enemies/zone1/first-ray.js",
-                    "dist/enemies/zone1/mp.js",
                     "dist/enemies/zone1/grunt.js",
-                    "dist/enemies/zone1/sweeper.js",
                     "dist/enemies/zone1/guard-scorpion.js",
+                    "dist/enemies/zone1/mp.js",
+                    "dist/enemies/zone1/sweeper.js",
+                    "dist/enemies/zone2/air-buster.js",
+                    "dist/enemies/zone2/blood-taste.js",
+                    "dist/enemies/zone2/proto-machinegun.js",
+                    "dist/enemies/zone2/smogger.js",
+                    "dist/enemies/zone2/special-combatant.js",
+                    "dist/items/potion.js",
                     "dist/materias/restore.js",
                     "dist/materias/bolt.js",
                     "dist/weapons/broadswords/bustersword.js",
                     "dist/weapons/gun-arms/gatling-gun.js",
+                    "dist/weapons/knuckles/leather-glove.js",
                     "dist/zones/zone1.js",
                     "dist/zones/zone2.js"
                 ]}
@@ -61,8 +69,10 @@ class Loader {
         var that = this;
         var groupRemain = this.files[group].list.length;
         this.currentLabel = this.files[group].label;
+
         for (var file of this.files[group].list) {
-            $.getScript(file, function () {
+
+            head.load(file, function() {
                 groupRemain--;
                 that.filesRemain--;
                 that.filesLoaded++;

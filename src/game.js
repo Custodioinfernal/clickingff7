@@ -4,16 +4,20 @@
 
 class Game {
 
-    constructor($rootScope, $cookieStore, $http, $timeout) {
+    constructor($rootScope, $cookieStore, $http, $timeout, $translate) {
 
         // angular vars
         this.$rootScope = $rootScope;
         this.$cookieStore = $cookieStore;
         this.$http = $http;
         this.$timeout = $timeout;
+        this.$translate = $translate;
 
         // detect first load
         this.loaded = false;
+
+        // language
+        this.language = 'en';
 
         // fight mode
         this.mode = "normal";
@@ -36,7 +40,7 @@ class Game {
         this.zones = new Zones(this);
         this.weapons = new Weapons(this);
         this.materias = new Materias(this);
-        this.items = new Items();
+        this.items = new Items(this);
 
         // temp models
         this.battle = new Battle(this);
@@ -46,7 +50,7 @@ class Game {
         // savable vars
         this.time = 0;
         this.gils = 200;
-        this.version = "1.0.0-beta.1";
+        this.version = "1.0.0-beta.2";
 
         // save
         this.saves = [];
@@ -60,12 +64,16 @@ class Game {
         var save = this.saves[0];
         if (save) {
             this.load(save);
+            this.zones.checkLastZone();
         } else {
             this.reset();
-            this.refresh();
+            this.buildLevel(1);
         }
 
+        this.$translate.use(this.language);
+
         this.characters.refresh();
+        this.characters.select();
 
         this.autoTimer();
     }
@@ -73,12 +81,12 @@ class Game {
     /*
      * Basic inventory
      */
-    refresh(level = 1) {
+    buildLevel(level) {
+        // build zone
+        this.zones.add(new window['Zone' + level](this), true);
+
         switch (level) {
             case 1:
-
-                this.zones.add(new Zone1(this), true);
-
                 this.characters.add(new Cloud(this), true);
                 this.weapons.add(new BusterSword(this), true);
 
@@ -88,24 +96,22 @@ class Game {
                 this.materias.add(new Restore(this), true);
                 this.materias.add(new Bolt(this), true);
 
-                //this.items.add(new Potion(this), true);
-                //this.items.add(new Potion(this), true);
+                this.items.add(new Potion(this), true);
+                this.items.add(new Potion(this), true);
 
                 break;
             case 2:
-                this.zones.add(new Zone2(this), true);
-
-                //this.addWeapon('leather-glove', true);
-                //this.characters.add('tifa');
+                this.weapons.add(new LeatherGlove(this), true);
+                this.characters.add(new Tifa(this), true);
                 break;
             case 3: // Aerith
-                this.addWeapon('guard-stick', true);
-                this.characters.add('aerith');
+                //this.addWeapon('guard-stick', true);
+                //this.characters.add('aerith');
                 break;
             case 5: // Red XIII
-                this.addWeapon('mythril-clip', true);
-                this.addMateria('fire', 'redxiii');
-                this.characters.add('redxiii');
+                //this.addWeapon('mythril-clip', true);
+                //this.addMateria('fire', 'redxiii');
+                //this.characters.add('redxiii');
                 break;
         }
 
@@ -154,6 +160,7 @@ class Game {
             materias  : this.materias.export(),
             items     : this.items.export(),
             gils      : this.gils,
+            language  : this.language,
             time      : this.time,
             version   : this.version
         };
@@ -202,8 +209,10 @@ class Game {
         // items
         for (var i of save.items) {
             var item = new window[i.model](this).load(i);
-            this.items.push(item);
+            this.items.add(item, i.equipped);
         }
+
+        this.language = save.language;
 
         this.time = save.time;
         this.gils = save.gils;

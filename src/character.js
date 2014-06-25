@@ -32,6 +32,13 @@ class Character {
         });
     }
 
+    /**
+     * Select the character in the menus
+     */
+    select() {
+        this.game.characters.select(this);
+    }
+
     /*
      * @returns {number}
      */

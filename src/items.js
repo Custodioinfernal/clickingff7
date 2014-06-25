@@ -7,14 +7,35 @@ class Items {
         constructor(game) {
         this.game = game;
         this.list = [];
+        this.MAX_ITEMS = 5;
     }
 
     /**
-     * Add a item
-     * @param i
+     * Add an item
+     * @param item
+     * @param equipped
      */
-        add(i) {
-        this.list.push(i);
+        add(item, equipped) {
+        item.equipped = equipped;
+        this.list.push(item);
+    }
+
+    /**
+     * Returns equipped items
+     * @returns {Array}
+     */
+        getEquipped() {
+        return _.where(this.list, {equipped: true});
+    }
+
+    /**
+     * Get unequipped items
+     * @returns {Array}
+     */
+        getUnequipped() {
+        return _.where(this.list, {
+            equipped: false
+        });
     }
 
     /**
@@ -23,7 +44,7 @@ class Items {
      */
         export() {
         var json = [], i, t;
-        for(i in this.list) {
+        for (i in this.list) {
             json.push(this.list[i].export());
         }
         return json;

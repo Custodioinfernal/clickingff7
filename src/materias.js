@@ -12,6 +12,7 @@ class Materias {
     /**
      * Add a materia
      * @param materia
+     * @param equipped
      */
         add(materia, equipped) {
         materia.equipped = equipped;

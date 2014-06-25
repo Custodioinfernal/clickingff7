@@ -82,6 +82,12 @@ section {
     width: 700px;
 }
 
+.new {
+    font-size: 10px;
+    font-weight: bold;
+    color: #900;
+}
+
 /* style du menu principal */
 
 .game-menu {
@@ -195,7 +201,7 @@ section {
     color: #999;
 }
 
-/* SECTION materia */
+/* SECTION materias */
 
 .materia {
     padding: 10px;
@@ -300,7 +306,7 @@ section {
 }
 
 .materia_ap {
-    width: 140px;
+    width: 200px;
 }
 .materia_ap_progress {
     background-color: #C6B7D6;

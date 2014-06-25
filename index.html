@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="fr" ng-app="clickingff7">
+<html>
 <head>
     <meta charset="utf-8"/>
     <meta name="description" content=""/>
@@ -12,7 +12,7 @@
     <link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 
-<body>
+<body ng-controller="IndexCtrl">
 
 <header>
     <div class="wrapper">
@@ -26,17 +26,22 @@
 
 <div class="page" ng-show="game.loaded">
 
-    <nav class="game-menu" ng-controller="NavCtrl">
+    <nav class="game-menu">
         <ul>
-            <li ng-click="game()" ng-class="{ current: isActive('/game')}">Game</li>
-            <li ng-click="map()" ng-class="{ current: isActive('/map')}">Map</li>
-            <li ng-click="materias()" ng-class="{ current: isActive('/materias')}">Materias</li>
-            <li ng-click="save()" class="last" ng-class="{ current: isActive('/save')}">Save</li>
+            <li ng-click="goGame()" ng-class="{ current: isActive('/game')}">{{"Game"|translate}}</li>
+            <li ng-click="goMap()" ng-class="{ current: isActive('/map')}">
+                {{"Map"|translate}} <span class="new" ng-show="game.zones.nextZone">NEW</span>
+            </li>
+            <li ng-click="goItems()" ng-class="{ current: isActive('/items')}">{{"Items"|translate}}</li>
+            <li ng-click="goWeapons()" ng-class="{ current: isActive('/weapons')}">{{"Weapons"|translate}}</li>
+            <li ng-click="goMaterias()" ng-class="{ current: isActive('/materias')}">{{"Materias"|translate}}</li>
+            <li ng-click="goConfig()" ng-class="{ current: isActive('/config')}">{{"Config"|translate}}</li>
+            <li ng-click="goSave()" class="last" ng-class="{ current: isActive('/save')}">{{"Save"|translate}}</li>
         </ul>
     </nav>
 
     <div class="game-infos">
-        Time: {{game.getTime()}}<br />
+        Time: {{game.getTime()}}<br/>
         Gils: {{game.gils}}
     </div>
 
@@ -53,25 +58,33 @@
 
 <footer ng-show="game.loaded">
     <div class="wrapper">
-        ©2014 menencia.com, version <strong><big>{{game.version}}</big></strong>
+        ©2014 menencia.com, version <a href="https://github.com/Menencia/clickingff7/releases/tag/{{game.version}}"
+                                       target="_blank"><big>{{game.version}}</big></a>
         <br/><a href="https://github.com/Menencia/clickingff7" target="_blank">Github</a> -
         <a href="https://github.com/Menencia/clickingff7/issues" target="_blank">Browse Issues</a> -
         <a href="https://github.com/Menencia/clickingff7/issues/new" target="_blank">New Issue</a>
     </div>
 </footer>
 
-<!-- LIBS -->
-<script src="bower_components/jquery/dist/jquery.min.js"></script>
-<script src="bower_components/underscore/underscore.js"></script>
-<script src="bower_components/angular/angular.min.js"></script>
-<script src="bower_components/angular-route/angular-route.min.js"></script>
-<script src="bower_components/angular-cookies/angular-cookies.min.js"></script>
-<script src="bower_components/traceur-runtime/traceur-runtime.min.js"></script>
-
-<!-- BOOTSTRAP -->
-<script src="dist/app.js"></script>
-<script src="dist/game.js"></script>
-<script src="dist/loader.js"></script>
+<script src="/bower_components/headjs/dist/1.0.0/head.min.js"></script>
+<script>
+    head.load(
+            "bower_components/jquery/dist/jquery.min.js",
+            "bower_components/lodash/dist/lodash.min.js",
+            "bower_components/angular/angular.min.js",
+            "bower_components/angular-route/angular-route.min.js",
+            "bower_components/angular-cookies/angular-cookies.min.js",
+            "bower_components/traceur-runtime/traceur-runtime.min.js",
+            "bower_components/angular-translate/angular-translate.min.js",
+            "bower_components/angular-translate-loader-static-files/angular-translate-loader-static-files.min.js",
+            "dist/app.js",
+            "dist/game.js",
+            "dist/loader.js"
+    );
+    head.ready(function () {
+        angular.bootstrap(document, ['clickingff7']);
+    });
+</script>
 
 <script type="text/javascript">
 

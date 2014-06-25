@@ -1,0 +1,11 @@
+{
+    "Game"    : "Jeu",
+    "Map"     : "Carte",
+    "Items"   : "Objets",
+    "Weapons" : "Armes",
+    "Materias": "Matérias",
+    "Config"  : "Config",
+    "Save"    : "Enregistrer",
+
+    "Language": "Langue"
+}

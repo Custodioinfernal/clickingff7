@@ -1,5 +1,5 @@
 <div class="actions">
-    <img ng-src="{{game.zones.current().image}}" width="150" alt="current_zone" />
+    <img ng-src="{{game.zones.current().image}}" width="150" alt="current_zone"/>
 </div>
 
 <div class="c1">
@@ -10,20 +10,21 @@
 
     <div class="desc">{{game.zones.current().description}}</div>
 
+    <div>Completed: {{game.zones.current().completed}}</div>
+
+    <div ng-show="game.zones.isNextZone()" ng-click="game.zones.goNextZone()">Go next zone</div>
+
 </div>
 
 <div class="c3">
 
-    <div>Go another zone:</div>
+    <div>Previous zones:</div>
 
     <div class="zones">
-        <div ng-repeat="zone in game.zones.getOthers() | clean" class="line">
+        <div ng-repeat="zone in game.zones.getOthers()" class="line">
             <div class="name">
-                #{{zone.level}} {{zone.name}} <span class="boss" ng-if="zone.completed">COMPLETED</span><br/>
-            </div>
-            <div class="actions_">
-                <div class="button" ng-click="goZone($event, zone)" ng-if="!zone.here()">GO</div>
-                <div ng-if="zone.here()">You are here</div>
+                #{{zone.level}} {{zone.name}}
+                <span ng-click="game.zones.goZone(zone.level)">GO</span>
             </div>
         </div>
     </div>

@@ -1,12 +1,11 @@
 {
   "name": "clickingff7",
-  "version": "1.0.0-beta.1",
+  "version": "1.0.0-beta.2",
   "homepage": "https://github.com/Menencia/clickingff7",
   "authors": [
     "Menencia <menencia@gmail.com>"
   ],
   "license": "MIT",
-  "private": true,
   "ignore": [
     "**/.*",
     "node_modules",
@@ -15,11 +14,14 @@
     "tests"
   ],
   "dependencies": {
-    "underscore": "~1.6",
-    "jquery": "~2.1",
-    "angular": "~1.2",
-    "angular-cookies": "~1.2",
-    "angular-route": "~1.2",
-    "traceur-runtime": "*"
+    "angular": "~1.2.18",
+    "angular-cookies": "~1.2.18",
+    "angular-route": "~1.2.18",
+    "jquery": "~2.1.1",
+    "headjs": "~1.0.3",
+    "lodash": "~2.4.1",
+    "traceur-runtime": "*",
+    "angular-translate": "~2.2.0",
+    "angular-translate-loader-static-files": "~2.2.0"
   }
 }

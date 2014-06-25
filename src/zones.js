@@ -12,22 +12,34 @@ class Zones {
         constructor(game) {
         this.game = game;
         this.list = [];
-        this.max = 2; // todo auto find max available zones
+        this.level = 1;
+        this.levelMax = 1;
+        this.nextZone = false;
+        this.MAX_ZONES = 2;
     }
 
     /**
      * Add a zone
      * @param zone
      */
-        add(zone, go) {
-        if ((this.level = zone.level) > this.levelMax || !this.levelMax) {
-            this.levelMax = this.level;
-        }
+        add(zone) {
         this.list.push(zone);
     }
 
     /**
-     * Returne all the discovered zones
+     * Checks if all zones are complete and there is another
+     */
+        checkLastZone() {
+        var zone = _.findWhere(this.list, {
+            level: this.levelMax
+        });
+        if (zone.completed && this.level < this.MAX_ZONES) {
+            this.nextZone = true;
+        }
+    }
+
+    /**
+     * Returns all the discovered zones
      * @return {[type]} [description]
      */
         getAll() {
@@ -37,10 +49,13 @@ class Zones {
         });
     }
 
-
-    getOthers() {
+    /**
+     * Return all undiscovered zones
+     * @returns {Array}
+     */
+        getOthers() {
         var level = this.level;
-        return _.filter(this.list, function(o) {
+        return _.filter(this.list, function (o) {
             return (o.level !== level);
         })
     }
@@ -48,12 +63,13 @@ class Zones {
     /**
      * Complete the current level zone
      */
-        completed() {
+        complete() {
         this.current().completed = true;
-        if (this.level < this.max) {
-            this.level++;
-            this.levelMax++;
-            this.game.refresh(this.levelMax);
+        if (this.level < this.MAX_ZONES) {
+            //this.level++;
+            //this.levelMax++;
+            this.nextZone = true;
+            //this.game.buildLevel(this.levelMax);
         }
     }
 
@@ -65,6 +81,41 @@ class Zones {
         return _.findWhere(this.list, {
             level: this.level
         });
+    }
+
+    /**
+     * Get the next zone available
+     * @returns {*}
+     */
+        isNextZone() {
+        return this.current().completed && this.levelMax < this.MAX_ZONES
+    }
+
+    /**
+     * Go next zone
+     */
+        goNextZone() {
+        this.level++;
+
+        // Known level
+        if (this.level <= this.levelMax) {
+            this.goZone(this.level);
+        }
+
+        // New level
+        else {
+            this.levelMax++;
+            this.nextZone = false;
+            this.game.buildLevel(this.level);
+        }
+    }
+
+    /**
+     * Go to the level zone
+     * @param level
+     */
+    goZone(level) {
+        this.level = level;
     }
 
     /**
