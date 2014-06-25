@@ -68,7 +68,7 @@ app.controller('IndexCtrl', function($scope, $location, Game) {
 
     $scope.gameFn = function() {
         return Game.mode;
-    }
+    };
 
     $scope.isActive = function (route) {
         return route === $location.path();

@@ -7,13 +7,11 @@ class BusterSword extends Weapon {
 
         this.type = 'broadsword';
 
-        this.hits = 1;
+        this.hits = 18;
 
         this.price = 170;
 
         this.maxMaterias = 1;
-
-        this.materias = [];
 
         this.available = function(x) {
             return (1 <= x);

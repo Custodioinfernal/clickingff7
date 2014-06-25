@@ -101,8 +101,8 @@ class Game {
 
                 break;
             case 2:
-                //this.addWeapon('leather-glove', true);
-                //this.characters.add('tifa');
+                this.weapons.add(new LeatherGlove(this), true);
+                this.characters.add(new Tifa(this), true);
                 break;
             case 3: // Aerith
                 //this.addWeapon('guard-stick', true);
