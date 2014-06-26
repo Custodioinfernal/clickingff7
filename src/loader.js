@@ -46,6 +46,7 @@ class Loader {
                     "dist/materias/bolt.js",
                     "dist/weapons/broadswords/bustersword.js",
                     "dist/weapons/gun-arms/gatling-gun.js",
+                    "dist/weapons/gun-arms/assault-gun.js",
                     "dist/weapons/knuckles/leather-glove.js",
                     "dist/zones/zone1.js",
                     "dist/zones/zone2.js"

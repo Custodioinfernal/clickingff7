@@ -34,6 +34,10 @@ app.config(['$routeProvider', '$translateProvider',
                 templateUrl: 'partials/map.html',
                 controller : 'MapCtrl'
             }).
+            when('/shop', {
+                templateUrl: 'partials/shop.html',
+                controller : 'ShopCtrl'
+            }).
             when('/items', {
                 templateUrl: 'partials/items.html',
                 controller : 'ItemsCtrl'
@@ -87,6 +91,15 @@ app.controller('IndexCtrl', function($scope, $location, Game) {
     $scope.goMap = function () {
         if (!Game.battle.isBattle) {
             $location.path("/map");
+        }
+    };
+
+    /**
+     * Go to the shop
+     */
+    $scope.goShop = function () {
+        if (!Game.battle.isBattle) {
+            $location.path("/shop");
         }
     };
 
@@ -189,6 +202,13 @@ app.controller('GameCtrl', function($rootScope, Game) {
  */
 
 app.controller('MapCtrl', function() {
+});
+
+/**
+ * /Shop
+ */
+
+app.controller('ShopCtrl', function() {
 });
 
 /**

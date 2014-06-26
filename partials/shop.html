@@ -1,0 +1,20 @@
+<nav class="actions">
+    <ul>
+        <li ng-class="{current: game.shop.section === 'weapons'}">Weapons</li>
+        <li>Materias</li>
+        <li>Items</li>
+    </ul>
+</nav>
+
+<div class="c1">
+
+    <div ng-repeat="weapon in game.shop.weapons">
+        <span class="pull-right" ng-click="weapon.buy()">ACHETER</span>
+        {{weapon.name}}
+    </div>
+
+</div>
+
+<div class="c3">
+
+</div>

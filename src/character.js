@@ -27,15 +27,26 @@ class Character {
      */
     weapon() {
         return _.findWhere(this.game.weapons.list, {
-            "type": this.weaponType,
-            "equipped" : true
+            "type"    : this.weaponType,
+            "equipped": true
+        });
+    }
+
+    /**
+     * Returns unequipped weapons
+     * @returns {Array}
+     */
+        getOthersWeapons() {
+        return _.filter(this.game.weapons.list, {
+            "type"    : this.weaponType,
+            "equipped": false
         });
     }
 
     /**
      * Select the character in the menus
      */
-    select() {
+        select() {
         this.game.characters.select(this);
     }
 
@@ -50,7 +61,8 @@ class Character {
      * @returns {number}
      */
     getMpMax() {
-        return Math.ceil((this.mpBase / 5) * 10 * this.level);;
+        return Math.ceil((this.mpBase / 5) * 10 * this.level);
+        ;
     }
 
     /*

@@ -32,6 +32,7 @@
             <li ng-click="goMap()" ng-class="{ current: isActive('/map')}">
                 {{"Map"|translate}} <span class="new" ng-show="game.zones.nextZone">NEW</span>
             </li>
+            <li ng-click="goShop()" ng-class="{ current: isActive('/shop')}">{{"Shop"|translate}}</li>
             <li ng-click="goItems()" ng-class="{ current: isActive('/items')}">{{"Items"|translate}}</li>
             <li ng-click="goWeapons()" ng-class="{ current: isActive('/weapons')}">{{"Weapons"|translate}}</li>
             <li ng-click="goMaterias()" ng-class="{ current: isActive('/materias')}">{{"Materias"|translate}}</li>

@@ -1,6 +1,7 @@
 {
     "Game"    : "Game",
     "Map"     : "Map",
+    "Shop"    : "Shop",
     "Items"   : "Items",
     "Weapons" : "Weapons",
     "Materias": "Materias",

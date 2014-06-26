@@ -15,7 +15,7 @@
 <div class="c3">
     <div>Other weapons: ???</div>
 
-    <div ng-repeat="weapon in game.characters.selected.getWeapons()" class="weapon">
+    <div ng-repeat="weapon in game.characters.selected.getOthersWeapons()" class="weapon">
         <div ng-click="weapon.equip()" class="pull-right">EQUIP</div>
         {{weapon.name}}
     </div>

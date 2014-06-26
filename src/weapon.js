@@ -25,7 +25,25 @@ class Weapon {
      * @return {int}
      */
     getPrice() {
-        return this.gils;
+        return this.price;
+    }
+
+    /**
+     * Returns true if the weapon can be bought
+     * @returns {boolean}
+     */
+    canBuy() {
+        return (this.game.gils >= this.getPrice());
+    }
+
+    /**
+     * Buy the weapon
+     */
+    buy() {
+        if (this.canBuy()) {
+            this.game.gils -= this.getPrice();
+            this.game.weapons.add(this, false);
+        }
     }
 
     /*
@@ -43,13 +61,15 @@ class Weapon {
      * Equip a weapon
      */
     equip() {
-        var weapon = _.findWhere(this.game.weapons, {
-            character: this.character,
+        // find current equipped weapon
+        var weapon = _.findWhere(this.game.weapons.list, {
+            type: this.type,
             equipped : true
         });
 
         weapon.equipped = false;
 
+        // then equipped this one
         this.equipped = true;
 
         this.game.characters.refresh();
