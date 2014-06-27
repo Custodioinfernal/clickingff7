@@ -183,6 +183,7 @@ class Game {
         }
 
         this.characters.hp = save.characters.hp;
+        this.characters.mp = save.characters.mp;
         this.characters.limit = save.characters.limit;
 
         // zones
