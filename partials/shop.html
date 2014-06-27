@@ -1,14 +1,18 @@
 <nav class="actions">
-    <ul>
-        <li ng-class="{current: game.shop.section === 'buy'}" ng-click="changeSection('buy')">Buy</li>
-        <li ng-class="{current: game.shop.section === 'sell'}" ng-click="changeSection('sell')">Sell</li>
-    </ul>
+    <div class="block">
+        <ul>
+            <li ng-class="{current: game.shop.section === 'buy'}" ng-click="changeSection('buy')">Buy</li>
+            <li ng-class="{current: game.shop.section === 'sell'}" ng-click="changeSection('sell')">Sell</li>
+        </ul>
+    </div>
 
-    <ul>
-        <li ng-class="{current: game.shop.type === 'weapons'}" ng-click="changeType('weapons')">Weapons</li>
-        <li ng-class="{current: game.shop.type === 'materias'}" ng-click="changeType('materias')">Materias</li>
-        <li ng-class="{current: game.shop.type === 'items'}" ng-click="changeType('items')">Items</li>
-    </ul>
+    <div class="block">
+        <ul>
+            <li ng-class="{current: game.shop.type === 'weapons'}" ng-click="changeType('weapons')">Weapons</li>
+            <li ng-class="{current: game.shop.type === 'materias'}" ng-click="changeType('materias')">Materias</li>
+            <li ng-class="{current: game.shop.type === 'items'}" ng-click="changeType('items')">Items</li>
+        </ul>
+    </div>
 </nav>
 
 <div class="c1">

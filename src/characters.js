@@ -231,14 +231,6 @@ class Characters {
     }
 
     /**
-     * Returns if it is possible to attack
-     * @return {boolean}
-     */
-        canAttack() {
-        return (this.game.battle.isBattle);
-    }
-
-    /**
      * Returns if it is possible to execute a limit (powerful attack)
      * @return {boolean}
      */

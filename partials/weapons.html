@@ -1,9 +1,12 @@
 <nav class="actions">
-    <ul>
-        <li ng-repeat="character in game.characters.getTeam()" ng-click="character.select()" ng-class="{current: character.name === game.characters.selected.name}">
-            {{character.name}}
-        </li>
-    </ul>
+    <div class="block">
+        <ul>
+            <li ng-repeat="character in game.characters.getTeam()" ng-click="character.select()"
+                ng-class="{current: character.name === game.characters.selected.name}">
+                {{character.name}}
+            </li>
+        </ul>
+    </div>
 </nav>
 
 <div class="c1">
