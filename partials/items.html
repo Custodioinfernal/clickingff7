@@ -4,7 +4,7 @@
 
     <div ng-repeat="item in game.items.getEquipped()" class="item">
         <div ng-click="item.unequip()" class="pull-right">UNEQUIP</div>
-        {{item.name}} ({{item.equipped}})
+        {{item.name}} ({{item.number}})
     </div>
 
 </div>
@@ -14,6 +14,6 @@
 
     <div ng-repeat="item in game.items.getUnequipped()" class="item">
         <div ng-show="item.canEquip()" ng-click="item.equip()" class="pull-right">EQUIP</div>
-        {{item.name}} ({{item.number - item.equipped}})
+        {{item.name}} ({{item.number}})
     </div>
 </div>

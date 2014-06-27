@@ -76,7 +76,7 @@ class Item {
         buy() {
         if (this.canBuy()) {
             this.game.gils -= this.getPrice();
-            this.game.items.add(this, false);
+            this.game.items.add(this);
         }
     }
 

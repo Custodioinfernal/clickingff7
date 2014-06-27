@@ -22,7 +22,7 @@
         <li ng-repeat="item in game.items.getEquipped()"
             ng-click="item.action()"
             ng-class="{disabled: !item.canUse()}">
-            <div class="pull-right">{{item.equipped}}</div>
+            <div class="pull-right">{{item.number}}</div>
             {{item.name}}
         </li>
     </ul>

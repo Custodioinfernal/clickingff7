@@ -18,10 +18,9 @@ class Items {
         add(item, equipped = false) {
         var i = _.findWhere(this.list, {name: item.name});
         if (i) {
-            if (equipped) i.equipped++;
             i.number++;
         } else {
-            if (equipped) item.equipped++;
+            item.equipped = equipped;
             this.list.push(item);
         }
     }
@@ -32,7 +31,7 @@ class Items {
      */
         getEquipped() {
         return _.where(this.list, function (o) {
-            return o.equipped > 0;
+            return o.equipped;
         });
     }
 
@@ -42,7 +41,7 @@ class Items {
      */
         getUnequipped() {
         return _.where(this.list, function (o) {
-            return o.equipped < o.number;
+            return !o.equipped;
         });
     }
 
