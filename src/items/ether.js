@@ -27,7 +27,7 @@ class Ether extends Item {
         var that = this;
 
         super.action(function () {
-            that.game.characters.addHp(20);
+            that.game.characters.addMp(20);
         });
     }
 

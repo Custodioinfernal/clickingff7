@@ -35,8 +35,8 @@ class Item {
         action(fn) {
         // cost
         if (this.canUse()) {
-            if (this.equipped > 0) {
-                this.equipped--;
+            if (this.number > 1) {
+                this.number--;
             } else {
                 _.remove(this.game.items.list, this);
             }
@@ -120,7 +120,7 @@ class Item {
      * Save materia data
      */
         export() {
-        var json = _.pick(this, 'equipped');
+        var json = _.pick(this, 'number', 'equipped');
         json.model = this.constructor.name;
         return json;
     }

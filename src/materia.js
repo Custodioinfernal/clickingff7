@@ -3,8 +3,10 @@ class Materia {
     constructor(game) {
         this.game = game;
 
+        // current level
         this.level = 1;
 
+        // needed to upgrade
         this.ap = 0;
 
         // nbr equipped

@@ -90,7 +90,7 @@ class Weapon {
      * Save weapon
      */
     export() {
-        var json = _.pick(this, 'equipped');
+        var json = _.pick(this, 'number', 'equipped');
         json.model = this.constructor.name;
         return json;
     }
