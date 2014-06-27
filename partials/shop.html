@@ -1,17 +1,42 @@
 <nav class="actions">
     <ul>
-        <li ng-class="{current: game.shop.section === 'weapons'}">Weapons</li>
-        <li>Materias</li>
-        <li>Items</li>
+        <li ng-class="{current: game.shop.section === 'buy'}" ng-click="changeSection('buy')">Buy</li>
+        <li ng-class="{current: game.shop.section === 'sell'}" ng-click="changeSection('sell')">Sell</li>
+    </ul>
+
+    <ul>
+        <li ng-class="{current: game.shop.type === 'weapons'}" ng-click="changeType('weapons')">Weapons</li>
+        <li ng-class="{current: game.shop.type === 'materias'}" ng-click="changeType('materias')">Materias</li>
+        <li ng-class="{current: game.shop.type === 'items'}" ng-click="changeType('items')">Items</li>
     </ul>
 </nav>
 
 <div class="c1">
 
-    <div ng-repeat="weapon in game.shop.weapons">
-        <span class="pull-right" ng-click="weapon.buy()">ACHETER</span>
-        {{weapon.name}}
-    </div>
+    <section ng-if="game.shop.section === 'buy'">
+
+        <div ng-repeat="weapon in game.shop.weapons" ng-if="game.shop.type === 'weapons'">
+            <span class="pull-right" ng-click="weapon.buy()" ng-class="{disabled: weapon.canBuy()}">ACHETER</span>
+            {{weapon.name}} ({{weapon.inStock()}})
+        </div>
+
+        <div ng-repeat="materia in game.shop.materias" ng-if="game.shop.type === 'materias'">
+            <span class="pull-right" ng-click="materia.buy()" ng-class="{disabled: materia.canBuy()}">ACHETER</span>
+            {{materia.name}} ({{materia.inStock()}})
+        </div>
+
+        <div ng-repeat="item in game.shop.items" ng-if="game.shop.type === 'items'">
+            <span class="pull-right" ng-click="item.buy()" ng-class="{disabled: item.canBuy()}">ACHETER</span>
+            {{item.name}} ({{item.inStock()}})
+        </div>
+
+    </section>
+
+    <section ng-if="game.shop.section === 'sell'">
+
+        Not Available
+
+    </section>
 
 </div>
 

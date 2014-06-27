@@ -12,17 +12,23 @@ class Weapons {
     /**
      * Add a weapon
      * @param weapon
+     * @param equipped
      */
-        add(weapon, equipped) {
-        weapon.equipped = equipped;
-        this.list.push(weapon);
+        add(weapon, equipped = false) {
+        var w = _.findWhere(this.list, {name: weapon.name});
+        if (w) {
+            w.number++;
+        } else {
+            weapon.equipped = equipped;
+            this.list.push(weapon);
+        }
     }
 
     /**
      * Returns maximum materias that can be equipped
      * @returns {number}
      */
-    maxMaterias() {
+        maxMaterias() {
         var maxMaterias = 0;
 
         var weapons = _.where(this.list, {
@@ -41,7 +47,7 @@ class Weapons {
      */
         export() {
         var json = [], i, t;
-        for(i in this.list) {
+        for (i in this.list) {
             json.push(this.list[i].export());
         }
         return json;

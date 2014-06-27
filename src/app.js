@@ -208,7 +208,16 @@ app.controller('MapCtrl', function() {
  * /Shop
  */
 
-app.controller('ShopCtrl', function() {
+app.controller('ShopCtrl', function($scope, Game) {
+
+    $scope.changeSection = function(s) {
+        Game.shop.section = s;
+    };
+
+    $scope.changeType = function(t) {
+        Game.shop.type = t;
+    };
+
 });
 
 /**

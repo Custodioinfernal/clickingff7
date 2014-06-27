@@ -1,11 +1,11 @@
-class Potion extends Item {
+class Ether extends Item {
 
     constructor(game) {
         super(game);
 
-        this.name = 'Potion'.toUpperCase();
+        this.name = 'Ether'.toUpperCase();
 
-        this.price = 150;
+        this.price = 200;
 
         this.available = function(x) {
             return true;
@@ -17,7 +17,7 @@ class Potion extends Item {
      * @returns {boolean}
      */
         canUse() {
-        return (this.game.characters.hp < this.game.characters.hpMax);
+        return (this.game.characters.mp < this.game.characters.mpMax);
     }
 
     /**
@@ -27,7 +27,7 @@ class Potion extends Item {
         var that = this;
 
         super.action(function () {
-            that.game.characters.addHp(150);
+            that.game.characters.addHp(20);
         });
     }
 

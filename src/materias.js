@@ -14,7 +14,7 @@ class Materias {
      * @param materia
      * @param equipped
      */
-        add(materia, equipped) {
+        add(materia, equipped = false) {
         materia.equipped = equipped;
         this.list.push(materia);
     }

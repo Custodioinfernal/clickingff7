@@ -37,9 +37,9 @@ class Character {
      * @returns {Array}
      */
         getOthersWeapons() {
-        return _.filter(this.game.weapons.list, {
-            "type"    : this.weaponType,
-            "equipped": false
+        var that = this;
+        return _.where(this.game.weapons.list, function (o) {
+            return (o.type === that.weaponType && o.number > 1);
         });
     }
 

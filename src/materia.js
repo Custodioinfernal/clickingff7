@@ -2,8 +2,13 @@ class Materia {
 
     constructor(game) {
         this.game = game;
+
         this.level = 1;
+
         this.ap = 0;
+
+        // nbr equipped
+        this.equipped = 0;
     }
 
     /**
@@ -38,6 +43,40 @@ class Materia {
         } else {
             fn();
         }
+    }
+
+    /**
+     * Returns the price of the materia
+     * @return {int}
+     */
+        getPrice() {
+        return this.price;
+    }
+
+    /**
+     * Returns true if the materia can be bought
+     * @returns {boolean}
+     */
+        canBuy() {
+        return (this.game.gils >= this.getPrice());
+    }
+
+    /**
+     * Buy the materia
+     */
+        buy() {
+        if (this.canBuy()) {
+            this.game.gils -= this.getPrice();
+            this.game.materias.add(this, false);
+        }
+    }
+
+    /**
+     * Returns the number of owned
+     * @returns {Number}
+     */
+        inStock() {
+        return _.where(this.game.materias.list, {name: this.name}).length;
     }
 
     /*

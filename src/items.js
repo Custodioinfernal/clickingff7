@@ -7,7 +7,7 @@ class Items {
         constructor(game) {
         this.game = game;
         this.list = [];
-        this.MAX_ITEMS = 5;
+        this.MAX_ITEMS = 2;
     }
 
     /**
@@ -15,9 +15,15 @@ class Items {
      * @param item
      * @param equipped
      */
-        add(item, equipped) {
-        item.equipped = equipped;
-        this.list.push(item);
+        add(item, equipped = false) {
+        var i = _.findWhere(this.list, {name: item.name});
+        if (i) {
+            if (equipped) i.equipped++;
+            i.number++;
+        } else {
+            if (equipped) item.equipped++;
+            this.list.push(item);
+        }
     }
 
     /**
@@ -25,7 +31,9 @@ class Items {
      * @returns {Array}
      */
         getEquipped() {
-        return _.where(this.list, {equipped: true});
+        return _.where(this.list, function (o) {
+            return o.equipped > 0;
+        });
     }
 
     /**
@@ -33,8 +41,8 @@ class Items {
      * @returns {Array}
      */
         getUnequipped() {
-        return _.where(this.list, {
-            equipped: false
+        return _.where(this.list, function (o) {
+            return o.equipped < o.number;
         });
     }
 

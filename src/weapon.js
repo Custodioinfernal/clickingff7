@@ -6,6 +6,12 @@ class Weapon {
 
     constructor(game) {
         this.game = game;
+
+        // nbr owned
+        this.number = 1;
+
+        // equipped
+        this.equipped = false;
     }
 
     /**
@@ -32,29 +38,32 @@ class Weapon {
      * Returns true if the weapon can be bought
      * @returns {boolean}
      */
-    canBuy() {
+        canBuy() {
         return (this.game.gils >= this.getPrice());
     }
 
     /**
      * Buy the weapon
      */
-    buy() {
+        buy() {
         if (this.canBuy()) {
             this.game.gils -= this.getPrice();
             this.game.weapons.add(this, false);
         }
     }
 
-    /*
-     * Returns true if the weapon is owned in the inventory
-     * @return {boolean}
+    /**
+     * Returns the number of owned
+     * @returns {*}
      */
-    inStock() {
-        var weapons = _.where(this.game.weapons, {
-            ref: this.ref
-        });
-        return weapons.length;
+        inStock() {
+        var sum = 0;
+        for ( var w of this.game.weapons.list) {
+            if (w.name === this.name) {
+                sum += w.number;
+            }
+        }
+        return sum;
     }
 
     /*
@@ -63,11 +72,13 @@ class Weapon {
     equip() {
         // find current equipped weapon
         var weapon = _.findWhere(this.game.weapons.list, {
-            type: this.type,
-            equipped : true
+            type    : this.type,
+            equipped: true
         });
 
-        weapon.equipped = false;
+        if (weapon) {
+            weapon.equipped = false;
+        }
 
         // then equipped this one
         this.equipped = true;

@@ -42,6 +42,7 @@ class Loader {
                     "dist/enemies/zone2/smogger.js",
                     "dist/enemies/zone2/special-combatant.js",
                     "dist/items/potion.js",
+                    "dist/items/ether.js",
                     "dist/materias/restore.js",
                     "dist/materias/bolt.js",
                     "dist/weapons/broadswords/bustersword.js",
