@@ -34,9 +34,9 @@
                 {{"Map"|translate}}
             </li>
             <li ng-click="goShop()" ng-class="{ current: isActive('/shop')}">{{"Shop"|translate}}</li>
+            <li ng-click="goWeapons()" ng-class="{ current: isActive('/weapons')}">{{"Equip"|translate}}</li>
+            <li ng-click="goMaterias()" ng-class="{ current: isActive('/materias')}">{{"Materia"|translate}}</li>
             <li ng-click="goItems()" ng-class="{ current: isActive('/items')}">{{"Items"|translate}}</li>
-            <li ng-click="goWeapons()" ng-class="{ current: isActive('/weapons')}">{{"Weapons"|translate}}</li>
-            <li ng-click="goMaterias()" ng-class="{ current: isActive('/materias')}">{{"Materias"|translate}}</li>
             <li ng-click="goConfig()" ng-class="{ current: isActive('/config')}">{{"Config"|translate}}</li>
             <li ng-click="goSave()" class="last" ng-class="{ current: isActive('/save')}">{{"Save"|translate}}</li>
         </ul>
