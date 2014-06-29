@@ -25,6 +25,8 @@ app.config(['$routeProvider', '$translateProvider',
             suffix: '.json'
         });
 
+        $translateProvider.preferredLanguage(window.navigator.userLanguage || window.navigator.language);
+
         $routeProvider.
             when('/game', {
                 templateUrl: 'partials/game.html',

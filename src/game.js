@@ -4,14 +4,13 @@
 
 class Game {
 
-    constructor($rootScope, $cookieStore, $http, $timeout, $translate) {
+    constructor($rootScope, $cookieStore, $http, $timeout) {
 
         // angular vars
         this.$rootScope = $rootScope;
         this.$cookieStore = $cookieStore;
         this.$http = $http;
         this.$timeout = $timeout;
-        this.$translate = $translate;
 
         // detect first load
         this.loaded = false;
@@ -69,8 +68,6 @@ class Game {
             this.reset();
             this.buildLevel(1);
         }
-
-        this.$translate.use(this.language);
 
         this.shop.refresh();
 
