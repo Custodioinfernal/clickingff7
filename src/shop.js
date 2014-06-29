@@ -8,21 +8,22 @@ class Shop {
         this.game = game;
 
         this.section = 'buy';
-        this.type = 'weapons';
-
-        this.weapons = [];
-        this.materias = [];
-        this.items = [];
+        this.type = 'weapons';;
 
         this.refresh();
     }
 
     refresh() {
+        this.weapons = [];
+        this.materias = [];
+        this.items = []
+
         var weapons = [
             'BusterSword',
             'GatlingGun',
             'AssaultGun',
-            'LeatherGlove'
+            'LeatherGlove',
+            'GuardStick'
         ];
         for (var w of weapons) {
             var weapon = new window[w](this.game);

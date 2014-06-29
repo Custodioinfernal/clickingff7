@@ -1,13 +1,11 @@
-/**
- *
- */
-
 class Character {
 
     constructor(game, data) {
         this.game = game;
         this.level = 1;
         this.xp = 0;
+        this.notA = [];
+        this.isNotAvailable = false;
     }
 
     /**
@@ -20,6 +18,20 @@ class Character {
             this[i] = data[i];
         }
         return this;
+    }
+
+    /**
+     * Returns true if the character is available in the levelMax
+     * @returns {boolean}
+     */
+        notAvailable() {
+        var t = this.notA;
+        for (var i of t) {
+            if (i === this.game.zones.levelMax) {
+                return true;
+            }
+        }
+        return false;
     }
 
     /*

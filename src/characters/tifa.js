@@ -7,12 +7,13 @@ class Tifa extends Character {
         this.name = 'Tifa Lockhart';
 
         // character image
-        this.image = '/img/characters/tifa.png';
+        this.image = '/img/characters/tifa.jpg';
 
         // character weapon type
         this.weaponType = 'knuckle';
 
         // STATS
+        this.level = 4;
         this.hpBase = 2;
         this.mpBase = 2;
 
@@ -22,9 +23,7 @@ class Tifa extends Character {
         };
 
         // Character zones available
-        this.available = function(x) {
-              return (x !== 3);
-        };
+        this.notA = [3];
 
     }
 

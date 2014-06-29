@@ -31,6 +31,7 @@ class Loader {
                     "dist/characters/barret.js",
                     "dist/characters/cloud.js",
                     "dist/characters/tifa.js",
+                    "dist/characters/aerith.js",
                     "dist/enemies/zone1/first-ray.js",
                     "dist/enemies/zone1/grunt.js",
                     "dist/enemies/zone1/guard-scorpion.js",
@@ -54,8 +55,10 @@ class Loader {
                     "dist/weapons/gun-arms/gatling-gun.js",
                     "dist/weapons/gun-arms/assault-gun.js",
                     "dist/weapons/knuckles/leather-glove.js",
+                    "dist/weapons/staves/guard-stick.js",
                     "dist/zones/zone1.js",
-                    "dist/zones/zone2.js"
+                    "dist/zones/zone2.js",
+                    "dist/zones/zone3.js"
                 ]}
         ];
 

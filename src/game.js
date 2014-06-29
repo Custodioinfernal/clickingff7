@@ -85,6 +85,16 @@ class Game {
         // build zone
         this.zones.add(new window['Zone' + level](this), true);
 
+        // remove characters from the team
+        for (var c of this.characters.list) {
+            if (c.notAvailable()) {
+                c.isNotAvailable = true;
+                c.inTeam = false;
+            } else {
+                c.isNotAvailable = false;
+            }
+        }
+
         switch (level) {
             case 1:
                 this.characters.add(new Cloud(this), true);
@@ -101,12 +111,12 @@ class Game {
 
                 break;
             case 2:
-                this.weapons.add(new LeatherGlove(this), true);
                 this.characters.add(new Tifa(this), true);
+                this.weapons.add(new LeatherGlove(this), true);
                 break;
             case 3: // Aerith
-                //this.addWeapon('guard-stick', true);
-                //this.characters.add('aerith');
+                this.characters.add(new Aerith(this), true);
+                this.weapons.add(new GuardStick(this), true);
                 break;
             case 5: // Red XIII
                 //this.addWeapon('mythril-clip', true);

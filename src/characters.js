@@ -52,7 +52,7 @@ class Characters {
      * @param inTeam
      */
         add(character, inTeam) {
-        character.inTeam = (this.list.length < this.MAX_TEAM) ? inTeam : false;
+        character.inTeam = (this.getTeam().length < this.MAX_TEAM) ? inTeam : false;
         this.list.push(character);
     }
 
@@ -61,7 +61,10 @@ class Characters {
      * @returns {Array}
      */
         getTeam() {
-        return _.where(this.list, {inTeam: true});
+        return _.where(this.list, {
+            inTeam        : true,
+            isNotAvailable: false
+        });
     }
 
     /*
@@ -107,7 +110,7 @@ class Characters {
      * Select a character in menus
      * @param character
      */
-    select(character) {
+        select(character) {
         if (!character) {
             character = this.getTeam()[0];
         }
