@@ -72,6 +72,8 @@ class Game {
 
         this.$translate.use(this.language);
 
+        this.shop.refresh();
+
         this.characters.refresh();
         this.characters.select();
 

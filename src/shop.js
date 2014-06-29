@@ -8,15 +8,13 @@ class Shop {
         this.game = game;
 
         this.section = 'buy';
-        this.type = 'weapons';;
-
-        this.refresh();
+        this.type = 'weapons';
     }
 
     refresh() {
         this.weapons = [];
         this.materias = [];
-        this.items = []
+        this.items = [];
 
         var weapons = [
             'BusterSword',
