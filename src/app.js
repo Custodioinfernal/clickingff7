@@ -42,13 +42,13 @@ app.config(['$routeProvider', '$translateProvider',
                 templateUrl: 'partials/items.html',
                 controller : 'ItemsCtrl'
             }).
-            when('/weapons', {
-                templateUrl: 'partials/weapons.html',
-                controller : 'WeaponsCtrl'
+            when('/equip', {
+                templateUrl: 'partials/equip.html',
+                controller : 'EquipCtrl'
             }).
-            when('/materias', {
-                templateUrl: 'partials/materias.html',
-                controller : 'MateriasCtrl'
+            when('/materia', {
+                templateUrl: 'partials/materia.html',
+                controller : 'MateriaCtrl'
             }).
             when('/config', {
                 templateUrl: 'partials/config.html',
@@ -134,18 +134,18 @@ app.controller('IndexCtrl', function ($scope, $location, Game) {
     /**
      * Go to the weapons
      */
-    $scope.goWeapons = function () {
+    $scope.goEquip = function () {
         if (!Game.battle.isBattle) {
-            $location.path("/weapons");
+            $location.path("/equip");
         }
     };
 
     /**
      * Go to the materias
      */
-    $scope.goMaterias = function () {
+    $scope.goMateria = function () {
         if (!Game.battle.isBattle) {
-            $location.path("/materias");
+            $location.path("/materia");
         }
     };
 
@@ -250,14 +250,14 @@ app.controller('ItemsCtrl', function () {
  * /Weapons
  */
 
-app.controller('WeaponsCtrl', function () {
+app.controller('EquipCtrl', function () {
 });
 
 /**
  * /Materias
  */
 
-app.controller('MateriasCtrl', function () {
+app.controller('MateriaCtrl', function () {
 });
 
 /**
