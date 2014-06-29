@@ -115,6 +115,24 @@ section {
     text-transform: uppercase;
 }
 
+table {
+    border-collapse: collapse;
+}
+
+table th {
+    text-align: left;
+    text-transform: uppercase;
+    height: 30px;
+}
+
+table tr:first-child {
+    border-bottom: 1px solid #999;
+}
+
+table tr:not(:first-child):hover {
+    background-color: #eee;
+}
+
 /* style du menu principal */
 
 .game-menu {

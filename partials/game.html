@@ -101,21 +101,19 @@
 
     <div class="c3">
         <!-- enemies bars -->
-        <div class="bars">
+        <div class="bars" ng-if="game.enemies.list.length > 0">
             <div class="characters_hits">
                 <div class="hit hit_{{$index+1}}" ng-repeat="hit in game.characters.arrHits track by $index">{{hit}}
                 </div>
             </div>
 
-            <div ng-if="game.enemies.list.length > 0">
-                <div class="progress enemy_hp">
-                    <div class="enemy_hp_progress" ng-style="{width: game.enemies.hpProgress(300) + 'px'}"></div>
-                    <span class="bar-label">{{game.enemies.hp}} / {{game.enemies.hpMax}} HP</span>
-                </div>
+            <div class="progress enemy_hp">
+                <div class="enemy_hp_progress" ng-style="{width: game.enemies.hpProgress(300) + 'px'}"></div>
+                <span class="bar-label">{{game.enemies.hp}} / {{game.enemies.hpMax}} HP</span>
             </div>
         </div>
 
-        <div ng-if="game.enemies.list.length === 0" class="no-enemies">
+        <div ng-if="game.enemies.list.length === 0" class="no-data">
             {{"No enemies"|translate}}
         </div>
 

@@ -15,35 +15,56 @@
     </div>
 </nav>
 
-<div class="c1">
+<div class="c2">
 
     <section ng-if="game.shop.section === 'buy'">
 
-        <div ng-repeat="weapon in game.shop.weapons" ng-if="game.shop.type === 'weapons'">
-            <span class="pull-right" ng-click="weapon.buy()" ng-class="{disabled: weapon.canBuy()}">ACHETER</span>
-            {{weapon.name}} ({{weapon.inStock()}})
-        </div>
+        <table style="width: 100%">
 
-        <div ng-repeat="materia in game.shop.materias" ng-if="game.shop.type === 'materias'">
-            <span class="pull-right" ng-click="materia.buy()" ng-class="{disabled: materia.canBuy()}">ACHETER</span>
-            {{materia.name}} ({{materia.inStock()}})
-        </div>
+            <tr>
+                <th>Name</th>
+                <th>In stock</th>
+                <th>Price</th>
+                <th></th>
+            </tr>
 
-        <div ng-repeat="item in game.shop.items" ng-if="game.shop.type === 'items'">
-            <span class="pull-right" ng-click="item.buy()" ng-class="{disabled: item.canBuy()}">ACHETER</span>
-            {{item.name}} ({{item.inStock()}})
-        </div>
+            <tr ng-repeat="weapon in game.shop.weapons" ng-if="game.shop.type === 'weapons'">
+                <td>{{weapon.name}}</td>
+                <td>{{weapon.inStock()}}</td>
+                <td>{{weapon.price}} {{"Gils"|translate}}</td>
+                <td>
+                    <span ng-click="weapon.buy()" ng-if="weapon.canBuy()" class="button">Buy</span>
+                </td>
+            </tr>
+
+            <tr ng-repeat="materia in game.shop.materias" ng-if="game.shop.type === 'materias'">
+                <td>{{materia.name}}</td>
+                <td>{{materia.inStock()}}</td>
+                <td>{{materia.price}} {{"Gils"|translate}}</td>
+                <td>
+                    <span ng-click="materia.buy()" ng-if="materia.canBuy()" class="button">Buy</span>
+                </td>
+            </tr>
+
+            <tr ng-repeat="item in game.shop.items" ng-if="game.shop.type === 'items'">
+                <td>{{item.name}}</td>
+                <td>{{item.inStock()}}</td>
+                <td>{{item.price}} {{"Gils"|translate}}</td>
+                <td>
+                    <span ng-click="item.buy()" ng-if="item.canBuy()" class="button">Buy</span>
+                </td>
+            </tr>
+
+        </table>
 
     </section>
 
     <section ng-if="game.shop.section === 'sell'">
 
-        Not Available
+        <div class="no-data">
+            Not Available
+        </div>
 
     </section>
-
-</div>
-
-<div class="c3">
 
 </div>
