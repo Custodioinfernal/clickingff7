@@ -111,7 +111,7 @@ class Character {
      * @returns {Object}
      */
         export() {
-        var json = _.pick(this, 'inTeam', 'level', 'xp');
+        var json = _.pick(this, 'inTeam', 'level', 'xp', 'image');
         json.model = this.constructor.name;
         return json;
     }

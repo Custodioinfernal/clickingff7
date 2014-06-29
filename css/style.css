@@ -312,7 +312,7 @@ section {
 }
 
 .characters_xp {
-    width: 300px;
+    width: 200px;
 }
 .xp_progress {
     background-color: #C6B7D6;
@@ -344,4 +344,19 @@ section {
     -moz-transition:0.5s linear all;
     -o-transition:0.5s linear all;
     transition:0.5s linear all;
+}
+
+/* save section */
+
+.save_character {
+    margin-right: 5px;
+}
+
+#area-export, #area-import {
+    display: none;
+}
+
+.areaExport, .areaImport {
+    width: 280px;
+    height: 280px;
 }

@@ -128,27 +128,6 @@ class Game {
     }
 
     /**
-     * Return the time spent on the game since the beginning
-     */
-        getTime() {
-        var elapsed = this.time;
-        var hours = Math.floor(elapsed / 3600);
-        elapsed -= hours * 3600;
-
-        var minutes = Math.floor(elapsed / 60);
-        if (minutes < 10) {
-            minutes = '0' + minutes;
-        }
-
-        var seconds = elapsed - minutes * 60;
-        if (seconds < 10) {
-            seconds = '0' + seconds;
-        }
-
-        return hours + ':' + minutes + ':' + seconds;
-    }
-
-    /**
      * Export the game
      * @returns {{characters: *, zones: *, weapons: *, materias: *, items: *, gils: (number|Game.gils|*), time: number, version: string}}
      */
