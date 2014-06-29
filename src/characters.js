@@ -93,7 +93,7 @@ class Characters {
             this.levelSum += characters[i].level;
         }
 
-        this.limitMax = this.hpMax * 2;
+        this.limitMax = 2 * this.hpMax / 3;
 
         if (!_.has(this, 'hp')) {
             this.hp = this.hpMax;
@@ -121,9 +121,25 @@ class Characters {
      * Get *random* total characters hits
      */
         getHits() {
+        // base hits
         var a = this.hits * (1 - 10 / 100);
         var b = this.hits * (1 + 10 / 100);
-        return Math.round(_.random(a, b));
+        var hits = Math.round(_.random(a, b));
+
+        // limit
+        if (this.canLimit()) {
+            hits *= 5;
+            this.limit = 0;
+            return hits;
+        }
+
+        // critical hits (10%)
+        var r = _.random(0, 100);
+        if (r <= 10) {
+            hits *= 2;
+        }
+
+        return hits;
     }
 
     /**

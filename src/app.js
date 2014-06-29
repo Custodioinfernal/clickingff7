@@ -193,13 +193,6 @@ app.controller('GameCtrl', function ($rootScope, Game) {
             Game.characters.stopFighting();
 
             var hits = Game.characters.getHits();
-            var d = Math.pow(10, 2);
-            hits = Math.round(hits * d) / d;
-            // checks limit
-            if (Game.characters.canLimit()) {
-                hits *= 2;
-                Game.characters.limit = 0;
-            }
             Game.enemies.getAttacked(hits, false);
             Game.characters.autoFighting();
         }
