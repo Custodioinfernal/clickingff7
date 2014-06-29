@@ -2,6 +2,7 @@
     "Attack"       : "Attaquer",
     "Bolt"         : "Foudre",
     "Buy"          : "Acheter",
+    "Completed"    : "Terminé !",
     "Config"       : "Config",
     "Equip"        : "Equiper",
     "Escape"       : "Fuir",
@@ -11,6 +12,7 @@
     "Export save"  : "Exporter sauvegarde",
     "Game"         : "Jeu",
     "Gil"          : "Gils",
+    "Go next zone" : "Aller à la zone suivante",
     "Import"       : "Importer",
     "In stock"     : "En stock",
     "Items"        : "Objets",
@@ -21,6 +23,7 @@
     "No enemies"   : "Aucun ennemi",
     "No saves"     : "Aucune sauvegarde",
     "Not available": "Non disponible",
+    "Not completed": "Non terminé",
     "Potion"       : "Potion",
     "Price"        : "Prix",
     "Sell"         : "Vendre",
@@ -29,5 +32,13 @@
     "Restore"      : "Restaurer",
     "Save"         : "Sauvegarder",
     "Time"         : "Tps",
-    "Weapons"      : "Armes"
+    "Weapons"      : "Armes",
+    "Zone 1 name"  : "Réacteur du Secteur 1",
+    "Zone 1 desc"  : "Cloud vient de rejoindre Avalanche. Avec Barret, leur chef, ils ont prévu de détruire un réacteur MAKO qui épuise l'énergie de la Planète.",
+    "Zone 2 name"  : "Réacteur du Secteur 5",
+    "Zone 2 desc"  : "Après l'explosion du premier réacteur, Avalanche prévoit d'en détruire un autre encore. Tifa s'est joint au groupe pour les aider.",
+    "Zone 3 name"  : "Secteur 6",
+    "Zone 3 desc"  : "C'était un piège ! Avalanche a quand même réussi à détruire le second réacteur. Cependant, Cloud a été séparé de ses amis et s'est réveillé dans une église, après une longue chute, en faisant la rencontre d'Aerith.",
+    "Zone 4 name"  : "Secteur 7",
+    "Zone 4 desc"  : "Avec l'aide d'Aerith, Cloud retrouve ses amis, se battant contre la SHINRA qui a l'intention de faire exploser le secteur 7. Aerith part prévenir les habitants de la région."
 }

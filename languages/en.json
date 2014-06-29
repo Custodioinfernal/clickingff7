@@ -2,6 +2,7 @@
     "Attack"       : "Attack",
     "Bolt"         : "Bolt",
     "Buy"          : "Buy",
+    "Completed"    : "Completed !",
     "Config"       : "Config",
     "Equip"        : "Equip",
     "Escape"       : "Escape",
@@ -11,6 +12,7 @@
     "Export save"  : "Export save",
     "Game"         : "Game",
     "Gil"          : "Gil",
+    "Go next zone" : "Go next zone",
     "Import"       : "Import",
     "In stock"     : "In stock",
     "Items"        : "Items",
@@ -21,6 +23,7 @@
     "No enemies"   : "No enemies",
     "No saves"     : "No saves",
     "Not available": "Not available",
+    "Not completed": "Not completed",
     "Potion"       : "Potion",
     "Price"        : "Price",
     "Sell"         : "Sell",
@@ -29,5 +32,13 @@
     "Restore"      : "Restore",
     "Save"         : "Save",
     "Time"         : "Time",
-    "Weapons"      : "Weapons"
+    "Weapons"      : "Weapons",
+    "Zone 1 name"  : "Sector 1 Reactor",
+    "Zone 1 desc"  : "Cloud just joined Avalanche. With Barret, the leader, they planned to destroy a MAKO reator which depletes the energy of the Planet.",
+    "Zone 2 name"  : "Sector 5 Reactor",
+    "Zone 2 desc"  : "After succesfully destroyed one reactor, Avalanche planned to destroy another one. Tifa joined the group to help.",
+    "Zone 3 name"  : "Sector 6",
+    "Zone 3 desc"  : "It was a trap! Avalanche has successfully destroyed the reactor. However, Cloud was separated from his friends and woke up in a church, meeting Aerith.",
+    "Zone 4 name"  : "Sector 7",
+    "Zone 4 desc"  : "With the help of Aerith, Cloud found his friends, fighting the SHINRA who wants to bomb the sector 7. Aerith left to warn the residents."
 }
