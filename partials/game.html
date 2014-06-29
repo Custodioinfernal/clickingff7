@@ -1,10 +1,16 @@
 <nav class="actions">
     <div class="block">
         <ul>
+            <li ng-click="explore()" ng-class="{disabled: game.battle.isBattle}">
+                EXPLORE
+            </li>
             <li ng-click="attack($event)"
                 ng-class="{disabled: !game.battle.isBattle, limit: game.characters.canLimit()}">
                 <span ng-if="!game.characters.canLimit()">ATTACK</span>
                 <span ng-if="game.characters.canLimit()">LIMIT</span>
+            </li>
+            <li ng-click="escape()" ng-class="{disabled: !game.battle.isBattle}">
+                ESCAPE
             </li>
         </ul>
     </div>
@@ -20,21 +26,13 @@
         </ul>
     </div>
 
-    <div class="block">
+    <div class="block" ng-if="game.items.getEquipped().length > 0">
         <ul>
             <li ng-repeat="item in game.items.getEquipped()"
                 ng-click="item.action()"
                 ng-class="{disabled: !item.canUse()}">
                 <div class="pull-right">{{item.number}}</div>
                 {{item.name}}
-            </li>
-        </ul>
-    </div>
-
-    <div class="block">
-        <ul>
-            <li ng-click="escape()" ng-class="{disabled: !game.battle.isBattle}">
-                ESCAPE
             </li>
         </ul>
     </div>
@@ -116,8 +114,7 @@
         </div>
 
         <div ng-if="game.enemies.list.length === 0" class="no-enemies">
-            <div>NO ENEMIES</div>
-            <div ng-click="explore()" class="button">EXPLORE</div>
+            NO ENEMIES
         </div>
 
         <!-- enemies list -->
