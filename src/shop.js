@@ -21,7 +21,9 @@ class Shop {
             'GatlingGun',
             'AssaultGun',
             'LeatherGlove',
-            'GuardStick'
+            'MetalKnuckle',
+            'GuardStick',
+            'MythrilRod'
         ];
         for (var w of weapons) {
             var weapon = new window[w](this.game);
