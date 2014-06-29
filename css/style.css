@@ -133,6 +133,10 @@ table tr:not(:first-child):hover {
     background-color: #eee;
 }
 
+table td {
+    height: 30px;
+}
+
 /* style du menu principal */
 
 .game-menu {

@@ -9,20 +9,21 @@ class Shop {
 
         this.section = 'buy';
         this.type = 'weapons';
+    }
 
+    refresh() {
         this.weapons = [];
         this.materias = [];
         this.items = [];
 
-        this.refresh();
-    }
-
-    refresh() {
         var weapons = [
             'BusterSword',
             'GatlingGun',
             'AssaultGun',
-            'LeatherGlove'
+            'LeatherGlove',
+            'MetalKnuckle',
+            'GuardStick',
+            'MythrilRod'
         ];
         for (var w of weapons) {
             var weapon = new window[w](this.game);

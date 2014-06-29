@@ -22,9 +22,7 @@ class Barret extends Character {
         };
 
         // Character zones available
-        this.available = function(x) {
-              return x != 3;
-        };
+        this.notA = [3];
 
     }
 

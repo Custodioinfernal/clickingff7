@@ -22,9 +22,7 @@ class Cloud extends Character {
         };
 
         // Character zones available
-        this.available = function(x) {
-              return (1 <= x && x <= 7);
-        };
+        this.notA = [];
 
     }
 
