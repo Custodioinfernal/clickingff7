@@ -96,7 +96,23 @@ section {
 .new {
     font-size: 10px;
     font-weight: bold;
-    color: #900;
+    color: #FFF;
+    margin-top: 2px;
+    background-color: #900;
+    border-radius: 5px;
+    padding: 2px;
+}
+
+.main {
+    margin-left: 90px;
+}
+
+.no-data {
+    margin-top: 100px;
+    text-align: center;
+    font-size: 16px;
+    color: #999;
+    text-transform: uppercase;
 }
 
 /* style du menu principal */
