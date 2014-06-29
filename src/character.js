@@ -50,47 +50,46 @@ class Character {
         this.game.characters.select(this);
     }
 
-    /*
+    /**
      * @returns {number}
      */
-    getHpMax() {
-        return Math.ceil((this.hpBase / 5) * 100 * this.level);
+        getHpMax() {
+        return Math.ceil(((this.hpBase - 2) * 10 / 100 + 1) * 20 * this.level);
     }
 
-    /*
+    /**
      * @returns {number}
      */
-    getMpMax() {
-        return Math.ceil((this.mpBase / 5) * 10 * this.level);
-        ;
+        getMpMax() {
+        return Math.ceil(((this.mpBase - 2) * 10 / 100 + 1) * 2 * this.level);
     }
 
-    /*
+    /**
      * @returns {number}
      */
-    getHits() {
-        return this.level * this.weapon().hits;
+        getHits() {
+        return this.level * this.weapon().hits / 10;
     }
 
-    /*
+    /**
      * @returns {Object}
      */
-    getXpMax() {
+        getXpMax() {
         return this.xpFormula(this.level + 1);
     }
 
-    /*
+    /**
      * @param pixels_max
      * @returns {number}
      */
-    xpProgress(pixels_max) {
+        xpProgress(pixels_max) {
         return (this.xp == 0 ? 0 : this.xp / this.getXpMax() * pixels_max);
     }
 
-    /*
+    /**
      * @param xp
      */
-    setXp(xp) {
+        setXp(xp) {
         this.xp += xp;
         while (this.xp >= this.getXpMax()) {
             this.xp -= this.getXpMax();
@@ -100,18 +99,18 @@ class Character {
         }
     }
 
-    /*
+    /**
      * @returns {*}
      */
-    getLine() {
+        getLine() {
         //var zoneLvlMax = this.Characters.game.zones.levelMax;
         //return this.Characters.game.data.lines[zoneLvlMax][this.ref];
     }
 
-    /*
+    /**
      * @returns {Object}
      */
-    export() {
+        export() {
         var json = _.pick(this, 'inTeam', 'level', 'xp');
         json.model = this.constructor.name;
         return json;
