@@ -1,0 +1,29 @@
+{
+    "steps": [
+        {
+            "element" : "#step1",
+            "intro"   : "To begin, you'll have to fight enemies. A battle will begin as soon as you click here.",
+            "position": "right"
+        },
+        {
+            "element" : "#step2",
+            "intro"   : "During a battle, use the 'Attack' button for extras attacks as quick as you click.",
+            "position": "right"
+        },
+        {
+            "element" : "#step3",
+            "intro"   : "If you don't feel you can win, you can escape the battle by clicking here.",
+            "position": "right"
+        },
+        {
+            "element" : "#step4",
+            "intro"   : "Here is your HPs, you'll die if you end at 0.",
+            "position": "right"
+        },
+        {
+            "element" : "#step5",
+            "intro"   : "Remember, you can restore your HPs if it goes dangerously down.",
+            "position": "right"
+        }
+    ]
+}
