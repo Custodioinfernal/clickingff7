@@ -85,7 +85,7 @@ class Game {
         // build zone
         this.zones.add(new window['Zone' + level](this), true);
 
-        // remove characters from the team
+        // remove characters from the team if not available
         for (var c of this.characters.list) {
             if (c.notAvailable()) {
                 c.isNotAvailable = true;
@@ -97,28 +97,42 @@ class Game {
 
         switch (level) {
             case 1:
+                // add cloud in the team
                 this.characters.add(new Cloud(this), true);
                 this.weapons.add(new BusterSword(this), true);
 
+                // add barret in the team
                 this.characters.add(new Barret(this), true);
                 this.weapons.add(new GatlingGun(this), true);
 
+                // add materias
                 this.materias.add(new Restore(this), true);
                 this.materias.add(new Bolt(this), true);
 
+                // add items
                 this.items.add(new Potion(this), true);
                 this.items.add(new Potion(this), true);
 
                 break;
             case 2:
+                // add tifa in the team
                 this.characters.add(new Tifa(this), true);
                 this.weapons.add(new LeatherGlove(this), true);
                 break;
-            case 3: // Aerith
+            case 3:
+                // add aerith in the team
                 this.characters.add(new Aerith(this), true);
                 this.weapons.add(new GuardStick(this), true);
                 break;
-            case 5: // Red XIII
+            case 4:
+                // add barret & tifa in the team
+                for (var c of this.characters.list) {
+                    if (c.constructor.name === 'Barret' || c.constructor.name === 'Tifa') {
+                        c.inTeam = true;
+                    }
+                }
+            case 5:
+                // add redxiii in the team
                 //this.addWeapon('mythril-clip', true);
                 //this.addMateria('fire', 'redxiii');
                 //this.characters.add('redxiii');

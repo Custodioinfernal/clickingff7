@@ -47,6 +47,11 @@ class Loader {
                     "dist/enemies/zone3/hell-house.js",
                     "dist/enemies/zone3/vice.js",
                     "dist/enemies/zone3/whole-eater.js",
+                    "dist/enemies/zone4/aero-combatant.js",
+                    "dist/enemies/zone4/deenglow.js",
+                    "dist/enemies/zone4/eligor.js",
+                    "dist/enemies/zone4/guard-hound.js",
+                    "dist/enemies/zone4/reno.js",
                     "dist/items/potion.js",
                     "dist/items/ether.js",
                     "dist/materias/restore.js",
@@ -58,7 +63,8 @@ class Loader {
                     "dist/weapons/staves/guard-stick.js",
                     "dist/zones/zone1.js",
                     "dist/zones/zone2.js",
-                    "dist/zones/zone3.js"
+                    "dist/zones/zone3.js",
+                    "dist/zones/zone4.js"
                 ]}
         ];
 
