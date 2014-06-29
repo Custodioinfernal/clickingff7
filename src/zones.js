@@ -107,6 +107,8 @@ class Zones {
             this.levelMax++;
             this.nextZone = false;
             this.game.buildLevel(this.level);
+            this.game.characters.refresh();
+            this.game.shop.refresh();
         }
     }
 
