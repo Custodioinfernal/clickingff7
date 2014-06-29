@@ -30,19 +30,21 @@
         <ul>
             <li ng-click="goGame()" ng-class="{ current: isActive('/game')}">{{"Game"|translate}}</li>
             <li ng-click="goMap()" ng-class="{ current: isActive('/map')}">
-                {{"Map"|translate}} <span class="new" ng-show="game.zones.nextZone">NEW</span>
+                <div class="pull-right new" ng-show="game.zones.nextZone">NEW</div>
+                {{"Map"|translate}}
             </li>
+            <li ng-click="goShop()" ng-class="{ current: isActive('/shop')}">{{"Shop"|translate}}</li>
+            <li ng-click="goEquip()" ng-class="{ current: isActive('/equip')}">{{"Equip"|translate}}</li>
+            <li ng-click="goMateria()" ng-class="{ current: isActive('/materia')}">{{"Materia"|translate}}</li>
             <li ng-click="goItems()" ng-class="{ current: isActive('/items')}">{{"Items"|translate}}</li>
-            <li ng-click="goWeapons()" ng-class="{ current: isActive('/weapons')}">{{"Weapons"|translate}}</li>
-            <li ng-click="goMaterias()" ng-class="{ current: isActive('/materias')}">{{"Materias"|translate}}</li>
             <li ng-click="goConfig()" ng-class="{ current: isActive('/config')}">{{"Config"|translate}}</li>
             <li ng-click="goSave()" class="last" ng-class="{ current: isActive('/save')}">{{"Save"|translate}}</li>
         </ul>
     </nav>
 
     <div class="game-infos">
-        Time: {{game.getTime()}}<br/>
-        Gils: {{game.gils}}
+        {{"Time"|translate}}: {{game.time|time}}<br/>
+        {{"Gil"|translate}}: {{game.gils}}
     </div>
 
     <div class="game-location">

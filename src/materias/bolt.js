@@ -3,7 +3,7 @@ class Bolt extends Materia {
     constructor(game) {
         super(game);
 
-        this.name = 'Bolt'.toUpperCase();
+        this.name = 'Bolt';
 
         this.color = 'green';
 

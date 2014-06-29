@@ -6,6 +6,12 @@ class Weapon {
 
     constructor(game) {
         this.game = game;
+
+        // nbr owned
+        this.number = 1;
+
+        // equipped
+        this.equipped = false;
     }
 
     /**
@@ -25,31 +31,56 @@ class Weapon {
      * @return {int}
      */
     getPrice() {
-        return this.gils;
+        return this.price;
     }
 
-    /*
-     * Returns true if the weapon is owned in the inventory
-     * @return {boolean}
+    /**
+     * Returns true if the weapon can be bought
+     * @returns {boolean}
      */
-    inStock() {
-        var weapons = _.where(this.game.weapons, {
-            ref: this.ref
-        });
-        return weapons.length;
+        canBuy() {
+        return (this.game.gils >= this.getPrice());
+    }
+
+    /**
+     * Buy the weapon
+     */
+        buy() {
+        if (this.canBuy()) {
+            this.game.gils -= this.getPrice();
+            this.game.weapons.add(this, false);
+        }
+    }
+
+    /**
+     * Returns the number of owned
+     * @returns {*}
+     */
+        inStock() {
+        var sum = 0;
+        for ( var w of this.game.weapons.list) {
+            if (w.name === this.name) {
+                sum += w.number;
+            }
+        }
+        return sum;
     }
 
     /*
      * Equip a weapon
      */
     equip() {
-        var weapon = _.findWhere(this.game.weapons, {
-            character: this.character,
-            equipped : true
+        // find current equipped weapon
+        var weapon = _.findWhere(this.game.weapons.list, {
+            type    : this.type,
+            equipped: true
         });
 
-        weapon.equipped = false;
+        if (weapon) {
+            weapon.equipped = false;
+        }
 
+        // then equipped this one
         this.equipped = true;
 
         this.game.characters.refresh();
@@ -59,7 +90,7 @@ class Weapon {
      * Save weapon
      */
     export() {
-        var json = _.pick(this, 'equipped');
+        var json = _.pick(this, 'number', 'equipped');
         json.model = this.constructor.name;
         return json;
     }

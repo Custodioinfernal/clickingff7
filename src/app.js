@@ -34,17 +34,21 @@ app.config(['$routeProvider', '$translateProvider',
                 templateUrl: 'partials/map.html',
                 controller : 'MapCtrl'
             }).
+            when('/shop', {
+                templateUrl: 'partials/shop.html',
+                controller : 'ShopCtrl'
+            }).
             when('/items', {
                 templateUrl: 'partials/items.html',
                 controller : 'ItemsCtrl'
             }).
-            when('/weapons', {
-                templateUrl: 'partials/weapons.html',
-                controller : 'WeaponsCtrl'
+            when('/equip', {
+                templateUrl: 'partials/equip.html',
+                controller : 'EquipCtrl'
             }).
-            when('/materias', {
-                templateUrl: 'partials/materias.html',
-                controller : 'MateriasCtrl'
+            when('/materia', {
+                templateUrl: 'partials/materia.html',
+                controller : 'MateriaCtrl'
             }).
             when('/config', {
                 templateUrl: 'partials/config.html',
@@ -60,13 +64,32 @@ app.config(['$routeProvider', '$translateProvider',
     }
 ]);
 
+app.filter('time', function () {
+    return function (elapsed) {
+        var hours = Math.floor(elapsed / 3600);
+        elapsed -= hours * 3600;
+
+        var minutes = Math.floor(elapsed / 60);
+        if (minutes < 10) {
+            minutes = '0' + minutes;
+        }
+
+        var seconds = elapsed - minutes * 60;
+        if (seconds < 10) {
+            seconds = '0' + seconds;
+        }
+
+        return hours + ':' + minutes + ':' + seconds;
+    };
+});
+
 /**
  * INDEX
  */
 
-app.controller('IndexCtrl', function($scope, $location, Game) {
+app.controller('IndexCtrl', function ($scope, $location, Game) {
 
-    $scope.gameFn = function() {
+    $scope.gameFn = function () {
         return Game.mode;
     };
 
@@ -91,6 +114,15 @@ app.controller('IndexCtrl', function($scope, $location, Game) {
     };
 
     /**
+     * Go to the shop
+     */
+    $scope.goShop = function () {
+        if (!Game.battle.isBattle) {
+            $location.path("/shop");
+        }
+    };
+
+    /**
      * Go to the items
      */
     $scope.goItems = function () {
@@ -102,18 +134,18 @@ app.controller('IndexCtrl', function($scope, $location, Game) {
     /**
      * Go to the weapons
      */
-    $scope.goWeapons = function () {
+    $scope.goEquip = function () {
         if (!Game.battle.isBattle) {
-            $location.path("/weapons");
+            $location.path("/equip");
         }
     };
 
     /**
      * Go to the materias
      */
-    $scope.goMaterias = function () {
+    $scope.goMateria = function () {
         if (!Game.battle.isBattle) {
-            $location.path("/materias");
+            $location.path("/materia");
         }
     };
 
@@ -141,7 +173,7 @@ app.controller('IndexCtrl', function($scope, $location, Game) {
  * /Game
  */
 
-app.controller('GameCtrl', function($rootScope, Game) {
+app.controller('GameCtrl', function ($rootScope, Game) {
 
     /**
      * Explore for fight
@@ -188,37 +220,53 @@ app.controller('GameCtrl', function($rootScope, Game) {
  * /Map
  */
 
-app.controller('MapCtrl', function() {
+app.controller('MapCtrl', function () {
+});
+
+/**
+ * /Shop
+ */
+
+app.controller('ShopCtrl', function ($scope, Game) {
+
+    $scope.changeSection = function (s) {
+        Game.shop.section = s;
+    };
+
+    $scope.changeType = function (t) {
+        Game.shop.type = t;
+    };
+
 });
 
 /**
  * /Items
  */
 
-app.controller('ItemsCtrl', function() {
+app.controller('ItemsCtrl', function () {
 });
 
 /**
  * /Weapons
  */
 
-app.controller('WeaponsCtrl', function() {
+app.controller('EquipCtrl', function () {
 });
 
 /**
  * /Materias
  */
 
-app.controller('MateriasCtrl', function() {
+app.controller('MateriaCtrl', function () {
 });
 
 /**
  * /Config
  */
 
-app.controller('ConfigCtrl', function($scope, $rootScope, $translate, Game) {
+app.controller('ConfigCtrl', function ($scope, $rootScope, $translate, Game) {
 
-    $scope.changeLanguage = function() {
+    $scope.changeLanguage = function () {
         var language = $('#language').val();
         Game.language = language;
         $translate.use(language);
@@ -230,7 +278,7 @@ app.controller('ConfigCtrl', function($scope, $rootScope, $translate, Game) {
  * /Save
  */
 
-app.controller('SaveCtrl', function($scope, $rootScope, Game) {
+app.controller('SaveCtrl', function ($scope, $rootScope, Game) {
 
     /**
      * Save the game
@@ -255,7 +303,9 @@ app.controller('SaveCtrl', function($scope, $rootScope, Game) {
     $rootScope.exportLastSave = function (ev) {
         var s;
         if (s = Game.saves[0]) {
-            $scope.area = btoa(JSON.stringify(s));
+            $('#area-import').hide();
+            $('#area-export').show();
+            $scope.areaExport = btoa(JSON.stringify(s));
         }
     };
 
@@ -263,15 +313,25 @@ app.controller('SaveCtrl', function($scope, $rootScope, Game) {
      * Export the current game
      */
     $rootScope.exportCurrentGame = function (ev) {
-        $scope.area = btoa(JSON.stringify(Game.export()));
+        $scope.areaExport = btoa(JSON.stringify(Game.export()));
+        $('#area-import').hide();
+        $('#area-export').show();
+    };
+
+    /**
+     * Show import area
+     */
+    $rootScope.showImport = function (ev) {
+        $('#area-export').hide();
+        $('#area-import').show();
     };
 
     /**
      * Import a save
      */
     $rootScope.importSave = function (ev) {
-        if ($scope.area && confirm('Are you sure ? You\'ll lose your current save !')) {
-            var save = JSON.parse(atob($scope.area));
+        if ($scope.areaImport && confirm('Are you sure ? You\'ll lose your current save !')) {
+            var save = JSON.parse(atob($scope.areaImport));
             Game.load(save);
         }
     };

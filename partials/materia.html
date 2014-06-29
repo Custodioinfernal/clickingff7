@@ -16,7 +16,7 @@
 <div class="c3">
     <div>Other materias: {{game.materias.list.length - game.materias.getEquipped().length}}</div>
 
-    <div ng-repeat="materia in game.materias.getUnequipped()" class="materia">
+    <div ng-repeat="materia in game.materias.getUnequipped() track by $index" class="materia">
         <div ng-show="materia.canEquip()" ng-click="materia.equip()" class="pull-right">EQUIP</div>
         <div class="progress materia_ap">
             <div class="materia_ap_progress" ng-style="{width: materia.apProgress(200) + 'px'}"></div>

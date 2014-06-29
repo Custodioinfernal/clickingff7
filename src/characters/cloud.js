@@ -7,7 +7,7 @@ class Cloud extends Character {
         this.name = 'Cloud Strife';
 
         // character image
-        this.image = '/img/characters/cloud.png';
+        this.image = '/img/characters/cloud.jpg';
 
         // character weapon type
         this.weaponType = 'broadsword';

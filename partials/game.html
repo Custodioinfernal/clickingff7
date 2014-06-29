@@ -1,31 +1,41 @@
 <nav class="actions">
-    <ul>
-        <li ng-click="explore($event)" ng-class="{disabled: game.battle.isBattle}">EXPLORE</li>
+    <div class="block">
+        <ul>
+            <li ng-click="explore()" ng-class="{disabled: game.battle.isBattle}">
+                {{"Explore"|translate}}
+            </li>
+            <li ng-click="attack($event)"
+                ng-class="{disabled: !game.battle.isBattle, limit: game.characters.canLimit()}">
+                <span ng-if="!game.characters.canLimit()">{{"Attack"|translate}}</span>
+                <span ng-if="game.characters.canLimit()">{{"Limit"|translate}}</span>
+            </li>
+            <li ng-click="escape()" ng-class="{disabled: !game.battle.isBattle}">
+                {{"Escape"|translate}}
+            </li>
+        </ul>
+    </div>
 
-        <li ng-click="escape($event)" ng-class="{disabled: !game.battle.isBattle}">
-            ESCAPE
-        </li>
+    <div class="block">
+        <ul>
+            <li ng-repeat="materia in game.materias.getEquipped()"
+                ng-click="materia.action()"
+                ng-class="{disabled: !materia.canUse()}">
+                <div class="pull-right">{{materia.mpCost}}</div>
+                {{materia.name|translate}}
+            </li>
+        </ul>
+    </div>
 
-        <li ng-click="attack($event)"
-            ng-class="{disabled: !game.characters.canAttack(), limit: game.characters.canLimit()}">
-            <span ng-if="!game.characters.canLimit()">ATTACK</span>
-            <span ng-if="game.characters.canLimit()">LIMIT</span>
-        </li>
-
-        <li ng-repeat="materia in game.materias.getEquipped()"
-            ng-click="materia.action()"
-            ng-class="{disabled: !materia.canUse()}">
-            <div class="pull-right">{{materia.mpCost}}</div>
-            {{materia.name}}
-        </li>
-
-        <li ng-repeat="item in game.items.getEquipped()"
-            ng-click="item.action()"
-            ng-class="{disabled: !item.canUse()}">
-            <div class="pull-right">{{item.mpCost}}</div>
-            {{item.name}}
-        </li>
-    </ul>
+    <div class="block" ng-if="game.items.getEquipped().length > 0">
+        <ul>
+            <li ng-repeat="item in game.items.getEquipped()"
+                ng-click="item.action()"
+                ng-class="{disabled: !item.canUse()}">
+                <div class="pull-right">{{item.number}}</div>
+                {{item.name|translate}}
+            </li>
+        </ul>
+    </div>
 </nav>
 
 <div class="wrapper">
@@ -39,21 +49,24 @@
 
             <div>
                 <div class="progress characters_hp">
-                    <div class="characters_hp_progress" ng-style="{width: game.characters.hpProgress(300) + 'px'}"></div>
+                    <div class="characters_hp_progress"
+                         ng-style="{width: game.characters.hpProgress(300) + 'px'}"></div>
                     <span class="bar-label">{{game.characters.hp}} / {{game.characters.hpMax}} HP</span>
                 </div>
             </div>
 
             <div>
                 <div class="progress characters_mp">
-                    <div class="characters_mp_progress" ng-style="{width: game.characters.mpProgress(300) + 'px'}"></div>
+                    <div class="characters_mp_progress"
+                         ng-style="{width: game.characters.mpProgress(300) + 'px'}"></div>
                     <span class="bar-label">{{game.characters.mp}} / {{game.characters.mpMax}} MP</span>
                 </div>
             </div>
 
             <div>
                 <div class="progress characters_limit">
-                    <div class="characters_limit_progress" ng-style="{width: game.characters.limitProgress(300) + 'px'}"></div>
+                    <div class="characters_limit_progress"
+                         ng-style="{width: game.characters.limitProgress(300) + 'px'}"></div>
                     <span class="bar-label">LIMIT</span>
                 </div>
             </div>
@@ -61,54 +74,54 @@
 
         <!-- characters list -->
         <div ng-repeat="(i, character) in game.characters.getTeam()" class="card">
-            <div class="progress characters_xp">
-                <div class="xp_progress" ng-style="{width: character.xpProgress(300) + 'px'}"></div>
-                <span class="bar-label">{{character.xp}} / {{character.getXpMax()}} EXP</span>
+            <div class="avatar">
+                <img ng-src="{{character.image}}" alt="avatar" width="80" class="icon"/>
             </div>
+            <!--
+                    -->
             <div class="main">
-                <div class="avatar">
-                    <img ng-src="{{character.image}}" alt="avatar" class="icon"/>
+
+                <div class="progress characters_xp">
+                    <div class="xp_progress" ng-style="{width: character.xpProgress(200) + 'px'}"></div>
+                    <span class="bar-label">{{character.xp}} / {{character.getXpMax()}} EXP</span>
                 </div>
-                <!--
-                        -->
-                <div>
-                    <div>{{character.name}} <strong>(LVL{{character.level}})</strong></div>
-                    <div ng-if="character.level > 0">
-                        <span class="label">hp</span> {{character.getHpMax()}}
-                        <span class="label">mp</span> {{character.getMpMax()}}
-                        <span class="label">pwr</span> {{character.getHits()}}
-                    </div>
-                    <div class="line">"{{character.getLine()}}"</div>
+
+                <div>{{character.name}} <strong>(LVL{{character.level}})</strong></div>
+                <div ng-if="character.level > 0">
+                    <span class="label">hp</span> {{character.getHpMax()}}
+                    <span class="label">mp</span> {{character.getMpMax()}}
+                    <span class="label">pwr</span> {{character.getHits()}}
                 </div>
+                <div class="line">"{{character.getLine()}}"</div>
             </div>
+
+            <div style="clear: left"></div>
         </div>
     </div>
 
     <div class="c3">
         <!-- enemies bars -->
-        <div class="bars">
+        <div class="bars" ng-if="game.enemies.list.length > 0">
             <div class="characters_hits">
                 <div class="hit hit_{{$index+1}}" ng-repeat="hit in game.characters.arrHits track by $index">{{hit}}
                 </div>
             </div>
 
-            <div ng-if="game.enemies.list.length > 0">
-                <div class="progress enemy_hp">
-                    <div class="enemy_hp_progress" ng-style="{width: game.enemies.hpProgress(300) + 'px'}"></div>
-                    <span class="bar-label">{{game.enemies.hp}} / {{game.enemies.hpMax}} HP</span>
-                </div>
+            <div class="progress enemy_hp">
+                <div class="enemy_hp_progress" ng-style="{width: game.enemies.hpProgress(300) + 'px'}"></div>
+                <span class="bar-label">{{game.enemies.hp}} / {{game.enemies.hpMax}} HP</span>
             </div>
         </div>
 
-        <div ng-if="game.enemies.list.length === 0" class="no-enemies">
-            NO ENEMIES
+        <div ng-if="game.enemies.list.length === 0" class="no-data">
+            {{"No enemies"|translate}}
         </div>
 
         <!-- enemies list -->
         <div ng-repeat="enemy in game.enemies.list" class="card">
             <div class="main">
                 <div class="avatar">
-                    <img ng-src="{{enemy.image}}" alt="avatar" height="48"/>
+                    <img ng-src="{{enemy.image}}" alt="avatar" width="80"/>
                 </div>
                 <div>
                     {{enemy.name}} <strong>(LVL{{enemy.level}})</strong>

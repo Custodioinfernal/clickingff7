@@ -8,6 +8,12 @@ class Item {
 
     constructor(game) {
         this.game = game;
+
+        // nbr owned
+        this.number = 1;
+
+        // nbr equipped
+        this.equipped = 0;
     }
 
     /**
@@ -29,7 +35,11 @@ class Item {
         action(fn) {
         // cost
         if (this.canUse()) {
-            _.remove(this.game.items.list, this);
+            if (this.number > 1) {
+                this.number--;
+            } else {
+                _.remove(this.game.items.list, this);
+            }
         } else {
             throw "CANNOT USE";
         }
@@ -45,6 +55,46 @@ class Item {
     }
 
     /**
+     * Returns the price of the item
+     * @return {int}
+     */
+        getPrice() {
+        return this.price;
+    }
+
+    /**
+     * Returns true if the item can be bought
+     * @returns {boolean}
+     */
+        canBuy() {
+        return (this.game.gils >= this.getPrice());
+    }
+
+    /**
+     * Buy the item
+     */
+        buy() {
+        if (this.canBuy()) {
+            this.game.gils -= this.getPrice();
+            this.game.items.add(this);
+        }
+    }
+
+    /**
+     * Returns the number of owned
+     * @returns {Number}
+     */
+        inStock() {
+        var sum = 0;
+        for (var i of this.game.items.list) {
+            if (i.name === this.name) {
+                sum += i.number;
+            }
+        }
+        return sum;
+    }
+
+    /**
      * Returns true if the materia can be equipped
      * @returns {boolean}
      */
@@ -56,21 +106,21 @@ class Item {
      * Equip the item
      */
         equip() {
-        this.equipped = true;
+        this.equipped = this.number;
     }
 
     /**
      * Unequip the item
      */
         unequip() {
-        this.equipped = false;
+        this.equipped = 0;
     }
 
     /**
      * Save materia data
      */
         export() {
-        var json = _.pick(this, 'equipped');
+        var json = _.pick(this, 'number', 'equipped');
         json.model = this.constructor.name;
         return json;
     }

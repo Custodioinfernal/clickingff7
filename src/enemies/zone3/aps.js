@@ -1,11 +1,11 @@
-class AirBuster extends Enemy {
+class Aps extends Enemy {
 
     constructor(game) {
         super(game);
 
-        this.name = 'Air Buster';
+        this.name = 'Aps';
 
-        this.image = '/img/enemies/zone2/air-buster.png';
+        this.image = '/img/enemies/zone3/aps.png';
 
         this.boss = true;
 

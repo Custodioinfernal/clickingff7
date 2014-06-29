@@ -7,7 +7,7 @@ class Barret extends Character {
         this.name = 'Barret Wallace';
 
         // character image
-        this.image = '/img/characters/barret.png';
+        this.image = '/img/characters/barret.jpg';
 
         // character weapon type
         this.weaponType = 'gun-arm';
