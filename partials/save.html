@@ -2,10 +2,10 @@
     <div class="block">
         <ul>
             <li ng-click="saveGame()">
-                SAVE
+                {{"Save"|translate}}
             </li>
             <li ng-click="resetGame()">
-                RESET
+                {{"Reset"|translate}}
             </li>
         </ul>
     </div>
@@ -13,13 +13,13 @@
     <div class="block">
         <ul>
             <li ng-click="exportLastSave()">
-                EXPORT SAVE
+                {{"Export save"|translate}}
             </li>
             <li ng-click="exportCurrentGame()">
-                EXPORT GAME
+                {{"Export game"|translate}}
             </li>
             <li ng-click="showImport()">
-                IMPORT
+                {{"Import"|translate}}
             </li>
         </ul>
     </div>
@@ -28,16 +28,16 @@
 <div class="c1">
     <div ng-if="game.saves.length === 0" class="no-enemies">
         <div style="margin-top: 100px;"></div>
-        NO SAVE
+        {{"No saves"|translate}}
     </div>
 
     <div ng-if="game.saves.length > 0">
         <img ng-repeat="character in game.saves[0].characters.list" ng-src="{{character.image}}" alt="" width="80"
              class="save_character"/>
         <br/>
-        Time: {{game.saves[0].time|time}}
+        {{"Time"|translate}}: {{game.saves[0].time|time}}
         <br/>
-        Gils: {{game.saves[0].gils}}
+        {{"Gil"|translate}}: {{game.saves[0].gils}}
     </div>
 </div>
 

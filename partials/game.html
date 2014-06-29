@@ -2,15 +2,15 @@
     <div class="block">
         <ul>
             <li ng-click="explore()" ng-class="{disabled: game.battle.isBattle}">
-                EXPLORE
+                {{"Explore"|translate}}
             </li>
             <li ng-click="attack($event)"
                 ng-class="{disabled: !game.battle.isBattle, limit: game.characters.canLimit()}">
-                <span ng-if="!game.characters.canLimit()">ATTACK</span>
-                <span ng-if="game.characters.canLimit()">LIMIT</span>
+                <span ng-if="!game.characters.canLimit()">{{"Attack"|translate}}</span>
+                <span ng-if="game.characters.canLimit()">{{"Limit"|translate}}</span>
             </li>
             <li ng-click="escape()" ng-class="{disabled: !game.battle.isBattle}">
-                ESCAPE
+                {{"Escape"|translate}}
             </li>
         </ul>
     </div>
@@ -21,7 +21,7 @@
                 ng-click="materia.action()"
                 ng-class="{disabled: !materia.canUse()}">
                 <div class="pull-right">{{materia.mpCost}}</div>
-                {{materia.name}}
+                {{materia.name|translate}}
             </li>
         </ul>
     </div>
@@ -32,7 +32,7 @@
                 ng-click="item.action()"
                 ng-class="{disabled: !item.canUse()}">
                 <div class="pull-right">{{item.number}}</div>
-                {{item.name}}
+                {{item.name|translate}}
             </li>
         </ul>
     </div>
@@ -116,7 +116,7 @@
         </div>
 
         <div ng-if="game.enemies.list.length === 0" class="no-enemies">
-            NO ENEMIES
+            {{"No enemies"|translate}}
         </div>
 
         <!-- enemies list -->

@@ -3,7 +3,7 @@ class Ether extends Item {
     constructor(game) {
         super(game);
 
-        this.name = 'Ether'.toUpperCase();
+        this.name = 'Ether';
 
         this.price = 200;
 
