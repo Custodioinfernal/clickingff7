@@ -31,7 +31,7 @@
     </div>
 
     <div ng-if="game.saves.length > 0">
-        <img ng-repeat="character in game.saves[0].characters.list" ng-src="{{character.image}}" alt="" width="80"
+        <img ng-repeat="character in game.saves[0].characters.list" ng-if="character.inTeam" ng-src="{{character.image}}" alt="" width="80"
              class="save_character"/>
         <br/>
         {{"Time"|translate}}: {{game.saves[0].time|time}}
