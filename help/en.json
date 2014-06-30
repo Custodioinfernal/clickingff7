@@ -15,17 +15,17 @@
         },
         {
             "element" : "#step3",
-            "intro"   : "This is the magic points of your team. If you want to use magic, you must have required MP.",
+            "intro"   : "This is the magic points of your team. You need them to use magic.",
             "position": "bottom"
         },
         {
             "element" : "#step4",
-            "intro"   : "When you get attacked, this bar will rise up. When it gets full, your next attack will be overkill !",
+            "intro"   : "When you get damaged, this bar will rise up. When it gets full, your next attack will be overkill !",
             "position": "bottom"
         },
         {
             "element" : "#step5",
-            "intro"   : "This is where the enemy will appears. To win the battle, you have to kill them before they do. Try to search for weakness to win faster.",
+            "intro"   : "This is where the enemy will appears. To win the battle, you have to kill them before they do.",
             "position": "left"
         },
         {
@@ -50,13 +50,13 @@
         },
         {
             "element" : "#step10",
-            "intro"   : "This is the main menu. You can buy new items at the shop, handle your weapons/materia/items, save your party, etc.",
+            "intro"   : "This is the main menu. You can buy new items at the shop, handle your inventory, save your party, etc.",
             "position": "left"
         },
         {
             "element" : "#step11",
-            "intro"   : "This is your current zone. There is a hidden boss in each zones. Find them to go next zone !",
-            "position": "left"
+            "intro"   : "Your are actually into this zone. There is a hidden boss in each zones. Find it and kill it to go next zone !",
+            "position": "top"
         },
         {
             "element" : "#step12",
@@ -65,11 +65,11 @@
         },
         {
             "element" : "#step13",
-            "intro"   : "If you want to report a bug, or ask for features that can make this game more fun, click here !",
+            "intro"   : "If you want to report a bug, or ask for features that can make this game more fun, go there.",
             "position": "top"
         },
         {
-            "intro": "That's all ! Thanks for your attention ! Good luck and have fun ;)"
+            "intro": "Well, that's all ! Thanks for your attention ! Good luck and have fun ;)"
         }
     ]
 }
