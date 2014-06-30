@@ -13,6 +13,7 @@
     "Game"         : "Jeu",
     "Gil"          : "Gils",
     "Go next zone" : "Aller à la zone suivante",
+    "Help"         : "Aide ?",
     "Import"       : "Importer",
     "In stock"     : "En stock",
     "Items"        : "Objets",
@@ -24,13 +25,14 @@
     "No saves"     : "Aucune sauvegarde",
     "Not available": "Non disponible",
     "Not completed": "Non terminé",
+    "PHS"          : "PHS",
     "Potion"       : "Potion",
     "Price"        : "Prix",
     "Sell"         : "Vendre",
     "Shop"         : "Boutique",
     "Reset"        : "Réinitialiser",
     "Restore"      : "Restaurer",
-    "Save"         : "Sauvegarder",
+    "Save"         : "Enregistrer",
     "Time"         : "Tps",
     "Weapons"      : "Armes",
     "Zone 1 name"  : "Réacteur du Secteur 1",
@@ -40,5 +42,7 @@
     "Zone 3 name"  : "Secteur 6",
     "Zone 3 desc"  : "C'était un piège ! Avalanche a quand même réussi à détruire le second réacteur. Cependant, Cloud a été séparé de ses amis et s'est réveillé dans une église, après une longue chute, en faisant la rencontre d'Aerith.",
     "Zone 4 name"  : "Secteur 7",
-    "Zone 4 desc"  : "Avec l'aide d'Aerith, Cloud retrouve ses amis, se battant contre la SHINRA qui a l'intention de faire exploser le secteur 7. Aerith part prévenir les habitants de la région."
+    "Zone 4 desc"  : "Avec l'aide d'Aerith, Cloud retrouve ses amis, se battant contre la SHINRA qui a l'intention de faire exploser le secteur 7. Aerith part prévenir les habitants de la région.",
+    "Zone 5 name"  : "QG de la SHINRA (partie 1)",
+    "Zone 5 desc"  : "Aerith est la dernière Ancienne mais elle a été kidnappée ! Cloud, Barret et Tifa trouvent un chemin vers le QG de la SHINRA afin de la secourir. Red XIII, un animal mystérieux, leur vient en aide."
 }

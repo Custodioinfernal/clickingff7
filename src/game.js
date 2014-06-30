@@ -17,7 +17,7 @@ class Game {
         this.loaded = false;
 
         // language
-        this.language = 'en';
+        this.language = this.getLanguage($translate.preferredLanguage());
 
         // fight mode
         this.mode = "normal";
@@ -27,6 +27,22 @@ class Game {
 
         // load all resources
         this.loader = new Loader(this);
+    }
+
+    /**
+     * Get language
+     * @param language
+     * @param def
+     * @returns {*}
+     */
+        getLanguage(language, def) {
+        var languages = ['en', 'fr'];
+        for (var l of languages) {
+            if (l === language) {
+                return language;
+            }
+        }
+        return 'en';
     }
 
     /**
@@ -50,7 +66,7 @@ class Game {
         // savable vars
         this.time = 0;
         this.gils = 200;
-        this.version = "1.0.0-beta.4";
+        this.version = "1.0.0-beta.5";
 
         // save
         this.saves = [];
@@ -87,15 +103,7 @@ class Game {
         // build zone
         this.zones.add(new window['Zone' + level](this), true);
 
-        // remove characters from the team if not available
-        for (var c of this.characters.list) {
-            if (c.notAvailable()) {
-                c.isNotAvailable = true;
-                c.inTeam = false;
-            } else {
-                c.isNotAvailable = false;
-            }
-        }
+        this.characters.available();
 
         switch (level) {
             case 1:
@@ -133,11 +141,11 @@ class Game {
                         c.inTeam = true;
                     }
                 }
+                break;
             case 5:
                 // add redxiii in the team
-                //this.addWeapon('mythril-clip', true);
-                //this.addMateria('fire', 'redxiii');
-                //this.characters.add('redxiii');
+                this.characters.add(new RedXIII(this), true);
+                this.weapons.add(new MythrilClip(this), true);
                 break;
         }
 
@@ -199,6 +207,8 @@ class Game {
 
         this.zones.level = save.zones.level;
         this.zones.levelMax = save.zones.levelMax;
+
+        this.characters.available();
 
         // weapons
         for (var w of save.weapons) {

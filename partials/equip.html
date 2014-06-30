@@ -11,15 +11,39 @@
 
 <div class="c1">
 
-    <div>Weapon equipped: {{game.characters.selected.weapon().name}}</div>
+    <img ng-src="{{game.characters.selected.image}}" width="80" alt="current_character" style="float: left"/>
+
+    <div class="main">
+        <p>
+            Weapon equipped: <br/>{{game.characters.selected.weapon().name}}
+        </p>
+
+        <p>
+            Power: <br/>{{game.characters.selected.weapon().hits}}
+        </p>
+
+        <p>
+            Materia: <br/>+{{game.characters.selected.weapon().maxMaterias}}
+        </p>
+    </div>
 
 </div>
 
 <div class="c3">
-    <div>Other weapons:</div>
+    <div ng-if="game.characters.selected.getOthersWeapons().length !== 0">
+        <table style="width: 100%">
+            <tr>
+                <th>Nom</th>
+                <th></th>
+            </tr>
+            <tr ng-repeat="weapon in game.characters.selected.getOthersWeapons()" class="weapon">
+                <td>{{weapon.name}}</td>
+                <td><span ng-click="weapon.equip()" class="button">EQUIP</span></td>
+            </tr>
+        </table>
+    </div>
 
-    <div ng-repeat="weapon in game.characters.selected.getOthersWeapons()" class="weapon">
-        <div ng-click="weapon.equip()" class="pull-right">EQUIP</div>
-        {{weapon.name}}
+    <div class="no-data" ng-if="game.characters.selected.getOthersWeapons().length === 0">
+        NO OTHERS WEAPONS
     </div>
 </div>

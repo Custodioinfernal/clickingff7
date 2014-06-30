@@ -1,6 +1,6 @@
 {
   "name": "clickingff7",
-  "version": "1.0.0-beta.4",
+  "version": "1.0.0-beta.5",
   "homepage": "https://github.com/Menencia/clickingff7",
   "authors": [
     "Menencia <menencia@gmail.com>"
@@ -22,6 +22,7 @@
     "lodash": "~2.4.1",
     "traceur-runtime": "*",
     "angular-translate": "~2.2.0",
-    "angular-translate-loader-static-files": "~2.2.0"
+    "angular-translate-loader-static-files": "~2.2.0",
+    "intro.js": "~0.9.0"
   }
 }

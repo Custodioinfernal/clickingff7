@@ -67,6 +67,17 @@ class Characters {
         });
     }
 
+    /**
+     * Returns the backup (not in team) characters
+     * @returns {Array}
+     */
+        getBackup() {
+        return _.where(this.list, {
+            inTeam        : false,
+            isNotAvailable: false
+        });
+    }
+
     /*
      * Refresh characters stats
      */
@@ -95,14 +106,31 @@ class Characters {
 
         this.limitMax = 2 * this.hpMax / 3;
 
-        if (!_.has(this, 'hp')) {
+        if (!_.has(this, 'hp') || this.hp > this.hpMax) {
             this.hp = this.hpMax;
         }
-        if (!_.has(this, 'mp')) {
+        if (!_.has(this, 'mp') || this.mp > this.mpMax) {
             this.mp = this.mpMax;
         }
         if (!_.has(this, 'limit')) {
             this.limit = 0;
+        }
+        if (this.limit > this.limitMax) {
+            this.limit = this.limitMax;
+        }
+    }
+
+    /**
+     * Remove characters from the team if not available
+     */
+        available() {
+        for (var c of this.list) {
+            if (c.notAvailable()) {
+                c.isNotAvailable = true;
+                c.inTeam = false;
+            } else {
+                c.isNotAvailable = false;
+            }
         }
     }
 
