@@ -56,6 +56,10 @@ app.config(['$routeProvider', '$translateProvider',
                 templateUrl: 'partials/config.html',
                 controller : 'ConfigCtrl'
             }).
+            when('/phs', {
+                templateUrl: 'partials/phs.html',
+                controller : 'PHSCtrl'
+            }).
             when('/save', {
                 templateUrl: 'partials/save.html',
                 controller : 'SaveCtrl'
@@ -157,6 +161,15 @@ app.controller('IndexCtrl', function ($scope, $location, $http, Game) {
     $scope.goConfig = function (ev) {
         if (!Game.battle.isBattle) {
             $location.path("/config");
+        }
+    };
+
+    /**
+     * Go to the PHS
+     */
+    $scope.goPHS = function (ev) {
+        if (!Game.battle.isBattle) {
+            $location.path("/phs");
         }
     };
 
@@ -281,6 +294,13 @@ app.controller('ConfigCtrl', function ($scope, $rootScope, $translate, Game) {
         $translate.use(language);
     };
 
+});
+
+/**
+ * /PHS
+ */
+
+app.controller('PHSCtrl', function () {
 });
 
 /**

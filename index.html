@@ -39,6 +39,9 @@
             <li ng-click="goMateria()" ng-class="{ current: isActive('/materia')}">{{"Materia"|translate}}</li>
             <li ng-click="goItems()" ng-class="{ current: isActive('/items')}">{{"Items"|translate}}</li>
             <li ng-click="goConfig()" ng-class="{ current: isActive('/config')}">{{"Config"|translate}}</li>
+            <li ng-click="goPHS()" ng-class="{ current: isActive('/phs')}" ng-if="game.zones.levelMax >= 5">
+                {{"PHS"|translate}}
+            </li>
             <li ng-click="goSave()" ng-class="{ current: isActive('/save')}">{{"Save"|translate}}</li>
             <li ng-click="help()" class="last">{{"Help"|translate}}</li>
         </ul>

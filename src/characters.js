@@ -67,6 +67,17 @@ class Characters {
         });
     }
 
+    /**
+     * Returns the backup (not in team) characters
+     * @returns {Array}
+     */
+        getBackup() {
+        return _.where(this.list, {
+            inTeam        : false,
+            isNotAvailable: false
+        });
+    }
+
     /*
      * Refresh characters stats
      */

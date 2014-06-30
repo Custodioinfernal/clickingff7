@@ -112,6 +112,40 @@ class Character {
     }
 
     /**
+     * Returns true if character can join team
+     * @returns {boolean}
+     */
+        canJoinTeam() {
+        return (this.game.characters.getTeam().length < this.game.characters.MAX_TEAM);
+    }
+
+    /**
+     * Character joins the team
+     */
+        joinTeam() {
+        if (this.canJoinTeam()) {
+            this.inTeam = true;
+        }
+    }
+
+    /**
+     * Returns true if the character can leave the team
+     * @returns {boolean}
+     */
+        canLeaveTeam() {
+        return (this.game.characters.getTeam().length > 1);
+    }
+
+    /**
+     * Character leaves the team
+     */
+        leaveTeam() {
+        if (this.canLeaveTeam()) {
+            this.inTeam = false;
+        }
+    }
+
+    /**
      * @returns {*}
      */
         getLine() {
