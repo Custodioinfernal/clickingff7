@@ -121,6 +121,20 @@ class Characters {
     }
 
     /**
+     * Remove characters from the team if not available
+     */
+        available() {
+        for (var c of this.list) {
+            if (c.notAvailable()) {
+                c.isNotAvailable = true;
+                c.inTeam = false;
+            } else {
+                c.isNotAvailable = false;
+            }
+        }
+    }
+
+    /**
      * Select a character in menus
      * @param character
      */

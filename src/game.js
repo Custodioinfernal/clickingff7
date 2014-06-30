@@ -103,15 +103,7 @@ class Game {
         // build zone
         this.zones.add(new window['Zone' + level](this), true);
 
-        // remove characters from the team if not available
-        for (var c of this.characters.list) {
-            if (c.notAvailable()) {
-                c.isNotAvailable = true;
-                c.inTeam = false;
-            } else {
-                c.isNotAvailable = false;
-            }
-        }
+        this.characters.available();
 
         switch (level) {
             case 1:
@@ -215,6 +207,8 @@ class Game {
 
         this.zones.level = save.zones.level;
         this.zones.levelMax = save.zones.levelMax;
+
+        this.characters.available();
 
         // weapons
         for (var w of save.weapons) {
