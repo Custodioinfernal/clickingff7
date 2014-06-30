@@ -4,19 +4,20 @@
 
 class Game {
 
-    constructor($rootScope, $cookieStore, $http, $timeout) {
+    constructor($rootScope, $cookieStore, $http, $timeout, $translate) {
 
         // angular vars
         this.$rootScope = $rootScope;
         this.$cookieStore = $cookieStore;
         this.$http = $http;
         this.$timeout = $timeout;
+        this.$translate = $translate;
 
         // detect first load
         this.loaded = false;
 
         // language
-        this.language = 'en';
+        this.language = this.getLanguage($translate.preferredLanguage());
 
         // fight mode
         this.mode = "normal";
@@ -26,6 +27,22 @@ class Game {
 
         // load all resources
         this.loader = new Loader(this);
+    }
+
+    /**
+     * Get language
+     * @param language
+     * @param def
+     * @returns {*}
+     */
+        getlanguage(language, def) {
+        var languages = ['en', 'fr'];
+        for (var l of languages) {
+            if (l === language) {
+                return language;
+            }
+        }
+        return 'en';
     }
 
     /**
@@ -68,6 +85,8 @@ class Game {
             this.reset();
             this.buildLevel(1);
         }
+
+        this.$translate.use(this.language);
 
         this.shop.refresh();
 

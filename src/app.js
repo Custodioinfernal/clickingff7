@@ -9,9 +9,9 @@ var app = angular.module('clickingff7', ['ngRoute', 'ngCookies', 'pascalprecht.t
 /**
  * Game Service
  */
-app.factory('Game', ['$rootScope', '$cookieStore', '$http', '$timeout',
-    function ($rootScope, $cookieStore, $http, $timeout) {
-        return new Game($rootScope, $cookieStore, $http, $timeout);
+app.factory('Game', ['$rootScope', '$cookieStore', '$http', '$timeout', '$translate',
+    function ($rootScope, $cookieStore, $http, $timeout, $translate) {
+        return new Game($rootScope, $cookieStore, $http, $timeout, $translate);
     }]);
 
 /**
@@ -25,7 +25,7 @@ app.config(['$routeProvider', '$translateProvider',
             suffix: '.json'
         });
 
-        $translateProvider.preferredLanguage(window.navigator.userLanguage || window.navigator.language);
+        $translateProvider.determinePreferredLanguage();
 
         $routeProvider.
             when('/game', {
