@@ -95,14 +95,17 @@ class Characters {
 
         this.limitMax = 2 * this.hpMax / 3;
 
-        if (!_.has(this, 'hp')) {
+        if (!_.has(this, 'hp') || this.hp > this.hpMax) {
             this.hp = this.hpMax;
         }
-        if (!_.has(this, 'mp')) {
+        if (!_.has(this, 'mp') || this.mp > this.mpMax) {
             this.mp = this.mpMax;
         }
         if (!_.has(this, 'limit')) {
             this.limit = 0;
+        }
+        if (this.limit > this.limitMax) {
+            this.limit = this.limitMax;
         }
     }
 
