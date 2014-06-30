@@ -32,6 +32,7 @@ class Loader {
                     "dist/characters/cloud.js",
                     "dist/characters/tifa.js",
                     "dist/characters/aerith.js",
+                    "dist/characters/red-xiii.js",
                     "dist/enemies/zone1/first-ray.js",
                     "dist/enemies/zone1/grunt.js",
                     "dist/enemies/zone1/guard-scorpion.js",
@@ -52,6 +53,11 @@ class Loader {
                     "dist/enemies/zone4/eligor.js",
                     "dist/enemies/zone4/guard-hound.js",
                     "dist/enemies/zone4/reno.js",
+                    "dist/enemies/zone5/mighty-grunt.js",
+                    "dist/enemies/zone5/sample-h0512.js",
+                    "dist/enemies/zone5/soldier-3rd.js",
+                    "dist/enemies/zone5/sword-dance.js",
+                    "dist/enemies/zone5/vargid-police.js",
                     "dist/items/potion.js",
                     "dist/items/ether.js",
                     "dist/materias/restore.js",
@@ -63,10 +69,12 @@ class Loader {
                     "dist/weapons/knuckles/metal-knuckle.js",
                     "dist/weapons/staves/guard-stick.js",
                     "dist/weapons/staves/mythril-rod.js",
+                    "dist/weapons/headdresses/mythril-clip.js",
                     "dist/zones/zone1.js",
                     "dist/zones/zone2.js",
                     "dist/zones/zone3.js",
-                    "dist/zones/zone4.js"
+                    "dist/zones/zone4.js",
+                    "dist/zones/zone5.js"
                 ]}
         ];
 

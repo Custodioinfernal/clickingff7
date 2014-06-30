@@ -149,11 +149,11 @@ class Game {
                         c.inTeam = true;
                     }
                 }
+                break;
             case 5:
                 // add redxiii in the team
-                //this.addWeapon('mythril-clip', true);
-                //this.addMateria('fire', 'redxiii');
-                //this.characters.add('redxiii');
+                this.characters.add(new RedXIII(this), true);
+                this.weapons.add(new MythrilClip(this), true);
                 break;
         }
 

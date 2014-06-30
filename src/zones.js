@@ -15,7 +15,7 @@ class Zones {
         this.level = 1;
         this.levelMax = 1;
         this.nextZone = false;
-        this.MAX_ZONES = 4;
+        this.MAX_ZONES = 5;
     }
 
     /**
