@@ -10,7 +10,7 @@ class VargidPolice extends Enemy {
         // BELOW – rate over 5
         this.hpMax = 2;
         this.hits = 1;
-        this.xp = 0;
+        this.xp = 3;
         this.ap = 3;
         this.gils = 0;
         // END

@@ -10,7 +10,7 @@ class Eligor extends Enemy {
         // BELOW – rate over 5
         this.hpMax = 4;
         this.hits = 3;
-        this.xp = 1;
+        this.xp = 4;
         this.ap = 1;
         this.gils = 1;
         // END
