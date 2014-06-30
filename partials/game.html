@@ -121,26 +121,30 @@
 
         <!-- enemies list -->
         <div ng-repeat="enemy in game.enemies.list" class="card">
+            <div class="avatar">
+                <img ng-src="{{enemy.image}}" alt="avatar" width="80"/>
+            </div>
+            <!--
+                        -->
             <div class="main">
-                <div class="avatar">
-                    <img ng-src="{{enemy.image}}" alt="avatar" width="80"/>
-                </div>
-                <div>
-                    {{enemy.name}} <strong>(LVL{{enemy.level}})</strong>
+
+                <div>{{enemy.name}} <strong>(LVL{{enemy.level}})</strong>
                     <span ng-if="enemy.boss" class="boss">ZONE BOSS</span>
                     <span ng-if="enemy.miboss" class="boss">BOSS</span>
+                </div>
 
-                    <div>
-                        <span class="label">hp</span> {{enemy.getHpMax()}}
-                        <span class="label">pwr</span> {{enemy.getHits()}}
-                    </div>
-                    <div>
-                        <span class="label">xp</span> {{enemy.xpReward()}}
-                        <span class="label">ap</span> {{enemy.apReward()}}
-                        <span class="label">gils</span> {{enemy.gilsReward()}}
-                    </div>
+                <div>
+                    <span class="label">hp</span> {{enemy.getHpMax()}}
+                    <span class="label">pwr</span> {{enemy.getHits()}}
+                </div>
+                <div>
+                    <span class="label">xp</span> {{enemy.xpReward()}}
+                    <span class="label">ap</span> {{enemy.apReward()}}
+                    <span class="label">gils</span> {{enemy.gilsReward()}}
                 </div>
             </div>
+
+            <div style="clear: left"></div>
         </div>
     </div>
 
