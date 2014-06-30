@@ -9,7 +9,8 @@
 
     <title>Clicking FF7</title>
 
-    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="/css/style.css">
+    <link rel="stylesheet" type="text/css" href="/bower_components/intro.js/minified/introjs.min.css">
 </head>
 
 <body ng-controller="IndexCtrl">
@@ -26,7 +27,7 @@
 
 <div class="page" ng-show="game.loaded">
 
-    <nav class="game-menu">
+    <nav class="game-menu" id="step10">
         <ul>
             <li ng-click="goGame()" ng-class="{ current: isActive('/game')}">{{"Game"|translate}}</li>
             <li ng-click="goMap()" ng-class="{ current: isActive('/map')}">
@@ -38,7 +39,8 @@
             <li ng-click="goMateria()" ng-class="{ current: isActive('/materia')}">{{"Materia"|translate}}</li>
             <li ng-click="goItems()" ng-class="{ current: isActive('/items')}">{{"Items"|translate}}</li>
             <li ng-click="goConfig()" ng-class="{ current: isActive('/config')}">{{"Config"|translate}}</li>
-            <li ng-click="goSave()" class="last" ng-class="{ current: isActive('/save')}">{{"Save"|translate}}</li>
+            <li ng-click="goSave()" ng-class="{ current: isActive('/save')}">{{"Save"|translate}}</li>
+            <li ng-click="help()" class="last">{{"Help"|translate}}</li>
         </ul>
     </nav>
 
@@ -47,7 +49,7 @@
         {{"Gil"|translate}}: {{game.gils}}
     </div>
 
-    <div class="game-location">
+    <div class="game-location" id="step11">
         {{'Zone '+game.zones.level+' name'|translate}}
         <strong>
             (#{{game.zones.level}})
@@ -60,11 +62,15 @@
 
 <footer ng-show="game.loaded">
     <div class="wrapper">
-        ©2014 menencia.com, version <a href="https://github.com/Menencia/clickingff7/releases"
-                                       target="_blank"><big>{{game.version}}</big></a>
-        <br/><a href="https://github.com/Menencia/clickingff7" target="_blank">Github</a> -
-        <a href="https://github.com/Menencia/clickingff7/issues" target="_blank">Browse Issues</a> -
-        <a href="https://github.com/Menencia/clickingff7/issues/new" target="_blank">New Issue</a>
+        <div>
+            ©2014 menencia.com, version <a href="https://github.com/Menencia/clickingff7/releases"
+                                           target="_blank" id="step12"><big>{{game.version}}</big></a>
+        </div>
+        <div>
+            <a href="https://github.com/Menencia/clickingff7" target="_blank">Github</a> -
+            <a href="https://github.com/Menencia/clickingff7/issues" target="_blank">Browse Issues</a> -
+            <a href="https://github.com/Menencia/clickingff7/issues/new" target="_blank" id="step13">New Issue</a>
+        </div>
     </div>
 </footer>
 
@@ -79,6 +85,7 @@
             "bower_components/traceur-runtime/traceur-runtime.min.js",
             "bower_components/angular-translate/angular-translate.min.js",
             "bower_components/angular-translate-loader-static-files/angular-translate-loader-static-files.min.js",
+            "bower_components/intro.js/minified/intro.min.js",
             "dist/app.js",
             "dist/game.js",
             "dist/loader.js"

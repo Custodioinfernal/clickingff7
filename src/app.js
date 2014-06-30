@@ -89,7 +89,7 @@ app.filter('time', function () {
  * INDEX
  */
 
-app.controller('IndexCtrl', function ($scope, $location, Game) {
+app.controller('IndexCtrl', function ($scope, $location, $http, Game) {
 
     $scope.gameFn = function () {
         return Game.mode;
@@ -167,6 +167,20 @@ app.controller('IndexCtrl', function ($scope, $location, Game) {
         if (!Game.battle.isBattle) {
             $location.path("/save");
         }
+    };
+
+    // Show help
+    $scope.help = function (ev) {
+        $http({method: 'GET', url: 'help/' + Game.language + '.json'}).
+            success(function(data, status, headers, config) {
+                var intro = introJs();
+                intro.setOptions(data);
+                intro.start();
+            }).
+            error(function(data, status, headers, config) {
+                // called asynchronously if an error occurs
+                // or server returns response with an error status.
+            });
     };
 
 });
