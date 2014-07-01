@@ -168,7 +168,7 @@ app.controller('IndexCtrl', function ($scope, $location, $http, Game) {
      * Go to the PHS
      */
     $scope.goPHS = function (ev) {
-        if (!Game.battle.isBattle) {
+        if (!Game.battle.isBattle && Game.zones.levelMax >= 5) {
             $location.path("/phs");
         }
     };
@@ -186,7 +186,7 @@ app.controller('IndexCtrl', function ($scope, $location, $http, Game) {
     $scope.help = function (ev) {
         if (!Game.battle.isBattle) {
             $location.path("/game");
-            
+
             $http({method: 'GET', url: 'help/' + Game.language + '.json'}).
                 success(function (data, status, headers, config) {
                     var intro = introJs();
