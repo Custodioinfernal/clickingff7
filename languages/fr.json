@@ -44,5 +44,7 @@
     "Zone 4 name"  : "Secteur 7",
     "Zone 4 desc"  : "Avec l'aide d'Aerith, Cloud retrouve ses amis, se battant contre la SHINRA qui a l'intention de faire exploser le secteur 7. Aerith part prévenir les habitants de la région.",
     "Zone 5 name"  : "QG de la SHINRA (partie 1)",
-    "Zone 5 desc"  : "Aerith est la dernière Ancienne mais elle a été kidnappée ! Cloud, Barret et Tifa trouvent un chemin vers le QG de la SHINRA afin de la secourir. Red XIII, un animal mystérieux, leur vient en aide."
+    "Zone 5 desc"  : "Aerith est la dernière Ancienne mais elle a été kidnappée ! Cloud, Barret et Tifa trouvent un chemin vers le QG de la SHINRA afin de la secourir. Red XIII, un animal mystérieux, leur vient en aide.",
+    "Zone 6 name"  : "QG de la SHINRA (partie 2)",
+    "Zone 6 desc"  : "Aerith est saine et sauve, Jénova a été libérée et le Président SHINRA a été tué par Séphiroth ! Pas de temps à perdre, il faut absolument quitter Midgar !"
 }
