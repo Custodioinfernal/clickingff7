@@ -184,16 +184,20 @@ app.controller('IndexCtrl', function ($scope, $location, $http, Game) {
 
     // Show help
     $scope.help = function (ev) {
-        $http({method: 'GET', url: 'help/' + Game.language + '.json'}).
-            success(function(data, status, headers, config) {
-                var intro = introJs();
-                intro.setOptions(data);
-                intro.start();
-            }).
-            error(function(data, status, headers, config) {
-                // called asynchronously if an error occurs
-                // or server returns response with an error status.
-            });
+        if (!Game.battle.isBattle) {
+            $location.path("/game");
+            
+            $http({method: 'GET', url: 'help/' + Game.language + '.json'}).
+                success(function (data, status, headers, config) {
+                    var intro = introJs();
+                    intro.setOptions(data);
+                    intro.start();
+                }).
+                error(function (data, status, headers, config) {
+                    // called asynchronously if an error occurs
+                    // or server returns response with an error status.
+                });
+        }
     };
 
 });
