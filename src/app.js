@@ -246,14 +246,23 @@ app.controller('GameCtrl', function ($rootScope, Game) {
  * /Map
  */
 
-app.controller('MapCtrl', function () {
+app.controller('MapCtrl', function ($location, Game) {
+    // Redirection
+    if (!Game.loaded) {
+        $location.path('/game');
+    }
 });
 
 /**
  * /Shop
  */
 
-app.controller('ShopCtrl', function ($scope, Game) {
+app.controller('ShopCtrl', function ($scope, $location, Game) {
+
+    // Redirection
+    if (!Game.loaded) {
+        $location.path('/game');
+    }
 
     $scope.changeSection = function (s) {
         Game.shop.section = s;
@@ -269,28 +278,45 @@ app.controller('ShopCtrl', function ($scope, Game) {
  * /Items
  */
 
-app.controller('ItemsCtrl', function () {
+app.controller('ItemsCtrl', function ($location, Game) {
+    // Redirection
+    if (!Game.loaded) {
+        $location.path('/game');
+    }
 });
 
 /**
  * /Weapons
  */
 
-app.controller('EquipCtrl', function () {
+app.controller('EquipCtrl', function ($location, Game) {
+    // Redirection
+    if (!Game.loaded) {
+        $location.path('/game');
+    }
 });
 
 /**
  * /Materias
  */
 
-app.controller('MateriaCtrl', function () {
+app.controller('MateriaCtrl', function ($location, Game) {
+    // Redirection
+    if (!Game.loaded) {
+        $location.path('/game');
+    }
 });
 
 /**
  * /Config
  */
 
-app.controller('ConfigCtrl', function ($scope, $rootScope, $translate, Game) {
+app.controller('ConfigCtrl', function ($scope, $rootScope, $translate, $location, Game) {
+
+    // Redirection
+    if (!Game.loaded) {
+        $location.path('/game');
+    }
 
     $scope.changeLanguage = function () {
         var language = $('#language').val();
@@ -304,7 +330,13 @@ app.controller('ConfigCtrl', function ($scope, $rootScope, $translate, Game) {
  * /PHS
  */
 
-app.controller('PHSCtrl', function () {
+app.controller('PHSCtrl', function ($location, Game) {
+
+    // Redirection
+    if (!Game.loaded || Game.zones.levelMax < 5) {
+        $location.path('/game');
+    }
+
 });
 
 /**
@@ -312,6 +344,11 @@ app.controller('PHSCtrl', function () {
  */
 
 app.controller('SaveCtrl', function ($scope, $rootScope, $location, Game) {
+
+    // Redirection
+    if (!Game.loaded) {
+        $location.path('/game');
+    }
 
     /**
      * Save the game
