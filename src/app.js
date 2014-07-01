@@ -311,7 +311,7 @@ app.controller('PHSCtrl', function () {
  * /Save
  */
 
-app.controller('SaveCtrl', function ($scope, $rootScope, Game) {
+app.controller('SaveCtrl', function ($scope, $rootScope, $location, Game) {
 
     /**
      * Save the game
@@ -325,8 +325,11 @@ app.controller('SaveCtrl', function ($scope, $rootScope, Game) {
      */
     $rootScope.resetGame = function (ev) {
         if (confirm('Are you sure ? You\'ll lose everything !')) {
+            Game.preload();
             Game.reset();
-            location.reload();
+            Game.buildLevel(1);
+            Game.postload();
+            $location.path('/game');
         }
     };
 
@@ -365,7 +368,10 @@ app.controller('SaveCtrl', function ($scope, $rootScope, Game) {
     $rootScope.importSave = function (ev) {
         if ($scope.areaImport && confirm('Are you sure ? You\'ll lose your current save !')) {
             var save = JSON.parse(atob($scope.areaImport));
+            Game.preload();
             Game.load(save);
+            Game.postload();
+            $location.path('/game');
         }
     };
 
