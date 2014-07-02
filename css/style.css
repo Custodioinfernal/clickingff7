@@ -129,12 +129,20 @@ table tr:first-child {
     border-bottom: 1px solid #999;
 }
 
-table tr:not(:first-child):hover {
+table tr:not(:first-child):not(.nothing):hover {
     background-color: #eee;
 }
 
 table td {
     height: 30px;
+}
+
+.nothing td {
+    padding-top: 50px;
+    text-align: center;
+    font-size: 16px;
+    color: #999;
+    text-transform: uppercase;
 }
 
 /* style du menu principal */

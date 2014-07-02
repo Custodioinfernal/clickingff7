@@ -63,6 +63,14 @@ class Item {
     }
 
     /**
+     * Returns the sell price of the item
+     * @return {int}
+     */
+        getSellPrice() {
+        return this.price / 2;
+    }
+
+    /**
      * Returns true if the item can be bought
      * @returns {boolean}
      */
@@ -77,6 +85,24 @@ class Item {
         if (this.canBuy()) {
             this.game.gils -= this.getPrice();
             this.game.items.add(this);
+        }
+    }
+
+    /**
+     * Returns true if the item can be sold
+     * @returns {boolean}
+     */
+        canSell() {
+        return true;
+    }
+
+    /**
+     * Sell the weapon
+     */
+        sell() {
+        if (this.canSell()) {
+            this.game.gils += this.getSellPrice();
+            this.remove();
         }
     }
 
@@ -114,6 +140,17 @@ class Item {
      */
         unequip() {
         this.equipped = 0;
+    }
+
+    /**
+     * Remove oneex. of the item
+     */
+        remove() {
+        if (this.number > 1) {
+            this.number--;
+        } else {
+            _.remove(this.game.items.list, this);
+        }
     }
 
     /**

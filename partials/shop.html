@@ -77,9 +77,61 @@
 
     <section ng-if="game.shop.section === 'sell'">
 
-        <div class="no-data">
-            {{"Not available"|translate}}
-        </div>
+        <table style="width: 100%">
+
+            <tr>
+                <th>{{"Name"|translate}}</th>
+                <th>{{"In stock"|translate}}</th>
+                <th>{{"Price"|translate}}</th>
+                <th></th>
+            </tr>
+
+            <tr ng-repeat="weapon in game.weapons.list" ng-if="game.shop.type === 'weapons'">
+                <td>{{weapon.name}}</td>
+                <td>{{weapon.inStock()}}</td>
+                <td>{{weapon.getSellPrice()}} {{"Gils"|translate}}</td>
+                <td>
+                    <span ng-click="weapon.sell()" ng-if="weapon.canSell()" class="button">
+                        {{"Sell"|translate}}
+                    </span>
+                </td>
+            </tr>
+
+            <tr ng-if="game.shop.type === 'weapons' && game.shop.type.length === 0" class="nothing">
+                <td colspan="4">{{"Nothing to sell"|translate}}</td>
+            </tr>
+
+            <tr ng-repeat="materia in game.materias.list" ng-if="game.shop.type === 'materias'">
+                <td>{{materia.name}}</td>
+                <td>{{materia.inStock()}}</td>
+                <td>{{materia.getSellPrice()}} {{"Gils"|translate}}</td>
+                <td>
+                    <span ng-click="materia.sell()" ng-if="materia.canSell()" class="button">
+                        {{"Sell"|translate}}
+                    </span>
+                </td>
+            </tr>
+
+            <tr ng-if="game.shop.type === 'materias' && game.materias.list.length === 0" class="nothing">
+                <td colspan="4">{{"Nothing to sell"|translate}}</td>
+            </tr>
+
+            <tr ng-repeat="item in game.items.list" ng-if="game.shop.type === 'items'">
+                <td>{{item.name}}</td>
+                <td>{{item.inStock()}}</td>
+                <td>{{item.getSellPrice()}} {{"Gils"|translate}}</td>
+                <td>
+                    <span ng-click="item.sell()" ng-if="item.canSell()" class="button">
+                        {{"Sell"|translate}}
+                    </span>
+                </td>
+            </tr>
+
+            <tr ng-if="game.shop.type === 'items' && game.items.list.length === 0" class="nothing">
+                <td colspan="4">{{"Nothing to sell"|translate}}</td>
+            </tr>
+
+        </table>
 
     </section>
 

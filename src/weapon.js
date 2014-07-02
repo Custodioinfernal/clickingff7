@@ -26,12 +26,20 @@ class Weapon {
         return this;
     }
 
-    /*
+    /**
      * Returns the price of the weapon
      * @return {int}
      */
-    getPrice() {
+        getPrice() {
         return this.price;
+    }
+
+    /**
+     * Returns the sell price of the weapon
+     * @return {int}
+     */
+        getSellPrice() {
+        return this.price / 2;
     }
 
     /**
@@ -53,12 +61,30 @@ class Weapon {
     }
 
     /**
+     * Returns true if the weapon can be sold
+     * @returns {boolean}
+     */
+        canSell() {
+        return (this.equipped && this.number > 1) || (!this.equipped);
+    }
+
+    /**
+     * Sell the weapon
+     */
+        sell() {
+        if (this.canSell()) {
+            this.game.gils += this.getSellPrice();
+            this.remove();
+        }
+    }
+
+    /**
      * Returns the number of owned
      * @returns {*}
      */
         inStock() {
         var sum = 0;
-        for ( var w of this.game.weapons.list) {
+        for (var w of this.game.weapons.list) {
             if (w.name === this.name) {
                 sum += w.number;
             }
@@ -84,6 +110,17 @@ class Weapon {
         this.equipped = true;
 
         this.game.characters.refresh();
+    }
+
+    /**
+     * Remove oneex. of the weapon
+     */
+        remove() {
+        if (this.number > 1) {
+            this.number--;
+        } else {
+            _.remove(this.game.weapons.list, this);
+        }
     }
 
     /*
