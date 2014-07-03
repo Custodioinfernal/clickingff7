@@ -7,6 +7,8 @@ class HundredGunner extends Enemy {
 
         this.image = '/img/enemies/zone6/hundred-gunner.png';
 
+        this.miboss = true;
+
         // BELOW – rate over 5
         this.hpMax = 1;
         this.hits = 3;

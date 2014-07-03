@@ -7,6 +7,8 @@ class HeliGunner extends Enemy {
 
         this.image = '/img/enemies/zone6/heli-gunner.png';
 
+        this.miboss = true;
+
         // BELOW – rate over 5
         this.hpMax = 2;
         this.hits = 1;

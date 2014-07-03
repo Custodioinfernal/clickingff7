@@ -7,6 +7,8 @@ class Rufus extends Enemy {
 
         this.image = '/img/enemies/zone6/rufus.png';
 
+        this.miboss = true;
+
         // BELOW – rate over 5
         this.hpMax = 3;
         this.hits = 4;
