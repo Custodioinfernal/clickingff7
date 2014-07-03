@@ -22,6 +22,17 @@ class Restore extends Materia {
     }
 
     /**
+     * Get cured HP
+     * @returns {number}
+     */
+    getCure(){
+        var begin = 30;
+        var end = 60;
+        var characters_hp = this.game.characters.hpMax;
+        return Math.ceil(begin + ((end - begin) * this.level / 100) * characters_hp / 100);
+    }
+
+    /**
      * Can use the materia?
      * @returns {boolean}
      */
@@ -36,16 +47,19 @@ class Restore extends Materia {
      */
         action() {
         var that = this;
-        var begin = 30;
-        var end = 60;
-        var characters_hp = that.game.characters.hpMax;
-        var hp = Math.ceil(begin + ((end - begin) * that.level / 100) * characters_hp / 100);
+        var hp = this.getCure();
 
         super.action(function () {
             that.game.characters.addHp(hp);
         });
     }
 
-;
+    /**
+     * Translate desc helper
+     * @returns {string}
+     */
+        translate() {
+        return "{p:materia.getCure()}";
+    }
 
 }

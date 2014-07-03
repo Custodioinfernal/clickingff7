@@ -168,7 +168,7 @@ app.controller('IndexCtrl', function ($scope, $location, $http, Game) {
      * Go to the PHS
      */
     $scope.goPHS = function (ev) {
-        if (!Game.battle.isBattle) {
+        if (!Game.battle.isBattle && Game.zones.levelMax >= 5) {
             $location.path("/phs");
         }
     };
@@ -184,16 +184,20 @@ app.controller('IndexCtrl', function ($scope, $location, $http, Game) {
 
     // Show help
     $scope.help = function (ev) {
-        $http({method: 'GET', url: 'help/' + Game.language + '.json'}).
-            success(function(data, status, headers, config) {
-                var intro = introJs();
-                intro.setOptions(data);
-                intro.start();
-            }).
-            error(function(data, status, headers, config) {
-                // called asynchronously if an error occurs
-                // or server returns response with an error status.
-            });
+        if (!Game.battle.isBattle) {
+            $location.path("/game");
+
+            $http({method: 'GET', url: 'help/' + Game.language + '.json'}).
+                success(function (data, status, headers, config) {
+                    var intro = introJs();
+                    intro.setOptions(data);
+                    intro.start();
+                }).
+                error(function (data, status, headers, config) {
+                    // called asynchronously if an error occurs
+                    // or server returns response with an error status.
+                });
+        }
     };
 
 });
@@ -242,14 +246,23 @@ app.controller('GameCtrl', function ($rootScope, Game) {
  * /Map
  */
 
-app.controller('MapCtrl', function () {
+app.controller('MapCtrl', function ($location, Game) {
+    // Redirection
+    if (!Game.loaded) {
+        $location.path('/game');
+    }
 });
 
 /**
  * /Shop
  */
 
-app.controller('ShopCtrl', function ($scope, Game) {
+app.controller('ShopCtrl', function ($scope, $location, Game) {
+
+    // Redirection
+    if (!Game.loaded) {
+        $location.path('/game');
+    }
 
     $scope.changeSection = function (s) {
         Game.shop.section = s;
@@ -265,28 +278,45 @@ app.controller('ShopCtrl', function ($scope, Game) {
  * /Items
  */
 
-app.controller('ItemsCtrl', function () {
+app.controller('ItemsCtrl', function ($location, Game) {
+    // Redirection
+    if (!Game.loaded) {
+        $location.path('/game');
+    }
 });
 
 /**
  * /Weapons
  */
 
-app.controller('EquipCtrl', function () {
+app.controller('EquipCtrl', function ($location, Game) {
+    // Redirection
+    if (!Game.loaded) {
+        $location.path('/game');
+    }
 });
 
 /**
  * /Materias
  */
 
-app.controller('MateriaCtrl', function () {
+app.controller('MateriaCtrl', function ($location, Game) {
+    // Redirection
+    if (!Game.loaded) {
+        $location.path('/game');
+    }
 });
 
 /**
  * /Config
  */
 
-app.controller('ConfigCtrl', function ($scope, $rootScope, $translate, Game) {
+app.controller('ConfigCtrl', function ($scope, $rootScope, $translate, $location, Game) {
+
+    // Redirection
+    if (!Game.loaded) {
+        $location.path('/game');
+    }
 
     $scope.changeLanguage = function () {
         var language = $('#language').val();
@@ -300,14 +330,25 @@ app.controller('ConfigCtrl', function ($scope, $rootScope, $translate, Game) {
  * /PHS
  */
 
-app.controller('PHSCtrl', function () {
+app.controller('PHSCtrl', function ($location, Game) {
+
+    // Redirection
+    if (!Game.loaded || Game.zones.levelMax < 5) {
+        $location.path('/game');
+    }
+
 });
 
 /**
  * /Save
  */
 
-app.controller('SaveCtrl', function ($scope, $rootScope, Game) {
+app.controller('SaveCtrl', function ($scope, $rootScope, $location, Game) {
+
+    // Redirection
+    if (!Game.loaded) {
+        $location.path('/game');
+    }
 
     /**
      * Save the game
@@ -321,8 +362,11 @@ app.controller('SaveCtrl', function ($scope, $rootScope, Game) {
      */
     $rootScope.resetGame = function (ev) {
         if (confirm('Are you sure ? You\'ll lose everything !')) {
+            Game.preload();
             Game.reset();
-            location.reload();
+            Game.buildLevel(1);
+            Game.postload();
+            $location.path('/game');
         }
     };
 
@@ -361,7 +405,10 @@ app.controller('SaveCtrl', function ($scope, $rootScope, Game) {
     $rootScope.importSave = function (ev) {
         if ($scope.areaImport && confirm('Are you sure ? You\'ll lose your current save !')) {
             var save = JSON.parse(atob($scope.areaImport));
+            Game.preload();
             Game.load(save);
+            Game.postload();
+            $location.path('/game');
         }
     };
 

@@ -14,16 +14,16 @@
     <img ng-src="{{game.zones.current().image}}" width="80" alt="current_zone" style="float: left"/>
 
     <div class="main">
-        <p class="name">
+        <p>
             {{"Zone "+game.zones.current().level+" name"|translate}} <strong>(#{{game.zones.current().level}})</strong>
         </p>
 
-        <p class="desc">{{'Zone '+game.zones.current().level+' desc'|translate}}</p>
+        <p>{{'Zone '+game.zones.current().level+' desc'|translate}}</p>
     </div>
 
-</div>
+</div><!--
 
-<div class="c3">
+--><div class="c3">
 
     <div class="no-data" ng-if="!game.zones.current().completed">
         {{"Not completed"|translate}}

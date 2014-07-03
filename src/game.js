@@ -16,14 +16,15 @@ class Game {
         // detect first load
         this.loaded = false;
 
-        // language
-        this.language = this.getLanguage($translate.preferredLanguage());
-
         // fight mode
+        // @deprecated
         this.mode = "normal";
 
         // binding
         this.$rootScope.game = this;
+
+        // timer
+        this.timer = null;
 
         // load all resources
         this.loader = new Loader(this);
@@ -51,24 +52,15 @@ class Game {
         run() {
         this.loaded = true;
 
-        // savable models
-        this.characters = new Characters(this);
-        this.zones = new Zones(this);
-        this.weapons = new Weapons(this);
-        this.materias = new Materias(this);
-        this.items = new Items(this);
-
         // temp models
         this.battle = new Battle(this);
         this.shop = new Shop(this);
         this.enemies = new Enemies(this);
 
-        // savable vars
-        this.time = 0;
-        this.gils = 200;
-        this.version = "1.0.0-beta.5";
+        // PRELOAD
+        this.preload();
 
-        // save
+        // search for save
         this.saves = [];
         var s = localStorage['save1'];
         var save;
@@ -76,8 +68,7 @@ class Game {
             this.saves.push(save);
         }
 
-        //var save = this.$cookieStore.get('game');
-        var save = this.saves[0];
+        // load save
         if (save) {
             this.load(save);
             this.zones.checkLastZone();
@@ -86,6 +77,32 @@ class Game {
             this.buildLevel(1);
         }
 
+        // POSTLOAD
+        this.postload();
+    }
+
+    /**
+     * Preload all savable variables
+     */
+        preload() {
+        // savable models
+        this.characters = new Characters(this);
+        this.zones = new Zones(this);
+        this.weapons = new Weapons(this);
+        this.materias = new Materias(this);
+        this.items = new Items(this);
+
+        // savable vars
+        this.gils = 200;
+        this.language = this.getLanguage(this.$translate.preferredLanguage());
+        this.time = 0;
+        this.version = "1.0.0-beta.6";
+    }
+
+    /**
+     * Refresh the game with data loaded
+     */
+    postload() {
         this.$translate.use(this.language);
 
         this.shop.refresh();
@@ -155,7 +172,8 @@ class Game {
      * Auto-chrono
      */
         autoTimer() {
-        this.$timeout(() => {
+        this.$timeout.cancel(this.timer);
+        this.timer = this.$timeout(() => {
             this.time++;
             this.autoTimer();
         }, 1000);

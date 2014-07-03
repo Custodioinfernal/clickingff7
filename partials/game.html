@@ -21,7 +21,7 @@
                 ng-click="materia.action()"
                 ng-class="{disabled: !materia.canUse()}">
                 <div class="pull-right">{{materia.mpCost}}</div>
-                {{materia.name|translate}}
+                {{'Mat. '+materia.name+' name'|translate}}
             </li>
         </ul>
     </div>
@@ -32,7 +32,7 @@
                 ng-click="item.action()"
                 ng-class="{disabled: !item.canUse()}">
                 <div class="pull-right">{{item.number}}</div>
-                {{item.name|translate}}
+                {{'It. '+item.name+' name'|translate}}
             </li>
         </ul>
     </div>
@@ -99,9 +99,9 @@
                 <div style="clear: left"></div>
             </div>
         </div>
-    </div>
+    </div><!--
 
-    <div class="c3" id="step5">
+    --><div class="c3" id="step5">
         <!-- enemies bars -->
         <div class="bars" ng-if="game.enemies.list.length > 0">
             <div class="characters_hits">

@@ -58,6 +58,11 @@ class Loader {
                     "dist/enemies/zone5/soldier-3rd.js",
                     "dist/enemies/zone5/sword-dance.js",
                     "dist/enemies/zone5/vargid-police.js",
+                    "dist/enemies/zone6/heli-gunner.js",
+                    "dist/enemies/zone6/hundred-gunner.js",
+                    "dist/enemies/zone6/motor-ball.js",
+                    "dist/enemies/zone6/rufus.js",
+                    "dist/enemies/zone6/zenene.js",
                     "dist/items/potion.js",
                     "dist/items/ether.js",
                     "dist/materias/restore.js",
@@ -74,7 +79,8 @@ class Loader {
                     "dist/zones/zone2.js",
                     "dist/zones/zone3.js",
                     "dist/zones/zone4.js",
-                    "dist/zones/zone5.js"
+                    "dist/zones/zone5.js",
+                    "dist/zones/zone6.js"
                 ]}
         ];
 

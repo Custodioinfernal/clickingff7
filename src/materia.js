@@ -56,6 +56,14 @@ class Materia {
     }
 
     /**
+     * Returns the sell price of the materia
+     * @return {int}
+     */
+        getSellPrice() {
+        return this.price / 2;
+    }
+
+    /**
      * Returns true if the materia can be bought
      * @returns {boolean}
      */
@@ -70,6 +78,24 @@ class Materia {
         if (this.canBuy()) {
             this.game.gils -= this.getPrice();
             this.game.materias.add(this, false);
+        }
+    }
+
+    /**
+     * Returns true if the materia can be sold
+     * @returns {boolean}
+     */
+        canSell() {
+        return (true);
+    }
+
+    /**
+     * Sell the materia
+     */
+        sell() {
+        if (this.canSell()) {
+            this.game.gils += this.getSellPrice();
+            this.remove();
         }
     }
 
@@ -129,6 +155,13 @@ class Materia {
         unequip() {
         this.equipped = false;
         this.game.characters.refresh();
+    }
+
+    /**
+     * Remove one ex. of the materia
+     */
+        remove() {
+        _.remove(this.game.materias.list, this);
     }
 
     /**

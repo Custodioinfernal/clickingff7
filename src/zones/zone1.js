@@ -4,7 +4,7 @@ class Zone1 extends Zone {
      * Init
      * @param game
      */
-    constructor(game) {
+        constructor(game) {
         super(game);
 
         this.level = 1;

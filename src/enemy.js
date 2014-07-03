@@ -16,10 +16,12 @@ class Enemy {
         _toLevel(level) {
         this.level = level;
 
-        var coeff = (this.boss) ? 3 : 1;
+        var coeff = 1;
+        if (this.miboss) coeff = 1.5;
+        if (this.boss) coeff = 2;
 
-        this._hpMax = coeff * Math.ceil(((this.hpMax - 2) * 10 / 100 + 1) * 20 * level);
-        this._hits = coeff * Math.ceil(((this.hits - 2) * 10 / 100 + 1) * level);
+        this._hpMax = coeff * Math.ceil(((this.hpMax - 2) * 10 / 100 + 1) * 50 * level);
+        this._hits = coeff * Math.ceil(((this.hits - 2) * 10 / 100 + 1) * 2 * level);
         this._xp = coeff * Math.ceil(((this.xp - 2) * 10 / 100 + 1) * 5 * level);
         this._ap = coeff * Math.ceil(((this.ap - 2) * 10 / 100 + 1) * 2 * level);
         this._gils = coeff * Math.ceil(((this.gils - 2) * 10 / 100 + 1) * 10 * level);

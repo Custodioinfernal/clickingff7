@@ -1,27 +1,42 @@
-<div class="c1">
+<div class="c2">
 
-    <div>Materias equipped: {{game.materias.getEquipped().length}}/{{game.weapons.maxMaterias()}}</div>
+    <table style="width: 100%">
 
-    <div ng-repeat="materia in game.materias.getEquipped()" class="materia">
-        <div ng-click="materia.unequip()" class="pull-right">UNEQUIP</div>
-        <div class="progress materia_ap">
-            <div class="materia_ap_progress" ng-style="{width: materia.apProgress(200) + 'px'}"></div>
-            <span class="bar-label">{{materia.ap}} / {{materia.getApMax()}} AP</span>
-        </div>
-         {{materia.name}} <strong>(LVL{{materia.level}})</strong>
-    </div>
+        <tr>
+            <th>{{'Name'|translate}}</th>
+            <th>{{'Evolution'|translate}}</th>
+            <th class="total">
+                {{game.materias.getEquipped().length}} <span class="b">/ {{game.weapons.maxMaterias()}}</span>
+            </th>
+        </tr>
 
-</div>
+        <tr ng-repeat="materia in game.materias.list" class="materia">
+            <td>
+                <img ng-src="/img/icons/{{materia.color}}.gif"/>
+                {{'Mat. '+materia.name +' name'|translate}}
+                <strong>(LVL{{materia.level}})</strong><br/>
+                <span class="desc">{{'Mat. '+materia.name +' desc'|translate:materia.translate()}}</span>
+            </td>
+            <td>
+                <div class="progress materia_ap">
+                    <div class="materia_ap_progress" ng-style="{width: materia.apProgress(200) + 'px'}"></div>
+                    <span class="bar-label">{{materia.ap}} / {{materia.getApMax()}} AP</span>
+                </div>
+            </td>
+            <td class="total">
+                <span ng-click="materia.unequip()" ng-if="materia.equipped" class="hover">
+                    <i class="fa fa-check-square-o"></i>
+                </span>
+                <span ng-click="materia.equip()" ng-if="!materia.equipped && materia.canEquip()" class="hover">
+                    <i class="fa fa-square-o"></i>
+                </span>
+            </td>
+        </tr>
 
-<div class="c3">
-    <div>Other materias: {{game.materias.list.length - game.materias.getEquipped().length}}</div>
+        <tr ng-if="game.materias.list.length === 0" class="nothing">
+            <td colspan="4">{{"No materia"|translate}}</td>
+        </tr>
 
-    <div ng-repeat="materia in game.materias.getUnequipped() track by $index" class="materia">
-        <div ng-show="materia.canEquip()" ng-click="materia.equip()" class="pull-right">EQUIP</div>
-        <div class="progress materia_ap">
-            <div class="materia_ap_progress" ng-style="{width: materia.apProgress(200) + 'px'}"></div>
-            <span class="bar-label">{{materia.ap}} / {{materia.getApMax()}} AP</span>
-        </div>
-        {{materia.name}} <strong>(LVL{{materia.level}})</strong>
-    </div>
+    </table>
+
 </div>

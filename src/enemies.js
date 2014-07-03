@@ -17,21 +17,27 @@ class Enemies {
     }
 
     /**
-     * Pick a random number of enemies of the current zone
-     * @return {[type]} [description]
+     * Pick a random enemy of the current zone
      */
         random() {
-        var enemies;
-        var level = this.game.zones.level;
+        var enemy;
         var levelMax = this.game.characters.levelMax;
         var zone = this.game.zones.current();
-        if (levelMax >= level * 4 && !zone.completed) {
-            enemies = zone.getBoss();
+
+        if (levelMax >= zone.level * 4 && !zone.completed) {
+
+            enemy = new window[zone.boss](this.game);
+            enemy._toLevel(levelMax + 1);
+            this.list = [enemy];
+
         } else {
-            enemies = zone.getEnemies();
-        }
-        for (var e of enemies) {
-            this.list.push(e);
+            var range = levelMax - zone.level;
+
+            var e = zone.enemies[_.random(0, range)];
+            enemy = new window[e](this.game);
+            enemy._toLevel(levelMax);
+
+            this.list = [enemy];
         }
     }
 
