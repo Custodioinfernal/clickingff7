@@ -137,6 +137,10 @@ table tr.materia td {
     padding-top: 10px;
 }
 
+table tr.item td {
+    padding-top: 10px;
+}
+
 .nothing td {
     padding-top: 50px;
     text-align: center;

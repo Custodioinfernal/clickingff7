@@ -12,7 +12,8 @@
 
         <tr ng-repeat="materia in game.materias.list" class="materia">
             <td>
-                <img ng-src="/img/icons/{{materia.color}}.gif"/> {{'Mat. '+materia.name +' name'|translate}}
+                <img ng-src="/img/icons/{{materia.color}}.gif"/>
+                {{'Mat. '+materia.name +' name'|translate}}
                 <strong>(LVL{{materia.level}})</strong><br/>
                 <span class="desc">{{'Mat. '+materia.name +' desc'|translate:materia.translate()}}</span>
             </td>
@@ -30,6 +31,10 @@
                     <i class="fa fa-square-o"></i>
                 </span>
             </td>
+        </tr>
+
+        <tr ng-if="game.materias.list.length === 0" class="nothing">
+            <td colspan="4">{{"No materia"|translate}}</td>
         </tr>
 
     </table>
