@@ -25,7 +25,7 @@ class Bolt extends Materia {
      * Can use the materia?
      * @returns {boolean}
      */
-    canUse() {
+        canUse() {
         return (this.game.battle.isBattle && this.game.characters.mp >= this.mpCost);
     }
 
@@ -35,7 +35,7 @@ class Bolt extends Materia {
      */
         action() {
         var that = this;
-        var hits = this.game.characters.getHits() * (1 - 20 /100);
+        var hits = this.game.characters.getHits() * this.level;
         hits = Math.ceil(hits);
 
         super.action(function () {
@@ -43,6 +43,12 @@ class Bolt extends Materia {
         });
     }
 
-;
+    /**
+     * Translate desc helper
+     * @returns {string}
+     */
+    translate() {
+        return "{p:materia.level}";
+    }
 
 }

@@ -78,10 +78,6 @@ nav .current {
     float: right;
 }
 
-section {
-    width: 700px;
-}
-
 .button {
     padding: 5px;
     border: 1px solid #bbb;
@@ -137,12 +133,35 @@ table td {
     height: 30px;
 }
 
+table tr.materia td {
+    padding-top: 10px;
+}
+
 .nothing td {
     padding-top: 50px;
     text-align: center;
     font-size: 16px;
     color: #999;
     text-transform: uppercase;
+}
+
+/* description materia et objets */
+.desc {
+    font-size: 12px;
+}
+
+.hover {
+    cursor: pointer;
+}
+
+.total {
+    width: 50px;
+    text-align: center;
+}
+
+.total .b {
+    font-size: 12px;
+    font-weight: bold;
 }
 
 /* style du menu principal */
@@ -183,7 +202,7 @@ table td {
 /* style pour la vue */
 
 .game-view {
-    padding: 0 0 0 180px;
+    padding: 0 160px;
 }
 
 /* style de la page /game */
@@ -203,21 +222,24 @@ table td {
     margin-bottom: 10px;
 }
 
-.no-padding {padding: 0;}
+.no-padding {
+    padding: 0;
+}
 
 .c1, .c3 {
     display: inline-block;
-    width: 340px;
+    width: 334px;
     vertical-align: top;
+    box-sizing: content-box;
 }
 
 .c1 {
-    padding-right: 10px;
+    margin-right: 5px;
     border-right: 1px solid #bbb;
 }
 
 .c3 {
-    padding-left: 10px;
+    padding-left: 5px;
     border-left: 1px solid #bbb;
 }
 
@@ -225,10 +247,13 @@ table td {
 
 .bars {
     height: 100px;
+    position: relative;
 }
 
 .characters_hits, .enemies_hits {
-    float: right;
+    position: absolute;
+    top: 0;
+    right: 0;
 }
 
 .hit {
@@ -236,11 +261,25 @@ table td {
     text-align: center;
 }
 
-.hit_1 {font-size: 30px;}
-.hit_2 {font-size: 26px;}
-.hit_3 {font-size: 22px;}
-.hit_4 {font-size: 18px;}
-.hit_5 {font-size: 14px;}
+.hit_1 {
+    font-size: 30px;
+}
+
+.hit_2 {
+    font-size: 26px;
+}
+
+.hit_3 {
+    font-size: 22px;
+}
+
+.hit_4 {
+    font-size: 18px;
+}
+
+.hit_5 {
+    font-size: 14px;
+}
 
 .card {
     margin-bottom: 10px;
@@ -294,6 +333,7 @@ table td {
     width: 300px;
     margin: auto;
 }
+
 .game_load_progress {
     background-color: #ccc;
     position: absolute;
@@ -305,6 +345,7 @@ table td {
 .enemy_hp {
     width: 300px;
 }
+
 .enemy_hp_progress {
     background-color: #D49B9B;
     position: absolute;
@@ -316,6 +357,7 @@ table td {
 .enemy_mp {
     width: 300px;
 }
+
 .enemy_mp_progress {
     background-color: #656565;
     position: absolute;
@@ -327,6 +369,7 @@ table td {
 .characters_hp {
     width: 300px;
 }
+
 .characters_hp_progress {
     background-color: #BEECBE;
     position: absolute;
@@ -338,6 +381,7 @@ table td {
 .characters_mp {
     width: 300px;
 }
+
 .characters_mp_progress {
     background-color: #C9DBF8;
     position: absolute;
@@ -349,6 +393,7 @@ table td {
 .characters_limit {
     width: 300px;
 }
+
 .characters_limit_progress {
     background-color: #F0BE98;
     position: absolute;
@@ -360,6 +405,7 @@ table td {
 .characters_xp {
     width: 200px;
 }
+
 .xp_progress {
     background-color: #C6B7D6;
     position: absolute;
@@ -371,6 +417,7 @@ table td {
 .materia_ap {
     width: 200px;
 }
+
 .materia_ap_progress {
     background-color: #C6B7D6;
     position: absolute;
@@ -386,10 +433,10 @@ table td {
 .characters_hp_progress,
 .characters_mp_progress,
 .characters_limit_progress {
-    -webkit-transition:0.5s linear all;
-    -moz-transition:0.5s linear all;
-    -o-transition:0.5s linear all;
-    transition:0.5s linear all;
+    -webkit-transition: 0.5s linear all;
+    -moz-transition: 0.5s linear all;
+    -o-transition: 0.5s linear all;
+    transition: 0.5s linear all;
 }
 
 /* phs section */
