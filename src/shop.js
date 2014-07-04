@@ -23,7 +23,11 @@ class Shop {
             'LeatherGlove',
             'MetalKnuckle',
             'GuardStick',
-            'MythrilRod'
+            'MythrilRod',
+            'MythrilSaber',
+            'CannonBall',
+            'MythrilClaw',
+            'FullMetalStaff'
         ];
         for (var w of weapons) {
             var weapon = new window[w](this.game);
