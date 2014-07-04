@@ -39,7 +39,10 @@
             </tr>
 
             <tr ng-repeat="weapon in game.shop.weapons" ng-if="game.shop.type === 'weapons'">
-                <td>{{weapon.name}}</td>
+                <td>
+                    <img ng-src="/img/icons/weapons/{{weapon.type}}.png" />
+                    {{weapon.name}}
+                </td>
                 <td>{{weapon.inStock()}}</td>
                 <td>{{weapon.price}} {{"Gils"|translate}}</td>
                 <td>
@@ -50,7 +53,10 @@
             </tr>
 
             <tr ng-repeat="materia in game.shop.materias" ng-if="game.shop.type === 'materias'">
-                <td>{{'Mat. '+materia.name+' name'|translate}}</td>
+                <td>
+                    <img ng-src="/img/icons/materias/{{materia.color}}.gif" />
+                    {{'Mat. '+materia.name+' name'|translate}}
+                </td>
                 <td>{{materia.inStock()}}</td>
                 <td>{{materia.price}} {{"Gils"|translate}}</td>
                 <td>
@@ -87,7 +93,10 @@
             </tr>
 
             <tr ng-repeat="weapon in game.weapons.list" ng-if="game.shop.type === 'weapons'">
-                <td>{{'Mat. '+materia.name+' name'|translate}}</td>
+                <td>
+                    <img ng-src="/img/icons/weapons/{{weapon.type}}.png" />
+                    {{weapon.name}}
+                </td>
                 <td>{{weapon.inStock()}}</td>
                 <td>{{weapon.getSellPrice()}} {{"Gils"|translate}}</td>
                 <td>
@@ -102,7 +111,10 @@
             </tr>
 
             <tr ng-repeat="materia in game.materias.list" ng-if="game.shop.type === 'materias'">
-                <td>{{materia.name}}</td>
+                <td>
+                    <img ng-src="/img/icons/materias/{{materia.color}}.gif" />
+                    {{'Mat. '+materia.name+' name'|translate}}
+                </td>
                 <td>{{materia.inStock()}}</td>
                 <td>{{materia.getSellPrice()}} {{"Gils"|translate}}</td>
                 <td>

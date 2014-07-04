@@ -12,7 +12,7 @@
 
         <tr ng-repeat="materia in game.materias.list" class="materia">
             <td>
-                <img ng-src="/img/icons/{{materia.color}}.gif"/>
+                <img ng-src="/img/icons/materias/{{materia.color}}.gif"/>
                 {{'Mat. '+materia.name +' name'|translate}}
                 <strong>(LVL{{materia.level}})</strong><br/>
                 <span class="desc">{{'Power'|translate}} {{materia.getPwr()}} ({{'Mat. '+materia.name +' desc'|translate}})</span>
