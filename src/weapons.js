@@ -31,11 +31,10 @@ class Weapons {
         maxMaterias() {
         var maxMaterias = 0;
 
-        var weapons = _.where(this.list, {
-            equipped: true
-        });
-        for (var e of weapons) {
-            maxMaterias += e.maxMaterias;
+        var team = this.game.characters.getTeam();
+
+        for (var character of team) {
+            maxMaterias += character.weapon().maxMaterias;
         }
 
         return maxMaterias;
