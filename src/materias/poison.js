@@ -1,22 +1,22 @@
-class Bolt extends Materia {
+class Poison extends Materia {
 
     constructor(game) {
         super(game);
 
-        this.name = 'Bolt';
+        this.name = 'Poison';
 
         this.color = 'green';
 
         this.mpCost = this.level;
 
-        this.price = 600;
+        this.price = 1500;
 
         this.apFormula = function (x) {
             return Math.pow(x + 1, 2) + 150;
         };
 
         this.available = function (x) {
-            return x >= 1;
+            return x >= 5;
         };
 
     }
@@ -40,10 +40,11 @@ class Bolt extends Materia {
 
     /**
      * Do materia action
+     * Hits : 10% to 30%
      */
         action() {
         var that = this;
-        var attack = new Attack(this.getPwr(), ['bolt']);
+        var attack = new Attack(this.getPwr(), ['poison']);
 
         super.action(function () {
             that.game.enemies.getAttacked(attack);

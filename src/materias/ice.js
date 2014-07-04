@@ -1,9 +1,9 @@
-class Bolt extends Materia {
+class Ice extends Materia {
 
     constructor(game) {
         super(game);
 
-        this.name = 'Bolt';
+        this.name = 'Ice';
 
         this.color = 'green';
 
@@ -43,7 +43,7 @@ class Bolt extends Materia {
      */
         action() {
         var that = this;
-        var attack = new Attack(this.getPwr(), ['bolt']);
+        var attack = new Attack(this.getPwr(), ['ice']);
 
         super.action(function () {
             that.game.enemies.getAttacked(attack);

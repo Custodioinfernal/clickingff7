@@ -34,7 +34,11 @@ class Shop {
 
         var materias = [
             'Restore',
-            'Bolt'
+            'Bolt',
+            'Ice',
+            'Fire',
+            'Poison',
+            'Earth'
         ];
         for (var m of materias) {
             var materia = new window[m](this.game);

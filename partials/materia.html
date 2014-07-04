@@ -15,7 +15,7 @@
                 <img ng-src="/img/icons/{{materia.color}}.gif"/>
                 {{'Mat. '+materia.name +' name'|translate}}
                 <strong>(LVL{{materia.level}})</strong><br/>
-                <span class="desc">{{'Mat. '+materia.name +' desc'|translate:'{pwr: materia.getPwr()}'}}</span>
+                <span class="desc">{{'Power'|translate}} {{materia.getPwr()}} ({{'Mat. '+materia.name +' desc'|translate}})</span>
             </td>
             <td>
                 <div class="progress materia_ap">
