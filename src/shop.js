@@ -23,7 +23,11 @@ class Shop {
             'LeatherGlove',
             'MetalKnuckle',
             'GuardStick',
-            'MythrilRod'
+            'MythrilRod',
+            'MythrilSaber',
+            'CannonBall',
+            'MythrilClaw',
+            'FullMetalStaff'
         ];
         for (var w of weapons) {
             var weapon = new window[w](this.game);
@@ -34,7 +38,11 @@ class Shop {
 
         var materias = [
             'Restore',
-            'Bolt'
+            'Bolt',
+            'Ice',
+            'Fire',
+            'Poison',
+            'Earth'
         ];
         for (var m of materias) {
             var materia = new window[m](this.game);
@@ -45,7 +53,9 @@ class Shop {
 
         var items = [
             'Potion',
-            'Ether'
+            'Ether',
+            'HiPotion',
+            'HiEther'
         ];
         for (var i of items) {
             var item = new window[i](this.game);

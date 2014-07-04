@@ -14,6 +14,8 @@ class HellHouse extends Enemy {
         this.ap = 2;
         this.gils = 2;
         // END
+
+        this.weakness = ['ice'];
     }
 
 }

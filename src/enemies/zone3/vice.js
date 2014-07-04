@@ -14,6 +14,8 @@ class Vice extends Enemy {
         this.ap = 2;
         this.gils = 3;
         // END
+
+        this.weakness = ['fire'];
     }
 
 }

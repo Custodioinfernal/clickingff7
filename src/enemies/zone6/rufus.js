@@ -16,6 +16,8 @@ class Rufus extends Enemy {
         this.ap = 4;
         this.gils = 0;
         // END
+
+        this.weakness = ['bolt', 'ice', 'fire'];
     }
 
 }

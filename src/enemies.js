@@ -31,7 +31,7 @@ class Enemies {
             this.list = [enemy];
 
         } else {
-            var range = levelMax - zone.level;
+            var range = Math.min(levelMax, zone.level * 4) - (zone.level * 4 - 3);
 
             var e = zone.enemies[_.random(0, range)];
             enemy = new window[e](this.game);
@@ -48,12 +48,16 @@ class Enemies {
         this.hpMax = 0;
         this.hits = 0;
         this.arrHits = [];
+        this.weakness = [];
+        this.resistance = [];
 
         var enemies = this.list;
-        for (var i in enemies) {
+        for (var enemy of enemies) {
             // HP
-            this.hpMax += enemies[i].getHpMax();
-            this.hits += enemies[i].getHits();
+            this.hpMax += enemy.getHpMax();
+            this.hits += enemy.getHits();
+            this.weakness = _.union(this.weakness, enemy.weakness);
+            this.resistance = _.union(this.resistance, enemy.resistance);
         }
 
         this.hp = this.hpMax;
@@ -88,8 +92,8 @@ class Enemies {
         var self = this;
         this.timer['fighting'] = this.game.$timeout(function () {
 
-            var hits = self.getHits();
-            var alive = self.game.characters.getAutoAttacked(hits);
+            var pwr = self.getHits();
+            var alive = self.game.characters.getAutoAttacked(new Attack(pwr));
 
             if (alive) {
                 self.autoFighting();
@@ -108,10 +112,22 @@ class Enemies {
 
     /**
      * Enemies are under auto attack
-     * @param hits
+     * @param attack
      * @returns {boolean}
      */
-        getAutoAttacked(hits) {
+        getAutoAttacked(attack) {
+        var hits = attack.getHits();
+
+        // weakness
+        if (this.hasWeakness(attack.type)) {
+            hits *= 3;
+        }
+
+        // resistance
+        if (this.hasResistance(attack.type)) {
+            hits = Math.floor(hits / 10);
+        }
+
         this.hp -= hits;
         this.game.characters.displayAutoHits(hits);
 
@@ -125,10 +141,22 @@ class Enemies {
 
     /**
      * Enemies are under manual attack
-     * @param hits
+     * @param attack
      * @returns {boolean}
      */
-        getAttacked(hits) {
+        getAttacked(attack) {
+        var hits = attack.getHits();
+
+        // weakness
+        if (this.hasWeakness(attack.type)) {
+            hits *= 3;
+        }
+
+        // resistance
+        if (this.hasResistance(attack.type)) {
+            hits = Math.floor(hits / 10);
+        }
+
         this.hp -= hits;
         this.game.characters.displayHits(hits);
 
@@ -136,6 +164,24 @@ class Enemies {
             this.hp = 0;
             this.game.battle.end(true);
         }
+    }
+
+    /**
+     * Returns true if the enemy has this type in weakness
+     * @param type
+     * @returns {boolean}
+     */
+        hasWeakness(type) {
+        return _.intersection(this.weakness, type).length > 0;
+    }
+
+    /**
+     * Returns true if the enemy has this type in weakness
+     * @param type
+     * @returns {boolean}
+     */
+        hasResistance(type) {
+        return _.intersection(this.resistance, type).length > 0;
     }
 
     /**

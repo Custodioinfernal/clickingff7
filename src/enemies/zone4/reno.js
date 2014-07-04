@@ -16,6 +16,8 @@ class Reno extends Enemy {
         this.ap = 5;
         this.gils = 5;
         // END
+
+        this.resistance = ['bolt', 'fire', 'ice'];
     }
 
 }

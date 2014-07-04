@@ -14,6 +14,8 @@ class VargidPolice extends Enemy {
         this.ap = 3;
         this.gils = 0;
         // END
+
+        this.weakness = ['fire', 'poison'];
     }
 
 }

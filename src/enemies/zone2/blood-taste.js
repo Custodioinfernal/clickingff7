@@ -14,6 +14,8 @@ class BloodTaste extends Enemy {
         this.ap = 1;
         this.gils = 4;
         // END
+
+        this.weakness = ['fire'];
     }
 
 }

@@ -48,7 +48,7 @@ class Battle {
                 // XP for characters, AP for materias
                 for (var character of characters) {
                     var xp = enemy.xpReward();
-                    character.setXp(xp * 10);
+                    character.setXp(xp);
                 }
                 for (var materia of materias) {
                     var ap = enemy.apReward();

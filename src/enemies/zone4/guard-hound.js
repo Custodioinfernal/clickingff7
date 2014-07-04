@@ -14,6 +14,8 @@ class GuardHound extends Enemy {
         this.ap = 4;
         this.gils = 1;
         // END
+
+        this.weakness = ['fire'];
     }
 
 }

@@ -15,7 +15,9 @@
 
     <div class="main">
         <p>
-            Weapon equipped: <br/>{{game.characters.selected.weapon().name}}
+            Weapon equipped: <br/>
+            <img ng-src="/img/icons/weapons/{{game.characters.selected.weapon().type}}.png" />
+            {{game.characters.selected.weapon().name}}
         </p>
 
         <p>

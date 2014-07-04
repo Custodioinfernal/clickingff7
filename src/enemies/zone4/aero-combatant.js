@@ -14,6 +14,8 @@ class AeroCombatant extends Enemy {
         this.ap = 1;
         this.gils = 3;
         // END
+
+        this.weakness = ['bolt'];
     }
 
 }

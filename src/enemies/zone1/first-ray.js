@@ -14,6 +14,8 @@ class FirstRay extends Enemy {
         this.ap = 1;
         this.gils = 5;
         // END
+
+        this.weakness = ['bolt'];
     }
 
 }
