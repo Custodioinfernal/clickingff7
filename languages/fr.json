@@ -51,10 +51,14 @@
     "Mat. Earth name"  : "Terre",
     "Mat. Earth desc"  : "Attaque magique de terre",
 
-    "It. Potion name": "Potion",
-    "It. Potion desc": "Soigne l'équipe de 150 HP",
-    "It. Ether name" : "Ether",
-    "It. Ether desc" : "Restaure l'équipe de 20 MP",
+    "It. Potion name"   : "Potion",
+    "It. Potion desc"   : "Soigne l'équipe de 150 HP",
+    "It. Ether name"    : "Ether",
+    "It. Ether desc"    : "Restaure l'équipe de 20 MP",
+    "It. Hi-Potion name": "Super potion",
+    "It. Hi-Potion desc": "Soigne l'équipe de 850 HP",
+    "It. Hi-Ether name" : "Super ether",
+    "It. Hi-Ether desc" : "Restaure l'équipe de 100 MP",
 
     "Zone 1 name": "Réacteur du Secteur 1",
     "Zone 1 desc": "Cloud vient de rejoindre Avalanche. Avec Barret, leur chef, ils ont prévu de détruire un réacteur MAKO qui épuise l'énergie de la Planète.",

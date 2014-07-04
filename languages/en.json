@@ -51,10 +51,14 @@
     "Mat. Earth name"  : "Earth",
     "Mat. Earth desc"  : "Earth magic attack",
 
-    "It. Potion name": "Potion",
-    "It. Potion desc": "Cure team by 150 HP",
-    "It. Ether name" : "Ether",
-    "It. Ether desc" : "Restore team by 20 MP",
+    "It. Potion name"   : "Potion",
+    "It. Potion desc"   : "Cure team by 150 HP",
+    "It. Ether name"    : "Ether",
+    "It. Ether desc"    : "Restore team by 20 MP",
+    "It. Hi-Potion name": "Hi-Potion",
+    "It. Hi-Potion desc": "Restore team by 850 HP",
+    "It. Hi-Ether name" : "Hi-Ether",
+    "It. Hi-Ether desc" : "Restore team by 100 MP",
 
     "Zone 1 name": "Sector 1 Reactor",
     "Zone 1 desc": "Cloud just joined Avalanche. With Barret, the leader, they planned to destroy a MAKO reator which depletes the energy of the Planet.",

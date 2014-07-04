@@ -49,7 +49,9 @@ class Shop {
 
         var items = [
             'Potion',
-            'Ether'
+            'Ether',
+            'HiPotion',
+            'HiEther'
         ];
         for (var i of items) {
             var item = new window[i](this.game);

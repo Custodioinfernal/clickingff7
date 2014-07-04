@@ -72,6 +72,8 @@ class Loader {
                     "dist/enemies/zone7/midgar-zolom.js",
                     "dist/items/potion.js",
                     "dist/items/ether.js",
+                    "dist/items/hi-potion.js",
+                    "dist/items/hi-ether.js",
                     "dist/materias/restore.js",
                     "dist/materias/bolt.js",
                     "dist/materias/ice.js",
