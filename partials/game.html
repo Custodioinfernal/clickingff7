@@ -20,7 +20,7 @@
             <li ng-repeat="materia in game.materias.getEquipped()"
                 ng-click="materia.action()"
                 ng-class="{disabled: !materia.canUse()}">
-                <div class="pull-right">{{materia.mpCost}}</div>
+                <div class="pull-right">{{materia.getMpCost()}}</div>
                 {{'Mat. '+materia.name+' name'|translate}}
             </li>
         </ul>

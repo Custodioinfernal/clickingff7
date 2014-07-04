@@ -7,8 +7,6 @@ class Restore extends Materia {
 
         this.color = 'green';
 
-        this.mpCost = this.level;
-
         this.price = 750;
 
         this.apFormula = function (x) {
@@ -19,6 +17,14 @@ class Restore extends Materia {
             return x >= 1;
         };
 
+    }
+
+    /**
+     * MP cost
+     * @returns {number}
+     */
+        getMpCost() {
+        return this.level;
     }
 
     /**

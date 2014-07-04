@@ -7,8 +7,6 @@ class Fire extends Materia {
 
         this.color = 'green';
 
-        this.mpCost = this.level;
-
         this.price = 600;
 
         this.apFormula = function (x) {
@@ -19,6 +17,14 @@ class Fire extends Materia {
             return x >= 2;
         };
 
+    }
+
+    /**
+     * MP cost
+     * @returns {number}
+     */
+        getMpCost() {
+        return this.level;
     }
 
     /**

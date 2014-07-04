@@ -7,8 +7,6 @@ class Poison extends Materia {
 
         this.color = 'green';
 
-        this.mpCost = this.level;
-
         this.price = 1500;
 
         this.apFormula = function (x) {
@@ -19,6 +17,14 @@ class Poison extends Materia {
             return x >= 5;
         };
 
+    }
+
+    /**
+     * MP cost
+     * @returns {number}
+     */
+        getMpCost() {
+        return this.level;
     }
 
     /**
