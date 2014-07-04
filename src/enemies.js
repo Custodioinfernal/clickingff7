@@ -31,7 +31,7 @@ class Enemies {
             this.list = [enemy];
 
         } else {
-            var range = levelMax - zone.level;
+            var range = Math.min(levelMax, zone.level * 4) - (zone.level * 4 - 3);
 
             var e = zone.enemies[_.random(0, range)];
             enemy = new window[e](this.game);
