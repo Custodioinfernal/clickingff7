@@ -125,6 +125,7 @@ class Character {
         joinTeam() {
         if (this.canJoinTeam()) {
             this.inTeam = true;
+            this.game.characters.refresh();
         }
     }
 
@@ -142,6 +143,7 @@ class Character {
         leaveTeam() {
         if (this.canLeaveTeam()) {
             this.inTeam = false;
+            this.game.characters.refresh();
         }
     }
 
