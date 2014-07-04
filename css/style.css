@@ -441,6 +441,11 @@ table tr.item td {
     transition: 0.5s linear all;
 }
 
+.weakness, .resistance {
+    width: 16px;
+    margin-bottom: -3px;
+}
+
 /* phs section */
 
 .phs_character img {

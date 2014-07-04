@@ -14,6 +14,8 @@ class Deenglow extends Enemy {
         this.ap = 2;
         this.gils = 0;
         // END
+
+        this.weakness = ['ice'];
     }
 
 }

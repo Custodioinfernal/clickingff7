@@ -22,6 +22,15 @@ class Bolt extends Materia {
     }
 
     /**
+     * Return materia power (7% to 27%)
+     * @returns {number}
+     */
+        getPwr() {
+        var pwr = 7 + (this.level / 100 * 20);
+        return Math.ceil(pwr);
+    }
+
+    /**
      * Can use the materia?
      * @returns {boolean}
      */
@@ -31,24 +40,15 @@ class Bolt extends Materia {
 
     /**
      * Do materia action
-     * Add to HP : +2% to +22%
+     * Hits : 10% to 30%
      */
         action() {
         var that = this;
-        var hits = this.game.characters.getHits() * this.level;
-        hits = Math.ceil(hits);
+        var attack = new Attack(this.getPwr(), ['bolt']);
 
         super.action(function () {
-            that.game.enemies.getAttacked(hits);
+            that.game.enemies.getAttacked(attack);
         });
-    }
-
-    /**
-     * Translate desc helper
-     * @returns {string}
-     */
-    translate() {
-        return "{p:materia.level}";
     }
 
 }

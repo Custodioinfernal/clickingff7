@@ -14,6 +14,8 @@ class ProtoMachinegun extends Enemy {
         this.ap = 1;
         this.gils = 1;
         // END
+
+        this.weakness = ['bolt'];
     }
 
 }

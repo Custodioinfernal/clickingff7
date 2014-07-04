@@ -16,6 +16,8 @@ class SampleH0512 extends Enemy {
         this.ap = 5;
         this.gils = 5;
         // END
+
+        this.weakness = ['poison'];
     }
 
 }

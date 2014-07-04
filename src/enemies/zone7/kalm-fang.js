@@ -14,6 +14,8 @@ class KalmFang extends Enemy {
         this.ap = 1;
         this.gils = 2;
         // END
+
+        this.weakness = ['fire', 'earth'];
     }
 
 }

@@ -14,6 +14,8 @@ class Soldier3rd extends Enemy {
         this.ap = 4;
         this.gils = 0;
         // END
+
+        this.weakness = ['poison'];
     }
 
 }

@@ -16,6 +16,8 @@ class AirBuster extends Enemy {
         this.ap = 5;
         this.gils = 5;
         // END
+
+        this.weakness = ['bolt'];
     }
 
 }

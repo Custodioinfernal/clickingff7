@@ -88,20 +88,18 @@ class Characters {
         this.hits = 0;
         this.arrHits = [];
         this.levelMax = 0;
-        this.levelSum = 0;
 
         var characters = this.getTeam();
-        for (var i in characters) {
+        for (var character of characters) {
             // Level
-            if (characters[i].level > this.levelMax) {
-                this.levelMax = characters[i].level;
+            if (character.level > this.levelMax) {
+                this.levelMax = character.level;
             }
 
             // HP, hits
-            this.hpMax += characters[i].getHpMax();
-            this.mpMax += characters[i].getMpMax();
-            this.hits += characters[i].getHits();
-            this.levelSum += characters[i].level;
+            this.hpMax += character.getHpMax();
+            this.mpMax += character.getMpMax();
+            this.hits += character.getHits();
         }
 
         this.limitMax = 2 * this.hpMax / 3;
@@ -146,25 +144,15 @@ class Characters {
     }
 
     /**
-     * Get *random* total characters hits
+     * Get total characters hits
      */
         getHits() {
-        // base hits
-        var a = this.hits * (1 - 10 / 100);
-        var b = this.hits * (1 + 10 / 100);
-        var hits = Math.round(_.random(a, b));
+        var hits = this.hits;
 
         // limit
         if (this.canLimit()) {
             hits *= 5;
             this.limit = 0;
-            return hits;
-        }
-
-        // critical hits (10%)
-        var r = _.random(0, 100);
-        if (r <= 10) {
-            hits *= 2;
         }
 
         return hits;
@@ -202,8 +190,8 @@ class Characters {
         var self = this;
         this.timer['fighting'] = this.game.$timeout(function () {
 
-            var hits = self.getHits();
-            var alive = self.game.enemies.getAutoAttacked(hits);
+            var pwr = self.getHits();
+            var alive = self.game.enemies.getAutoAttacked(new Attack(pwr));
 
             if (alive) {
                 self.autoFighting();
@@ -249,9 +237,21 @@ class Characters {
 
     /**
      * Enemies are under attack
-     * @param  {int} hits
+     * @param  {int} attack
      */
-        getAutoAttacked(hits) {
+        getAutoAttacked(attack) {
+        var hits = attack.getHits();
+
+        // weakness
+        if (this.hasWeakness(attack.type)) {
+            hits *= 3;
+        }
+
+        // resistance
+        if (this.hasResistance(attack.type)) {
+            hits = Math.floor(hits / 10);
+        }
+
         this.hp -= hits;
         this.game.enemies.displayAutoHits(hits);
 
@@ -268,6 +268,24 @@ class Characters {
         }
 
         return true;
+    }
+
+    /**
+     * Returns true if the enemy has this type in weakness
+     * @param type
+     * @returns {boolean}
+     */
+        hasWeakness(type) {
+        return _.intersection(this.weakness, type).length > 0;
+    }
+
+    /**
+     * Returns true if the enemy has this type in weakness
+     * @param type
+     * @returns {boolean}
+     */
+        hasResistance(type) {
+        return _.intersection(this.resistance, type).length > 0;
     }
 
     /**

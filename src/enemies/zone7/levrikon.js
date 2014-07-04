@@ -14,6 +14,8 @@ class Levrikon extends Enemy {
         this.ap = 1;
         this.gils = 1;
         // END
+
+        this.weakness = ['fire', 'earth'];
     }
 
 }

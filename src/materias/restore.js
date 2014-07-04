@@ -22,14 +22,12 @@ class Restore extends Materia {
     }
 
     /**
-     * Get cured HP
+     * Return materia power (20% to 40%)
      * @returns {number}
      */
-    getCure(){
-        var begin = 30;
-        var end = 60;
-        var characters_hp = this.game.characters.hpMax;
-        return Math.ceil(begin + ((end - begin) * this.level / 100) * characters_hp / 100);
+        getPwr() {
+        var pwr = 20 * this.level;
+        return Math.ceil(pwr);
     }
 
     /**
@@ -47,19 +45,11 @@ class Restore extends Materia {
      */
         action() {
         var that = this;
-        var hp = this.getCure();
+        var cure = new Cure(this.getPwr());
 
         super.action(function () {
-            that.game.characters.addHp(hp);
+            that.game.characters.addHp(cure.getCure());
         });
-    }
-
-    /**
-     * Translate desc helper
-     * @returns {string}
-     */
-        translate() {
-        return "{p:materia.getCure()}";
     }
 
 }

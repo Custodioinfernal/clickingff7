@@ -14,6 +14,8 @@ class SwordDance extends Enemy {
         this.ap = 1;
         this.gils = 0;
         // END
+
+        this.weakness = ['bolt'];
     }
 
 }

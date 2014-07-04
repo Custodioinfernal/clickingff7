@@ -14,6 +14,8 @@ class HedgehogPie extends Enemy {
         this.ap = 2;
         this.gils = 1;
         // END
+
+        this.weakness = ['bolt'];
     }
 
 }

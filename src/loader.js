@@ -11,9 +11,11 @@ class Loader {
         this.files = [
             {label  : "Loading main files",
                 list: [
+                    "dist/attack.js",
                     "dist/battle.js",
                     "dist/characters.js",
                     "dist/character.js",
+                    "dist/cure.js",
                     "dist/enemies.js",
                     "dist/enemy.js",
                     "dist/item.js",
