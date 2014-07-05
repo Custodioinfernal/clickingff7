@@ -41,7 +41,7 @@
             <tr ng-repeat="weapon in game.shop.weapons" ng-if="game.shop.type === 'weapons'">
                 <td>
                     <img ng-src="/img/icons/weapons/{{weapon.type}}.png" />
-                    {{weapon.name}} <span class="desc">({{"Pwr"|translate}} {{weapon.hits}})</span>
+                    {{weapon.name}} <span class="desc">({{"Power"|translate}} {{weapon.hits}})</span>
                 </td>
                 <td>{{weapon.inStock()}}</td>
                 <td>{{weapon.price}} {{"Gils"|translate}}</td>
@@ -95,7 +95,7 @@
             <tr ng-repeat="weapon in game.weapons.list" ng-if="game.shop.type === 'weapons'">
                 <td>
                     <img ng-src="/img/icons/weapons/{{weapon.type}}.png" />
-                    {{weapon.name}} <span class="desc">({{"Pwr"|translate}} {{weapon.hits}})</span>
+                    {{weapon.name}} <span class="desc">({{"Power"|translate}} {{weapon.hits}})</span>
                 </td>
                 <td>{{weapon.inStock()}}</td>
                 <td>{{weapon.getSellPrice()}} {{"Gils"|translate}}</td>
