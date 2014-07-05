@@ -120,13 +120,13 @@
         </div>
 
         <!-- enemies list -->
-        <div ng-repeat="enemy in game.enemies.list" class="card">
-            <div class="avatar">
-                <img ng-src="{{enemy.image}}" alt="avatar" width="80"/>
+        <div ng-repeat="enemy in game.enemies.list" class="card_enemy">
+            <div class="avatar_enemy">
+                <img ng-src="{{enemy.image}}" alt="avatar" height="80" />
             </div>
             <!--
                         -->
-            <div class="main">
+            <div class="main_enemy">
 
                 <div>{{enemy.name}} <strong>(LVL{{enemy.level}})</strong>
                     <span ng-if="enemy.boss" class="boss">ZONE BOSS</span>

@@ -293,6 +293,22 @@ table tr.item td {
     margin-right: 5px;
 }
 
+.card_enemy {
+    position: relative;
+}
+
+.avatar_enemy {
+    position: absolute;
+    z-index: 0;
+}
+
+.main_enemy {
+    position: absolute;
+    left: 90px;
+    background-color: rgba(255, 255, 255, 0.6);
+    z-index: 1;
+}
+
 .card .main {
 
 }
