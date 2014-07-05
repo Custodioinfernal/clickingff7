@@ -20,10 +20,8 @@ Compile ES6 JS files to ES5: `gulp`
 
 ## Useful links
 
+OLD channel: http://old.clickingff7.com
+
 STABLE channel: http://clickingff7.com
 
 BETA channel: http://beta.clickingff7.com
-
-Cookie Clicker: http://orteil.dashnet.org/cookieclicker/
-
-Clicking Bad: http://clickingbad.nullism.com
