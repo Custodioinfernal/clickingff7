@@ -41,7 +41,7 @@ class Restore extends Materia {
      * @returns {boolean}
      */
         canUse() {
-        return (this.game.characters.mp >= this.mpCost
+        return (this.game.characters.mp >= this.getMpCost()
             && this.game.characters.hp < this.game.characters.hpMax);
     }
 

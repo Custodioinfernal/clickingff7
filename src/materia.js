@@ -32,7 +32,7 @@ class Materia {
         action(fn) {
         // cost
         if (this.canUse()) {
-            this.game.characters.mp -= this.mpCost;
+            this.game.characters.mp -= this.getMpCost();
         } else {
             throw "CANNOT USE";
         }

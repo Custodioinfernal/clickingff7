@@ -23,7 +23,7 @@ class Bolt extends Materia {
      * MP cost
      * @returns {number}
      */
-    getMpCost() {
+        getMpCost() {
         return this.level;
     }
 
@@ -41,7 +41,7 @@ class Bolt extends Materia {
      * @returns {boolean}
      */
         canUse() {
-        return (this.game.battle.isBattle && this.game.characters.mp >= this.mpCost);
+        return (this.game.battle.isBattle && this.game.characters.mp >= this.getMpCost());
     }
 
     /**
