@@ -70,6 +70,11 @@ class Loader {
                     "dist/enemies/zone7/levrikon.js",
                     "dist/enemies/zone7/mandragora.js",
                     "dist/enemies/zone7/midgar-zolom.js",
+                    "dist/enemies/zone8/crawler.js",
+                    "dist/enemies/zone8/castanets.js",
+                    "dist/enemies/zone8/madouge.js",
+                    "dist/enemies/zone8/ark-dragon.js",
+                    "dist/enemies/zone8/mystery-ninja.js",
                     "dist/items/potion.js",
                     "dist/items/ether.js",
                     "dist/items/hi-potion.js",
@@ -98,7 +103,8 @@ class Loader {
                     "dist/zones/zone4.js",
                     "dist/zones/zone5.js",
                     "dist/zones/zone6.js",
-                    "dist/zones/zone7.js"
+                    "dist/zones/zone7.js",
+                    "dist/zones/zone8.js"
                 ]}
         ];
 
