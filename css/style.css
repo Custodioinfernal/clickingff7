@@ -301,6 +301,12 @@ table tr.item td {
     margin-right: 5px;
 }
 
+.card .line {
+    font-size: 12px;
+    font-weight: bold;
+    padding-top: 5px;
+}
+
 .card_enemy {
     position: relative;
 }
