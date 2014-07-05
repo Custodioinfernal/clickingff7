@@ -21,7 +21,10 @@
                 ng-click="materia.action()"
                 ng-class="{disabled: !materia.canUse()}">
                 <div class="pull-right">{{materia.getMpCost()}}</div>
-                {{'Mat. '+materia.name+' name'|translate}}
+                <div class="menu-action">
+                    <img ng-src="/img/icons/materias/{{materia.color}}.gif" />
+                    {{'Mat. '+materia.name+' name'|translate}}
+                </div>
             </li>
         </ul>
     </div>

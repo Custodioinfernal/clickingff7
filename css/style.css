@@ -72,6 +72,14 @@ nav .current {
     font-weight: bold;
 }
 
+.menu-action {
+    /* essential */
+    text-overflow: ellipsis;
+    width: 120px;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
 .pull-right {
     float: right;
 }
@@ -211,9 +219,9 @@ table tr.item td {
 
 .actions {
     position: absolute;
-    width: 150px;
+    width: 200px;
     top: -10px;
-    left: -10px;
+    left: -60px;
     z-index: 2;
 }
 
