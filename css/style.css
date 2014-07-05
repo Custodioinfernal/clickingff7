@@ -47,6 +47,14 @@ footer a:hover {
     text-decoration: underline;
 }
 
+footer .current:before {
+    content: '[';
+}
+
+footer .current:after {
+    content: ']';
+}
+
 /* [style commun] */
 
 nav ul {

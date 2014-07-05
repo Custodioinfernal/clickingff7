@@ -68,8 +68,14 @@
 <footer ng-show="game.loaded">
     <div class="wrapper">
         <div>
-            ©2014 menencia.com, version <a href="https://github.com/Menencia/clickingff7/releases"
-                                           target="_blank" id="step12"><big>{{game.version}}</big></a>
+            ©2014 <a href="http://menencia.com" target="_blank">menencia.com</a>, version <a
+                href="https://github.com/Menencia/clickingff7/releases"
+                target="_blank" id="step12"><big>{{game.version}}</big></a>
+        </div>
+        <div> Channels:
+            <a href="http://old.clickingff7.com" target="_blank" ng-class="{ current: isChannel('old.clickingff7.com')}">OLD</a> -
+            <a href="http://clickingff7.com" target="_blank" ng-class="{ current: isChannel('clickingff7.com')}">STABLE</a> -
+            <a href="http://beta.clickingff7.com" target="_blank" ng-class="{ current: isChannel('beta.clickingff7.com')}">BETA</a>
         </div>
         <div>
             <a href="https://github.com/Menencia/clickingff7" target="_blank">Github</a> -
