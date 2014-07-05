@@ -77,7 +77,7 @@ class Materia {
         buy() {
         if (this.canBuy()) {
             this.game.gils -= this.getPrice();
-            this.game.materias.add(this, false);
+            this.game.materias.add(this, true);
         }
     }
 
