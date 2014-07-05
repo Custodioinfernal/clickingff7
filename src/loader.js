@@ -70,16 +70,22 @@ class Loader {
                     "dist/enemies/zone7/levrikon.js",
                     "dist/enemies/zone7/mandragora.js",
                     "dist/enemies/zone7/midgar-zolom.js",
+                    "dist/enemies/zone8/crawler.js",
+                    "dist/enemies/zone8/castanets.js",
+                    "dist/enemies/zone8/madouge.js",
+                    "dist/enemies/zone8/ark-dragon.js",
+                    "dist/enemies/zone8/mystery-ninja.js",
                     "dist/items/potion.js",
                     "dist/items/ether.js",
                     "dist/items/hi-potion.js",
                     "dist/items/hi-ether.js",
-                    "dist/materias/restore.js",
-                    "dist/materias/bolt.js",
-                    "dist/materias/ice.js",
-                    "dist/materias/fire.js",
-                    "dist/materias/poison.js",
-                    "dist/materias/earth.js",
+                    "dist/materias/green/restore.js",
+                    "dist/materias/green/bolt.js",
+                    "dist/materias/green/ice.js",
+                    "dist/materias/green/fire.js",
+                    "dist/materias/green/poison.js",
+                    "dist/materias/green/earth.js",
+                    "dist/materias/red/choco-mog.js",
                     "dist/weapons/broadswords/bustersword.js",
                     "dist/weapons/broadswords/mythril-saber.js",
                     "dist/weapons/gun-arms/gatling-gun.js",
@@ -98,7 +104,8 @@ class Loader {
                     "dist/zones/zone4.js",
                     "dist/zones/zone5.js",
                     "dist/zones/zone6.js",
-                    "dist/zones/zone7.js"
+                    "dist/zones/zone7.js",
+                    "dist/zones/zone8.js"
                 ]}
         ];
 

@@ -1,9 +1,9 @@
-class Ice extends Materia {
+class Bolt extends Materia {
 
     constructor(game) {
         super(game);
 
-        this.name = 'Ice';
+        this.name = 'Bolt';
 
         this.color = 'green';
 
@@ -41,7 +41,7 @@ class Ice extends Materia {
      * @returns {boolean}
      */
         canUse() {
-        return (this.game.battle.isBattle && this.game.characters.mp >= this.mpCost);
+        return (this.game.battle.isBattle && this.game.characters.mp >= this.getMpCost());
     }
 
     /**
@@ -49,7 +49,7 @@ class Ice extends Materia {
      */
         action() {
         var that = this;
-        var attack = new Attack(this.getPwr(), ['ice']);
+        var attack = new Attack(this.getPwr(), ['bolt']);
 
         super.action(function () {
             that.game.enemies.getAttacked(attack);

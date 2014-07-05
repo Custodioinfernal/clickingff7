@@ -96,7 +96,7 @@ class Game {
         this.gils = 200;
         this.language = this.getLanguage(this.$translate.preferredLanguage());
         this.time = 0;
-        this.version = "1.0.0-beta.7";
+        this.version = "1.0.0";
     }
 
     /**

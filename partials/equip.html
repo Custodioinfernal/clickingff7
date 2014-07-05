@@ -14,18 +14,22 @@
     <img ng-src="{{game.characters.selected.image}}" width="80" alt="current_character" style="float: left"/>
 
     <div class="main">
+        <div>{{game.characters.selected.name}} <strong>(LVL{{game.characters.selected.level}})</strong></div>
+        <div ng-if="game.characters.selected.level > 0">
+            <span class="label">hp</span> {{game.characters.selected.getHpMax()}}
+            <span class="label">mp</span> {{game.characters.selected.getMpMax()}}
+            <span class="label">pwr</span> {{game.characters.selected.getHits()}}
+        </div>
+
         <p>
-            Weapon equipped: <br/>
+            {{"Equipped weapon"|translate}}<br/>
             <img ng-src="/img/icons/weapons/{{game.characters.selected.weapon().type}}.png" />
             {{game.characters.selected.weapon().name}}
+            <span class="desc">({{"Power"|translate}} {{game.characters.selected.weapon().hits}})</span>
         </p>
 
         <p>
-            Power: <br/>{{game.characters.selected.weapon().hits}}
-        </p>
-
-        <p>
-            Materia: <br/>+{{game.characters.selected.weapon().maxMaterias}}
+            {{"Nb materia"|translate}} +{{game.characters.selected.weapon().maxMaterias}}
         </p>
     </div>
 
@@ -35,17 +39,17 @@
     <div ng-if="game.characters.selected.getOthersWeapons().length !== 0">
         <table style="width: 100%">
             <tr>
-                <th>Nom</th>
+                <th>{{"Name"|translate}}</th>
                 <th></th>
             </tr>
             <tr ng-repeat="weapon in game.characters.selected.getOthersWeapons()" class="weapon">
                 <td>{{weapon.name}}</td>
-                <td><span ng-click="weapon.equip()" class="button">EQUIP</span></td>
+                <td><span ng-click="weapon.equip()" class="button">{{"Equip"|translate}}</span></td>
             </tr>
         </table>
     </div>
 
     <div class="no-data" ng-if="game.characters.selected.getOthersWeapons().length === 0">
-        NO OTHERS WEAPONS
+        {{"No weapons"|translate}}
     </div>
 </div>

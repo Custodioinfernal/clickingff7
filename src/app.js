@@ -103,6 +103,10 @@ app.controller('IndexCtrl', function ($scope, $location, $http, Game) {
         return route === $location.path();
     };
 
+    $scope.isChannel = function (host) {
+        return $location.host() === host;
+    };
+
     /**
      * Go to the game
      */

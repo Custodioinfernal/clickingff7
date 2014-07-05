@@ -1,9 +1,9 @@
-class Bolt extends Materia {
+class Ice extends Materia {
 
     constructor(game) {
         super(game);
 
-        this.name = 'Bolt';
+        this.name = 'Ice';
 
         this.color = 'green';
 
@@ -23,7 +23,7 @@ class Bolt extends Materia {
      * MP cost
      * @returns {number}
      */
-    getMpCost() {
+        getMpCost() {
         return this.level;
     }
 
@@ -41,7 +41,7 @@ class Bolt extends Materia {
      * @returns {boolean}
      */
         canUse() {
-        return (this.game.battle.isBattle && this.game.characters.mp >= this.mpCost);
+        return (this.game.battle.isBattle && this.game.characters.mp >= this.getMpCost());
     }
 
     /**
@@ -49,7 +49,7 @@ class Bolt extends Materia {
      */
         action() {
         var that = this;
-        var attack = new Attack(this.getPwr(), ['bolt']);
+        var attack = new Attack(this.getPwr(), ['ice']);
 
         super.action(function () {
             that.game.enemies.getAttacked(attack);

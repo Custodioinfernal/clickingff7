@@ -21,7 +21,10 @@
                 ng-click="materia.action()"
                 ng-class="{disabled: !materia.canUse()}">
                 <div class="pull-right">{{materia.getMpCost()}}</div>
-                {{'Mat. '+materia.name+' name'|translate}}
+                <div class="menu-action">
+                    <img ng-src="/img/icons/materias/{{materia.color}}.gif" />
+                    {{'Mat. '+materia.name+' name'|translate}}
+                </div>
             </li>
         </ul>
     </div>
@@ -93,7 +96,7 @@
                         <span class="label">mp</span> {{character.getMpMax()}}
                         <span class="label">pwr</span> {{character.getHits()}}
                     </div>
-                    <div class="line">"{{character.getLine()}}"</div>
+                    <div class="line">"{{character.getLine()|translate}}"</div>
                 </div>
 
                 <div style="clear: left"></div>
@@ -120,13 +123,13 @@
         </div>
 
         <!-- enemies list -->
-        <div ng-repeat="enemy in game.enemies.list" class="card">
-            <div class="avatar">
-                <img ng-src="{{enemy.image}}" alt="avatar" width="80"/>
+        <div ng-repeat="enemy in game.enemies.list" class="card_enemy">
+            <div class="avatar_enemy">
+                <img ng-src="{{enemy.image}}" alt="avatar" height="80" />
             </div>
             <!--
                         -->
-            <div class="main">
+            <div class="main_enemy">
 
                 <div>{{enemy.name}} <strong>(LVL{{enemy.level}})</strong>
                     <span ng-if="enemy.boss" class="boss">ZONE BOSS</span>

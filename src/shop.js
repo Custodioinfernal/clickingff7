@@ -42,7 +42,8 @@ class Shop {
             'Ice',
             'Fire',
             'Poison',
-            'Earth'
+            'Earth',
+            'ChocoMog'
         ];
         for (var m of materias) {
             var materia = new window[m](this.game);

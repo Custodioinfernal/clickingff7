@@ -1,20 +1,20 @@
-class Fire extends Materia {
+class Poison extends Materia {
 
     constructor(game) {
         super(game);
 
-        this.name = 'Fire';
+        this.name = 'Poison';
 
         this.color = 'green';
 
-        this.price = 600;
+        this.price = 1500;
 
         this.apFormula = function (x) {
             return Math.pow(x + 1, 2) + 150;
         };
 
         this.available = function (x) {
-            return x >= 2;
+            return x >= 5;
         };
 
     }
@@ -41,15 +41,16 @@ class Fire extends Materia {
      * @returns {boolean}
      */
         canUse() {
-        return (this.game.battle.isBattle && this.game.characters.mp >= this.mpCost);
+        return (this.game.battle.isBattle && this.game.characters.mp >= this.getMpCost());
     }
 
     /**
      * Do materia action
+     * Hits : 10% to 30%
      */
         action() {
         var that = this;
-        var attack = new Attack(this.getPwr(), ['fire']);
+        var attack = new Attack(this.getPwr(), ['poison']);
 
         super.action(function () {
             that.game.enemies.getAttacked(attack);

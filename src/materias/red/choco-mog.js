@@ -1,20 +1,20 @@
-class Poison extends Materia {
+class ChocoMog extends Materia {
 
     constructor(game) {
         super(game);
 
-        this.name = 'Poison';
+        this.name = 'Choco/Mog';
 
-        this.color = 'green';
+        this.color = 'red';
 
-        this.price = 1500;
+        this.price = 3000;
 
         this.apFormula = function (x) {
-            return Math.pow(x + 1, 2) + 150;
+            return Math.pow(x + 1, 3) + 150;
         };
 
         this.available = function (x) {
-            return x >= 5;
+            return x >= 7;
         };
 
     }
@@ -24,7 +24,7 @@ class Poison extends Materia {
      * @returns {number}
      */
         getMpCost() {
-        return this.level;
+        return Math.ceil(this.level / 10) + 100;
     }
 
     /**
@@ -32,7 +32,7 @@ class Poison extends Materia {
      * @returns {number}
      */
         getPwr() {
-        var pwr = 7 + (this.level / 100 * 20);
+        var pwr = 1000 + this.level * 100;
         return Math.ceil(pwr);
     }
 
@@ -41,16 +41,15 @@ class Poison extends Materia {
      * @returns {boolean}
      */
         canUse() {
-        return (this.game.battle.isBattle && this.game.characters.mp >= this.mpCost);
+        return (this.game.battle.isBattle && this.game.characters.mp >= this.getMpCost());
     }
 
     /**
      * Do materia action
-     * Hits : 10% to 30%
      */
         action() {
         var that = this;
-        var attack = new Attack(this.getPwr(), ['poison']);
+        var attack = new Attack(this.getPwr());
 
         super.action(function () {
             that.game.enemies.getAttacked(attack);

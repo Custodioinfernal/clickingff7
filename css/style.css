@@ -47,6 +47,14 @@ footer a:hover {
     text-decoration: underline;
 }
 
+footer .current:before {
+    content: '[';
+}
+
+footer .current:after {
+    content: ']';
+}
+
 /* [style commun] */
 
 nav ul {
@@ -70,6 +78,14 @@ nav li:not(.disabled):hover {
 
 nav .current {
     font-weight: bold;
+}
+
+.menu-action {
+    /* essential */
+    text-overflow: ellipsis;
+    width: 120px;
+    white-space: nowrap;
+    overflow: hidden;
 }
 
 .pull-right {
@@ -211,9 +227,9 @@ table tr.item td {
 
 .actions {
     position: absolute;
-    width: 150px;
+    width: 200px;
     top: -10px;
-    left: -10px;
+    left: -60px;
     z-index: 2;
 }
 
@@ -291,6 +307,28 @@ table tr.item td {
 .card .avatar {
     float: left;
     margin-right: 5px;
+}
+
+.card .line {
+    font-size: 12px;
+    font-weight: bold;
+    padding-top: 5px;
+}
+
+.card_enemy {
+    position: relative;
+}
+
+.avatar_enemy {
+    position: absolute;
+    z-index: 0;
+}
+
+.main_enemy {
+    position: absolute;
+    left: 90px;
+    background-color: rgba(255, 255, 255, 0.6);
+    z-index: 1;
 }
 
 .card .main {

@@ -22,9 +22,9 @@ class Enemy {
 
         this._hpMax = coeff * Math.ceil(((this.hpMax - 2) * 10 / 100 + 1) * 50 * level);
         this._hits = coeff * Math.ceil(((this.hits - 2) * 10 / 100 + 1) * 2 * level);
-        this._xp = coeff * Math.ceil(((this.xp - 2) * 10 / 100 + 1) * 5 * level);
+        this._xp = coeff * Math.ceil(((this.xp - 2) * 10 / 100 + 1) * 10 * level);
         this._ap = coeff * Math.ceil(((this.ap - 2) * 10 / 100 + 1) * 2 * level);
-        this._gils = coeff * Math.ceil(((this.gils - 2) * 10 / 100 + 1) * 10 * level);
+        this._gils = coeff * Math.ceil(((this.gils - 2) * 10 / 100 + 1) * 5 * level);
     }
 
     /**
