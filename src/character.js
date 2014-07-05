@@ -151,8 +151,8 @@ class Character {
      * @returns {*}
      */
         getLine() {
-        //var zoneLvlMax = this.Characters.game.zones.levelMax;
-        //return this.Characters.game.data.lines[zoneLvlMax][this.ref];
+        var levelMax = this.game.zones.levelMax;
+        return 'Line ' + levelMax + ' ' + this.constructor.name;
     }
 
     /**
