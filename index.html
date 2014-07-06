@@ -20,6 +20,7 @@
 <header>
     <div class="wrapper">
         clicking ff7
+        <span ng-click="help()" class="help" ng-show="game.loaded">{{"How to play?"|translate}}</span>
         <div class="progress game_load" ng-show="!game.loaded">
             <div class="game_load_progress" style="width:{{game.loader.loadProgress(300)}}px;"></div>
             <span class="bar-label">{{game.loader.filesLoaded}} / {{game.loader.nbFiles}} – {{game.loader.currentLabel}}</span>
@@ -45,7 +46,6 @@
                 {{"PHS"|translate}}
             </li>
             <li ng-click="goSave()" ng-class="{ current: isActive('/save')}">{{"Save"|translate}}</li>
-            <li ng-click="help()" class="last">{{"Help"|translate}}</li>
         </ul>
     </nav>
 
