@@ -374,7 +374,7 @@ app.controller('SaveCtrl', function ($scope, $rootScope, $location, Game) {
      * Reset the game
      */
     $rootScope.resetGame = function (ev) {
-        if (confirm('Are you sure ? You\'ll lose everything !')) {
+        if (Game.saves[0] && confirm('Are you sure ? You\'ll lose everything !')) {
             Game.preload();
             Game.reset();
             Game.buildLevel(1);
