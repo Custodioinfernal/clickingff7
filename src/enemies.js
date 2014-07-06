@@ -17,28 +17,32 @@ class Enemies {
     }
 
     /**
-     * Pick a random enemy of the current zone
+     * Fight against a random enemy
      */
-        random() {
-        var enemy;
+        fightRandom() {
         var levelMax = this.game.characters.levelMax;
         var zone = this.game.zones.current();
 
-        if (levelMax >= zone.level * 4 && !zone.completed) {
+        var range = Math.min(levelMax, zone.level * 4) - (zone.level * 4 - 3);
 
-            enemy = new window[zone.boss](this.game);
-            enemy._toLevel(levelMax + 1);
-            this.list = [enemy];
+        var e = zone.enemies[_.random(0, range)];
+        var enemy = new window[e](this.game);
+        enemy._toLevel(levelMax);
 
-        } else {
-            var range = Math.min(levelMax, zone.level * 4) - (zone.level * 4 - 3);
+        this.list = [enemy];
+    }
 
-            var e = zone.enemies[_.random(0, range)];
-            enemy = new window[e](this.game);
-            enemy._toLevel(levelMax);
+    /**
+     * Fight against the zone boss
+     */
+    fightBoss() {
+        var levelMax = this.game.characters.levelMax;
+        var zone = this.game.zones.current();
 
-            this.list = [enemy];
-        }
+        var enemy = new window[zone.boss](this.game);
+        enemy._toLevel(levelMax + 1);
+
+        this.list = [enemy];
     }
 
     /**
