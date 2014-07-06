@@ -52,10 +52,11 @@
                 </td>
             </tr>
 
-            <tr ng-repeat="materia in game.shop.materias" ng-if="game.shop.type === 'materias'">
+            <tr ng-repeat="materia in game.shop.materias" ng-if="game.shop.type === 'materias'" class="materia">
                 <td>
                     <img ng-src="/img/icons/materias/{{materia.color}}.gif" />
-                    {{'Mat. '+materia.name+' name'|translate}}
+                    {{'Mat. '+materia.name+' name'|translate}}<br />
+                    <span class="desc">{{'Mat. '+materia.name+' desc'|translate}}</span>
                 </td>
                 <td>{{materia.inStock()}}</td>
                 <td>{{materia.price}} {{"Gils"|translate}}</td>
@@ -66,8 +67,12 @@
                 </td>
             </tr>
 
-            <tr ng-repeat="item in game.shop.items" ng-if="game.shop.type === 'items'">
-                <td>{{'It. '+item.name+' name'|translate}}</td>
+            <tr ng-repeat="item in game.shop.items" ng-if="game.shop.type === 'items'" class="item">
+                <td>
+                    <img ng-src="/img/icons/item.gif" />
+                    {{'It. '+item.name+' name'|translate}}<br />
+                    <span class="desc">{{'It. '+item.name+' desc'|translate}}</span>
+                </td>
                 <td>{{item.inStock()}}</td>
                 <td>{{item.price}} {{"Gils"|translate}}</td>
                 <td>
@@ -110,10 +115,11 @@
                 <td colspan="4">{{"Nothing to sell"|translate}}</td>
             </tr>
 
-            <tr ng-repeat="materia in game.materias.list" ng-if="game.shop.type === 'materias'">
+            <tr ng-repeat="materia in game.materias.list" ng-if="game.shop.type === 'materias'" class="materia">
                 <td>
                     <img ng-src="/img/icons/materias/{{materia.color}}.gif" />
                     {{'Mat. '+materia.name+' name'|translate}}
+                    <span class="desc">{{'Mat. '+materia.name+' desc'|translate}}</span>
                 </td>
                 <td>{{materia.inStock()}}</td>
                 <td>{{materia.getSellPrice()}} {{"Gils"|translate}}</td>
@@ -128,8 +134,12 @@
                 <td colspan="4">{{"Nothing to sell"|translate}}</td>
             </tr>
 
-            <tr ng-repeat="item in game.items.list" ng-if="game.shop.type === 'items'">
-                <td>{{'It. '+item.name+' name'|translate}}</td>
+            <tr ng-repeat="item in game.items.list" ng-if="game.shop.type === 'items'" class="item">
+                <td>
+                    <img ng-src="/img/icons/item.gif" />
+                    {{'It. '+item.name+' name'|translate}}<br />
+                    <span class="desc">{{'It. '+item.name+' desc'|translate}}</span>
+                </td>
                 <td>{{item.inStock()}}</td>
                 <td>{{item.getSellPrice()}} {{"Gils"|translate}}</td>
                 <td>
