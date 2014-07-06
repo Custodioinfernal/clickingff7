@@ -215,9 +215,18 @@ app.controller('GameCtrl', function ($rootScope, Game) {
     /**
      * Explore for fight
      */
-    $rootScope.explore = function (ev) {
+    $rootScope.fightRandom = function (ev) {
         if (!Game.battle.isBattle) {
-            Game.battle.start();
+            Game.battle.startRandom();
+        }
+    };
+
+    /**
+     * Explore for fight
+     */
+    $rootScope.fightBoss = function (ev) {
+        if (Game.battle.canFightBoss()) {
+            Game.battle.startBoss();
         }
     };
 
@@ -365,7 +374,7 @@ app.controller('SaveCtrl', function ($scope, $rootScope, $location, Game) {
      * Reset the game
      */
     $rootScope.resetGame = function (ev) {
-        if (confirm('Are you sure ? You\'ll lose everything !')) {
+        if (Game.saves[0] && confirm('Are you sure ? You\'ll lose everything !')) {
             Game.preload();
             Game.reset();
             Game.buildLevel(1);

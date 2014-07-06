@@ -103,11 +103,13 @@ class Character {
      */
         setXp(xp) {
         this.xp += xp;
-        while (this.xp >= this.getXpMax()) {
-            this.xp -= this.getXpMax();
-            this.level += 1;
+        if (this.level < 100) {
+            while (this.xp >= this.getXpMax()) {
+                this.xp -= this.getXpMax();
+                this.level += 1;
 
-            this.game.characters.refresh();
+                this.game.characters.refresh();
+            }
         }
     }
 

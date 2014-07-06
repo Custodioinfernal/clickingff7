@@ -4,7 +4,7 @@
             <li ng-click="saveGame()">
                 {{"Save"|translate}}
             </li>
-            <li ng-click="resetGame()">
+            <li ng-click="resetGame()" ng-class="{disabled: game.saves.length === 0}">
                 {{"Reset"|translate}}
             </li>
         </ul>
@@ -12,7 +12,7 @@
 
     <div class="block">
         <ul>
-            <li ng-click="exportLastSave()">
+            <li ng-click="exportLastSave()" ng-class="{disabled: game.saves.length === 0}">
                 {{"Export save"|translate}}
             </li>
             <li ng-click="exportCurrentGame()">

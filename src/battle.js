@@ -8,13 +8,38 @@ class Battle {
     /**
      * Characters start auto-attacking
      */
-        start() {
+        startRandom() {
         if (!this.isBattle) {
             this.isBattle = true;
 
             this.game.characters.autoFighting();
 
-            this.game.enemies.random();
+            this.game.enemies.fightRandom();
+            this.game.enemies.refresh();
+            this.game.enemies.autoFighting();
+        }
+    }
+
+    /**
+     * Returns true if zone boss is available
+     * @returns {boolean}
+     */
+        canFightBoss() {
+        var levelMax = this.game.characters.levelMax;
+        var zone = this.game.zones.current();
+        return (!this.isBattle && levelMax >= zone.level * 4 && !zone.completed);
+    }
+
+    /**
+     * Characters start auto-attacking
+     */
+        startBoss() {
+        if (!this.isBattle) {
+            this.isBattle = true;
+
+            this.game.characters.autoFighting();
+
+            this.game.enemies.fightBoss();
             this.game.enemies.refresh();
             this.game.enemies.autoFighting();
         }

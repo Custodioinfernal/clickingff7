@@ -1,7 +1,7 @@
 {
     "steps": [
         {
-            "intro"   : "Bienvenue dans ce tutorial. Voyons voir comment jouer à ce jeu."
+            "intro"   : "Bienvenue dans ce tutorial. Voyons comment jouer à ce jeu."
         },
         {
             "element" : "#step1",

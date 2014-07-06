@@ -55,6 +55,19 @@ footer .current:after {
     content: ']';
 }
 
+.help {
+    position: absolute;
+    font-weight: normal;
+    font-size: 14px;
+    margin-top: 11px;
+    margin-left: 5px;
+}
+
+.help:hover {
+    cursor: pointer;
+    color: #900;
+}
+
 /* [style commun] */
 
 nav ul {

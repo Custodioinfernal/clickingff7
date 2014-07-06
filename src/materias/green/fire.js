@@ -24,7 +24,7 @@ class Fire extends Materia {
      * @returns {number}
      */
         getMpCost() {
-        return this.level;
+        return Math.ceil(this.level / 5);
     }
 
     /**
