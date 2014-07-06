@@ -127,9 +127,11 @@ class Materia {
      */
     setAp(ap) {
         this.ap += ap;
-        while (this.ap >= this.getApMax()) {
-            this.ap -= this.getApMax();
-            this.level += 1;
+        if (this.level < 100) {
+            while (this.ap >= this.getApMax()) {
+                this.ap -= this.getApMax();
+                this.level += 1;
+            }
         }
     }
 
