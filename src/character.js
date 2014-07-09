@@ -66,14 +66,21 @@ class Character {
      * @returns {number}
      */
         getHpMax() {
-        return Math.ceil(((this.hpBase - 2) * 10 / 100 + 1) * 20 * this.level);
+        return Math.ceil(((this.hpBase - 3) * 10 / 100 + 1) * 20 * this.level);
     }
 
     /**
      * @returns {number}
      */
         getMpMax() {
-        return Math.ceil(((this.mpBase - 2) * 10 / 100 + 1) * 2 * this.level);
+        return Math.ceil(((this.mpBase - 3) * 10 / 100 + 1) * 2 * this.level);
+    }
+
+    /**
+     * @returns {number}
+     */
+        getXpMax() {
+        return Math.ceil(((3 - this.xpBase) * 10 / 100 + 1) * 100 * this.level);
     }
 
     /**
@@ -81,13 +88,6 @@ class Character {
      */
         getHits() {
         return this.level * this.weapon().hits / 10;
-    }
-
-    /**
-     * @returns {Object}
-     */
-        getXpMax() {
-        return this.xpFormula(this.level + 1);
     }
 
     /**

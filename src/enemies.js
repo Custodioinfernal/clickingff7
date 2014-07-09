@@ -21,13 +21,16 @@ class Enemies {
      */
         fightRandom() {
         var levelMax = this.game.characters.levelMax;
+        var levelSum = this.game.characters.levelSum;
         var zone = this.game.zones.current();
 
-        var range = Math.min(levelMax, zone.level * 4) - (zone.level * 4 - 3);
+        var range;
+        range = Math.max(levelMax, zone.level * 4 - 3);
+        range = Math.min(range, zone.level * 4);
 
-        var e = zone.enemies[_.random(0, range)];
+        var e = zone.enemies[_.random(0, range - 1)];
         var enemy = new window[e](this.game);
-        enemy._toLevel(levelMax);
+        enemy._toLevel(levelSum);
 
         this.list = [enemy];
     }
@@ -35,12 +38,12 @@ class Enemies {
     /**
      * Fight against the zone boss
      */
-    fightBoss() {
-        var levelMax = this.game.characters.levelMax;
+        fightBoss() {
+        var levelSum = this.game.characters.levelSum;
         var zone = this.game.zones.current();
 
         var enemy = new window[zone.boss](this.game);
-        enemy._toLevel(levelMax + 1);
+        enemy._toLevel(levelSum * 1.4);
 
         this.list = [enemy];
     }

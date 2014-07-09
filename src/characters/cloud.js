@@ -15,6 +15,7 @@ class Cloud extends Character {
         // STATS
         this.hpBase = 3;
         this.mpBase = 3;
+        this.xpBase = 3;
 
         // Character XP formula
         this.xpFormula = function (x) {

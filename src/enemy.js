@@ -14,17 +14,13 @@ class Enemy {
      * @private
      */
         _toLevel(level) {
-        this.level = level;
+        this.level = Math.ceil(level / 3);
 
-        var coeff = 1;
-        if (this.miboss) coeff = 1.5;
-        if (this.boss) coeff = 2;
-
-        this._hpMax = coeff * Math.ceil(((this.hpMax - 2) * 10 / 100 + 1) * 50 * level);
-        this._hits = coeff * Math.ceil(((this.hits - 2) * 10 / 100 + 1) * 2 * level);
-        this._xp = coeff * Math.ceil(((this.xp - 2) * 10 / 100 + 1) * 10 * level);
-        this._ap = coeff * Math.ceil(((this.ap - 2) * 10 / 100 + 1) * 2 * level);
-        this._gils = coeff * Math.ceil(((this.gils - 2) * 10 / 100 + 1) * 5 * level);
+        this._hpMax = Math.ceil(((this.hpMax - 3) * 10 / 100 + 1) * 25 * level);
+        this._hits = Math.ceil(((this.hits - 3) * 10 / 100 + 1) * 1 * level);
+        this._xp = Math.ceil(((this.xp - 3) * 10 / 100 + 1) * 10 * level);
+        this._ap = Math.ceil(((this.ap - 3) * 10 / 100 + 1) * 2 * level);
+        this._gils = Math.ceil(((this.gils - 3) * 10 / 100 + 1) * 5 * level);
     }
 
     /**

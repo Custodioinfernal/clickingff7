@@ -10,11 +10,11 @@ class GuardScorpion extends Enemy {
         this.boss = true;
 
         // BELOW – rate over 5
-        this.hpMax = 5;
-        this.hits = 5;
-        this.xp = 5;
-        this.ap = 5;
-        this.gils = 5;
+        this.hpMax = 4;
+        this.hits = 3;
+        this.xp = 3;
+        this.ap = 3;
+        this.gils = 3;
         // END
 
         this.weakness = ['bolt'];

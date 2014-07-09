@@ -16,6 +16,7 @@ class Aerith extends Character {
         this.level = 8;
         this.hpBase = 1;
         this.mpBase = 5;
+        this.xpBase = 2;
 
         // Character XP formula
         this.xpFormula = function (x) {
