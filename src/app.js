@@ -235,12 +235,8 @@ app.controller('GameCtrl', function ($rootScope, Game) {
      */
     $rootScope.attack = function (ev) {
         if (Game.characters.canAttack()) {
-            // stop autoAttacking
-            Game.characters.stopFighting();
-
             var pwr = Game.characters.getHits();
             Game.enemies.getAttacked(new Attack(pwr), false);
-            Game.characters.autoFighting();
         }
     };
 

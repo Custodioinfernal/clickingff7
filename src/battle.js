@@ -12,8 +12,6 @@ class Battle {
         if (!this.isBattle) {
             this.isBattle = true;
 
-            this.game.characters.autoFighting();
-
             this.game.enemies.fightRandom();
             this.game.enemies.refresh();
             this.game.enemies.autoFighting();
@@ -37,8 +35,6 @@ class Battle {
         if (!this.isBattle) {
             this.isBattle = true;
 
-            this.game.characters.autoFighting();
-
             this.game.enemies.fightBoss();
             this.game.enemies.refresh();
             this.game.enemies.autoFighting();
@@ -52,7 +48,6 @@ class Battle {
         end(victory) {
         this.isBattle = false;
 
-        this.game.characters.stopFighting();
         this.game.enemies.stopFighting();
 
         var enemies = this.game.enemies.list;

@@ -45,13 +45,7 @@ class Item {
         }
 
         // do action
-        if (this.game.battle.isBattle) {
-            this.game.characters.stopFighting();
-            fn();
-            this.game.characters.autoFighting();
-        } else {
-            fn();
-        }
+        fn();
     }
 
     /**

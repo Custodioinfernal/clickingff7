@@ -19,9 +19,6 @@ class Characters {
         // Array of recent hits
         this.arrHits = [];
 
-        // timers array
-        this.timer = {};
-
         // current selected character in menus
         this.selected = null;
     }
@@ -184,31 +181,6 @@ class Characters {
         if (this.arrHits.length > 5) {
             this.arrHits.pop();
         }
-    }
-
-    /**
-     * Characters auto-attack process
-     */
-        autoFighting() {
-        var self = this;
-        this.timer['fighting'] = this.game.$timeout(function () {
-
-            var pwr = self.getHits();
-            var alive = self.game.enemies.getAutoAttacked(new Attack(pwr));
-
-            if (alive) {
-                self.autoFighting();
-            } else {
-                self.game.battle.end(true);
-            }
-        }, 1000);
-    }
-
-    /**
-     * Stop fighting
-     */
-        stopFighting() {
-        var success = this.game.$timeout.cancel(this.timer['fighting']);
     }
 
     /**
