@@ -24,16 +24,15 @@ class Fire extends Materia {
      * @returns {number}
      */
         getMpCost() {
-        return Math.ceil(this.level / 5);
+        return Math.ceil(this.getPwr() / 10);
     }
 
     /**
-     * Return materia power (7% to 27%)
+     * Return materia power
      * @returns {number}
      */
         getPwr() {
-        var pwr = 7 + (this.level / 100 * 20);
-        return Math.ceil(pwr);
+        return Math.ceil(this.level * (20 + (this.level/100) * 60) / 5);
     }
 
     /**

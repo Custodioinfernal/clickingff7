@@ -24,16 +24,15 @@ class ChocoMog extends Materia {
      * @returns {number}
      */
         getMpCost() {
-        return Math.ceil(this.level / 10) + 100;
+        return Math.ceil(this.getPwr() / 10);
     }
 
     /**
-     * Return materia power (7% to 27%)
+     * Return materia power
      * @returns {number}
      */
         getPwr() {
-        var pwr = 1000 + this.level * 100;
-        return Math.ceil(pwr);
+        return Math.ceil(this.level * (10 + (this.level/100) * 20));
     }
 
     /**

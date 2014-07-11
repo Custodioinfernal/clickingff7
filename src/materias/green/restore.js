@@ -24,16 +24,15 @@ class Restore extends Materia {
      * @returns {number}
      */
         getMpCost() {
-        return Math.ceil(this.level / 6);
+        return Math.ceil(this.getPwr() / 100);
     }
 
     /**
-     * Return materia power (20% to 40%)
+     * Return materia power
      * @returns {number}
      */
         getPwr() {
-        var pwr = 20 * this.level;
-        return Math.ceil(pwr);
+        return Math.ceil(this.level * (20 + (this.level/100) * 60));
     }
 
     /**
