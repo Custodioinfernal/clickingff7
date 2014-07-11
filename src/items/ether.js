@@ -5,9 +5,9 @@ class Ether extends Item {
 
         this.name = 'Ether';
 
-        this.price = 200;
+        this.price = 100;
 
-        this.available = function(x) {
+        this.available = function (x) {
             return true;
         };
     }
@@ -25,9 +25,10 @@ class Ether extends Item {
      */
         action() {
         var that = this;
+        var mp = Math.ceil(50 / 100 * this.game.characters.mpMax);
 
         super.action(function () {
-            that.game.characters.addMp(20);
+            that.game.characters.addMp(mp);
         });
     }
 

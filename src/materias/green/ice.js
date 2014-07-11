@@ -9,9 +9,8 @@ class Ice extends Materia {
 
         this.price = 600;
 
-        this.apFormula = function (x) {
-            return Math.pow(x + 1, 2) + 150;
-        };
+        // STATS
+        this.apBase = 3;
 
         this.available = function (x) {
             return x >= 1;

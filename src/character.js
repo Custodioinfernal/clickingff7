@@ -73,7 +73,7 @@ class Character {
      * @returns {number}
      */
         getMpMax() {
-        return Math.ceil(((this.mpBase - 3) * 10 / 100 + 1) * 2 * this.level);
+        return Math.ceil(((this.mpBase - 3) * 10 / 100 + 1) * 3 * this.level);
     }
 
     /**
@@ -106,7 +106,7 @@ class Character {
         if (this.level < 100) {
             while (this.xp >= this.getXpMax()) {
                 this.xp -= this.getXpMax();
-                this.level += 1;
+                this.level++;
 
                 this.game.characters.refresh();
             }

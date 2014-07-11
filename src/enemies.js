@@ -28,7 +28,7 @@ class Enemies {
         range = Math.max(levelMax, zone.level * 4 - 3);
         range = Math.min(range, zone.level * 4);
 
-        var e = zone.enemies[_.random(0, range - 1)];
+        var e = zone.enemies[_.random(0, (range - 1) % 4)];
         var enemy = new window[e](this.game);
 
         if (enemy.miboss) {

@@ -9,9 +9,8 @@ class ChocoMog extends Materia {
 
         this.price = 3000;
 
-        this.apFormula = function (x) {
-            return Math.pow(x + 1, 3) + 150;
-        };
+        // STATS
+        this.apBase = 4;
 
         this.available = function (x) {
             return x >= 7;

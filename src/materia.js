@@ -111,7 +111,7 @@ class Materia {
      * @returns {Object}
      */
     getApMax() {
-        return this.apFormula(this.level + 1);
+        return Math.ceil(((this.apBase - 3) * 10 / 100 + 1) * 60 * this.level);
     }
 
     /*

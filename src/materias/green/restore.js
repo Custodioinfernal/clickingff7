@@ -9,9 +9,8 @@ class Restore extends Materia {
 
         this.price = 750;
 
-        this.apFormula = function (x) {
-            return Math.pow(x + 1, 2) + 100;
-        };
+        // STATS
+        this.apBase = 2;
 
         this.available = function (x) {
             return x >= 1;
@@ -32,7 +31,7 @@ class Restore extends Materia {
      * @returns {number}
      */
         getPwr() {
-        return Math.ceil(this.level * (20 + (this.level/100) * 60));
+        return Math.ceil(this.level * (20 + (this.level/100) * 40));
     }
 
     /**

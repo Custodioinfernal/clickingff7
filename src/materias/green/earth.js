@@ -9,9 +9,8 @@ class Earth extends Materia {
 
         this.price = 1500;
 
-        this.apFormula = function (x) {
-            return Math.pow(x + 1, 2) + 150;
-        };
+        // STATS
+        this.apBase = 3;
 
         this.available = function (x) {
             return x >= 7;
