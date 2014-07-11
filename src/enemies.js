@@ -30,6 +30,11 @@ class Enemies {
 
         var e = zone.enemies[_.random(0, range - 1)];
         var enemy = new window[e](this.game);
+
+        if (enemy.miboss) {
+            levelSum *= 1.2;
+        }
+
         enemy._toLevel(levelSum);
 
         this.list = [enemy];
