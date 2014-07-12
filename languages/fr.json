@@ -88,13 +88,13 @@
     "Mat. Choco/Mog desc": "Invoque une nuée de chocobos et de mogs",
 
     "It. Potion name"   : "Potion",
-    "It. Potion desc"   : "Soigne l'équipe de 150 HP",
+    "It. Potion desc"   : "Soigne de 33% les HP de l'équipe",
     "It. Ether name"    : "Ether",
-    "It. Ether desc"    : "Restaure l'équipe de 20 MP",
+    "It. Ether desc"    : "Restaure de 33% les MP de l'équipe",
     "It. Hi-Potion name": "Super potion",
-    "It. Hi-Potion desc": "Soigne l'équipe de 850 HP",
+    "It. Hi-Potion desc": "Soigne de 66% les HP de l'équipe",
     "It. Hi-Ether name" : "Super ether",
-    "It. Hi-Ether desc" : "Restaure l'équipe de 100 MP",
+    "It. Hi-Ether desc" : "Restaure de 66% les MP de l'équipe",
 
     "Zone 1 name": "Réacteur du Secteur 1",
     "Zone 1 desc": "Cloud vient de rejoindre Avalanche. Avec Barret, leur chef, ils ont prévu de détruire un réacteur MAKO qui épuise l'énergie de la Planète.",

@@ -14,7 +14,7 @@
             <td>
                 <img ng-src="/img/icons/materias/{{materia.color}}.gif"/>
                 {{'Mat. '+materia.name +' name'|translate}}
-                <strong>(LVL{{materia.level}})</strong><br/>
+                <strong>(LVL{{materia.level}})</strong> PWR: {{materia.getPwr()}}<br/>
                 <span class="desc">{{'Mat. '+materia.name +' desc'|translate}}</span>
             </td>
             <td>

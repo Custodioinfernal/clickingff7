@@ -5,7 +5,7 @@ class HiEther extends Item {
 
         this.name = 'Hi-Ether';
 
-        this.price = 1200;
+        this.price = 130;
 
         this.available = function(x) {
             return x >= 7;
@@ -25,9 +25,10 @@ class HiEther extends Item {
      */
         action() {
         var that = this;
+        var mp = Math.ceil(66 / 100 * this.game.characters.mpMax);
 
         super.action(function () {
-            that.game.characters.addMp(100);
+            that.game.characters.addMp(mp);
         });
     }
 

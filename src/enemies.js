@@ -166,7 +166,7 @@ class Enemies {
 
         // resistance
         if (this.hasResistance(attack.type)) {
-            hits = Math.floor(hits / 10);
+            hits = Math.floor(hits / 3);
         }
 
         this.hp -= hits;

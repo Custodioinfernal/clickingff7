@@ -1,4 +1,4 @@
-class Poison extends Materia {
+class Poison extends AttackMateria {
 
     constructor(game) {
         super(game);
@@ -7,52 +7,16 @@ class Poison extends Materia {
 
         this.color = 'green';
 
-        this.price = 1500;
+        this.price = 300;
 
-        // STATS
         this.apBase = 3;
 
-        this.available = function (x) {
-            return x >= 5;
-        };
+        this.pwr = 50;
 
-    }
+        this.elements = ['poison'];
 
-    /**
-     * MP cost
-     * @returns {number}
-     */
-        getMpCost() {
-        return Math.ceil(this.getPwr() / 10);
-    }
+        this.zoneAvailable = 5;
 
-    /**
-     * Return materia power
-     * @returns {number}
-     */
-        getPwr() {
-        return Math.ceil(this.level * (20 + (this.level/100) * 60) / 5);
-    }
-
-    /**
-     * Can use the materia?
-     * @returns {boolean}
-     */
-        canUse() {
-        return (this.game.battle.isBattle && this.game.characters.mp >= this.getMpCost());
-    }
-
-    /**
-     * Do materia action
-     * Hits : 10% to 30%
-     */
-        action() {
-        var that = this;
-        var attack = new Attack(this.getPwr(), ['poison']);
-
-        super.action(function () {
-            that.game.enemies.getAttacked(attack);
-        });
     }
 
 }

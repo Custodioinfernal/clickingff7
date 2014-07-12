@@ -9,7 +9,7 @@ class Loader {
 
         // list all files
         this.files = [
-            {label  : "Loading main files",
+            {label  : "Loading main files (1/2)",
                 list: [
                     "dist/attack.js",
                     "dist/battle.js",
@@ -27,6 +27,11 @@ class Loader {
                     "dist/weapons.js",
                     "dist/zone.js",
                     "dist/zones.js"
+                ]},
+            {label  : "Loading main files (2/2)",
+                list: [
+                    "dist/materias/attack-materia.js",
+                    "dist/materias/cure-materia.js"
                 ]},
             {label  : "Loading resource files",
                 list: [
@@ -129,7 +134,7 @@ class Loader {
 
         for (var file of this.files[group].list) {
 
-            head.load(file, function() {
+            head.load(file, function () {
                 groupRemain--;
                 that.filesRemain--;
                 that.filesLoaded++;

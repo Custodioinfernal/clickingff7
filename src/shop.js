@@ -47,7 +47,7 @@ class Shop {
         ];
         for (var m of materias) {
             var materia = new window[m](this.game);
-            if (materia.available(this.game.zones.levelMax)) {
+            if (materia.zoneAvailable <= this.game.zones.levelMax) {
                 this.materias.push(materia);
             }
         }

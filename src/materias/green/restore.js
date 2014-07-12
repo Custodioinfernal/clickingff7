@@ -1,4 +1,4 @@
-class Restore extends Materia {
+class Restore extends CureMateria {
 
     constructor(game) {
         super(game);
@@ -7,53 +7,14 @@ class Restore extends Materia {
 
         this.color = 'green';
 
-        this.price = 750;
+        this.price = 400;
 
-        // STATS
         this.apBase = 2;
 
-        this.available = function (x) {
-            return x >= 1;
-        };
+        this.pwr = 20;
 
-    }
+        this.zoneAvailable = 7;
 
-    /**
-     * MP cost
-     * @returns {number}
-     */
-        getMpCost() {
-        return Math.ceil(this.getPwr() / 100);
-    }
-
-    /**
-     * Return materia power
-     * @returns {number}
-     */
-        getPwr() {
-        return Math.ceil(this.level * (20 + (this.level/100) * 40));
-    }
-
-    /**
-     * Can use the materia?
-     * @returns {boolean}
-     */
-        canUse() {
-        return (this.game.characters.mp >= this.getMpCost()
-            && this.game.characters.hp < this.game.characters.hpMax);
-    }
-
-    /**
-     * Do materia action
-     * Add to HP : +30% to +60%
-     */
-        action() {
-        var that = this;
-        var cure = new Cure(this.getPwr());
-
-        super.action(function () {
-            that.game.characters.addHp(cure.getCure());
-        });
     }
 
 }
