@@ -95,6 +95,7 @@ class Game {
         // savable vars
         this.gils = 200;
         this.language = this.getLanguage(this.$translate.preferredLanguage());
+        this.difficulty = 2;
         this.time = 0;
         this.version = "1.0.1";
     }
@@ -102,7 +103,7 @@ class Game {
     /**
      * Refresh the game with data loaded
      */
-    postload() {
+        postload() {
         this.$translate.use(this.language);
 
         this.shop.refresh();
@@ -192,6 +193,7 @@ class Game {
             items     : this.items.export(),
             gils      : this.gils,
             language  : this.language,
+            difficulty: this.difficulty,
             time      : this.time,
             version   : this.version
         };
@@ -247,6 +249,7 @@ class Game {
         }
 
         this.language = save.language;
+        this.difficulty = save.difficulty;
 
         this.time = save.time;
         this.gils = save.gils;

@@ -333,6 +333,11 @@ app.controller('ConfigCtrl', function ($scope, $rootScope, $translate, $location
         $translate.use(language);
     };
 
+    $scope.changeDifficulty = function () {
+        var difficulty = $('#difficulty').val();
+        Game.difficulty = difficulty;
+    };
+
 });
 
 /**
