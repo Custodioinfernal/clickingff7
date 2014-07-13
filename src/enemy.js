@@ -16,7 +16,7 @@ class Enemy {
         _toLevel(levelSum) {
 
         // Difficulty
-        levelSum *= (1 + (this.game.difficulty - 2) * 50 / 100);
+        levelSum *= (1 + (this.game.difficulty - 2) * 20 / 100);
         levelSum = Math.ceil(levelSum);
 
         this.level = Math.ceil(levelSum / 3);
