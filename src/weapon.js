@@ -94,6 +94,14 @@ class Weapon {
     }
 
     /**
+     * Returns true if weapon can be equipped
+     * @returns {boolean}
+     */
+    canEquip() {
+        return true;
+    }
+
+    /**
      * Equip a weapon
      * @param refresh
      */

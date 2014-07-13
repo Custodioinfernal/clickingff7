@@ -23,6 +23,17 @@
             </li>
         </ul>
     </div>
+
+    <div class="block" ng-if="game.shop.section === 'buy' && game.shop.type === 'weapons'">
+        <ul>
+            <li ng-class="{current: game.shop.allWeapons}" ng-click="game.shop.enable('allWeapons')">
+                {{"All"|translate}}
+            </li>
+            <li ng-class="{current: !game.shop.allWeapons}" ng-click="game.shop.disable('allWeapons')">
+                {{"New"|translate}}
+            </li>
+        </ul>
+    </div>
 </nav>
 
 <div class="c2">
@@ -49,6 +60,13 @@
                     <span ng-click="weapon.buy()" ng-if="weapon.canBuy()" class="button">
                         {{"Buy"|translate}}
                     </span>
+                </td>
+            </tr>
+
+            <tr ng-if="game.shop.type === 'weapons' && game.shop.weapons.length === 0" class="nothing">
+                <td colspan="4">
+                    {{"Nothing new to buy"|translate}}<br />
+                    <a href="" ng-click="game.shop.enable('allWeapons')">{{'See all weapons'|translate}}</a>
                 </td>
             </tr>
 
