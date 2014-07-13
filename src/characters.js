@@ -19,9 +19,6 @@ class Characters {
         // Array of recent hits
         this.arrHits = [];
 
-        // timers array
-        this.timer = {};
-
         // current selected character in menus
         this.selected = null;
     }
@@ -88,6 +85,7 @@ class Characters {
         this.hits = 0;
         this.arrHits = [];
         this.levelMax = 0;
+        this.levelSum = 0;
 
         var characters = this.getTeam();
         for (var character of characters) {
@@ -100,6 +98,8 @@ class Characters {
             this.hpMax += character.getHpMax();
             this.mpMax += character.getMpMax();
             this.hits += character.getHits();
+
+            this.levelSum += character.level;
         }
 
         this.limitMax = 2 * this.hpMax / 3;
@@ -181,31 +181,6 @@ class Characters {
         if (this.arrHits.length > 5) {
             this.arrHits.pop();
         }
-    }
-
-    /**
-     * Characters auto-attack process
-     */
-        autoFighting() {
-        var self = this;
-        this.timer['fighting'] = this.game.$timeout(function () {
-
-            var pwr = self.getHits();
-            var alive = self.game.enemies.getAutoAttacked(new Attack(pwr));
-
-            if (alive) {
-                self.autoFighting();
-            } else {
-                self.game.battle.end(true);
-            }
-        }, 1000);
-    }
-
-    /**
-     * Stop fighting
-     */
-        stopFighting() {
-        var success = this.game.$timeout.cancel(this.timer['fighting']);
     }
 
     /**

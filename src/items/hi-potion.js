@@ -5,7 +5,7 @@ class HiPotion extends Item {
 
         this.name = 'Hi-Potion';
 
-        this.price = 1500;
+        this.price = 110;
 
         this.available = function(x) {
             return x >= 7;
@@ -25,9 +25,10 @@ class HiPotion extends Item {
      */
         action() {
         var that = this;
+        var hp = Math.ceil(66 / 100 * this.game.characters.hpMax);
 
         super.action(function () {
-            that.game.characters.addHp(850);
+            that.game.characters.addHp(hp);
         });
     }
 

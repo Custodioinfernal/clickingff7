@@ -15,6 +15,7 @@ class Barret extends Character {
         // STATS
         this.hpBase = 5;
         this.mpBase = 1;
+        this.xpBase = 2;
 
         // Character XP formula
         this.xpFormula = function (x) {

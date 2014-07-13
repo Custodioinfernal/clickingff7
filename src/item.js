@@ -1,13 +1,8 @@
-/**
- * Item class
- * @param {Game} Game
- * @param {string} ref
- */
-
 class Item {
 
     constructor(game) {
         this.game = game;
+        this.ref = this.constructor.name;
 
         // nbr owned
         this.number = 1;
@@ -45,13 +40,7 @@ class Item {
         }
 
         // do action
-        if (this.game.battle.isBattle) {
-            this.game.characters.stopFighting();
-            fn();
-            this.game.characters.autoFighting();
-        } else {
-            fn();
-        }
+        fn();
     }
 
     /**
@@ -84,7 +73,8 @@ class Item {
         buy() {
         if (this.canBuy()) {
             this.game.gils -= this.getPrice();
-            this.game.items.add(this, true);
+            var equipped = (this.game.items.getEquipped().length < this.game.items.MAX_ITEMS);
+            this.game.items.add(this, equipped);
         }
     }
 
@@ -157,9 +147,7 @@ class Item {
      * Save materia data
      */
         export() {
-        var json = _.pick(this, 'number', 'equipped');
-        json.model = this.constructor.name;
-        return json;
+        return _.pick(this, 'ref', 'number', 'equipped');
     }
 
 }

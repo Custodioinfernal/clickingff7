@@ -10,21 +10,22 @@ class Enemy {
 
     /**
      * Get the enemy to the given level
-     * @param level
+     * @param levelSum
      * @private
      */
-        _toLevel(level) {
-        this.level = level;
+        _toLevel(levelSum) {
 
-        var coeff = 1;
-        if (this.miboss) coeff = 1.5;
-        if (this.boss) coeff = 2;
+        // Difficulty
+        levelSum *= (1 + (this.game.difficulty - 2) * 50 / 100);
+        levelSum = Math.ceil(levelSum);
 
-        this._hpMax = coeff * Math.ceil(((this.hpMax - 2) * 10 / 100 + 1) * 50 * level);
-        this._hits = coeff * Math.ceil(((this.hits - 2) * 10 / 100 + 1) * 2 * level);
-        this._xp = coeff * Math.ceil(((this.xp - 2) * 10 / 100 + 1) * 10 * level);
-        this._ap = coeff * Math.ceil(((this.ap - 2) * 10 / 100 + 1) * 2 * level);
-        this._gils = coeff * Math.ceil(((this.gils - 2) * 10 / 100 + 1) * 5 * level);
+        this.level = Math.ceil(levelSum / 3);
+
+        this._hpMax = Math.ceil(((this.hpMax - 3) * 10 / 100 + 1) * 25 * levelSum);
+        this._hits = Math.ceil(((this.hits - 3) * 10 / 100 + 1) * levelSum);
+        this._xp = Math.ceil(((this.xp - 3) * 10 / 100 + 1) * 5 * levelSum);
+        this._ap = Math.ceil(((this.ap - 3) * 10 / 100 + 1) * 2 * levelSum);
+        this._gils = Math.ceil(((this.gils - 3) * 10 / 100 + 1) * (20 + levelSum));
     }
 
     /**
@@ -65,13 +66,6 @@ class Enemy {
      */
         gilsReward() {
         return this._gils;
-    }
-
-    /**
-     * Save enemy data
-     */
-        export() {
-        return _.omit(this, 'image', 'name');
     }
 
 }

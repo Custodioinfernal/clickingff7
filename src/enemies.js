@@ -1,8 +1,3 @@
-/**
- * Characters class
- * @param {object} Game
- */
-
 class Enemies {
 
     /**
@@ -20,14 +15,21 @@ class Enemies {
      * Fight against a random enemy
      */
         fightRandom() {
-        var levelMax = this.game.characters.levelMax;
+        var levelSum = this.game.characters.levelSum;
         var zone = this.game.zones.current();
 
-        var range = Math.min(levelMax, zone.level * 4) - (zone.level * 4 - 3);
+        var range;
+        range = Math.floor((zone.nbFights / zone.MAX_FIGHTS) * 4);
+        range = Math.min(range, 3);
 
         var e = zone.enemies[_.random(0, range)];
         var enemy = new window[e](this.game);
-        enemy._toLevel(levelMax);
+
+        if (enemy.miboss) {
+            levelSum *= 1.2;
+        }
+
+        enemy._toLevel(levelSum);
 
         this.list = [enemy];
     }
@@ -35,12 +37,12 @@ class Enemies {
     /**
      * Fight against the zone boss
      */
-    fightBoss() {
-        var levelMax = this.game.characters.levelMax;
+        fightBoss() {
         var zone = this.game.zones.current();
+        var nbCharacters = this.game.characters.getTeam().length;
 
         var enemy = new window[zone.boss](this.game);
-        enemy._toLevel(levelMax + 1);
+        enemy._toLevel(zone.level * (nbCharacters + 1) * 3 * 1.4);
 
         this.list = [enemy];
     }
@@ -158,7 +160,7 @@ class Enemies {
 
         // resistance
         if (this.hasResistance(attack.type)) {
-            hits = Math.floor(hits / 10);
+            hits = Math.floor(hits / 3);
         }
 
         this.hp -= hits;

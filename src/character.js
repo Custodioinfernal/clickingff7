@@ -2,6 +2,7 @@ class Character {
 
     constructor(game, data) {
         this.game = game;
+        this.ref = this.constructor.name;
         this.level = 1;
         this.xp = 0;
         this.notA = [];
@@ -66,14 +67,21 @@ class Character {
      * @returns {number}
      */
         getHpMax() {
-        return Math.ceil(((this.hpBase - 2) * 10 / 100 + 1) * 20 * this.level);
+        return Math.ceil(((this.hpBase - 3) * 10 / 100 + 1) * 20 * this.level);
     }
 
     /**
      * @returns {number}
      */
         getMpMax() {
-        return Math.ceil(((this.mpBase - 2) * 10 / 100 + 1) * 2 * this.level);
+        return Math.ceil(((this.mpBase - 3) * 10 / 100 + 1) * 3 * this.level);
+    }
+
+    /**
+     * @returns {number}
+     */
+        getXpMax() {
+        return Math.ceil(((3 - this.xpBase) * 10 / 100 + 1) * 100 * this.level);
     }
 
     /**
@@ -81,13 +89,6 @@ class Character {
      */
         getHits() {
         return this.level * this.weapon().hits / 10;
-    }
-
-    /**
-     * @returns {Object}
-     */
-        getXpMax() {
-        return this.xpFormula(this.level + 1);
     }
 
     /**
@@ -106,7 +107,7 @@ class Character {
         if (this.level < 100) {
             while (this.xp >= this.getXpMax()) {
                 this.xp -= this.getXpMax();
-                this.level += 1;
+                this.level++;
 
                 this.game.characters.refresh();
             }
@@ -161,8 +162,6 @@ class Character {
      * @returns {Object}
      */
         export() {
-        var json = _.pick(this, 'inTeam', 'level', 'xp', 'image');
-        json.model = this.constructor.name;
-        return json;
+        return _.pick(this, 'ref', 'inTeam', 'level', 'xp', 'image');
     }
 }

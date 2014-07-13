@@ -6,6 +6,9 @@ class Zone {
      */
         constructor(game) {
         this.game = game;
+        this.ref = this.constructor.name;
+        this.nbFights = 0;
+        this.MAX_FIGHTS = 15;
         this.completed = false;
     }
 
@@ -40,9 +43,7 @@ class Zone {
      * Save zone data
      */
         export() {
-        var json = _.pick(this, 'completed');
-        json.model = this.constructor.name;
-        return json;
+        return _.pick(this, 'ref', 'nbFights', 'completed');
     }
 
 }

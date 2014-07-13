@@ -12,8 +12,6 @@ class Battle {
         if (!this.isBattle) {
             this.isBattle = true;
 
-            this.game.characters.autoFighting();
-
             this.game.enemies.fightRandom();
             this.game.enemies.refresh();
             this.game.enemies.autoFighting();
@@ -27,7 +25,7 @@ class Battle {
         canFightBoss() {
         var levelMax = this.game.characters.levelMax;
         var zone = this.game.zones.current();
-        return (!this.isBattle && levelMax >= zone.level * 4 && !zone.completed);
+        return (!this.isBattle && zone.nbFights >= zone.MAX_FIGHTS && !zone.completed);
     }
 
     /**
@@ -36,8 +34,6 @@ class Battle {
         startBoss() {
         if (!this.isBattle) {
             this.isBattle = true;
-
-            this.game.characters.autoFighting();
 
             this.game.enemies.fightBoss();
             this.game.enemies.refresh();
@@ -52,7 +48,6 @@ class Battle {
         end(victory) {
         this.isBattle = false;
 
-        this.game.characters.stopFighting();
         this.game.enemies.stopFighting();
 
         var enemies = this.game.enemies.list;
@@ -70,15 +65,19 @@ class Battle {
                     this.game.zones.complete();
                 }
 
-                // XP for characters, AP for materias
+                // XP for characters
+                var xp = enemy.xpReward();
                 for (var character of characters) {
-                    var xp = enemy.xpReward();
                     character.setXp(xp);
                 }
+
+                // AP for materias
+                var ap = enemy.apReward();
                 for (var materia of materias) {
-                    var ap = enemy.apReward();
                     materia.setAp(ap);
                 }
+
+                this.game.zones.current().nbFights++;
             }
         }
 

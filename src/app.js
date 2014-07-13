@@ -235,12 +235,8 @@ app.controller('GameCtrl', function ($rootScope, Game) {
      */
     $rootScope.attack = function (ev) {
         if (Game.characters.canAttack()) {
-            // stop autoAttacking
-            Game.characters.stopFighting();
-
             var pwr = Game.characters.getHits();
             Game.enemies.getAttacked(new Attack(pwr), false);
-            Game.characters.autoFighting();
         }
     };
 
@@ -335,6 +331,11 @@ app.controller('ConfigCtrl', function ($scope, $rootScope, $translate, $location
         var language = $('#language').val();
         Game.language = language;
         $translate.use(language);
+    };
+
+    $scope.changeDifficulty = function () {
+        var difficulty = $('#difficulty').val();
+        Game.difficulty = difficulty;
     };
 
 });

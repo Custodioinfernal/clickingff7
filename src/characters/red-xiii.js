@@ -16,6 +16,7 @@ class RedXIII extends Character {
         this.level = 16;
         this.hpBase = 2;
         this.mpBase = 4;
+        this.xpBase = 4;
 
         // Character XP formula
         this.xpFormula = function (x) {
