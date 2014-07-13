@@ -1,7 +1,7 @@
 class Yuffie extends Character {
 
-    constructor(game, data) {
-        super(game, data);
+    constructor(game) {
+        super(game);
 
         // name of the character
         this.name = 'Yuffie Kisaragi';
@@ -13,7 +13,6 @@ class Yuffie extends Character {
         this.weaponType = 'shuriken';
 
         // STATS
-        this.level = 27;
         this.hpBase = 1;
         this.mpBase = 4;
         this.xpBase = 4;

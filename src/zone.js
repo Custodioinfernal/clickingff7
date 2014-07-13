@@ -8,7 +8,7 @@ class Zone {
         this.game = game;
         this.ref = this.constructor.name;
         this.nbFights = 0;
-        this.MAX_FIGHTS = 15;
+        this.MAX_FIGHTS = 1;
         this.completed = false;
     }
 

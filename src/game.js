@@ -123,14 +123,18 @@ class Game {
 
         this.characters.available();
 
+        // data to load characters
+        var levelMax = this.characters.levelMax ? this.characters.levelMax : 1;
+        var data = {level: levelMax};
+
         switch (level) {
             case 1:
                 // add cloud in the team
-                this.characters.add(new Cloud(this), true);
+                this.characters.add(new Cloud(this).load(data), true);
                 this.weapons.add(new BusterSword(this), true);
 
                 // add barret in the team
-                this.characters.add(new Barret(this), true);
+                this.characters.add(new Barret(this).load(data), true);
                 this.weapons.add(new GatlingGun(this), true);
 
                 // add materias
@@ -144,12 +148,12 @@ class Game {
                 break;
             case 2:
                 // add tifa in the team
-                this.characters.add(new Tifa(this), true);
+                this.characters.add(new Tifa(this).load(data), true);
                 this.weapons.add(new LeatherGlove(this), true);
                 break;
             case 3:
                 // add aerith in the team
-                this.characters.add(new Aerith(this), true);
+                this.characters.add(new Aerith(this).load(data), true);
                 this.weapons.add(new GuardStick(this), true);
                 break;
             case 4:
@@ -162,12 +166,12 @@ class Game {
                 break;
             case 5:
                 // add redxiii in the team
-                this.characters.add(new RedXIII(this), true);
+                this.characters.add(new RedXIII(this).load(data), true);
                 this.weapons.add(new MythrilClip(this), true);
                 break;
             case 9:
                 // add yuffie in the team
-                this.characters.add(new Yuffie(this), true);
+                this.characters.add(new Yuffie(this).load(data), true);
                 this.weapons.add(new FPtShuriken(this), true);
                 break;
         }

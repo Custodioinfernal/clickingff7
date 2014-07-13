@@ -1,6 +1,6 @@
 class Character {
 
-    constructor(game, data) {
+    constructor(game) {
         this.game = game;
         this.ref = this.constructor.name;
         this.level = 1;

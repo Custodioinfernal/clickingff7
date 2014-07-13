@@ -1,7 +1,7 @@
 class Tifa extends Character {
 
-    constructor(game, data) {
-        super(game, data);
+    constructor(game) {
+        super(game);
 
         // name of the character
         this.name = 'Tifa Lockhart';
@@ -13,7 +13,6 @@ class Tifa extends Character {
         this.weaponType = 'knuckle';
 
         // STATS
-        this.level = 3;
         this.hpBase = 2;
         this.mpBase = 2;
         this.xpBase = 3;

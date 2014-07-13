@@ -1,7 +1,7 @@
 class Cloud extends Character {
 
-    constructor(game, data) {
-        super(game, data);
+    constructor(game) {
+        super(game);
 
         // name of the character
         this.name = 'Cloud Strife';
