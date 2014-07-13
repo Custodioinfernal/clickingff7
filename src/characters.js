@@ -49,7 +49,7 @@ class Characters {
      * @param inTeam
      */
         add(character, inTeam) {
-        character.inTeam = (this.getTeam().length < this.MAX_TEAM) ? inTeam : false;
+        character.inTeam = (character.canJoinTeam()) ? inTeam : false;
         this.list.push(character);
     }
 
@@ -86,6 +86,7 @@ class Characters {
         this.arrHits = [];
         this.levelMax = 0;
         this.levelSum = 0;
+        var maxMaterias = 0;
 
         var characters = this.getTeam();
         for (var character of characters) {
@@ -98,6 +99,9 @@ class Characters {
             this.hpMax += character.getHpMax();
             this.mpMax += character.getMpMax();
             this.hits += character.getHits();
+
+            // max materias
+            maxMaterias += character.weapon().maxMaterias;
 
             this.levelSum += character.level;
         }
@@ -115,6 +119,17 @@ class Characters {
         }
         if (this.limit > this.limitMax) {
             this.limit = this.limitMax;
+        }
+
+        var materias = this.game.materias.getEquipped();
+        if (materias.length > maxMaterias) {
+            var equipped = true;
+            for (var i in materias) {
+                if (i < maxMaterias) {
+                    equipped = false;
+                }
+                materias[i].equipped = equipped;
+            }
         }
     }
 

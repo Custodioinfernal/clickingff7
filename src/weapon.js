@@ -93,10 +93,11 @@ class Weapon {
         return sum;
     }
 
-    /*
+    /**
      * Equip a weapon
+     * @param refresh
      */
-    equip() {
+    equip(refresh = true) {
         // find current equipped weapon
         var weapon = _.findWhere(this.game.weapons.list, {
             type    : this.type,
@@ -110,11 +111,13 @@ class Weapon {
         // then equipped this one
         this.equipped = true;
 
-        this.game.characters.refresh();
+        if (refresh) {
+            this.game.characters.refresh();
+        }
     }
 
     /**
-     * Remove oneex. of the weapon
+     * Remove one ex. of the weapon
      */
         remove() {
         if (this.number > 1) {

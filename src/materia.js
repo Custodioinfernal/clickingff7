@@ -141,17 +141,23 @@ class Materia {
     /**
      * Equip the materia
      */
-        equip() {
+        equip(refresh = true) {
         this.equipped = true;
-        this.game.characters.refresh();
+
+        if (refresh) {
+            this.game.characters.refresh();
+        }
     }
 
     /**
      * Unequip the materia
      */
-        unequip() {
+        unequip(refresh = true) {
         this.equipped = false;
-        this.game.characters.refresh();
+
+        if (refresh) {
+            this.game.characters.refresh();
+        }
     }
 
     /**

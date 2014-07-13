@@ -12,10 +12,9 @@ class Materias {
     /**
      * Add a materia
      * @param materia
-     * @param equipped
      */
         add(materia, equipped = false) {
-        materia.equipped = equipped;
+        materia.equipped = (materia.canEquip()) ? equipped : false;
         this.list.push(materia);
     }
 
@@ -23,7 +22,7 @@ class Materias {
      * Returns equipped materias
      * @returns {Array}
      */
-    getEquipped() {
+        getEquipped() {
         return _.where(this.list, {
             equipped: true
         });
@@ -33,7 +32,7 @@ class Materias {
      * Get unequipped materias
      * @returns {Array}
      */
-    getUnequipped() {
+        getUnequipped() {
         return _.where(this.list, {
             equipped: false
         });
@@ -43,9 +42,9 @@ class Materias {
      * Export all materias
      * @returns {Array}
      */
-    export() {
+        export() {
         var json = [], i, t;
-        for(i in this.list) {
+        for (i in this.list) {
             json.push(this.list[i].export());
         }
         return json;

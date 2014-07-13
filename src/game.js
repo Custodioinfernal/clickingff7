@@ -134,8 +134,8 @@ class Game {
                 this.weapons.add(new GatlingGun(this), true);
 
                 // add materias
-                this.materias.add(new Restore(this), true);
-                this.materias.add(new Bolt(this), true);
+                this.materias.add(new Restore(this));
+                this.materias.add(new Bolt(this));
 
                 // add items
                 this.items.add(new Potion(this), true);
