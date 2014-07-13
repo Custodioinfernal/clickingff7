@@ -25,7 +25,7 @@ class Enemy {
         this._hits = Math.ceil(((this.hits - 3) * 10 / 100 + 1) * levelSum);
         this._xp = Math.ceil(((this.xp - 3) * 10 / 100 + 1) * 5 * levelSum);
         this._ap = Math.ceil(((this.ap - 3) * 10 / 100 + 1) * 2 * levelSum);
-        this._gils = Math.ceil(((this.gils - 3) * 10 / 100 + 1) * (20 + levelSum));
+        this._gils = Math.ceil(((this.gils - 3) * 10 / 100 + 1) * (30 + levelSum));
     }
 
     /**
