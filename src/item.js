@@ -8,6 +8,7 @@ class Item {
 
     constructor(game) {
         this.game = game;
+        this.ref = this.constructor.name;
 
         // nbr owned
         this.number = 1;
@@ -151,9 +152,7 @@ class Item {
      * Save materia data
      */
         export() {
-        var json = _.pick(this, 'number', 'equipped');
-        json.model = this.constructor.name;
-        return json;
+        return _.pick(this, 'ref', 'number', 'equipped');
     }
 
 }

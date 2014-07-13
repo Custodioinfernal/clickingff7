@@ -63,11 +63,4 @@ class Enemy {
         return this._gils;
     }
 
-    /**
-     * Save enemy data
-     */
-        export() {
-        return _.omit(this, 'image', 'name');
-    }
-
 }

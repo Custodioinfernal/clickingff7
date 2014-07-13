@@ -2,6 +2,7 @@ class Character {
 
     constructor(game, data) {
         this.game = game;
+        this.ref = this.constructor.name;
         this.level = 1;
         this.xp = 0;
         this.notA = [];
@@ -161,8 +162,6 @@ class Character {
      * @returns {Object}
      */
         export() {
-        var json = _.pick(this, 'inTeam', 'level', 'xp', 'image');
-        json.model = this.constructor.name;
-        return json;
+        return _.pick(this, 'ref', 'inTeam', 'level', 'xp', 'image');
     }
 }
