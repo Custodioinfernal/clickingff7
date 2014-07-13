@@ -72,7 +72,7 @@ class Materia {
         buy() {
         if (this.canBuy()) {
             this.game.gils -= this.getPrice();
-            this.game.materias.add(this, true);
+            this.game.materias.add(this);
         }
     }
 
@@ -102,25 +102,25 @@ class Materia {
         return _.where(this.game.materias.list, {name: this.name}).length;
     }
 
-    /*
+    /**
      * @returns {Object}
      */
-    getApMax() {
+        getApMax() {
         return Math.ceil(((this.apBase - 3) * 10 / 100 + 1) * 60 * this.level);
     }
 
-    /*
+    /**
      * @param pixels_max
      * @returns {number}
      */
-    apProgress(pixels_max) {
+        apProgress(pixels_max) {
         return (this.ap == 0 ? 0 : this.ap / this.getApMax() * pixels_max);
     }
 
-    /*
+    /**
      * @param ap
      */
-    setAp(ap) {
+        setAp(ap) {
         this.ap += ap;
         if (this.level < 100) {
             while (this.ap >= this.getApMax()) {

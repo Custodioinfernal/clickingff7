@@ -1,8 +1,3 @@
-/**
- * Characters class
- * @param {object} Game
- */
-
 class Enemies {
 
     /**

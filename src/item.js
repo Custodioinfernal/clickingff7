@@ -1,9 +1,3 @@
-/**
- * Item class
- * @param {Game} Game
- * @param {string} ref
- */
-
 class Item {
 
     constructor(game) {
@@ -79,7 +73,8 @@ class Item {
         buy() {
         if (this.canBuy()) {
             this.game.gils -= this.getPrice();
-            this.game.items.add(this, true);
+            var equipped = (this.game.items.getEquipped().length < this.game.items.MAX_ITEMS);
+            this.game.items.add(this, equipped);
         }
     }
 
