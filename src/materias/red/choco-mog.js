@@ -1,4 +1,4 @@
-class ChocoMog extends Materia {
+class ChocoMog extends AttackMateria {
 
     constructor(game) {
         super(game);

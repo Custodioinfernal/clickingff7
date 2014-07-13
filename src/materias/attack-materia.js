@@ -9,7 +9,7 @@ class AttackMateria extends Materia {
      * @returns {number}
      */
         getMpCost() {
-        return Math.ceil(this.level / 10);
+        return Math.ceil(this.getPwr() / 10);
     }
 
     /**
