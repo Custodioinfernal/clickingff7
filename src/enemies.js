@@ -20,15 +20,14 @@ class Enemies {
      * Fight against a random enemy
      */
         fightRandom() {
-        var levelMax = this.game.characters.levelMax;
         var levelSum = this.game.characters.levelSum;
         var zone = this.game.zones.current();
 
         var range;
-        range = Math.max(levelMax, zone.level * 4 - 3);
-        range = Math.min(range, zone.level * 4);
+        range = Math.floor((zone.nbFights / zone.MAX_FIGHTS) * 4);
+        range = Math.min(range, 3);
 
-        var e = zone.enemies[_.random(0, (range - 1) % 4)];
+        var e = zone.enemies[_.random(0, range)];
         var enemy = new window[e](this.game);
 
         if (enemy.miboss) {
@@ -44,11 +43,11 @@ class Enemies {
      * Fight against the zone boss
      */
         fightBoss() {
-        var levelSum = this.game.characters.levelSum;
         var zone = this.game.zones.current();
+        var nbCharacters = this.game.characters.getTeam().length;
 
         var enemy = new window[zone.boss](this.game);
-        enemy._toLevel(levelSum * 1.4);
+        enemy._toLevel(zone.level * (nbCharacters + 1) * 3 * 1.4);
 
         this.list = [enemy];
     }

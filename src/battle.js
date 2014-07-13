@@ -25,7 +25,7 @@ class Battle {
         canFightBoss() {
         var levelMax = this.game.characters.levelMax;
         var zone = this.game.zones.current();
-        return (!this.isBattle && levelMax >= zone.level * 4 && !zone.completed);
+        return (!this.isBattle && zone.nbFights >= zone.MAX_FIGHTS && !zone.completed);
     }
 
     /**
@@ -65,15 +65,19 @@ class Battle {
                     this.game.zones.complete();
                 }
 
-                // XP for characters, AP for materias
+                // XP for characters
+                var xp = enemy.xpReward();
                 for (var character of characters) {
-                    var xp = enemy.xpReward();
                     character.setXp(xp);
                 }
+
+                // AP for materias
+                var ap = enemy.apReward();
                 for (var materia of materias) {
-                    var ap = enemy.apReward();
                     materia.setAp(ap);
                 }
+
+                this.game.zones.current().nbFights++;
             }
         }
 
