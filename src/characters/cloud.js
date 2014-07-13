@@ -17,11 +17,6 @@ class Cloud extends Character {
         this.mpBase = 3;
         this.xpBase = 3;
 
-        // Character XP formula
-        this.xpFormula = function (x) {
-            return Math.pow(x, 2) * 15;
-        };
-
         // Character zones available
         this.notA = [];
 

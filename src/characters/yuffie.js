@@ -1,20 +1,20 @@
-class RedXIII extends Character {
+class Yuffie extends Character {
 
     constructor(game, data) {
         super(game, data);
 
         // name of the character
-        this.name = 'Red XIII';
+        this.name = 'Yuffie Kisaragi';
 
         // character image
-        this.image = '/img/characters/redxiii.jpg';
+        this.image = '/img/characters/yuffie.jpg';
 
         // character weapon type
-        this.weaponType = 'headdresse';
+        this.weaponType = 'shuriken';
 
         // STATS
-        this.level = 12;
-        this.hpBase = 2;
+        this.level = 27;
+        this.hpBase = 1;
         this.mpBase = 4;
         this.xpBase = 4;
 

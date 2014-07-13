@@ -17,11 +17,6 @@ class Barret extends Character {
         this.mpBase = 1;
         this.xpBase = 2;
 
-        // Character XP formula
-        this.xpFormula = function (x) {
-            return Math.pow(x, 2) * 13;
-        };
-
         // Character zones available
         this.notA = [3];
 

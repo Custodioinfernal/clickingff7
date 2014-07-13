@@ -79,6 +79,12 @@
     "Line 8 Cloud"  : "Sephiroth... a fait ça......?",
     "Line 8 RedXIII": "C'est une force que nous ne devrions pas sous-estimer...",
     "Line 8 Tifa"   : "Impressionant...",
+    "Line 9 Aerith" : "Cette créature ne nous veut aucun bien.",
+    "Line 9 Barret" : "Hé ! Regardez ça !",
+    "Line 9 Cloud"  : "Génial...",
+    "Line 9 RedXIII": "Attention ! C'est un monstre !",
+    "Line 9 Tifa"   : "Faites attention !",
+    "Line 9 Yuffie" : "Ooh, je rêve !",
 
     "Mat. Restore name"  : "Restaurer",
     "Mat. Restore desc"  : "Soigne les HP de l'équipe",
@@ -119,5 +125,7 @@
     "Zone 7 name": "Plaines de Midgar",
     "Zone 7 desc": "Cloud a raconté à ses amis son terrible passé. Sephiroth est toujours vivant et est à la recherche de la Terre Promise. Ainsi, ils partent à sa poursuite.",
     "Zone 8 name": "Route vers Junon",
-    "Zone 8 desc": "Sephiroth semble être un ennemi d'une puissance redoutable. Ils apprennent par les Turks qu'il se dirige en direction de Junon. Cependant, quelqu'un semble les suivre.."
+    "Zone 8 desc": "Sephiroth semble être un ennemi d'une puissance redoutable. Ils apprennent par les Turks qu'il se dirige en direction de Junon. Cependant, quelqu'un semble les suivre..",
+    "Zone 9 name": "Junon",
+    "Zone 9 desc": "Yuffie, la ninja mystérieuse qui les suivait, s'est jointe au groupe. Finalement, ils arrivent à Junon au moment même où une petite fille est attaquée par un monstre."
 }

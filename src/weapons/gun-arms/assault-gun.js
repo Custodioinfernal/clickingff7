@@ -13,9 +13,7 @@ class AssaultGun extends Weapon {
 
         this.maxMaterias = 1;
 
-        this.available = function(x) {
-            return (2 <= x);
-        };
+        this.zoneAvailable = 2;
     }
 
 }

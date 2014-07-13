@@ -28,11 +28,12 @@ class Shop {
             'MythrilSaber',
             'CannonBall',
             'MythrilClaw',
-            'FullMetalStaff'
+            'FullMetalStaff',
+            'FPtShuriken'
         ];
         for (var w of weapons) {
             var weapon = new window[w](this.game);
-            if (weapon.available(this.game.zones.levelMax) && (this.allWeapons || weapon.inStock() === 0)) {
+            if (weapon.zoneAvailable <= this.game.zones.levelMax && (this.allWeapons || weapon.inStock() === 0)) {
                 this.weapons.push(weapon);
             }
         }

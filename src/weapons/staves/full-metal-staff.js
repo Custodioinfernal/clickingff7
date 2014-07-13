@@ -13,9 +13,7 @@ class FullMetalStaff extends Weapon {
 
         this.maxMaterias = 2;
 
-        this.available = function(x) {
-            return (7 <= x);
-        };
+        this.zoneAvailable = 7;
     }
 
 }

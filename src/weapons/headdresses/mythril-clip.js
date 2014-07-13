@@ -13,9 +13,7 @@ class MythrilClip extends Weapon {
 
         this.maxMaterias = 1;
 
-        this.available = function(x) {
-            return (5 <= x);
-        };
+        this.zoneAvailable = 5;
     }
 
 }

@@ -165,6 +165,11 @@ class Game {
                 this.characters.add(new RedXIII(this), true);
                 this.weapons.add(new MythrilClip(this), true);
                 break;
+            case 9:
+                // add yuffie in the team
+                this.characters.add(new Yuffie(this), true);
+                this.weapons.add(new FPtShuriken(this), true);
+                break;
         }
 
     }

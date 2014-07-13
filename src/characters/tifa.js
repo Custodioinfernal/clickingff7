@@ -13,15 +13,10 @@ class Tifa extends Character {
         this.weaponType = 'knuckle';
 
         // STATS
-        this.level = 4;
+        this.level = 3;
         this.hpBase = 2;
         this.mpBase = 2;
         this.xpBase = 3;
-
-        // Character XP formula
-        this.xpFormula = function (x) {
-            return Math.pow(x, 2) * 11;
-        };
 
         // Character zones available
         this.notA = [3];

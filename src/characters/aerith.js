@@ -13,15 +13,10 @@ class Aerith extends Character {
         this.weaponType = 'stave';
 
         // STATS
-        this.level = 8;
+        this.level = 6;
         this.hpBase = 1;
         this.mpBase = 5;
         this.xpBase = 2;
-
-        // Character XP formula
-        this.xpFormula = function (x) {
-            return Math.pow(x, 2) * 17;
-        };
 
         // Character zones available
         this.notA = [4, 5];

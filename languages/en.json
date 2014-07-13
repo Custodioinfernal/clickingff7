@@ -79,6 +79,12 @@
     "Line 8 Cloud"  : "Did Sephiroth... do this......?",
     "Line 8 RedXIII": "It's a power that we should respect...",
     "Line 8 Tifa"   : "Amazing...",
+    "Line 9 Aerith" : "What's that!?",
+    "Line 9 Barret" : "Hey! Look at that!",
+    "Line 9 Cloud"  : "Great...",
+    "Line 9 RedXIII": "Hey! It's a monster!",
+    "Line 9 Tifa"   : "Look at that!",
+    "Line 9 Yuffie" : "Whoa, Gawd!",
 
     "Mat. Restore name"  : "Restore",
     "Mat. Restore desc"  : "Cure team HP",
@@ -119,5 +125,7 @@
     "Zone 7 name": "Midgar Wasteland",
     "Zone 7 desc": "Cloud told his horrible past to his companions. Sephiroth is still alive and is looking for the Promise Land. So, they're now chasing him.",
     "Zone 8 name": "Road to Junon",
-    "Zone 8 desc": "Sephiroth seems to be a powerful enemy. They learn with the Turks that he is heading towards Junon. However, someone is following them.."
+    "Zone 8 desc": "Sephiroth seems to be a powerful enemy. They learn with the Turks that he is heading towards Junon. However, someone is following them..",
+    "Zone 9 name": "Junon",
+    "Zone 9 desc": "Yuffie, the mysterious ninja who followed them, joined the group. They finally arrive at Junon at the same time a little girl is suddenly attacked by a monster."
 }

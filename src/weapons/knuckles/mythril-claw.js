@@ -13,9 +13,7 @@ class MythrilClaw extends Weapon {
 
         this.maxMaterias = 1;
 
-        this.available = function(x) {
-            return (7 <= x);
-        };
+        this.zoneAvailable = 7;
     }
 
 }
