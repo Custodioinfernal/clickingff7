@@ -65,7 +65,12 @@ class Game {
         var s = localStorage['save1'];
         var save;
         if (s && (save = JSON.parse(atob(s)))) {
-            this.saves.push(save);
+            if (version_compare(save.version, '1.1.0', '>=')) {
+                this.saves.push(save);
+            } else {
+                save = null;
+                this.reset();
+            }
         }
 
         // load save
