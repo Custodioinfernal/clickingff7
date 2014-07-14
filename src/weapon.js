@@ -6,6 +6,7 @@ class Weapon {
 
     constructor(game) {
         this.game = game;
+        this.ref = this.constructor.name;
 
         // nbr owned
         this.number = 1;
@@ -92,10 +93,19 @@ class Weapon {
         return sum;
     }
 
-    /*
-     * Equip a weapon
+    /**
+     * Returns true if weapon can be equipped
+     * @returns {boolean}
      */
-    equip() {
+    canEquip() {
+        return true;
+    }
+
+    /**
+     * Equip a weapon
+     * @param refresh
+     */
+    equip(refresh = true) {
         // find current equipped weapon
         var weapon = _.findWhere(this.game.weapons.list, {
             type    : this.type,
@@ -109,11 +119,13 @@ class Weapon {
         // then equipped this one
         this.equipped = true;
 
-        this.game.characters.refresh();
+        if (refresh) {
+            this.game.characters.refresh();
+        }
     }
 
     /**
-     * Remove oneex. of the weapon
+     * Remove one ex. of the weapon
      */
         remove() {
         if (this.number > 1) {
@@ -127,9 +139,7 @@ class Weapon {
      * Save weapon
      */
     export() {
-        var json = _.pick(this, 'number', 'equipped');
-        json.model = this.constructor.name;
-        return json;
+        return _.pick(this, 'ref', 'number', 'equipped');
     }
 
 }

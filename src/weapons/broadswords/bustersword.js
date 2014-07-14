@@ -13,9 +13,7 @@ class BusterSword extends Weapon {
 
         this.maxMaterias = 1;
 
-        this.available = function(x) {
-            return (1 <= x);
-        };
+        this.zoneAvailable = 1;
     }
 
 }

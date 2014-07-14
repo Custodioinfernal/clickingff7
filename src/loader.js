@@ -9,7 +9,7 @@ class Loader {
 
         // list all files
         this.files = [
-            {label  : "Loading main files",
+            {label  : "Loading main files (1/2)",
                 list: [
                     "dist/attack.js",
                     "dist/battle.js",
@@ -28,6 +28,11 @@ class Loader {
                     "dist/zone.js",
                     "dist/zones.js"
                 ]},
+            {label  : "Loading main files (2/2)",
+                list: [
+                    "dist/materias/attack-materia.js",
+                    "dist/materias/cure-materia.js"
+                ]},
             {label  : "Loading resource files",
                 list: [
                     "dist/characters/barret.js",
@@ -35,6 +40,7 @@ class Loader {
                     "dist/characters/tifa.js",
                     "dist/characters/aerith.js",
                     "dist/characters/red-xiii.js",
+                    "dist/characters/yuffie.js",
                     "dist/enemies/zone1/first-ray.js",
                     "dist/enemies/zone1/grunt.js",
                     "dist/enemies/zone1/guard-scorpion.js",
@@ -75,6 +81,11 @@ class Loader {
                     "dist/enemies/zone8/madouge.js",
                     "dist/enemies/zone8/ark-dragon.js",
                     "dist/enemies/zone8/mystery-ninja.js",
+                    "dist/enemies/zone9/bottomswell.js",
+                    "dist/enemies/zone9/capparwire.js",
+                    "dist/enemies/zone9/formula.js",
+                    "dist/enemies/zone9/hell-rider.js",
+                    "dist/enemies/zone9/zemzelett.js",
                     "dist/items/potion.js",
                     "dist/items/ether.js",
                     "dist/items/hi-potion.js",
@@ -98,6 +109,7 @@ class Loader {
                     "dist/weapons/staves/mythril-rod.js",
                     "dist/weapons/staves/full-metal-staff.js",
                     "dist/weapons/headdresses/mythril-clip.js",
+                    "dist/weapons/shurikens/f-pt-shuriken.js",
                     "dist/zones/zone1.js",
                     "dist/zones/zone2.js",
                     "dist/zones/zone3.js",
@@ -105,7 +117,8 @@ class Loader {
                     "dist/zones/zone5.js",
                     "dist/zones/zone6.js",
                     "dist/zones/zone7.js",
-                    "dist/zones/zone8.js"
+                    "dist/zones/zone8.js",
+                    "dist/zones/zone9.js"
                 ]}
         ];
 
@@ -129,7 +142,7 @@ class Loader {
 
         for (var file of this.files[group].list) {
 
-            head.load(file, function() {
+            head.load(file, function () {
                 groupRemain--;
                 that.filesRemain--;
                 that.filesLoaded++;

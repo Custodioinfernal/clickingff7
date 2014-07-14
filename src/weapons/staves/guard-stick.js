@@ -13,9 +13,7 @@ class GuardStick extends Weapon {
 
         this.maxMaterias = 2;
 
-        this.available = function(x) {
-            return (3 <= x);
-        };
+        this.zoneAvailable = 3;
     }
 
 }

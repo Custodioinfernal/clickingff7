@@ -1,4 +1,4 @@
-class Bolt extends Materia {
+class Bolt extends AttackMateria {
 
     constructor(game) {
         super(game);
@@ -7,53 +7,16 @@ class Bolt extends Materia {
 
         this.color = 'green';
 
-        this.price = 600;
+        this.price = 300;
 
-        this.apFormula = function (x) {
-            return Math.pow(x + 1, 2) + 150;
-        };
+        this.apBase = 3;
 
-        this.available = function (x) {
-            return x >= 1;
-        };
+        this.pwr = 50;
 
-    }
+        this.elements = ['bolt'];
 
-    /**
-     * MP cost
-     * @returns {number}
-     */
-        getMpCost() {
-        return Math.ceil(this.level / 5);
-    }
+        this.zoneAvailable = 1;
 
-    /**
-     * Return materia power (7% to 27%)
-     * @returns {number}
-     */
-        getPwr() {
-        var pwr = 7 + (this.level / 100 * 20);
-        return Math.ceil(pwr);
-    }
-
-    /**
-     * Can use the materia?
-     * @returns {boolean}
-     */
-        canUse() {
-        return (this.game.battle.isBattle && this.game.characters.mp >= this.getMpCost());
-    }
-
-    /**
-     * Do materia action
-     */
-        action() {
-        var that = this;
-        var attack = new Attack(this.getPwr(), ['bolt']);
-
-        super.action(function () {
-            that.game.enemies.getAttacked(attack);
-        });
     }
 
 }

@@ -1,7 +1,7 @@
 class Cloud extends Character {
 
-    constructor(game, data) {
-        super(game, data);
+    constructor(game) {
+        super(game);
 
         // name of the character
         this.name = 'Cloud Strife';
@@ -15,11 +15,7 @@ class Cloud extends Character {
         // STATS
         this.hpBase = 3;
         this.mpBase = 3;
-
-        // Character XP formula
-        this.xpFormula = function (x) {
-            return Math.pow(x, 2) * 15;
-        };
+        this.xpBase = 3;
 
         // Character zones available
         this.notA = [];

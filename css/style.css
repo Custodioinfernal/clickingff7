@@ -61,11 +61,22 @@ footer .current:after {
     font-size: 14px;
     margin-top: 11px;
     margin-left: 5px;
+    color: #900;
 }
 
 .help:hover {
     cursor: pointer;
-    color: #900;
+}
+
+.link {
+    font-weight: normal;
+    font-size: 14px;
+    color: #009;
+}
+
+.link:hover {
+    cursor: pointer;
+    text-decoration: underline;
 }
 
 /* [style commun] */

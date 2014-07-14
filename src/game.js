@@ -95,14 +95,15 @@ class Game {
         // savable vars
         this.gils = 200;
         this.language = this.getLanguage(this.$translate.preferredLanguage());
+        this.difficulty = 2;
         this.time = 0;
-        this.version = "1.0.1";
+        this.version = "1.1.0";
     }
 
     /**
      * Refresh the game with data loaded
      */
-    postload() {
+        postload() {
         this.$translate.use(this.language);
 
         this.shop.refresh();
@@ -122,14 +123,18 @@ class Game {
 
         this.characters.available();
 
+        // data to load characters
+        var levelMax = this.characters.levelMax ? this.characters.levelMax : 1;
+        var data = {level: levelMax};
+
         switch (level) {
             case 1:
                 // add cloud in the team
-                this.characters.add(new Cloud(this), true);
+                this.characters.add(new Cloud(this).load(data), true);
                 this.weapons.add(new BusterSword(this), true);
 
                 // add barret in the team
-                this.characters.add(new Barret(this), true);
+                this.characters.add(new Barret(this).load(data), true);
                 this.weapons.add(new GatlingGun(this), true);
 
                 // add materias
@@ -143,12 +148,12 @@ class Game {
                 break;
             case 2:
                 // add tifa in the team
-                this.characters.add(new Tifa(this), true);
+                this.characters.add(new Tifa(this).load(data), true);
                 this.weapons.add(new LeatherGlove(this), true);
                 break;
             case 3:
                 // add aerith in the team
-                this.characters.add(new Aerith(this), true);
+                this.characters.add(new Aerith(this).load(data), true);
                 this.weapons.add(new GuardStick(this), true);
                 break;
             case 4:
@@ -161,8 +166,13 @@ class Game {
                 break;
             case 5:
                 // add redxiii in the team
-                this.characters.add(new RedXIII(this), true);
+                this.characters.add(new RedXIII(this).load(data), true);
                 this.weapons.add(new MythrilClip(this), true);
+                break;
+            case 9:
+                // add yuffie in the team
+                this.characters.add(new Yuffie(this).load(data), true);
+                this.weapons.add(new FPtShuriken(this), true);
                 break;
         }
 
@@ -192,6 +202,7 @@ class Game {
             items     : this.items.export(),
             gils      : this.gils,
             language  : this.language,
+            difficulty: this.difficulty,
             time      : this.time,
             version   : this.version
         };
@@ -209,7 +220,7 @@ class Game {
 
         // characters
         for (var c of save.characters.list) {
-            var character = new window[c.model](this).load(c);
+            var character = new window[c.ref](this).load(c);
             this.characters.add(character, c.inTeam);
         }
 
@@ -219,7 +230,7 @@ class Game {
 
         // zones
         for (var z of save.zones.list) {
-            var zone = new window[z.model](this).load(z);
+            var zone = new window[z.ref](this).load(z);
             this.zones.add(zone);
         }
 
@@ -230,23 +241,24 @@ class Game {
 
         // weapons
         for (var w of save.weapons) {
-            var weapon = new window[w.model](this).load(w);
+            var weapon = new window[w.ref](this).load(w);
             this.weapons.add(weapon, w.equipped);
         }
 
         // materias
         for (var m of save.materias) {
-            var materia = new window[m.model](this).load(m);
+            var materia = new window[m.ref](this).load(m);
             this.materias.add(materia, m.equipped);
         }
 
         // items
         for (var i of save.items) {
-            var item = new window[i.model](this).load(i);
+            var item = new window[i.ref](this).load(i);
             this.items.add(item, i.equipped);
         }
 
         this.language = save.language;
+        this.difficulty = save.difficulty;
 
         this.time = save.time;
         this.gils = save.gils;

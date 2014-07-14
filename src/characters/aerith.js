@@ -1,7 +1,7 @@
 class Aerith extends Character {
 
-    constructor(game, data) {
-        super(game, data);
+    constructor(game) {
+        super(game);
 
         // name of the character
         this.name = 'Aerith Gainsborough';
@@ -13,14 +13,9 @@ class Aerith extends Character {
         this.weaponType = 'stave';
 
         // STATS
-        this.level = 8;
         this.hpBase = 1;
         this.mpBase = 5;
-
-        // Character XP formula
-        this.xpFormula = function (x) {
-            return Math.pow(x, 2) * 17;
-        };
+        this.xpBase = 2;
 
         // Character zones available
         this.notA = [4, 5];

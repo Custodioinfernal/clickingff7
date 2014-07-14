@@ -2,6 +2,7 @@ class Materia {
 
     constructor(game) {
         this.game = game;
+        this.ref = this.constructor.name;
 
         // current level
         this.level = 1;
@@ -38,13 +39,7 @@ class Materia {
         }
 
         // do action
-        if (this.game.battle.isBattle) {
-            this.game.characters.stopFighting();
-            fn();
-            this.game.characters.autoFighting();
-        } else {
-            fn();
-        }
+        fn();
     }
 
     /**
@@ -77,7 +72,7 @@ class Materia {
         buy() {
         if (this.canBuy()) {
             this.game.gils -= this.getPrice();
-            this.game.materias.add(this, true);
+            this.game.materias.add(this);
         }
     }
 
@@ -107,25 +102,25 @@ class Materia {
         return _.where(this.game.materias.list, {name: this.name}).length;
     }
 
-    /*
+    /**
      * @returns {Object}
      */
-    getApMax() {
-        return this.apFormula(this.level + 1);
+        getApMax() {
+        return Math.ceil(((this.apBase - 3) * 10 / 100 + 1) * 60 * this.level);
     }
 
-    /*
+    /**
      * @param pixels_max
      * @returns {number}
      */
-    apProgress(pixels_max) {
+        apProgress(pixels_max) {
         return (this.ap == 0 ? 0 : this.ap / this.getApMax() * pixels_max);
     }
 
-    /*
+    /**
      * @param ap
      */
-    setAp(ap) {
+        setAp(ap) {
         this.ap += ap;
         if (this.level < 100) {
             while (this.ap >= this.getApMax()) {
@@ -146,17 +141,23 @@ class Materia {
     /**
      * Equip the materia
      */
-        equip() {
+        equip(refresh = true) {
         this.equipped = true;
-        this.game.characters.refresh();
+
+        if (refresh) {
+            this.game.characters.refresh();
+        }
     }
 
     /**
      * Unequip the materia
      */
-        unequip() {
+        unequip(refresh = true) {
         this.equipped = false;
-        this.game.characters.refresh();
+
+        if (refresh) {
+            this.game.characters.refresh();
+        }
     }
 
     /**
@@ -171,9 +172,7 @@ class Materia {
      * @returns {Object}
      */
         export() {
-        var json = _.pick(this, 'ap', 'level', 'equipped');
-        json.model = this.constructor.name;
-        return json;
+        return _.pick(this, 'ref', 'ap', 'level', 'equipped');
     }
 
 }

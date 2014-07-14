@@ -13,9 +13,7 @@ class MetalKnuckle extends Weapon {
 
         this.maxMaterias = 1;
 
-        this.available = function(x) {
-            return (3 <= x);
-        };
+        this.zoneAvailable = 3;
     }
 
 }

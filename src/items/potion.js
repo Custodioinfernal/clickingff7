@@ -5,9 +5,9 @@ class Potion extends Item {
 
         this.name = 'Potion';
 
-        this.price = 150;
+        this.price = 60;
 
-        this.available = function(x) {
+        this.available = function (x) {
             return true;
         };
     }
@@ -25,9 +25,10 @@ class Potion extends Item {
      */
         action() {
         var that = this;
+        var hp = Math.ceil(33 / 100 * this.game.characters.hpMax);
 
         super.action(function () {
-            that.game.characters.addHp(150);
+            that.game.characters.addHp(hp);
         });
     }
 

@@ -19,7 +19,7 @@ class Weapons {
         if (w) {
             w.number++;
         } else {
-            weapon.equipped = equipped;
+            weapon.equipped = (weapon.canEquip()) ? equipped: false;
             this.list.push(weapon);
         }
     }

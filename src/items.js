@@ -20,7 +20,7 @@ class Items {
         if (i) {
             i.number++;
         } else {
-            item.equipped = equipped;
+            item.equipped = (item.canEquip()) ? equipped : false;
             this.list.push(item);
         }
     }
