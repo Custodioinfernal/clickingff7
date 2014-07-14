@@ -9,7 +9,7 @@ class CureMateria extends Materia {
      * @returns {number}
      */
         getMpCost() {
-        return Math.ceil(this.level / 10);
+        return Math.ceil((this.getPwr() + 1) / 20) - 1;
     }
 
     /**
@@ -17,9 +17,11 @@ class CureMateria extends Materia {
      * @returns {number}
      */
         getPwr() {
-        var hpMax = this.game.characters.hpMax;
-        var pwr = hpMax * ((this.pwr + this.level / 100 * 20) / 100);
-        return Math.ceil(pwr);
+        var level = this.level - 1;
+        if (this.level === 100) {
+            level++;
+        }
+        return Math.ceil(this.pwr + level / 100 * 20);
     }
 
     /**
@@ -37,7 +39,9 @@ class CureMateria extends Materia {
      */
         action() {
         var that = this;
-        var cure = new Cure(this.getPwr());
+        var hpMax = this.game.characters.hpMax;
+        var pwr = Math.ceil(hpMax * (this.getPwr() / 100));
+        var cure = new Cure(pwr);
 
         super.action(function () {
             that.game.characters.addHp(cure.getCure());
