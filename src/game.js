@@ -65,7 +65,12 @@ class Game {
         var s = localStorage['save1'];
         var save;
         if (s && (save = JSON.parse(atob(s)))) {
-            this.saves.push(save);
+            if (version_compare(save.version, '1.1.0', '>=')) {
+                this.saves.push(save);
+            } else {
+                save = null;
+                this.reset();
+            }
         }
 
         // load save
@@ -97,7 +102,7 @@ class Game {
         this.language = this.getLanguage(this.$translate.preferredLanguage());
         this.difficulty = 2;
         this.time = 0;
-        this.version = "1.1.0";
+        this.version = "1.1.1";
     }
 
     /**
