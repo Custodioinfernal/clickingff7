@@ -32,6 +32,7 @@
 
     <nav class="game-menu" id="step10">
         <ul>
+            <li ng-click="goStory()" ng-class="{ current: isActive('/story')}">{{"Story"|translate}}</li>
             <li ng-click="goGame()" ng-class="{ current: isActive('/game')}">{{"Game"|translate}}</li>
             <li ng-click="goMap()" ng-class="{ current: isActive('/map')}">
                 <div class="pull-right new" ng-show="game.zones.nextZone">NEW</div>

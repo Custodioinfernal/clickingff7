@@ -23,6 +23,7 @@ class Loader {
                     "dist/materia.js",
                     "dist/materias.js",
                     "dist/shop.js",
+                    "dist/story.js",
                     "dist/weapon.js",
                     "dist/weapons.js",
                     "dist/zone.js",

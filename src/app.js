@@ -28,6 +28,10 @@ app.config(['$routeProvider', '$translateProvider',
         $translateProvider.determinePreferredLanguage();
 
         $routeProvider.
+            when('/story', {
+                templateUrl: 'partials/story.html',
+                controller : 'StoryCtrl'
+            }).
             when('/game', {
                 templateUrl: 'partials/game.html',
                 controller : 'GameCtrl'
@@ -65,7 +69,7 @@ app.config(['$routeProvider', '$translateProvider',
                 controller : 'SaveCtrl'
             }).
             otherwise({
-                redirectTo: '/game'
+                redirectTo: '/story'
             });
     }
 ]);
@@ -105,6 +109,15 @@ app.controller('IndexCtrl', function ($scope, $location, $http, Game) {
 
     $scope.isChannel = function (host) {
         return $location.host() === host;
+    };
+
+    /**
+     * Go to the story
+     */
+    $scope.goStory = function () {
+        if (!Game.battle.isBattle) {
+            $location.path("/story");
+        }
     };
 
     /**
@@ -204,6 +217,17 @@ app.controller('IndexCtrl', function ($scope, $location, $http, Game) {
         }
     };
 
+});
+
+/**
+ * /Story
+ */
+
+app.controller('StoryCtrl', function ($location, Game) {
+    // Redirection
+    if (!Game.loaded) {
+        $location.path('/story');
+    }
 });
 
 /**

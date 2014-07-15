@@ -91,6 +91,7 @@ class Game {
      */
         preload() {
         // savable models
+        this.story = new Story(this);
         this.characters = new Characters(this);
         this.zones = new Zones(this);
         this.weapons = new Weapons(this);
