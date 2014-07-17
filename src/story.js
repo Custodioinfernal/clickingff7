@@ -4,29 +4,28 @@ class Story {
      *
      * @param game
      */
-    constructor(game) {
+        constructor(game) {
         this.game = game;
 
-        this.step = 1;
+        // current chapter object
+        this.chapter = null;
     }
 
     /**
      *
-     * @param data
-     * @returns {Story}
+     * @param chapterNumber
      */
-        load(data) {
-        for (var i in data) {
-            this[i] = data[i];
-        }
-        return this;
+        load(chapterNumber) {
+        this.chapter = new window['Chapter' + chapterNumber](this.game);
+        this.chapter.load();
     }
 
     /**
-     * @returns {Object}
+     *
+     * @returns {{chapterNumber: *}}
      */
         export() {
-        return _.pick(this, 'step');
+        return {chapterNumber: this.chapter.number};
     }
 
 }

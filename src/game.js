@@ -79,7 +79,7 @@ class Game {
             this.zones.checkLastZone();
         } else {
             this.reset();
-            this.buildLevel(1);
+            this.story.load(1);
         }
 
         // POSTLOAD
@@ -201,6 +201,7 @@ class Game {
      */
         export() {
         return {
+            stories   : this.stories.export(),
             characters: this.characters.export(),
             zones     : this.zones.export(),
             weapons   : this.weapons.export(),
@@ -223,6 +224,9 @@ class Game {
         if (!confirm) {
             return;
         }
+
+        // stories
+        this.story.currentChapter = save.story.currentChapter;
 
         // characters
         for (var c of save.characters.list) {
