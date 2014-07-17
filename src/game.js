@@ -120,10 +120,11 @@ class Game {
         this.autoTimer();
     }
 
-    /*
+    /**
      * Basic inventory
+     * @deprecated
      */
-    buildLevel(level) {
+        buildLevel(level) {
         // build zone
         this.zones.add(new window['Zone' + level](this), true);
 

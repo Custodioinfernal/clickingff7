@@ -13,6 +13,7 @@ class Loader {
                 list: [
                     "dist/attack.js",
                     "dist/battle.js",
+                    "dist/chapter.js",
                     "dist/characters.js",
                     "dist/character.js",
                     "dist/cure.js",
@@ -23,7 +24,6 @@ class Loader {
                     "dist/materia.js",
                     "dist/materias.js",
                     "dist/shop.js",
-                    "dist/stories.js",
                     "dist/story.js",
                     "dist/weapon.js",
                     "dist/weapons.js",
@@ -37,6 +37,7 @@ class Loader {
                 ]},
             {label  : "Loading resource files",
                 list: [
+                    "dist/chapters/chapter001.js",
                     "dist/characters/barret.js",
                     "dist/characters/cloud.js",
                     "dist/characters/tifa.js",
