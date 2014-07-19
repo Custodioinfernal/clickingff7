@@ -33,7 +33,7 @@ class Shop {
         ];
         for (var w of weapons) {
             var weapon = new window[w](this.game);
-            if (weapon.zoneAvailable <= this.game.zones.levelMax && (this.allWeapons || weapon.inStock() === 0)) {
+            if (weapon.zoneAvailable <= this.game.story.levelMax && (this.allWeapons || weapon.inStock() === 0)) {
                 this.weapons.push(weapon);
             }
         }
@@ -49,7 +49,7 @@ class Shop {
         ];
         for (var m of materias) {
             var materia = new window[m](this.game);
-            if (materia.zoneAvailable <= this.game.zones.levelMax) {
+            if (materia.zoneAvailable <= this.game.story.levelMax) {
                 this.materias.push(materia);
             }
         }
@@ -62,7 +62,7 @@ class Shop {
         ];
         for (var i of items) {
             var item = new window[i](this.game);
-            if (item.available(this.game.zones.levelMax)) {
+            if (item.available(this.game.story.levelMax)) {
                 this.items.push(item);
             }
         }

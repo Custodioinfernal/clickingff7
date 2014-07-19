@@ -185,7 +185,7 @@ app.controller('IndexCtrl', function ($scope, $location, $http, Game) {
      * Go to the PHS
      */
     $scope.goPHS = function (ev) {
-        if (!Game.battle.isBattle && Game.zones.levelMax >= 5) {
+        if (!Game.battle.isBattle && Game.story.chapter.number >= 5) {
             $location.path("/phs");
         }
     };
@@ -241,7 +241,7 @@ app.controller('GameCtrl', function ($rootScope, Game) {
      */
     $rootScope.fightRandom = function (ev) {
         if (!Game.battle.isBattle) {
-            Game.battle.startRandom();
+            Game.battle.fight();
         }
     };
 
@@ -371,7 +371,7 @@ app.controller('ConfigCtrl', function ($scope, $rootScope, $translate, $location
 app.controller('PHSCtrl', function ($location, Game) {
 
     // Redirection
-    if (!Game.loaded || Game.zones.levelMax < 5) {
+    if (!Game.loaded || Game.story.chapter.number < 5) {
         $location.path('/game');
     }
 
@@ -402,7 +402,7 @@ app.controller('SaveCtrl', function ($scope, $rootScope, $location, Game) {
         if (Game.saves[0] && confirm('Are you sure ? You\'ll lose everything !')) {
             Game.preload();
             Game.reset();
-            Game.buildLevel(1);
+            Game.story.loadNew(1);
             Game.postload();
             $location.path('/game');
         }

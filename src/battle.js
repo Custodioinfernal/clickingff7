@@ -8,34 +8,11 @@ class Battle {
     /**
      * Characters start auto-attacking
      */
-        startRandom() {
+        fight() {
         if (!this.isBattle) {
             this.isBattle = true;
 
             this.game.enemies.fightRandom();
-            this.game.enemies.refresh();
-            this.game.enemies.autoFighting();
-        }
-    }
-
-    /**
-     * Returns true if zone boss is available
-     * @returns {boolean}
-     */
-        canFightBoss() {
-        var levelMax = this.game.characters.levelMax;
-        var zone = this.game.zones.current();
-        return (!this.isBattle && zone.nbFights >= zone.MAX_FIGHTS && !zone.completed);
-    }
-
-    /**
-     * Characters start auto-attacking
-     */
-        startBoss() {
-        if (!this.isBattle) {
-            this.isBattle = true;
-
-            this.game.enemies.fightBoss();
             this.game.enemies.refresh();
             this.game.enemies.autoFighting();
         }
@@ -60,9 +37,9 @@ class Battle {
             if (victory) {
                 this.game.gils += enemy.gilsReward();
 
-                if (enemy.boss && this.game.zones.level + 1 > this.game.zones.levelMax) {
+                if (enemy.boss) {
                     // Complete zone
-                    this.game.zones.complete();
+                    this.game.story.success();
                 }
 
                 // XP for characters
@@ -77,7 +54,7 @@ class Battle {
                     materia.setAp(ap);
                 }
 
-                this.game.zones.current().nbFights++;
+                this.game.story.nbFights++;
             }
         }
 

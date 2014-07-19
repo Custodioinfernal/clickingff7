@@ -1,16 +1,25 @@
 class Chapter1 extends Chapter {
 
-    constructor(game) {
-        // associated zones
-        this.zones = [1];
-
+    /**
+     *
+     * @param game
+     */
+        constructor(game) {
         super(game);
+
+        // available zones
+        this.availableZones = [];
+
+        // current zone
+        this.newZones = [1];
     }
 
     /**
      *
      */
-    load() {
+        load() {
+        super.load();
+
         // data to load characters
         var levelMax = this.game.characters.levelMax ? this.game.characters.levelMax : 1;
         var data = {level: levelMax};
@@ -35,21 +44,21 @@ class Chapter1 extends Chapter {
     /**
      *
      */
-    fight() {
+        fight() {
 
     }
 
     /**
      *
      */
-    success() {
+        success() {
 
     }
 
     /**
      *
      */
-    fail() {
+        fail() {
 
     }
 

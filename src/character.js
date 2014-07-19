@@ -28,7 +28,7 @@ class Character {
         notAvailable() {
         var t = this.notA;
         for (var i of t) {
-            if (i === this.game.zones.levelMax) {
+            if (i === this.game.story.levelMax) {
                 return true;
             }
         }
@@ -154,7 +154,7 @@ class Character {
      * @returns {*}
      */
         getLine() {
-        var levelMax = this.game.zones.levelMax;
+        var levelMax = this.game.story.chapter.number;
         return 'Line ' + levelMax + ' ' + this.constructor.name;
     }
 

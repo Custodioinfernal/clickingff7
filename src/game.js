@@ -76,10 +76,10 @@ class Game {
         // load save
         if (save) {
             this.load(save);
-            this.zones.checkLastZone();
+            //this.story.checkUpdates();
         } else {
             this.reset();
-            this.story.load(1);
+            this.story.loadNew(1);
         }
 
         // POSTLOAD
@@ -92,8 +92,8 @@ class Game {
         preload() {
         // savable models
         this.story = new Story(this);
-        this.characters = new Characters(this);
         this.zones = new Zones(this);
+        this.characters = new Characters(this);
         this.weapons = new Weapons(this);
         this.materias = new Materias(this);
         this.items = new Items(this);
@@ -198,13 +198,13 @@ class Game {
 
     /**
      * Export the game
-     * @returns {{characters: *, zones: *, weapons: *, materias: *, items: *, gils: (number|Game.gils|*), time: number, version: string}}
+     * @returns {{story: *, characters: *, weapons: *, materias: *, items: *, gils: *, language: (Game.language|*), difficulty: (Game.difficulty|*), time: *, version: *}}
      */
         export() {
         return {
-            stories   : this.stories.export(),
-            characters: this.characters.export(),
+            story     : this.story.export(),
             zones     : this.zones.export(),
+            characters: this.characters.export(),
             weapons   : this.weapons.export(),
             materias  : this.materias.export(),
             items     : this.items.export(),
@@ -226,8 +226,15 @@ class Game {
             return;
         }
 
-        // stories
-        this.story.currentChapter = save.story.currentChapter;
+        // story
+        this.story.load(save.story.chapterNumber);
+
+        // zones
+        for (var z of save.zones) {
+            var zone = new window[z.ref](this).load(z);
+            this.zones.add(zone);
+        }
+        this.zones.refresh();
 
         // characters
         for (var c of save.characters.list) {
@@ -238,15 +245,6 @@ class Game {
         this.characters.hp = save.characters.hp;
         this.characters.mp = save.characters.mp;
         this.characters.limit = save.characters.limit;
-
-        // zones
-        for (var z of save.zones.list) {
-            var zone = new window[z.ref](this).load(z);
-            this.zones.add(zone);
-        }
-
-        this.zones.level = save.zones.level;
-        this.zones.levelMax = save.zones.levelMax;
 
         this.characters.available();
 

@@ -45,9 +45,9 @@ class Weapons {
      * @returns {Array}
      */
         export() {
-        var json = [], i, t;
-        for (i in this.list) {
-            json.push(this.list[i].export());
+        var json = [];
+        for (var character of this.list) {
+            json.push(character.export());
         }
         return json;
     }

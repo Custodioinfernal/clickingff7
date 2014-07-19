@@ -2,8 +2,8 @@
     <div class="block">
         <ul>
             <li ng-repeat="zone in game.zones.list" ng-class="{current: game.zones.level === zone.level}"
-                ng-click="game.zones.goZone(zone.level)">
-                Zone {{zone.level}}
+                ng-click="game.zones.setSelected(zone)">
+                {{'Zone '+zone.number+' name'|translate}}
             </li>
         </ul>
     </div>
@@ -11,28 +11,16 @@
 
 <div class="c1">
 
-    <img ng-src="{{game.zones.current().image}}" width="80" alt="current_zone" style="float: left"/>
+    <img ng-src="{{game.zones.selected.image}}" width="80" alt="current_zone" style="float: left"/>
 
     <div class="main">
         <p>
-            {{"Zone "+game.zones.current().level+" name"|translate}} <strong>(#{{game.zones.current().level}})</strong>
+            {{"Zone "+game.zones.selected.number+" name"|translate}} <strong>(#{{game.zones.current.number}})</strong>
         </p>
 
-        <p>{{'Zone '+game.zones.current().level+' desc'|translate}}</p>
+        <p>{{'Zone '+game.zones.selected.number+' desc'|translate}}</p>
     </div>
 
 </div><!--
 
---><div class="c3">
-
-    <div class="no-data" ng-if="!game.zones.current().completed">
-        {{"Not completed"|translate}}
-    </div>
-
-    <div class="no-data" ng-if="game.zones.current().completed">
-        <div>{{"Completed"|translate}}</div>
-        <div ng-show="game.zones.isNextZone()" ng-click="game.zones.goNextZone()" class="button">
-            {{"Go next zone"|translate}}
-        </div>
-    </div>
-</div>
+--><div class="c3"></div>
