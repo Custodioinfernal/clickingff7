@@ -20,16 +20,24 @@ class Zones {
     /**
      *
      * @param zone
+     * @param refresh
      */
-        add(zone) {
+        add(zone, refresh) {
         this.list.push(zone);
+
+        if (refresh) {
+            zone.available = true;
+            zone.current = true;
+            zone.selected = true;
+            this.refresh();
+        }
     }
 
     /**
-     *
+     * Defines current & selected zone
      * @returns {Zones}
      */
-    refresh() {
+        refresh() {
         this.current = _.find(this.list, {current: true});
         this.selected = _.find(this.list, {selected: true});
     }

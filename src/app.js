@@ -402,7 +402,7 @@ app.controller('SaveCtrl', function ($scope, $rootScope, $location, Game) {
         if (Game.saves[0] && confirm('Are you sure ? You\'ll lose everything !')) {
             Game.preload();
             Game.reset();
-            Game.story.loadNew(1);
+            Game.story.add(new Chapter1(Game), true);
             Game.postload();
             $location.path('/game');
         }

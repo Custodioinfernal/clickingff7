@@ -79,7 +79,7 @@ class Game {
             //this.story.checkUpdates();
         } else {
             this.reset();
-            this.story.loadNew(1);
+            this.story.add(new Chapter1(this), true);
         }
 
         // POSTLOAD
@@ -227,7 +227,10 @@ class Game {
         }
 
         // story
-        this.story.load(save.story.chapterNumber);
+        for (var ch of save.story) {
+            var chapter = new window[ch.ref](this).load(ch);
+            this.story.add(chapter, false);
+        }
 
         // zones
         for (var z of save.zones) {

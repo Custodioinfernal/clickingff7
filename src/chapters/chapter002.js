@@ -9,9 +9,6 @@ class Chapter2 extends Chapter {
 
         // available zones
         this.availableZones = [];
-
-        // current zone (must be in the available zones)
-        this.newZones = [2];
     }
 
     /**

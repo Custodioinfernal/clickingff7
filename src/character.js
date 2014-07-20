@@ -154,7 +154,7 @@ class Character {
      * @returns {*}
      */
         getLine() {
-        var levelMax = this.game.story.chapter.number;
+        var levelMax = this.game.story.lastChapter.number;
         return 'Line ' + levelMax + ' ' + this.constructor.name;
     }
 
